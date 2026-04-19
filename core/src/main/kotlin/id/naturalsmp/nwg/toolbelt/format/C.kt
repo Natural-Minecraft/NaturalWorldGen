@@ -93,8 +93,8 @@ enum class C(
         override fun asBungee(): net.md_5.bungee.api.ChatColor = net.md_5.bungee.api.ChatColor.RESET
     };
 
-    val actualToken: String = if (token == "^") "<${name.lowercase(Locale.ROOT)}>" else token
-    val asString: String = "$COLOR_CHAR$code"
+    val actualToken: String get() = if (token == "^") "<${name.lowercase(Locale.ROOT)}>" else token
+    val asString: String get() = "$COLOR_CHAR$code"
 
     open fun asBungee(): net.md_5.bungee.api.ChatColor = net.md_5.bungee.api.ChatColor.RESET
 
@@ -386,12 +386,12 @@ enum class C(
             val str = StringBuilder()
             str.append("<table><tr><td>Chat Color</td><td>Color</td></tr>")
             for ((key, value) in chatHexMap) {
-                str.append(String.format("<tr><td style='color: %2$s;'>%1$s</td><td style='color: %2$s;'>Test String</td></tr>", key.name, value))
+                str.append(String.format("<tr><td style='color: %2\$s;'>%1\$s</td><td style='color: %2\$s;'>Test String</td></tr>", key.name, value))
             }
             str.append("</table>")
             str.append("<table><tr><td>Dye Color</td><td>Color</td></tr>")
             for ((key, value) in dyeHexMap) {
-                str.append(String.format("<tr><td style='color: %2$s;'>%1$s</td><td style='color: %2$s;'>Test String</td></tr>", key.name, value))
+                str.append(String.format("<tr><td style='color: %2\$s;'>%1\$s</td><td style='color: %2\$s;'>Test String</td></tr>", key.name, value))
             }
             str.append("</table>")
             return str.toString()

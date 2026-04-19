@@ -23,8 +23,8 @@ open class IrisPackExecutionEnvironment internal constructor(
 
     override fun compile(script: String, type: KClass<*>): Script {
         val loaded = data.scriptLoader.load(script)
-        return compileCache.get(script)
-            .computeIfAbsent(type, Function { _ -> runner.compile(type, loaded.loadFile, loaded.source) })
+        return compileCache.get(script)!!
+            .getOrPut(type) { runner.compile(type, loaded.loadFile, loaded.source) }
             .valueOrThrow("Failed to compile script $script")
     }
 

@@ -9,19 +9,21 @@ import id.naturalsmp.nwg.toolbelt.math.RollingSequence
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
 
-class KCache<K, V>(private var loader: CacheLoader<K, V>?, private val max: Long, private val fastDump: Boolean = false) :
+class KCache<K : Any, V : Any>(private var loader: CacheLoader<K, V>?, private val max: Long, private val fastDump: Boolean = false) :
     MeteredCache {
-    private val cache: LoadingCache<K, V> = create(loader)
+    private val cache: LoadingCache<K, V> = create()
     private val msu = RollingSequence(100)
 
-    private fun create(loader: CacheLoader<K, V>?): LoadingCache<K, V> {
+    private fun create(): LoadingCache<K, V> {
         return Caffeine
             .newBuilder()
             .maximumSize(max)
             .scheduler(Scheduler.systemScheduler())
             .executor(EXECUTOR)
             .initialCapacity(max.toInt())
-            .build { k -> loader?.load(k) }
+            .build { k ->
+                loader?.load(k) ?: throw IllegalStateException("No loader configured for KCache")
+            }
     }
 
     fun setLoader(loader: CacheLoader<K, V>) {

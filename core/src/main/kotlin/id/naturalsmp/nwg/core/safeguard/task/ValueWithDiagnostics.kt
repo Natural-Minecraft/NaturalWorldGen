@@ -67,7 +67,7 @@ data class Diagnostic @JvmOverloads constructor(
         }
     }
 
-    override fun toString(): String = C.strip(render())
+    override fun toString(): String = C.strip(render()) ?: ""
 }
 
 fun <T> T.withDiagnostics(vararg diagnostics: Diagnostic) = ValueWithDiagnostics(this, diagnostics.toList())

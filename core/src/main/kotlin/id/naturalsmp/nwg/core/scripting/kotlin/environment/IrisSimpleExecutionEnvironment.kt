@@ -19,6 +19,7 @@ import kotlin.script.experimental.annotations.KotlinScript
 import kotlin.script.experimental.api.ResultWithDiagnostics
 import kotlin.text.split
 import java.util.function.Function
+import com.github.benmanes.caffeine.cache.CacheLoader
 
 open class IrisSimpleExecutionEnvironment internal constructor(
     baseDir: File,
@@ -26,7 +27,7 @@ open class IrisSimpleExecutionEnvironment internal constructor(
 ) : SimpleEnvironment {
     @JvmOverloads
     constructor(baseDir: File = File(".").absoluteFile) : this(baseDir, null)
-    protected val compileCache = KCache<String, KMap<KClass<*>, ResultWithDiagnostics<Script>>>({ _ -> KMap() }, 1024L)
+    protected val compileCache = KCache<String, KMap<KClass<*>, ResultWithDiagnostics<Script>>>(CacheLoader { _ -> KMap<KClass<*>, ResultWithDiagnostics<Script>>() }, 1024L)
     protected val runner = ScriptRunner(baseDir, parent)
 
     override fun execute(
@@ -56,8 +57,8 @@ open class IrisSimpleExecutionEnvironment internal constructor(
     }
 
     protected open fun compile(script: String, type: KClass<*>): Script =
-        compileCache.get(script)
-            .computeIfAbsent(type, Function { _ -> runner.compile(type, script) })
+        compileCache.get(script)!!
+            .getOrPut(type) { runner.compile(type, script) }
             .valueOrThrow("Failed to compile script")
 
     private fun evaluate0(name: String, type: KClass<*>, properties: Map<String, Any?>? = null): Any? {
