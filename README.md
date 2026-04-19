@@ -2,7 +2,7 @@
 
 The master branch is for the latest version of minecraft.
 
-# [Support](https://discord.gg/3xxPTpT) **|** [Documentation](https://docs.naturalsmp.id/naturalworldgen/) **|** [Git](https://github.com/IrisDimensions)
+# [Support](https://discord.gg/3xxPTpT) **|** [Documentation](https://docs.naturalsmp.id/naturalworldgen/) **|** [Git](https://github.com/Natural-Minecraft/NaturalWorldGen)
 
 # Building
 
@@ -30,8 +30,8 @@ Consider supporting our development by buying NaturalWorldGen on spigot! We work
         3. Add `export JAVA_HOME=$(/usr/libexec/java_home)` as a new line
         4. Use `CTRL + X`, then Press `Y`, Then `ENTER`
         5. Quit & Reopen Terminal and verify with `echo $JAVA_HOME`. It should print a directory
-3. Once the project has setup, run `gradlew naturalworldgen`
-4. The NaturalWorldGen jar will be placed in `NaturalWorldGen/build/NaturalWorldGen-XXX-XXX.jar` Enjoy! Consider supporting us by buying it on spigot!
+3. Once the project has setup, run `gradlew build`
+4. The NaturalWorldGen jar will be placed in `build/libs/NaturalWorldGen-XXX.jar`. Enjoy!
 
 ### IDE Builds (for development)
 
@@ -45,24 +45,24 @@ Consider supporting our development by buying NaturalWorldGen on spigot! We work
 Everyone needs a tool-belt.
 
 ```java
-package id.naturalsmp.NaturalWorldGen.core.tools;
+package id.naturalsmp.nwg.core.tools;
 
 // Get IrisDataManager from a world
-IrisToolbelt.access(anyWorld).getCompound().getData();
+NaturalToolbelt.access(anyWorld).getCompound().getData();
 
 // Get Default Engine from world
-IrisToolbelt.access(anyWorld).getCompound().getDefaultEngine();
+NaturalToolbelt.access(anyWorld).getCompound().getDefaultEngine();
 
 // Get the engine at the given height
-IrisToolbelt.access(anyWorld).getCompound().getEngineForHeight(68);
+NaturalToolbelt.access(anyWorld).getCompound().getEngineForHeight(68);
 
 // IS THIS THING ON?
-boolean yes=IrisToolbelt.isIrisWorld(world);
+boolean yes=NaturalToolbelt.isIrisWorld(world);
 
 // GTFO for worlds (moves players to any other world, just not this one)
-IrisToolbelt.evacuate(world);
+NaturalToolbelt.evacuate(world);
 
-IrisAccess access=IrisToolbelt.createWorld() // If you like builders...
+NaturalAccess access=NaturalToolbelt.createWorld() // If you like builders...
   .name("myWorld") // The world name
   .dimension("terrifyinghands")
   .seed(69133742) // The world seed

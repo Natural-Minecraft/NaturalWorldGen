@@ -15,7 +15,7 @@ import java.util.jar.JarOutputStream
 class ApiGenerator : Plugin<Project> {
     override fun apply(target: Project): Unit = with(target) {
         plugins.apply("maven-publish")
-        val task = tasks.register("irisApi", GenerateApiTask::class.java)
+        val task = tasks.register("nwgApi", GenerateApiTask::class.java)
         extensions.findByType(PublishingExtension::class.java)!!.apply {
             repositories.maven {
                 it.name = "deployDir"
