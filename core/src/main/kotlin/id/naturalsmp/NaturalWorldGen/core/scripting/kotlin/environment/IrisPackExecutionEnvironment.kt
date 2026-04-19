@@ -15,7 +15,7 @@ import kotlin.reflect.KClass
 open class IrisPackExecutionEnvironment internal constructor(
     private val data: IrisData,
     parent: ScriptRunner?
-) : NaturalGeneratorSimpleExecutionEnvironment(data.dataFolder, parent), PackEnvironment {
+) : IrisSimpleExecutionEnvironment(data.dataFolder, parent), PackEnvironment {
     constructor(data: IrisData) : this(data, null)
 
     override fun getData() = data

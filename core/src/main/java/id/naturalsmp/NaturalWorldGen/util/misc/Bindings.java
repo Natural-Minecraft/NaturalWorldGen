@@ -82,7 +82,7 @@ public class Bindings {
     }
 
 
-    public static void setupBstats(NaturalWorldGen plugin) {
+    public static void setupBstats(NaturalGenerator plugin) {
         J.s(() -> {
             var metrics = new Metrics(plugin, 24220);
             metrics.addCustomChart(new SingleLineChart("custom_dimensions", () -> Bukkit.getWorlds()
@@ -117,7 +117,7 @@ public class Bindings {
     public static class Adventure {
         private final BukkitAudiences audiences;
 
-        public Adventure(NaturalWorldGen plugin) {
+        public Adventure(NaturalGenerator plugin) {
             ShadeFix.fix(ComponentSerializer.class);
             this.audiences = BukkitAudiences.create(plugin);
         }

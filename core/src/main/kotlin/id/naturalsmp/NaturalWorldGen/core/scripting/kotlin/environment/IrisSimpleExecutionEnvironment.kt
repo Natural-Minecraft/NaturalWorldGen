@@ -19,7 +19,7 @@ import kotlin.script.experimental.annotations.KotlinScript
 import kotlin.script.experimental.api.ResultWithDiagnostics
 import kotlin.text.split
 
-open class NaturalGeneratorSimpleExecutionEnvironment internal constructor(
+open class IrisSimpleExecutionEnvironment internal constructor(
     baseDir: File,
     parent: ScriptRunner?
 ) : SimpleEnvironment {

@@ -29,11 +29,11 @@ data class Diagnostic @JvmOverloads constructor(
     enum class Logger(
         private val logger: (String) -> Unit
     ) {
-        DEBUG(NaturalWorldGen::debug),
-        RAW(NaturalWorldGen::msg),
-        INFO(NaturalWorldGen::info),
-        WARN(NaturalWorldGen::warn),
-        ERROR(NaturalWorldGen::error);
+        DEBUG(NaturalGenerator::debug),
+        RAW(NaturalGenerator::msg),
+        INFO(NaturalGenerator::info),
+        WARN(NaturalGenerator::warn),
+        ERROR(NaturalGenerator::error);
 
         fun print(message: String) = message.split('\n').forEach(logger)
         fun create(message: String, exception: Throwable? = null) = Diagnostic(this, message, exception)
