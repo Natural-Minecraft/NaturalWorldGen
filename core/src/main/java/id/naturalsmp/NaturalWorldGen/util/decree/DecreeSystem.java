@@ -18,7 +18,7 @@
 
 package id.naturalsmp.NaturalWorldGen.util.decree;
 
-import id.naturalsmp.NaturalWorldGen.NaturalWorldGen;
+import id.naturalsmp.NaturalWorldGen.NaturalGenerator;
 import id.naturalsmp.NaturalWorldGen.core.IrisSettings;
 import id.naturalsmp.NaturalWorldGen.util.collection.KList;
 import id.naturalsmp.NaturalWorldGen.util.decree.virtual.VirtualDecreeCommand;
@@ -122,7 +122,7 @@ public interface DecreeSystem extends CommandExecutor, TabCompleter {
                 return i;
             }
         }
-        NaturalWorldGen.error("Unhandled type in Decree Parameter: " + type.getName() + ". This is bad!");
+        NaturalGenerator.error("Unhandled type in Decree Parameter: " + type.getName() + ". This is bad!");
         return null;
     }
 

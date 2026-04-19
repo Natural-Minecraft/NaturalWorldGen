@@ -1,6 +1,6 @@
 package id.naturalsmp.NaturalWorldGen.util.reflect;
 
-import id.naturalsmp.NaturalWorldGen.NaturalWorldGen;
+import id.naturalsmp.NaturalWorldGen.NaturalGenerator;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -15,7 +15,7 @@ public final class WrappedReturningMethod<C, R> {
             m = origin.getDeclaredMethod(methodName, paramTypes);
             m.setAccessible(true);
         } catch (NoSuchMethodException e) {
-            NaturalWorldGen.error("Failed to created WrappedMethod %s#%s: %s%s", origin.getSimpleName(), methodName, e.getClass().getSimpleName(), e.getMessage().equals("") ? "" : " | " + e.getMessage());
+            NaturalGenerator.error("Failed to created WrappedMethod %s#%s: %s%s", origin.getSimpleName(), methodName, e.getClass().getSimpleName(), e.getMessage().equals("") ? "" : " | " + e.getMessage());
         }
         this.method = m;
     }
@@ -32,7 +32,7 @@ public final class WrappedReturningMethod<C, R> {
         try {
             return (R) method.invoke(instance, args);
         } catch (InvocationTargetException | IllegalAccessException e) {
-            NaturalWorldGen.error("Failed to invoke WrappedMethod %s#%s: %s%s", method.getDeclaringClass().getSimpleName(), method.getName(), e.getClass().getSimpleName(), e.getMessage().equals("") ? "" : " | " + e.getMessage());
+            NaturalGenerator.error("Failed to invoke WrappedMethod %s#%s: %s%s", method.getDeclaringClass().getSimpleName(), method.getName(), e.getClass().getSimpleName(), e.getMessage().equals("") ? "" : " | " + e.getMessage());
             return null;
         }
     }

@@ -18,7 +18,7 @@
 
 package id.naturalsmp.NaturalWorldGen.engine.object;
 
-import id.naturalsmp.NaturalWorldGen.NaturalWorldGen;
+import id.naturalsmp.NaturalWorldGen.NaturalGenerator;
 import id.naturalsmp.NaturalWorldGen.engine.data.cache.AtomicCache;
 import id.naturalsmp.NaturalWorldGen.engine.object.annotations.Desc;
 import id.naturalsmp.NaturalWorldGen.engine.object.annotations.Required;
@@ -63,7 +63,7 @@ public class IrisCompatabilityBlockFilter {
                 return null;
             }
 
-            NaturalWorldGen.warn("Compat: Using '%s' in place of '%s' since this server doesnt support '%s'", supplement, when, when);
+            NaturalGenerator.warn("Compat: Using '%s' in place of '%s' since this server doesnt support '%s'", supplement, when, when);
 
             return b;
         });

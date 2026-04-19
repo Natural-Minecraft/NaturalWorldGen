@@ -18,7 +18,7 @@
 
 package id.naturalsmp.NaturalWorldGen.core.gui;
 
-import id.naturalsmp.NaturalWorldGen.NaturalWorldGen;
+import id.naturalsmp.NaturalWorldGen.NaturalGenerator;
 import id.naturalsmp.NaturalWorldGen.core.IrisSettings;
 import id.naturalsmp.NaturalWorldGen.core.pregenerator.IrisPregenerator;
 import id.naturalsmp.NaturalWorldGen.core.pregenerator.PregenListener;
@@ -151,8 +151,8 @@ public class PregeneratorJob implements PregenListener {
         try {
             return Color.decode(v);
         } catch (Throwable e) {
-            NaturalWorldGen.reportError(e);
-            NaturalWorldGen.error("Error Parsing 'color', (" + c + ")");
+            NaturalGenerator.reportError(e);
+            NaturalGenerator.error("Error Parsing 'color', (" + c + ")");
         }
 
         return Color.RED;
@@ -185,7 +185,7 @@ public class PregeneratorJob implements PregenListener {
                 renderer.func.accept(new Position2(x, z), color);
             }
         } catch (Throwable ignored) {
-            NaturalWorldGen.error("Failed to draw pregen");
+            NaturalGenerator.error("Failed to draw pregen");
         }
     }
 
@@ -204,7 +204,7 @@ public class PregeneratorJob implements PregenListener {
                 J.sleep(3000);
                 frame.setVisible(false);
             } catch (Throwable ignored) {
-                NaturalWorldGen.error("Error closing pregen gui");
+                NaturalGenerator.error("Error closing pregen gui");
             }
         });
     }
@@ -227,7 +227,7 @@ public class PregeneratorJob implements PregenListener {
                 frame.setSize(1000, 1000);
                 frame.setVisible(true);
             } catch (Throwable ignored) {
-                NaturalWorldGen.error("Error opening pregen gui");
+                NaturalGenerator.error("Error opening pregen gui");
             }
         });
     }
@@ -386,7 +386,7 @@ public class PregeneratorJob implements PregenListener {
                 try {
                     order.pop().run();
                 } catch (Throwable e) {
-                    NaturalWorldGen.reportError(e);
+                    NaturalGenerator.reportError(e);
 
                 }
             }

@@ -18,14 +18,14 @@
 
 package id.naturalsmp.NaturalWorldGen.engine.framework;
 
-import id.naturalsmp.NaturalWorldGen.NaturalWorldGen;
+import id.naturalsmp.NaturalWorldGen.NaturalGenerator;
 
 public interface Fallible {
     default void fail(String error) {
         try {
             throw new RuntimeException();
         } catch (Throwable e) {
-            NaturalWorldGen.reportError(e);
+            NaturalGenerator.reportError(e);
             fail(error, e);
         }
     }

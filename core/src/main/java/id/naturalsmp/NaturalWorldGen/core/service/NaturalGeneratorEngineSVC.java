@@ -1,7 +1,7 @@
 package id.naturalsmp.NaturalWorldGen.core.service;
 
 import com.google.common.util.concurrent.AtomicDouble;
-import id.naturalsmp.NaturalWorldGen.NaturalWorldGen;
+import id.naturalsmp.NaturalWorldGen.NaturalGenerator;
 import id.naturalsmp.NaturalWorldGen.core.IrisSettings;
 import id.naturalsmp.NaturalWorldGen.core.loader.ResourceLoader;
 import id.naturalsmp.NaturalWorldGen.core.tools.IrisToolbelt;
@@ -70,7 +70,7 @@ public class IrisEngineSVC implements IrisService {
         long[] sizes = new long[4];
         long[] count = new long[4];
 
-        for (var cache : NaturalWorldGen.service(PreservationSVC.class).getCaches()) {
+        for (var cache : NaturalGenerator.service(PreservationSVC.class).getCaches()) {
             var type = switch (cache) {
                 case ResourceLoader<?> ignored -> 0;
                 case CachedStream2D<?> ignored -> 1;
@@ -220,8 +220,8 @@ public class IrisEngineSVC implements IrisService {
                     try {
                         engine.getMantle().trim(tectonicLimit());
                     } catch (Throwable e) {
-                        NaturalWorldGen.reportError(e);
-                        NaturalWorldGen.error("EngineSVC: Failed to trim for " + name);
+                        NaturalGenerator.reportError(e);
+                        NaturalGenerator.error("EngineSVC: Failed to trim for " + name);
                         e.printStackTrace();
                     }
                 }, offset, TRIM_PERIOD, TimeUnit.MILLISECONDS);
@@ -237,11 +237,11 @@ public class IrisEngineSVC implements IrisService {
                         long unloadStart = System.currentTimeMillis();
                         int count = engine.getMantle().unloadTectonicPlate(IrisSettings.get().getPerformance().getEngineSVC().forceMulticoreWrite ? 0 : tectonicLimit());
                         if (count > 0) {
-                            NaturalWorldGen.debug(C.GOLD + "Unloaded " + C.YELLOW + count + " TectonicPlates in " + C.RED + Form.duration(System.currentTimeMillis() - unloadStart, 2));
+                            NaturalGenerator.debug(C.GOLD + "Unloaded " + C.YELLOW + count + " TectonicPlates in " + C.RED + Form.duration(System.currentTimeMillis() - unloadStart, 2));
                         }
                     } catch (Throwable e) {
-                        NaturalWorldGen.reportError(e);
-                        NaturalWorldGen.error("EngineSVC: Failed to unload for " + name);
+                        NaturalGenerator.reportError(e);
+                        NaturalGenerator.error("EngineSVC: Failed to unload for " + name);
                         e.printStackTrace();
                     }
                 }, offset + TRIM_PERIOD / 2, TRIM_PERIOD, TimeUnit.MILLISECONDS);

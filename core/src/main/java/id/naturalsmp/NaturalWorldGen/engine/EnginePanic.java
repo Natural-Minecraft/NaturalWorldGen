@@ -18,7 +18,7 @@
 
 package id.naturalsmp.NaturalWorldGen.engine;
 
-import id.naturalsmp.NaturalWorldGen.NaturalWorldGen;
+import id.naturalsmp.NaturalWorldGen.NaturalGenerator;
 import id.naturalsmp.NaturalWorldGen.util.collection.KMap;
 
 public class EnginePanic {
@@ -35,14 +35,14 @@ public class EnginePanic {
 
     public static void lastPanic() {
         for (String i : last.keySet()) {
-            NaturalWorldGen.error("Last Panic " + i + ": " + stuff.get(i));
+            NaturalGenerator.error("Last Panic " + i + ": " + stuff.get(i));
         }
     }
 
     public static void panic() {
         lastPanic();
         for (String i : stuff.keySet()) {
-            NaturalWorldGen.error("Engine Panic " + i + ": " + stuff.get(i));
+            NaturalGenerator.error("Engine Panic " + i + ": " + stuff.get(i));
         }
     }
 }

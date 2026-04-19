@@ -18,7 +18,7 @@
 
 package id.naturalsmp.NaturalWorldGen.util.format;
 
-import id.naturalsmp.NaturalWorldGen.NaturalWorldGen;
+import id.naturalsmp.NaturalWorldGen.NaturalGenerator;
 import id.naturalsmp.NaturalWorldGen.util.plugin.NaturalDevSender;
 import net.kyori.adventure.text.minimessage.MiniMessage;
 import net.md_5.bungee.api.chat.BaseComponent;
@@ -458,7 +458,7 @@ public enum C {
             C c = BY_CHAR.get(code);
             return c == null ? C.WHITE : c;
         } catch (Exception e) {
-            NaturalWorldGen.reportError(e);
+            NaturalGenerator.reportError(e);
             return C.WHITE;
         }
     }
@@ -477,7 +477,7 @@ public enum C {
 
             return BY_CHAR.get(code.charAt(0));
         } catch (Exception e) {
-            NaturalWorldGen.reportError(e);
+            NaturalGenerator.reportError(e);
             return C.WHITE;
         }
     }

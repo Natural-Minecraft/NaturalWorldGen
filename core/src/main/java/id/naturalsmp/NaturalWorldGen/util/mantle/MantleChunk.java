@@ -18,7 +18,7 @@
 
 package id.naturalsmp.NaturalWorldGen.util.mantle;
 
-import id.naturalsmp.NaturalWorldGen.NaturalWorldGen;
+import id.naturalsmp.NaturalWorldGen.NaturalGenerator;
 import id.naturalsmp.NaturalWorldGen.core.tools.IrisToolbelt;
 import id.naturalsmp.NaturalWorldGen.util.documentation.ChunkCoordinates;
 import id.naturalsmp.NaturalWorldGen.util.documentation.ChunkRelativeBlockCoordinates;
@@ -90,10 +90,10 @@ public class MantleChunk extends FlaggedChunk {
                 sections.set(i, Matter.readDin(din));
             } catch (IOException e) {
                 long end = start + size;
-                NaturalWorldGen.error("Failed to read chunk section, skipping it.");
+                NaturalGenerator.error("Failed to read chunk section, skipping it.");
                 NaturalWorldGen.addPanic("read.byte.range", start + " " + end);
                 NaturalWorldGen.addPanic("read.byte.current", din.count() + "");
-                NaturalWorldGen.reportError(e);
+                NaturalGenerator.reportError(e);
                 e.printStackTrace();
                 NaturalWorldGen.panic();
 

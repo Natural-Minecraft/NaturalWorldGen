@@ -196,10 +196,10 @@ public class NaturalGenerator extends NaturalDevPlugin implements Listener {
                 int bytesRead;
                 while ((bytesRead = in.read(dataBuffer, 0, 1024)) != -1) {
                     fileOutputStream.write(dataBuffer, 0, bytesRead);
-                    NaturalWorldGen.verbose("Aquiring " + name);
+                    NaturalGenerator.verbose("Aquiring " + name);
                 }
             } catch (IOException e) {
-                NaturalWorldGen.reportError(e);
+                NaturalGenerator.reportError(e);
             }
         }
 
@@ -217,13 +217,13 @@ public class NaturalGenerator extends NaturalDevPlugin implements Listener {
                 fileOutputStream.write(dataBuffer, 0, bytesRead);
             }
         } catch (IOException e) {
-            NaturalWorldGen.reportError(e);
+            NaturalGenerator.reportError(e);
         }
 
         try {
             return IO.readAll(f);
         } catch (IOException e) {
-            NaturalWorldGen.reportError(e);
+            NaturalGenerator.reportError(e);
         }
 
         return "";
@@ -232,7 +232,7 @@ public class NaturalGenerator extends NaturalDevPlugin implements Listener {
     public static File getNonCachedFile(String name, String url) {
         String h = IO.hash(name + "*" + url);
         File f = NaturalGenerator.instance.getDataFile("cache", h.substring(0, 2), h.substring(3, 5), h);
-        NaturalWorldGen.verbose("Download " + name + " -> " + url);
+        NaturalGenerator.verbose("Download " + name + " -> " + url);
         try (BufferedInputStream in = new BufferedInputStream(new URL(url).openStream()); FileOutputStream fileOutputStream = new FileOutputStream(f)) {
             byte[] dataBuffer = new byte[1024];
             int bytesRead;
@@ -243,7 +243,7 @@ public class NaturalGenerator extends NaturalDevPlugin implements Listener {
             fileOutputStream.flush();
         } catch (IOException e) {
             e.printStackTrace();
-            NaturalWorldGen.reportError(e);
+            NaturalGenerator.reportError(e);
         }
 
         return f;
@@ -312,7 +312,7 @@ public class NaturalGenerator extends NaturalDevPlugin implements Listener {
                     object.run();
                 } catch (Throwable e) {
                     e.printStackTrace();
-                    NaturalWorldGen.reportError(e);
+                    NaturalGenerator.reportError(e);
                 }
             }, RNG.r.i(100, 1200));
         } catch (IllegalPluginAccessException ignored) {
@@ -364,7 +364,7 @@ public class NaturalGenerator extends NaturalDevPlugin implements Listener {
                 });
             }
 
-            NaturalWorldGen.debug("Chunk " + x + "," + z + " Exception Logged: " + e.getClass().getSimpleName() + ": " + C.RESET + "" + C.LIGHT_PURPLE + e.getMessage());
+            NaturalGenerator.debug("Chunk " + x + "," + z + " Exception Logged: " + e.getClass().getSimpleName() + ": " + C.RESET + "" + C.LIGHT_PURPLE + e.getMessage());
         }
     }
 
@@ -389,7 +389,7 @@ public class NaturalGenerator extends NaturalDevPlugin implements Listener {
                 });
             }
 
-            NaturalWorldGen.debug("Exception Logged: " + e.getClass().getSimpleName() + ": " + C.RESET + "" + C.LIGHT_PURPLE + e.getMessage());
+            NaturalGenerator.debug("Exception Logged: " + e.getClass().getSimpleName() + ": " + C.RESET + "" + C.LIGHT_PURPLE + e.getMessage());
         }
     }
 
@@ -414,7 +414,7 @@ public class NaturalGenerator extends NaturalDevPlugin implements Listener {
             pw.println("[%%__USER__%%,%%__RESOURCE__%%,%%__PRODUCT__%%,%%__BUILTBYBIT__%%]");
 
             pw.close();
-            NaturalWorldGen.info("DUMPED! See " + fi.getAbsolutePath());
+            NaturalGenerator.info("DUMPED! See " + fi.getAbsolutePath());
         } catch (Throwable e) {
             e.printStackTrace();
         }
@@ -490,19 +490,19 @@ public class NaturalGenerator extends NaturalDevPlugin implements Listener {
                 try {
                     if (Bukkit.getWorld(s) != null || !filter.test(s)) return;
 
-                    NaturalWorldGen.info("Loading World: %s | Generator: %s", s, generator);
+                    NaturalGenerator.info("Loading World: %s | Generator: %s", s, generator);
                     var gen = getDefaultWorldGenerator(s, generator);
                     var dim = loadDimension(s, generator);
                     assert dim != null && gen != null;
 
-                    NaturalWorldGen.info(C.LIGHT_PURPLE + "Preparing Spawn for " + s + "' using NaturalWorldGen:" + generator + "...");
+                    NaturalGenerator.info(C.LIGHT_PURPLE + "Preparing Spawn for " + s + "' using NaturalWorldGen:" + generator + "...");
                     WorldCreator c = new WorldCreator(s)
                             .generator(gen)
                             .environment(dim.getEnvironment());
                     INMS.get().createWorld(c);
-                    NaturalWorldGen.info(C.LIGHT_PURPLE + "Loaded " + s + "!");
+                    NaturalGenerator.info(C.LIGHT_PURPLE + "Loaded " + s + "!");
                 } catch (Throwable e) {
-                    NaturalWorldGen.error("Failed to load world " + s + "!");
+                    NaturalGenerator.error("Failed to load world " + s + "!");
                     e.printStackTrace();
                 }
             });
@@ -514,10 +514,10 @@ public class NaturalGenerator extends NaturalDevPlugin implements Listener {
 
     private void autoStartStudio() {
         if (IrisSettings.get().getStudio().isAutoStartDefaultStudio()) {
-            NaturalWorldGen.info("Starting up auto Studio!");
+            NaturalGenerator.info("Starting up auto Studio!");
             try {
                 Player r = new KList<>(getServer().getOnlinePlayers()).getRandom();
-                NaturalWorldGen.service(StudioSVC.class).open(r != null ? new NaturalDevSender(r) : getSender(), 1337, IrisSettings.get().getGenerator().getDefaultWorldType(), (w) -> {
+                NaturalGenerator.service(StudioSVC.class).open(r != null ? new NaturalDevSender(r) : getSender(), 1337, IrisSettings.get().getGenerator().getDefaultWorldType(), (w) -> {
                     J.s(() -> {
                         var spawn = w.getSpawnLocation();
                         for (Player i : getServer().getOnlinePlayers()) {
@@ -539,7 +539,7 @@ public class NaturalGenerator extends NaturalDevPlugin implements Listener {
             e.printStackTrace();
             IrisSettings.get().getGeneral().setUseConsoleCustomColors(false);
             IrisSettings.get().getGeneral().setUseCustomColorsIngame(false);
-            NaturalWorldGen.error("Failed to setup Adventure API... No custom colors :(");
+            NaturalGenerator.error("Failed to setup Adventure API... No custom colors :(");
         }
     }
 
@@ -590,7 +590,7 @@ public class NaturalGenerator extends NaturalDevPlugin implements Listener {
             IrisSettings.invalidate();
             IrisSettings.get();
             configWatcher.checkModified();
-            NaturalWorldGen.info("Hotloaded settings.json ");
+            NaturalGenerator.info("Hotloaded settings.json ");
         }
     }
 
@@ -607,7 +607,7 @@ public class NaturalGenerator extends NaturalDevPlugin implements Listener {
                     NaturalWorldGen.syncJobs.next().run();
                 } catch (Throwable e) {
                     e.printStackTrace();
-                    NaturalWorldGen.reportError(e);
+                    NaturalGenerator.reportError(e);
                 }
             }
         }
@@ -631,21 +631,21 @@ public class NaturalGenerator extends NaturalDevPlugin implements Listener {
     @Nullable
     @Override
     public BiomeProvider getDefaultBiomeProvider(@NotNull String worldName, @Nullable String id) {
-        NaturalWorldGen.debug("Biome Provider Called for " + worldName + " using ID: " + id);
+        NaturalGenerator.debug("Biome Provider Called for " + worldName + " using ID: " + id);
         return super.getDefaultBiomeProvider(worldName, id);
     }
 
     @Override
     public ChunkGenerator getDefaultWorldGenerator(String worldName, String id) {
-        NaturalWorldGen.debug("Default World Generator Called for " + worldName + " using ID: " + id);
+        NaturalGenerator.debug("Default World Generator Called for " + worldName + " using ID: " + id);
         if (id == null || id.isEmpty()) id = IrisSettings.get().getGenerator().getDefaultWorldType();
-        NaturalWorldGen.debug("Generator ID: " + id + " requested by bukkit/plugin");
+        NaturalGenerator.debug("Generator ID: " + id + " requested by bukkit/plugin");
         IrisDimension dim = loadDimension(worldName, id);
         if (dim == null) {
             throw new RuntimeException("Can't find dimension " + id + "!");
         }
 
-        NaturalWorldGen.debug("Assuming IrisDimension: " + dim.getName());
+        NaturalGenerator.debug("Assuming IrisDimension: " + dim.getName());
 
         IrisWorld w = IrisWorld.builder()
                 .name(worldName)
@@ -656,7 +656,7 @@ public class NaturalGenerator extends NaturalDevPlugin implements Listener {
                 .maxHeight(dim.getMaxHeight())
                 .build();
 
-        NaturalWorldGen.debug("Generator Config: " + w.toString());
+        NaturalGenerator.debug("Generator Config: " + w.toString());
 
         File ff = new File(w.worldFolder(), "naturalworldgen/pack");
         var files = ff.listFiles();
@@ -677,12 +677,12 @@ public class NaturalGenerator extends NaturalDevPlugin implements Listener {
         var dimension = pack.isDirectory() ? IrisData.get(pack).getDimensionLoader().load(id) : null;
         if (dimension == null) dimension = IrisData.loadAnyDimension(id, null);
         if (dimension == null) {
-            NaturalWorldGen.warn("Unable to find dimension type " + id + " Looking for online packs...");
-            NaturalWorldGen.service(StudioSVC.class).downloadSearch(new NaturalDevSender(Bukkit.getConsoleSender()), id, false);
+            NaturalGenerator.warn("Unable to find dimension type " + id + " Looking for online packs...");
+            NaturalGenerator.service(StudioSVC.class).downloadSearch(new NaturalDevSender(Bukkit.getConsoleSender()), id, false);
             dimension = IrisData.loadAnyDimension(id, null);
 
             if (dimension != null) {
-                NaturalWorldGen.info("Resolved missing dimension, proceeding.");
+                NaturalGenerator.info("Resolved missing dimension, proceeding.");
             }
         }
 
@@ -690,19 +690,19 @@ public class NaturalGenerator extends NaturalDevPlugin implements Listener {
     }
 
     public void splash() {
-        NaturalWorldGen.info("Server type & version: " + Bukkit.getName() + " v" + Bukkit.getVersion());
-        NaturalWorldGen.info("Custom Biomes: " + INMS.get().countCustomBiomes());
+        NaturalGenerator.info("Server type & version: " + Bukkit.getName() + " v" + Bukkit.getVersion());
+        NaturalGenerator.info("Custom Biomes: " + INMS.get().countCustomBiomes());
         printPacks();
 
         IrisSafeguard.mode().trySplash();
     }
 
     private void printPacks() {
-        File packFolder = NaturalWorldGen.service(StudioSVC.class).getWorkspaceFolder();
+        File packFolder = NaturalGenerator.service(StudioSVC.class).getWorkspaceFolder();
         File[] packs = packFolder.listFiles(File::isDirectory);
         if (packs == null || packs.length == 0)
             return;
-        NaturalWorldGen.info("Custom Dimensions: " + packs.length);
+        NaturalGenerator.info("Custom Dimensions: " + packs.length);
         for (File f : packs)
             printPack(f);
     }
@@ -716,7 +716,7 @@ public class NaturalGenerator extends NaturalDevPlugin implements Listener {
                 version = json.get("version").getAsString();
         } catch (IOException | JsonParseException ignored) {
         }
-        NaturalWorldGen.info("  " + dimName + " v" + version);
+        NaturalGenerator.info("  " + dimName + " v" + version);
     }
 
     public int getIrisVersion() {

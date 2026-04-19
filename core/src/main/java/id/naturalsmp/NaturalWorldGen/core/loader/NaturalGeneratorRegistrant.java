@@ -19,7 +19,7 @@
 package id.naturalsmp.NaturalWorldGen.core.loader;
 
 import com.google.gson.GsonBuilder;
-import id.naturalsmp.NaturalWorldGen.NaturalWorldGen;
+import id.naturalsmp.NaturalWorldGen.NaturalGenerator;
 import id.naturalsmp.NaturalWorldGen.engine.object.IrisScript;
 import id.naturalsmp.NaturalWorldGen.engine.object.annotations.ArrayType;
 import id.naturalsmp.NaturalWorldGen.engine.object.annotations.Desc;
@@ -59,7 +59,7 @@ public abstract class IrisRegistrant {
         try {
             Desktop.getDesktop().open(getLoadFile());
         } catch (Throwable e) {
-            NaturalWorldGen.reportError(e);
+            NaturalGenerator.reportError(e);
         }
 
         return getLoadFile();

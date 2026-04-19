@@ -1,7 +1,7 @@
 package id.naturalsmp.NaturalWorldGen.util.profile;
 
 
-import id.naturalsmp.NaturalWorldGen.NaturalWorldGen;
+import id.naturalsmp.NaturalWorldGen.NaturalGenerator;
 import id.naturalsmp.NaturalWorldGen.core.IrisSettings;
 import id.naturalsmp.NaturalWorldGen.util.math.M;
 import lombok.Getter;
@@ -52,7 +52,7 @@ public class LoadBalancer extends MsptTimings {
         permits = target;
 
         if (diff == 0) return;
-        NaturalWorldGen.debug("Adjusting load to %s (%s) permits (%s mspt, %.2f)".formatted(target, diff, raw, percent));
+        NaturalGenerator.debug("Adjusting load to %s (%s) permits (%s mspt, %.2f)".formatted(target, diff, raw, percent));
 
         if (diff > 0) semaphore.acquireUninterruptibly(diff);
         else semaphore.release(Math.abs(diff));

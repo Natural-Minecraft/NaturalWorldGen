@@ -18,7 +18,7 @@
 
 package id.naturalsmp.NaturalWorldGen.core.loader;
 
-import id.naturalsmp.NaturalWorldGen.NaturalWorldGen;
+import id.naturalsmp.NaturalWorldGen.NaturalGenerator;
 import id.naturalsmp.NaturalWorldGen.core.IrisSettings;
 import id.naturalsmp.NaturalWorldGen.engine.object.IrisObject;
 import id.naturalsmp.NaturalWorldGen.util.collection.KList;
@@ -58,8 +58,8 @@ public class ObjectResourceLoader extends ResourceLoader<IrisObject> {
             tlt.addAndGet(p.getMilliseconds());
             return t;
         } catch (Throwable e) {
-            NaturalWorldGen.reportError(e);
-            NaturalWorldGen.warn("Couldn't read " + resourceTypeName + " file: " + j.getPath() + ": " + e.getMessage());
+            NaturalGenerator.reportError(e);
+            NaturalGenerator.warn("Couldn't read " + resourceTypeName + " file: " + j.getPath() + ": " + e.getMessage());
             return null;
         }
     }
@@ -68,7 +68,7 @@ public class ObjectResourceLoader extends ResourceLoader<IrisObject> {
         if (possibleKeys != null) {
             return possibleKeys;
         }
-        NaturalWorldGen.debug("Building " + resourceTypeName + " Possibility Lists");
+        NaturalGenerator.debug("Building " + resourceTypeName + " Possibility Lists");
         KSet<String> m = new KSet<>();
         for (File i : getFolders()) {
             m.addAll(getFiles(i, ".iob", true));
@@ -105,7 +105,7 @@ public class ObjectResourceLoader extends ResourceLoader<IrisObject> {
             }
         }
 
-        NaturalWorldGen.warn("Couldn't find " + resourceTypeName + ": " + name);
+        NaturalGenerator.warn("Couldn't find " + resourceTypeName + ": " + name);
 
         return null;
     }
@@ -129,7 +129,7 @@ public class ObjectResourceLoader extends ResourceLoader<IrisObject> {
             }
         }
 
-        NaturalWorldGen.warn("Couldn't find " + resourceTypeName + ": " + name);
+        NaturalGenerator.warn("Couldn't find " + resourceTypeName + ": " + name);
 
         return null;
     }

@@ -1,6 +1,6 @@
 package id.naturalsmp.NaturalWorldGen.core.link.data;
 
-import id.naturalsmp.NaturalWorldGen.NaturalWorldGen;
+import id.naturalsmp.NaturalWorldGen.NaturalGenerator;
 import id.naturalsmp.NaturalWorldGen.core.link.ExternalDataProvider;
 import id.naturalsmp.NaturalWorldGen.core.link.Identifier;
 import id.naturalsmp.NaturalWorldGen.util.collection.KMap;
@@ -28,7 +28,7 @@ public class MMOItemsDataProvider extends ExternalDataProvider {
 
     @Override
     public void init() {
-        NaturalWorldGen.info("Setting up MMOItems Link...");
+        NaturalGenerator.info("Setting up MMOItems Link...");
     }
 
     @NotNull

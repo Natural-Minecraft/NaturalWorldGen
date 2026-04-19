@@ -19,7 +19,7 @@
 package id.naturalsmp.NaturalWorldGen.core.edit;
 
 import com.google.gson.Gson;
-import id.naturalsmp.NaturalWorldGen.NaturalWorldGen;
+import id.naturalsmp.NaturalWorldGen.NaturalGenerator;
 import id.naturalsmp.NaturalWorldGen.core.service.WandSVC;
 import id.naturalsmp.NaturalWorldGen.engine.object.*;
 import id.naturalsmp.NaturalWorldGen.util.collection.KList;
@@ -88,7 +88,7 @@ public class JigsawEditor implements Listener {
             try {
                 target = player.getTargetBlockExact(7).getLocation();
             } catch (Throwable ex) {
-                NaturalWorldGen.reportError(ex);
+                NaturalGenerator.reportError(ex);
                 target = player.getLocation();
                 return;
             }
@@ -191,7 +191,7 @@ public class JigsawEditor implements Listener {
 
             IO.writeAll(targetSaveLocation, j.toString(4));
         } catch (IOException e) {
-            NaturalWorldGen.reportError(e);
+            NaturalGenerator.reportError(e);
             e.printStackTrace();
         }
     }
@@ -212,7 +212,7 @@ public class JigsawEditor implements Listener {
 
     public void onTick() {
         if (cl.flip()) {
-            NaturalWorldGen.service(WandSVC.class).draw(cuboid, player);
+            NaturalGenerator.service(WandSVC.class).draw(cuboid, player);
 
             f:
             for (IrisPosition i : falling.k()) {

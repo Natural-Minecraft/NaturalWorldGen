@@ -18,7 +18,7 @@
 
 package id.naturalsmp.NaturalWorldGen.core.service;
 
-import id.naturalsmp.NaturalWorldGen.NaturalWorldGen;
+import id.naturalsmp.NaturalWorldGen.NaturalGenerator;
 import id.naturalsmp.NaturalWorldGen.core.link.*;
 import id.naturalsmp.NaturalWorldGen.core.link.data.DataType;
 import id.naturalsmp.NaturalWorldGen.core.nms.container.BlockProperty;
@@ -50,7 +50,7 @@ public class ExternalDataSVC implements IrisService {
 
     @Override
     public void onEnable() {
-        NaturalWorldGen.info("Loading ExternalDataProvider...");
+        NaturalGenerator.info("Loading ExternalDataProvider...");
         Bukkit.getPluginManager().registerEvents(this, NaturalGenerator.instance);
 
         providers.addAll(createProviders());
@@ -59,7 +59,7 @@ public class ExternalDataSVC implements IrisService {
                 activeProviders.add(p);
                 p.init();
                 NaturalGenerator.instance.registerListener(p);
-                NaturalWorldGen.info("Enabled ExternalDataProvider for %s.", p.getPluginId());
+                NaturalGenerator.info("Enabled ExternalDataProvider for %s.", p.getPluginId());
             }
         }
     }
@@ -75,7 +75,7 @@ public class ExternalDataSVC implements IrisService {
                 activeProviders.add(edp);
                 edp.init();
                 NaturalGenerator.instance.registerListener(edp);
-                NaturalWorldGen.info("Enabled ExternalDataProvider for %s.", edp.getPluginId());
+                NaturalGenerator.info("Enabled ExternalDataProvider for %s.", edp.getPluginId());
             });
         }
     }
@@ -103,7 +103,7 @@ public class ExternalDataSVC implements IrisService {
         try {
             return Optional.of(provider.get().getBlockData(mod, pair.getB()));
         } catch (MissingResourceException e) {
-            NaturalWorldGen.error(e.getMessage() + " - [" + e.getClassName() + ":" + e.getKey() + "]");
+            NaturalGenerator.error(e.getMessage() + " - [" + e.getClassName() + ":" + e.getKey() + "]");
             return Optional.empty();
         }
     }
@@ -115,7 +115,7 @@ public class ExternalDataSVC implements IrisService {
         try {
             return Optional.of(provider.get().getBlockProperties(key));
         } catch (MissingResourceException e) {
-            NaturalWorldGen.error(e.getMessage() + " - [" + e.getClassName() + ":" + e.getKey() + "]");
+            NaturalGenerator.error(e.getMessage() + " - [" + e.getClassName() + ":" + e.getKey() + "]");
             return Optional.empty();
         }
     }
@@ -123,13 +123,13 @@ public class ExternalDataSVC implements IrisService {
     public Optional<ItemStack> getItemStack(Identifier key, KMap<String, Object> customNbt) {
         Optional<ExternalDataProvider> provider = activeProviders.stream().filter(p -> p.isValidProvider(key, DataType.ITEM)).findFirst();
         if (provider.isEmpty()) {
-            NaturalWorldGen.warn("No matching Provider found for modded material \"%s\"!", key);
+            NaturalGenerator.warn("No matching Provider found for modded material \"%s\"!", key);
             return Optional.empty();
         }
         try {
             return Optional.of(provider.get().getItemStack(key, customNbt));
         } catch (MissingResourceException e) {
-            NaturalWorldGen.error(e.getMessage() + " - [" + e.getClassName() + ":" + e.getKey() + "]");
+            NaturalGenerator.error(e.getMessage() + " - [" + e.getClassName() + ":" + e.getKey() + "]");
             return Optional.empty();
         }
     }
@@ -137,7 +137,7 @@ public class ExternalDataSVC implements IrisService {
     public void processUpdate(Engine engine, Block block, Identifier blockId) {
         Optional<ExternalDataProvider> provider = activeProviders.stream().filter(p -> p.isValidProvider(blockId, DataType.BLOCK)).findFirst();
         if (provider.isEmpty()) {
-            NaturalWorldGen.warn("No matching Provider found for modded material \"%s\"!", blockId);
+            NaturalGenerator.warn("No matching Provider found for modded material \"%s\"!", blockId);
             return;
         }
         provider.get().processUpdate(engine, block, blockId);
@@ -146,13 +146,13 @@ public class ExternalDataSVC implements IrisService {
     public Entity spawnMob(Location location, Identifier mobId) {
         Optional<ExternalDataProvider> provider = activeProviders.stream().filter(p -> p.isValidProvider(mobId, DataType.ENTITY)).findFirst();
         if (provider.isEmpty()) {
-            NaturalWorldGen.warn("No matching Provider found for modded mob \"%s\"!", mobId);
+            NaturalGenerator.warn("No matching Provider found for modded mob \"%s\"!", mobId);
             return null;
         }
         try {
             return provider.get().spawnMob(location, mobId);
         } catch (MissingResourceException e) {
-            NaturalWorldGen.error(e.getMessage() + " - [" + e.getClassName() + ":" + e.getKey() + "]");
+            NaturalGenerator.error(e.getMessage() + " - [" + e.getClassName() + ":" + e.getKey() + "]");
             return null;
         }
     }
@@ -203,7 +203,7 @@ public class ExternalDataSVC implements IrisService {
             if (ExternalDataProvider.class.isAssignableFrom(c)) {
                 try {
                     ExternalDataProvider p = (ExternalDataProvider) c.getDeclaredConstructor().newInstance();
-                    if (p.getPlugin() != null) NaturalWorldGen.info(p.getPluginId() + " found, loading " + c.getSimpleName() + "...");
+                    if (p.getPlugin() != null) NaturalGenerator.info(p.getPluginId() + " found, loading " + c.getSimpleName() + "...");
                     providers.add(p);
                 } catch (Throwable ignored) {}
             }

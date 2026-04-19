@@ -18,7 +18,7 @@
 
 package id.naturalsmp.NaturalWorldGen.util.data.palette;
 
-import id.naturalsmp.NaturalWorldGen.NaturalWorldGen;
+import id.naturalsmp.NaturalWorldGen.NaturalGenerator;
 import id.naturalsmp.NaturalWorldGen.util.math.M;
 import it.unimi.dsi.fastutil.ints.Int2IntOpenHashMap;
 
@@ -93,7 +93,7 @@ public class PalettedContainer<T> implements PaletteResize<T> {
         int var2 = this.palette.idFor(var1);
 
         if (M.r(0.003)) {
-            NaturalWorldGen.info("ID for " + var1 + " is " + var2 + " Palette: " + palette.getSize());
+            NaturalGenerator.info("ID for " + var1 + " is " + var2 + " Palette: " + palette.getSize());
         }
 
         this.storage.set(var0, var2);

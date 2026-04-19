@@ -18,7 +18,7 @@
 
 package id.naturalsmp.NaturalWorldGen.core.commands;
 
-import id.naturalsmp.NaturalWorldGen.NaturalWorldGen;
+import id.naturalsmp.NaturalWorldGen.NaturalGenerator;
 import id.naturalsmp.NaturalWorldGen.core.link.WorldEditLink;
 import id.naturalsmp.NaturalWorldGen.core.loader.IrisData;
 import id.naturalsmp.NaturalWorldGen.core.service.ObjectSVC;
@@ -79,7 +79,7 @@ public class CommandObject implements DecreeExecutor {
 
                 if (d instanceof IrisCustomData data) {
                     block.setBlockData(data.getBase(), false);
-                    NaturalWorldGen.warn("Tried to place custom block at " + x + ", " + y + ", " + z + " which is not supported!");
+                    NaturalGenerator.warn("Tried to place custom block at " + x + ", " + y + ", " + z + " which is not supported!");
                 } else block.setBlockData(d, false);
             }
 
@@ -357,7 +357,7 @@ public class CommandObject implements DecreeExecutor {
 
         o.place(block.getBlockX(), block.getBlockY() + (int) o.getCenter().getY(), block.getBlockZ(), createPlacer(block.getWorld(), futureChanges), placement, new RNG(), null);
 
-        NaturalWorldGen.service(ObjectSVC.class).addChanges(futureChanges);
+        NaturalGenerator.service(ObjectSVC.class).addChanges(futureChanges);
 
         if (edit) {
             ItemStack newWand = WandSVC.createWand(block.clone().subtract(o.getCenter()).add(o.getW() - 1,
@@ -399,7 +399,7 @@ public class CommandObject implements DecreeExecutor {
             return;
         }
 
-        File file = NaturalWorldGen.service(StudioSVC.class).getWorkspaceFile(dimension.getLoadKey(), "objects", name + ".iob");
+        File file = NaturalGenerator.service(StudioSVC.class).getWorkspaceFile(dimension.getLoadKey(), "objects", name + ".iob");
 
         if (file.exists() && !overwrite) {
             sender().sendMessage(C.RED + "File already exists. Set overwrite=true to overwrite it.");
@@ -409,7 +409,7 @@ public class CommandObject implements DecreeExecutor {
             o.write(file, sender());
         } catch (IOException e) {
             sender().sendMessage(C.RED + "Failed to save object because of an IOException: " + e.getMessage());
-            NaturalWorldGen.reportError(e);
+            NaturalGenerator.reportError(e);
         }
 
         sender().playSound(Sound.BLOCK_ENCHANTMENT_TABLE_USE, 1f, 1.5f);
@@ -452,7 +452,7 @@ public class CommandObject implements DecreeExecutor {
             @Param(description = "The amount of pastes to undo", defaultValue = "1")
             int amount
     ) {
-        ObjectSVC service = NaturalWorldGen.service(ObjectSVC.class);
+        ObjectSVC service = NaturalGenerator.service(ObjectSVC.class);
         int actualReverts = Math.min(service.getUndos().size(), amount);
         service.revertChanges(actualReverts);
         sender().sendMessage(C.BLUE + "Reverted " + actualReverts + C.BLUE +" pastes!");

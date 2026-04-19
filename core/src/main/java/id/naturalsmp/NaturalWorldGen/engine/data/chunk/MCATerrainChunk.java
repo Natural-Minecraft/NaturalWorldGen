@@ -18,7 +18,7 @@
 
 package id.naturalsmp.NaturalWorldGen.engine.data.chunk;
 
-import id.naturalsmp.NaturalWorldGen.NaturalWorldGen;
+import id.naturalsmp.NaturalWorldGen.NaturalGenerator;
 import id.naturalsmp.NaturalWorldGen.core.nms.BiomeBaseInjector;
 import id.naturalsmp.NaturalWorldGen.util.data.IrisCustomData;
 import id.naturalsmp.NaturalWorldGen.util.nbt.mca.Chunk;
@@ -87,7 +87,7 @@ public class MCATerrainChunk implements TerrainChunk {
         }
 
         if (blockData == null) {
-            NaturalWorldGen.error("NULL BD");
+            NaturalGenerator.error("NULL BD");
         }
         if (blockData instanceof IrisCustomData data)
             blockData = data.getBase();

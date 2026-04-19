@@ -18,7 +18,7 @@
 
 package id.naturalsmp.NaturalWorldGen.util.math;
 
-import id.naturalsmp.NaturalWorldGen.NaturalWorldGen;
+import id.naturalsmp.NaturalWorldGen.NaturalGenerator;
 
 /**
  * A generic 3-element tuple that is represented by double-precision
@@ -348,7 +348,7 @@ public abstract class Tuple3d implements java.io.Serializable, Cloneable {
         try {
             return (this.x == t1.x && this.y == t1.y && this.z == t1.z);
         } catch (NullPointerException e2) {
-            NaturalWorldGen.reportError(e2);
+            NaturalGenerator.reportError(e2);
             return false;
         }
     }
@@ -366,7 +366,7 @@ public abstract class Tuple3d implements java.io.Serializable, Cloneable {
             Tuple3d t2 = (Tuple3d) t1;
             return (this.x == t2.x && this.y == t2.y && this.z == t2.z);
         } catch (ClassCastException | NullPointerException e1) {
-            NaturalWorldGen.reportError(e1);
+            NaturalGenerator.reportError(e1);
             return false;
         }
 
@@ -647,7 +647,7 @@ public abstract class Tuple3d implements java.io.Serializable, Cloneable {
         try {
             return super.clone();
         } catch (CloneNotSupportedException e) {
-            NaturalWorldGen.reportError(e);
+            NaturalGenerator.reportError(e);
             // this shouldn't happen, since we are Cloneable
             throw new InternalError();
         }

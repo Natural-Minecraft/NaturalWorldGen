@@ -19,7 +19,7 @@
 package id.naturalsmp.NaturalWorldGen.core;
 
 import com.google.gson.Gson;
-import id.naturalsmp.NaturalWorldGen.NaturalWorldGen;
+import id.naturalsmp.NaturalWorldGen.NaturalGenerator;
 import id.naturalsmp.NaturalWorldGen.util.io.IO;
 import id.naturalsmp.NaturalWorldGen.util.json.JSONException;
 import id.naturalsmp.NaturalWorldGen.util.json.JSONObject;
@@ -69,7 +69,7 @@ public class IrisSettings {
                 IO.writeAll(s, new JSONObject(new Gson().toJson(settings)).toString(4));
             } catch (JSONException | IOException e) {
                 e.printStackTrace();
-                NaturalWorldGen.reportError(e);
+                NaturalGenerator.reportError(e);
             }
         } else {
             try {
@@ -81,8 +81,8 @@ public class IrisSettings {
                     e.printStackTrace();
                 }
             } catch (Throwable ee) {
-                // NaturalWorldGen.reportError(ee); causes a self-reference & stackoverflow
-                NaturalWorldGen.error("Configuration Error in settings.json! " + ee.getClass().getSimpleName() + ": " + ee.getMessage());
+                // NaturalGenerator.reportError(ee); causes a self-reference & stackoverflow
+                NaturalGenerator.error("Configuration Error in settings.json! " + ee.getClass().getSimpleName() + ": " + ee.getMessage());
             }
         }
 
@@ -102,7 +102,7 @@ public class IrisSettings {
             IO.writeAll(s, new JSONObject(new Gson().toJson(settings)).toString(4));
         } catch (JSONException | IOException e) {
             e.printStackTrace();
-            NaturalWorldGen.reportError(e);
+            NaturalGenerator.reportError(e);
         }
     }
 

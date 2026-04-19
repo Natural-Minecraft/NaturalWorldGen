@@ -18,7 +18,7 @@
 
 package id.naturalsmp.NaturalWorldGen.engine.object;
 
-import id.naturalsmp.NaturalWorldGen.NaturalWorldGen;
+import id.naturalsmp.NaturalWorldGen.NaturalGenerator;
 import id.naturalsmp.NaturalWorldGen.core.link.Identifier;
 import id.naturalsmp.NaturalWorldGen.core.loader.IrisData;
 import id.naturalsmp.NaturalWorldGen.core.loader.IrisRegistrant;
@@ -167,7 +167,7 @@ public class IrisBlockData extends IrisRegistrant {
                     String sx = keyify(st) + computeProperties(cdata);
 
                     if (debug) {
-                        NaturalWorldGen.debug("Block Data used " + sx + " (CUSTOM)");
+                        NaturalGenerator.debug("Block Data used " + sx + " (CUSTOM)");
                     }
 
                     BlockData bx = B.get(sx);
@@ -186,7 +186,7 @@ public class IrisBlockData extends IrisRegistrant {
             b = B.get(ss);
 
             if (debug) {
-                NaturalWorldGen.debug("Block Data used " + ss);
+                NaturalGenerator.debug("Block Data used " + ss);
             }
 
             if (b != null) {

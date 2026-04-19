@@ -19,7 +19,7 @@
 package id.naturalsmp.NaturalWorldGen.engine.object;
 
 
-import id.naturalsmp.NaturalWorldGen.NaturalWorldGen;
+import id.naturalsmp.NaturalWorldGen.NaturalGenerator;
 import id.naturalsmp.NaturalWorldGen.engine.object.annotations.*;
 import id.naturalsmp.NaturalWorldGen.util.collection.KList;
 import id.naturalsmp.NaturalWorldGen.util.math.RNG;
@@ -111,8 +111,8 @@ public class IrisVillagerTrade {
         if (warnings.isEmpty()) {
             return true;
         } else {
-            NaturalWorldGen.warn("Faulty item in cartographer item overrides: " + this);
-            warnings.forEach(w -> NaturalWorldGen.warn("   " + w));
+            NaturalGenerator.warn("Faulty item in cartographer item overrides: " + this);
+            warnings.forEach(w -> NaturalGenerator.warn("   " + w));
             return false;
         }
     }

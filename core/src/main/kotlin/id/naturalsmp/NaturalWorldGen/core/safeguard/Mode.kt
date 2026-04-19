@@ -1,7 +1,7 @@
 package id.naturalsmp.NaturalWorldGen.core.safeguard
 
 import id.naturalsmp.NaturalWorldGen.BuildConstants
-import id.naturalsmp.NaturalWorldGen.NaturalWorldGen
+import id.naturalsmp.NaturalWorldGen.NaturalGenerator
 import id.naturalsmp.NaturalWorldGen.core.IrisSettings
 import id.naturalsmp.NaturalWorldGen.util.format.C
 import id.naturalsmp.NaturalWorldGen.util.format.Form
@@ -71,6 +71,6 @@ enum class Mode(private val color: C) {
             builder.append("\n")
         }
 
-        NaturalWorldGen.info(builder.toString())
+        NaturalGenerator.info(builder.toString())
     }
 }

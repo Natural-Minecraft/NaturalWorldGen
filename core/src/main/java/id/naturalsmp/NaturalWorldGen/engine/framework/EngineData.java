@@ -19,7 +19,7 @@
 package id.naturalsmp.NaturalWorldGen.engine.framework;
 
 import com.google.gson.Gson;
-import id.naturalsmp.NaturalWorldGen.NaturalWorldGen;
+import id.naturalsmp.NaturalWorldGen.NaturalGenerator;
 import id.naturalsmp.NaturalWorldGen.engine.object.IrisPosition;
 import id.naturalsmp.NaturalWorldGen.util.io.IO;
 import lombok.Data;
@@ -39,7 +39,7 @@ public class EngineData {
             f.getParentFile().mkdirs();
             return new Gson().fromJson(IO.readAll(f), EngineData.class);
         } catch (Throwable e) {
-            NaturalWorldGen.reportError(e);
+            NaturalGenerator.reportError(e);
 
         }
 
@@ -51,7 +51,7 @@ public class EngineData {
             f.getParentFile().mkdirs();
             IO.writeAll(f, new Gson().toJson(this));
         } catch (IOException e) {
-            NaturalWorldGen.reportError(e);
+            NaturalGenerator.reportError(e);
             e.printStackTrace();
         }
     }

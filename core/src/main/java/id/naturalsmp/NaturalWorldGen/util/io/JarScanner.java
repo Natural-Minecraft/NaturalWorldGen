@@ -18,7 +18,7 @@
 
 package id.naturalsmp.NaturalWorldGen.util.io;
 
-import id.naturalsmp.NaturalWorldGen.NaturalWorldGen;
+import id.naturalsmp.NaturalWorldGen.NaturalGenerator;
 import id.naturalsmp.NaturalWorldGen.util.collection.KSet;
 
 import java.io.File;
@@ -73,7 +73,7 @@ public class JarScanner {
                         classes.add(clazz);
                     } catch (Throwable e) {
                         if (!report) continue;
-                        NaturalWorldGen.reportError(e);
+                        NaturalGenerator.reportError(e);
                         e.printStackTrace();
                     }
                 }
@@ -97,7 +97,7 @@ public class JarScanner {
                         classes.add(clazz);
                     } catch (Throwable e) {
                         if (!report) continue;
-                        NaturalWorldGen.reportError(e);
+                        NaturalGenerator.reportError(e);
                         e.printStackTrace();
                     }
                 }

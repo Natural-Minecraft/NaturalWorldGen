@@ -19,7 +19,7 @@
 package id.naturalsmp.NaturalWorldGen.util.json;
 
 
-import id.naturalsmp.NaturalWorldGen.NaturalWorldGen;
+import id.naturalsmp.NaturalWorldGen.NaturalGenerator;
 
 import java.io.*;
 
@@ -143,7 +143,7 @@ public class JSONTokener {
             try {
                 c = this.reader.read();
             } catch (IOException e) {
-                NaturalWorldGen.reportError(e);
+                NaturalGenerator.reportError(e);
                 throw new JSONException(e);
             }
 
@@ -398,7 +398,7 @@ public class JSONTokener {
                 }
             } while (c != to);
         } catch (IOException e) {
-            NaturalWorldGen.reportError(e);
+            NaturalGenerator.reportError(e);
             throw new JSONException(e);
         }
         this.back();

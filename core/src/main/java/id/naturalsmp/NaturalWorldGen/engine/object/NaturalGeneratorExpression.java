@@ -21,7 +21,7 @@ package id.naturalsmp.NaturalWorldGen.engine.object;
 import com.dfsek.paralithic.Expression;
 import com.dfsek.paralithic.eval.parser.Parser;
 import com.dfsek.paralithic.eval.parser.Scope;
-import id.naturalsmp.NaturalWorldGen.NaturalWorldGen;
+import id.naturalsmp.NaturalWorldGen.NaturalGenerator;
 import id.naturalsmp.NaturalWorldGen.core.loader.IrisRegistrant;
 import id.naturalsmp.NaturalWorldGen.engine.data.cache.AtomicCache;
 import id.naturalsmp.NaturalWorldGen.engine.object.IrisExpressionFunction.FunctionContext;
@@ -77,7 +77,7 @@ public class IrisExpression extends IrisRegistrant {
                 scope.addInvocationVariable("z");
             } catch (Throwable e) {
                 e.printStackTrace();
-                NaturalWorldGen.error("Script Variable load error in " + getLoadFile().getPath());
+                NaturalGenerator.error("Script Variable load error in " + getLoadFile().getPath());
             }
 
             for (IrisExpressionFunction f : functions) {
@@ -90,7 +90,7 @@ public class IrisExpression extends IrisRegistrant {
                 return parser.parse(getExpression(), scope);
             } catch (Throwable e) {
                 e.printStackTrace();
-                NaturalWorldGen.error("Script load error in " + getLoadFile().getPath());
+                NaturalGenerator.error("Script load error in " + getLoadFile().getPath());
             }
 
             return null;

@@ -18,7 +18,7 @@
 
 package id.naturalsmp.NaturalWorldGen.engine.object;
 
-import id.naturalsmp.NaturalWorldGen.NaturalWorldGen;
+import id.naturalsmp.NaturalWorldGen.NaturalGenerator;
 import id.naturalsmp.NaturalWorldGen.engine.object.annotations.ArrayType;
 import id.naturalsmp.NaturalWorldGen.engine.object.annotations.Desc;
 import id.naturalsmp.NaturalWorldGen.engine.object.annotations.Required;

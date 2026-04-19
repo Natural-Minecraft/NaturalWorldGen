@@ -18,7 +18,7 @@
 
 package id.naturalsmp.NaturalWorldGen.util.plugin;
 
-import id.naturalsmp.NaturalWorldGen.NaturalWorldGen;
+import id.naturalsmp.NaturalWorldGen.NaturalGenerator;
 import id.naturalsmp.NaturalWorldGen.core.IrisSettings;
 import id.naturalsmp.NaturalWorldGen.util.collection.KList;
 import id.naturalsmp.NaturalWorldGen.util.collection.KMap;
@@ -59,7 +59,7 @@ public class VirtualCommand {
                     new V(command, true, true).set(i.getName(), cmd);
                     children.put(cmd.getAllNodes(), new VirtualCommand(cmd, cc.value().trim().isEmpty() ? tag : cc.value().trim()));
                 } catch (Exception e) {
-                    NaturalWorldGen.reportError(e);
+                    NaturalGenerator.reportError(e);
                     e.printStackTrace();
                 }
             }

@@ -18,7 +18,7 @@
 
 package id.naturalsmp.NaturalWorldGen.engine.object;
 
-import id.naturalsmp.NaturalWorldGen.NaturalWorldGen;
+import id.naturalsmp.NaturalWorldGen.NaturalGenerator;
 import id.naturalsmp.NaturalWorldGen.core.tools.IrisToolbelt;
 import id.naturalsmp.NaturalWorldGen.util.collection.KList;
 import lombok.*;
@@ -127,7 +127,7 @@ public class IrisWorld {
             return realWorld().getSpawnLocation();
         }
 
-        NaturalWorldGen.error("This world is not real yet, cannot get spawn location! HEADLESS!");
+        NaturalGenerator.error("This world is not real yet, cannot get spawn location! HEADLESS!");
         return null;
     }
 

@@ -18,7 +18,7 @@
 
 package id.naturalsmp.NaturalWorldGen.core.pregenerator.methods;
 
-import id.naturalsmp.NaturalWorldGen.NaturalWorldGen;
+import id.naturalsmp.NaturalWorldGen.NaturalGenerator;
 import id.naturalsmp.NaturalWorldGen.core.IrisSettings;
 import id.naturalsmp.NaturalWorldGen.core.pregenerator.PregenListener;
 import id.naturalsmp.NaturalWorldGen.core.pregenerator.PregeneratorMethod;
@@ -63,7 +63,7 @@ public class MedievalPregenMethod implements PregeneratorMethod {
         try {
             J.sfut(() -> {
                 if (world == null) {
-                    NaturalWorldGen.warn("World was null somehow...");
+                    NaturalGenerator.warn("World was null somehow...");
                     return;
                 }
 

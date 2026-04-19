@@ -18,7 +18,7 @@
 
 package id.naturalsmp.NaturalWorldGen.core.pack;
 
-import id.naturalsmp.NaturalWorldGen.NaturalWorldGen;
+import id.naturalsmp.NaturalWorldGen.NaturalGenerator;
 import id.naturalsmp.NaturalWorldGen.core.loader.IrisData;
 import id.naturalsmp.NaturalWorldGen.core.loader.ResourceLoader;
 import id.naturalsmp.NaturalWorldGen.core.service.StudioSVC;
@@ -208,20 +208,20 @@ public class IrisPack {
 
         try {
             PrecisionStopwatch p = PrecisionStopwatch.start();
-            NaturalWorldGen.debug("Building Workspace: " + ws.getPath());
+            NaturalGenerator.debug("Building Workspace: " + ws.getPath());
             JSONObject j = generateWorkspaceConfig();
             IO.writeAll(ws, j.toString(4));
             p.end();
-            NaturalWorldGen.debug("Building Workspace: " + ws.getPath() + " took " + Form.duration(p.getMilliseconds(), 2));
+            NaturalGenerator.debug("Building Workspace: " + ws.getPath() + " took " + Form.duration(p.getMilliseconds(), 2));
             return true;
         } catch (Throwable e) {
-            NaturalWorldGen.reportError(e);
-            NaturalWorldGen.warn("Pack invalid: " + ws.getAbsolutePath() + " Re-creating. You may loose some vs-code workspace settings! But not your actual project!");
+            NaturalGenerator.reportError(e);
+            NaturalGenerator.warn("Pack invalid: " + ws.getAbsolutePath() + " Re-creating. You may loose some vs-code workspace settings! But not your actual project!");
             ws.delete();
             try {
                 IO.writeAll(ws, generateWorkspaceConfig());
             } catch (IOException e1) {
-                NaturalWorldGen.reportError(e1);
+                NaturalGenerator.reportError(e1);
                 e1.printStackTrace();
             }
         }
@@ -265,7 +265,7 @@ public class IrisPack {
         try {
             FileUtils.copyDirectory(getFolder(), folder);
         } catch (IOException e) {
-            NaturalWorldGen.reportError(e);
+            NaturalGenerator.reportError(e);
         }
 
         return new IrisPack(folder);
@@ -288,7 +288,7 @@ public class IrisPack {
         try {
             FileUtils.copyDirectory(getFolder(), newPack);
         } catch (IOException e) {
-            NaturalWorldGen.reportError(e);
+            NaturalGenerator.reportError(e);
         }
 
         IrisData data = IrisData.get(newPack);

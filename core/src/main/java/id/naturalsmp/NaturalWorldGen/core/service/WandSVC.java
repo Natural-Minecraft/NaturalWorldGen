@@ -18,7 +18,7 @@
 
 package id.naturalsmp.NaturalWorldGen.core.service;
 
-import id.naturalsmp.NaturalWorldGen.NaturalWorldGen;
+import id.naturalsmp.NaturalWorldGen.NaturalGenerator;
 import id.naturalsmp.NaturalWorldGen.core.IrisSettings;
 import id.naturalsmp.NaturalWorldGen.core.edit.DustRevealer;
 import id.naturalsmp.NaturalWorldGen.core.link.WorldEditLink;
@@ -90,7 +90,7 @@ public class WandSVC implements IrisService {
 
             int total = c.getSizeX() * c.getSizeY() * c.getSizeZ();
             var latch = new CountDownLatch(1);
-            var holder = NaturalWorldGen.tickets.getHolder(p.getWorld());
+            var holder = NaturalGenerator.tickets.getHolder(p.getWorld());
             new Job() {
                 private int i;
                 private Chunk chunk;
@@ -166,7 +166,7 @@ public class WandSVC implements IrisService {
             return s;
         } catch (Throwable e) {
             e.printStackTrace();
-            NaturalWorldGen.reportError(e);
+            NaturalGenerator.reportError(e);
         }
 
         return null;
@@ -188,7 +188,7 @@ public class WandSVC implements IrisService {
             return WorldMatter.createMatter(p.getName(), f[0], f[1]);
         } catch (Throwable e) {
             e.printStackTrace();
-            NaturalWorldGen.reportError(e);
+            NaturalGenerator.reportError(e);
         }
 
         return null;
@@ -208,7 +208,7 @@ public class WandSVC implements IrisService {
             if (g.length != 3) return null;
             return new Location(Bukkit.getWorld(f[1]), Integer.parseInt(g[0]), Integer.parseInt(g[1]), Integer.parseInt(g[2]));
         } catch (Throwable e) {
-            NaturalWorldGen.reportError(e);
+            NaturalGenerator.reportError(e);
             return null;
         }
     }
@@ -368,7 +368,7 @@ public class WandSVC implements IrisService {
                     new WandSelection(new Cuboid(d[0], d[1]), p).draw();
                 }
             } catch (Throwable e) {
-                NaturalWorldGen.reportError(e);
+                NaturalGenerator.reportError(e);
             }
         } catch (Throwable e) {
             e.printStackTrace();
@@ -487,7 +487,7 @@ public class WandSVC implements IrisService {
                 }
             }
         } catch (Throwable xx) {
-            NaturalWorldGen.reportError(xx);
+            NaturalGenerator.reportError(xx);
         }
     }
 

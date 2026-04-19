@@ -18,7 +18,7 @@
 
 package id.naturalsmp.NaturalWorldGen.util.stream.utility;
 
-import id.naturalsmp.NaturalWorldGen.NaturalWorldGen;
+import id.naturalsmp.NaturalWorldGen.NaturalGenerator;
 import id.naturalsmp.NaturalWorldGen.core.service.PreservationSVC;
 import id.naturalsmp.NaturalWorldGen.engine.framework.Engine;
 import id.naturalsmp.NaturalWorldGen.engine.framework.MeteredCache;
@@ -38,7 +38,7 @@ public class CachedStream2D<T> extends BasicStream<T> implements ProceduralStrea
         this.stream = stream;
         this.engine = engine;
         cache = new WorldCache2D<>(stream::get, size);
-        NaturalWorldGen.service(PreservationSVC.class).registerCache(this);
+        NaturalGenerator.service(PreservationSVC.class).registerCache(this);
     }
 
     @Override

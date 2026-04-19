@@ -18,7 +18,7 @@
 
 package id.naturalsmp.NaturalWorldGen.core.loader;
 
-import id.naturalsmp.NaturalWorldGen.NaturalWorldGen;
+import id.naturalsmp.NaturalWorldGen.NaturalGenerator;
 import id.naturalsmp.NaturalWorldGen.core.IrisSettings;
 import id.naturalsmp.NaturalWorldGen.engine.object.IrisImage;
 import id.naturalsmp.NaturalWorldGen.util.collection.KList;
@@ -61,8 +61,8 @@ public class ImageResourceLoader extends ResourceLoader<IrisImage> {
             tlt.addAndGet(p.getMilliseconds());
             return img;
         } catch (Throwable e) {
-            NaturalWorldGen.reportError(e);
-            NaturalWorldGen.warn("Couldn't read " + resourceTypeName + " file: " + j.getPath() + ": " + e.getMessage());
+            NaturalGenerator.reportError(e);
+            NaturalGenerator.warn("Couldn't read " + resourceTypeName + " file: " + j.getPath() + ": " + e.getMessage());
             return null;
         }
     }
@@ -83,7 +83,7 @@ public class ImageResourceLoader extends ResourceLoader<IrisImage> {
             return possibleKeys;
         }
 
-        NaturalWorldGen.debug("Building " + resourceTypeName + " Possibility Lists");
+        NaturalGenerator.debug("Building " + resourceTypeName + " Possibility Lists");
         KSet<String> m = new KSet<>();
 
 
@@ -131,7 +131,7 @@ public class ImageResourceLoader extends ResourceLoader<IrisImage> {
             }
         }
 
-        NaturalWorldGen.warn("Couldn't find " + resourceTypeName + ": " + name);
+        NaturalGenerator.warn("Couldn't find " + resourceTypeName + ": " + name);
 
         return null;
     }
@@ -155,7 +155,7 @@ public class ImageResourceLoader extends ResourceLoader<IrisImage> {
             }
         }
 
-        NaturalWorldGen.warn("Couldn't find " + resourceTypeName + ": " + name);
+        NaturalGenerator.warn("Couldn't find " + resourceTypeName + ": " + name);
 
         return null;
     }

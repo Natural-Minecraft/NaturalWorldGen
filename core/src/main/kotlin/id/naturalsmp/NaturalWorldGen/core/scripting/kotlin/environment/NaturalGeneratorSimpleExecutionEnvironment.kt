@@ -1,6 +1,6 @@
 package id.naturalsmp.NaturalWorldGen.core.scripting.kotlin.environment
 
-import id.naturalsmp.NaturalWorldGen.NaturalWorldGen
+import id.naturalsmp.NaturalWorldGen.NaturalGenerator
 import id.naturalsmp.NaturalWorldGen.core.IrisSettings
 import id.naturalsmp.NaturalWorldGen.core.scripting.environment.SimpleEnvironment
 import id.naturalsmp.NaturalWorldGen.core.scripting.kotlin.base.*
@@ -19,7 +19,7 @@ import kotlin.script.experimental.annotations.KotlinScript
 import kotlin.script.experimental.api.ResultWithDiagnostics
 import kotlin.text.split
 
-open class IrisSimpleExecutionEnvironment internal constructor(
+open class NaturalGeneratorSimpleExecutionEnvironment internal constructor(
     baseDir: File,
     parent: ScriptRunner?
 ) : SimpleEnvironment {
@@ -37,7 +37,7 @@ open class IrisSimpleExecutionEnvironment internal constructor(
         type: Class<*>,
         vars: Map<String, Any?>?
     ) {
-        NaturalWorldGen.debug("Execute Script (void) " + C.DARK_GREEN + script)
+        NaturalGenerator.debug("Execute Script (void) " + C.DARK_GREEN + script)
         evaluate0(script, type.kotlin, vars)
     }
 
@@ -50,7 +50,7 @@ open class IrisSimpleExecutionEnvironment internal constructor(
         type: Class<*>,
         vars: Map<String, Any?>?
     ): Any? {
-        NaturalWorldGen.debug("Execute Script (for result) " + C.DARK_GREEN + script)
+        NaturalGenerator.debug("Execute Script (for result) " + C.DARK_GREEN + script)
         return evaluate0(script, type.kotlin, vars)
     }
 
@@ -100,7 +100,7 @@ open class IrisSimpleExecutionEnvironment internal constructor(
             classpath.forEach {
                 val parts = it.canonicalPath.split(File.separatorChar)
                 if (parts.size <= 1) {
-                    NaturalWorldGen.error("Invalid classpath entry: $it")
+                    NaturalGenerator.error("Invalid classpath entry: $it")
                     return@forEach
                 }
 

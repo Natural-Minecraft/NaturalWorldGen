@@ -18,7 +18,7 @@
 
 package id.naturalsmp.NaturalWorldGen.engine.object;
 
-import id.naturalsmp.NaturalWorldGen.NaturalWorldGen;
+import id.naturalsmp.NaturalWorldGen.NaturalGenerator;
 import id.naturalsmp.NaturalWorldGen.core.gui.components.RenderType;
 import id.naturalsmp.NaturalWorldGen.core.loader.IrisData;
 import id.naturalsmp.NaturalWorldGen.core.loader.IrisRegistrant;
@@ -337,7 +337,7 @@ public class IrisBiome extends IrisRegistrant implements IRare {
                 try {
                     data.add(getLayers().get(i).get(random.nextParallelRNG(i + j), (wx + j) / layers.get(i).getZoom(), j, (wz - j) / layers.get(i).getZoom(), rdata));
                 } catch (Throwable e) {
-                    NaturalWorldGen.reportError(e);
+                    NaturalGenerator.reportError(e);
                     e.printStackTrace();
                 }
             }
@@ -383,7 +383,7 @@ public class IrisBiome extends IrisRegistrant implements IRare {
                 try {
                     data.add(getCaveCeilingLayers().get(i).get(random.nextParallelRNG(i + j), (wx + j) / caveCeilingLayers.get(i).getZoom(), j, (wz - j) / caveCeilingLayers.get(i).getZoom(), rdata));
                 } catch (Throwable e) {
-                    NaturalWorldGen.reportError(e);
+                    NaturalGenerator.reportError(e);
                     e.printStackTrace();
                 }
             }
@@ -434,7 +434,7 @@ public class IrisBiome extends IrisRegistrant implements IRare {
                 try {
                     data.add(getLayers().get(i).get(random.nextParallelRNG(i + j), (wx + j) / layers.get(i).getZoom(), j, (wz - j) / layers.get(i).getZoom(), rdata));
                 } catch (Throwable e) {
-                    NaturalWorldGen.reportError(e);
+                    NaturalGenerator.reportError(e);
                     e.printStackTrace();
                 }
             }
@@ -506,7 +506,7 @@ public class IrisBiome extends IrisRegistrant implements IRare {
                 try {
                     data.add(getSeaLayers().get(i).get(random.nextParallelRNG(i + j), (wx + j) / seaLayers.get(i).getZoom(), j, (wz - j) / seaLayers.get(i).getZoom(), rdata));
                 } catch (Throwable e) {
-                    NaturalWorldGen.reportError(e);
+                    NaturalGenerator.reportError(e);
                     e.printStackTrace();
                 }
             }
@@ -652,7 +652,7 @@ public class IrisBiome extends IrisRegistrant implements IRare {
                     if (this.color == null) {
                         RandomColor randomColor = new RandomColor(getName().hashCode());
                         if (this.getVanillaDerivative() == null) {
-                            NaturalWorldGen.warn("No vanilla biome found for " + getName());
+                            NaturalGenerator.warn("No vanilla biome found for " + getName());
                             return new Color(randomColor.randomColor());
                         }
                         RandomColor.Color col = VanillaBiomeMap.getColorType(this.getVanillaDerivative());
@@ -666,7 +666,7 @@ public class IrisBiome extends IrisRegistrant implements IRare {
                     try {
                         return Color.decode(this.color);
                     } catch (NumberFormatException e) {
-                        NaturalWorldGen.warn("Could not parse color \"" + this.color + "\" for biome " + getName());
+                        NaturalGenerator.warn("Could not parse color \"" + this.color + "\" for biome " + getName());
                         return new Color(new RandomColor(getName().hashCode()).randomColor());
                     }
                 });

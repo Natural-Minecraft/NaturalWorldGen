@@ -18,7 +18,7 @@
 
 package id.naturalsmp.NaturalWorldGen.engine.object;
 
-import id.naturalsmp.NaturalWorldGen.NaturalWorldGen;
+import id.naturalsmp.NaturalWorldGen.NaturalGenerator;
 import id.naturalsmp.NaturalWorldGen.core.loader.IrisRegistrant;
 import id.naturalsmp.NaturalWorldGen.util.json.JSONObject;
 import id.naturalsmp.NaturalWorldGen.util.plugin.NaturalDevSender;
@@ -134,7 +134,7 @@ public class IrisImage extends IrisRegistrant {
                 }
             }
             ImageIO.write(b, "png", at);
-            NaturalWorldGen.warn("Debug image written to " + at.getPath() + " for channel " + channel.name());
+            NaturalGenerator.warn("Debug image written to " + at.getPath() + " for channel " + channel.name());
         } catch (IOException e) {
             e.printStackTrace();
         }

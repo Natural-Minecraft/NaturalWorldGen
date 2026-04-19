@@ -18,7 +18,7 @@
 
 package id.naturalsmp.NaturalWorldGen.engine.object;
 
-import id.naturalsmp.NaturalWorldGen.NaturalWorldGen;
+import id.naturalsmp.NaturalWorldGen.NaturalGenerator;
 import id.naturalsmp.NaturalWorldGen.core.IrisSettings;
 import id.naturalsmp.NaturalWorldGen.core.link.Identifier;
 import id.naturalsmp.NaturalWorldGen.core.loader.IrisRegistrant;
@@ -216,7 +216,7 @@ public class IrisEntity extends IrisRegistrant {
                 try {
                     ee = (Entity) gen.getExecution().spawnMob(spawnerScript, at);
                 } catch (Throwable ex) {
-                    NaturalWorldGen.error("You must return an Entity in your scripts to use entity scripts!");
+                    NaturalGenerator.error("You must return an Entity in your scripts to use entity scripts!");
                     ex.printStackTrace();
                 }
             }
@@ -453,7 +453,7 @@ public class IrisEntity extends IrisRegistrant {
         }
 
         if (isSpecialType()) {
-            return NaturalWorldGen.service(ExternalDataSVC.class).spawnMob(at, Identifier.fromString(specialType));
+            return NaturalGenerator.service(ExternalDataSVC.class).spawnMob(at, Identifier.fromString(specialType));
         }
 
 

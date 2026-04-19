@@ -18,7 +18,7 @@
 
 package id.naturalsmp.NaturalWorldGen.util.decree;
 
-import id.naturalsmp.NaturalWorldGen.NaturalWorldGen;
+import id.naturalsmp.NaturalWorldGen.NaturalGenerator;
 import id.naturalsmp.NaturalWorldGen.util.collection.KMap;
 import id.naturalsmp.NaturalWorldGen.util.plugin.NaturalDevSender;
 
@@ -32,7 +32,7 @@ public interface DecreeContextHandler<T> {
             NaturalWorldGen.initialize("id.naturalsmp.NaturalWorldGen.util.decree.context").forEach((i)
                     -> contextHandlers.put(((DecreeContextHandler<?>) i).getType(), (DecreeContextHandler<?>) i));
         } catch (Throwable e) {
-            NaturalWorldGen.reportError(e);
+            NaturalGenerator.reportError(e);
             e.printStackTrace();
         }
 

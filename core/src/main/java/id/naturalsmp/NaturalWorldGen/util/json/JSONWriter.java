@@ -19,7 +19,7 @@
 package id.naturalsmp.NaturalWorldGen.util.json;
 
 
-import id.naturalsmp.NaturalWorldGen.NaturalWorldGen;
+import id.naturalsmp.NaturalWorldGen.NaturalGenerator;
 
 import java.io.IOException;
 import java.io.Writer;
@@ -111,7 +111,7 @@ public class JSONWriter {
                 }
                 this.writer.write(string);
             } catch (IOException e) {
-                NaturalWorldGen.reportError(e);
+                NaturalGenerator.reportError(e);
                 throw new JSONException(e);
             }
             if (this.mode == 'o') {
@@ -159,7 +159,7 @@ public class JSONWriter {
         try {
             this.writer.write(c);
         } catch (IOException e) {
-            NaturalWorldGen.reportError(e);
+            NaturalGenerator.reportError(e);
             throw new JSONException(e);
         }
         this.comma = true;
@@ -213,7 +213,7 @@ public class JSONWriter {
                 this.mode = 'o';
                 return this;
             } catch (IOException e) {
-                NaturalWorldGen.reportError(e);
+                NaturalGenerator.reportError(e);
                 throw new JSONException(e);
             }
         }

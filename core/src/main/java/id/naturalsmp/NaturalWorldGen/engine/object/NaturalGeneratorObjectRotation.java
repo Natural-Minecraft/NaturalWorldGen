@@ -18,7 +18,7 @@
 
 package id.naturalsmp.NaturalWorldGen.engine.object;
 
-import id.naturalsmp.NaturalWorldGen.NaturalWorldGen;
+import id.naturalsmp.NaturalWorldGen.NaturalGenerator;
 import id.naturalsmp.NaturalWorldGen.engine.object.annotations.Desc;
 import id.naturalsmp.NaturalWorldGen.engine.object.annotations.Snippet;
 import id.naturalsmp.NaturalWorldGen.util.collection.KList;
@@ -322,7 +322,7 @@ public class IrisObjectRotation {
                 }
             }
         } catch (Throwable e) {
-            NaturalWorldGen.reportError(e);
+            NaturalGenerator.reportError(e);
 
         }
 

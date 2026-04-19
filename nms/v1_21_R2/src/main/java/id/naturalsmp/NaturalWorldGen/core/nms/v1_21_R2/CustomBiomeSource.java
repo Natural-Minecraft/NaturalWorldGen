@@ -1,7 +1,7 @@
 package id.naturalsmp.NaturalWorldGen.core.nms.v1_21_R2;
 
 import com.mojang.serialization.MapCodec;
-import id.naturalsmp.NaturalWorldGen.NaturalWorldGen;
+import id.naturalsmp.NaturalWorldGen.NaturalGenerator;
 import id.naturalsmp.NaturalWorldGen.engine.data.cache.AtomicCache;
 import id.naturalsmp.NaturalWorldGen.engine.framework.Engine;
 import id.naturalsmp.NaturalWorldGen.engine.object.IrisBiome;
@@ -83,7 +83,7 @@ public class CustomBiomeSource extends BiomeSource {
             if (i.getReturnType().equals(returns)) {
                 i.setAccessible(true);
                 try {
-                    NaturalWorldGen.debug("[NMS] Found " + returns.getSimpleName() + " in " + in.getClass().getSimpleName() + "." + i.getName() + "()");
+                    NaturalGenerator.debug("[NMS] Found " + returns.getSimpleName() + " in " + in.getClass().getSimpleName() + "." + i.getName() + "()");
                     return i.invoke(in);
                 } catch (Throwable e) {
                     e.printStackTrace();
@@ -100,7 +100,7 @@ public class CustomBiomeSource extends BiomeSource {
             if (i.getType().equals(returnType)) {
                 i.setAccessible(true);
                 try {
-                    NaturalWorldGen.debug("[NMS] Found " + returnType.getSimpleName() + " in " + sourceType.getSimpleName() + "." + i.getName());
+                    NaturalGenerator.debug("[NMS] Found " + returnType.getSimpleName() + " in " + sourceType.getSimpleName() + "." + i.getName());
                     return (T) i.get(in);
                 } catch (IllegalAccessException e) {
                     e.printStackTrace();
@@ -128,13 +128,13 @@ public class CustomBiomeSource extends BiomeSource {
                     Biome biome = customRegistry.getValue(resourceLocation);
                     Optional<ResourceKey<Biome>> optionalBiomeKey = customRegistry.getResourceKey(biome);
                     if (optionalBiomeKey.isEmpty()) {
-                        NaturalWorldGen.error("Cannot find biome for IrisBiomeCustom " + j.getId() + " from engine " + engine.getName());
+                        NaturalGenerator.error("Cannot find biome for IrisBiomeCustom " + j.getId() + " from engine " + engine.getName());
                         continue;
                     }
                     ResourceKey<Biome> biomeKey = optionalBiomeKey.get();
                     Optional<Holder.Reference<Biome>> optionalReferenceHolder = customRegistry.get(biomeKey);
                     if (optionalReferenceHolder.isEmpty()) {
-                        NaturalWorldGen.error("Cannot find reference to biome " + biomeKey + " for engine " + engine.getName());
+                        NaturalGenerator.error("Cannot find reference to biome " + biomeKey + " for engine " + engine.getName());
                         continue;
                     }
                     m.put(j.getId(), optionalReferenceHolder.get());

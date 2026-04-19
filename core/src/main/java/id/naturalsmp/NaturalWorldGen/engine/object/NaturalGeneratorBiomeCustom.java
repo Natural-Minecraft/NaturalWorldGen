@@ -18,7 +18,7 @@
 
 package id.naturalsmp.NaturalWorldGen.engine.object;
 
-import id.naturalsmp.NaturalWorldGen.NaturalWorldGen;
+import id.naturalsmp.NaturalWorldGen.NaturalGenerator;
 import id.naturalsmp.NaturalWorldGen.core.nms.datapack.IDataFixer;
 import id.naturalsmp.NaturalWorldGen.engine.object.annotations.*;
 import id.naturalsmp.NaturalWorldGen.util.collection.KList;
@@ -166,8 +166,8 @@ public class IrisBiomeCustom {
         try {
             return Color.decode(v).getRGB();
         } catch (Throwable e) {
-            NaturalWorldGen.reportError(e);
-            NaturalWorldGen.error("Error Parsing '''color''', (" + c + ")");
+            NaturalGenerator.reportError(e);
+            NaturalGenerator.error("Error Parsing '''color''', (" + c + ")");
         }
 
         return 0;

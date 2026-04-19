@@ -18,7 +18,7 @@
 
 package id.naturalsmp.NaturalWorldGen.util.plugin;
 
-import id.naturalsmp.NaturalWorldGen.NaturalWorldGen;
+import id.naturalsmp.NaturalWorldGen.NaturalGenerator;
 import org.bukkit.event.Listener;
 
 public interface IrisService extends Listener {

@@ -18,7 +18,7 @@
 
 package id.naturalsmp.NaturalWorldGen.engine.mantle.components;
 
-import id.naturalsmp.NaturalWorldGen.NaturalWorldGen;
+import id.naturalsmp.NaturalWorldGen.NaturalGenerator;
 import id.naturalsmp.NaturalWorldGen.engine.data.cache.Cache;
 import id.naturalsmp.NaturalWorldGen.engine.mantle.ComponentFlag;
 import id.naturalsmp.NaturalWorldGen.engine.mantle.EngineMantle;
@@ -75,10 +75,10 @@ public class MantleObjectComponent extends IrisMantleComponent {
                 try {
                     placeObject(writer, rng, x << 4, z << 4, i);
                 } catch (Throwable e) {
-                    NaturalWorldGen.reportError(e);
-                    NaturalWorldGen.error("Failed to place objects in the following biome: " + biome.getName());
-                    NaturalWorldGen.error("Object(s) " + i.getPlace().toString(", ") + " (" + e.getClass().getSimpleName() + ").");
-                    NaturalWorldGen.error("Are these objects missing?");
+                    NaturalGenerator.reportError(e);
+                    NaturalGenerator.error("Failed to place objects in the following biome: " + biome.getName());
+                    NaturalGenerator.error("Object(s) " + i.getPlace().toString(", ") + " (" + e.getClass().getSimpleName() + ").");
+                    NaturalGenerator.error("Are these objects missing?");
                     e.printStackTrace();
                 }
             }
@@ -89,10 +89,10 @@ public class MantleObjectComponent extends IrisMantleComponent {
                 try {
                     placeObject(writer, rng, x << 4, z << 4, i);
                 } catch (Throwable e) {
-                    NaturalWorldGen.reportError(e);
-                    NaturalWorldGen.error("Failed to place objects in the following region: " + region.getName());
-                    NaturalWorldGen.error("Object(s) " + i.getPlace().toString(", ") + " (" + e.getClass().getSimpleName() + ").");
-                    NaturalWorldGen.error("Are these objects missing?");
+                    NaturalGenerator.reportError(e);
+                    NaturalGenerator.error("Failed to place objects in the following region: " + region.getName());
+                    NaturalGenerator.error("Object(s) " + i.getPlace().toString(", ") + " (" + e.getClass().getSimpleName() + ").");
+                    NaturalGenerator.error("Are these objects missing?");
                     e.printStackTrace();
                 }
             }
@@ -190,7 +190,7 @@ public class MantleObjectComponent extends IrisMantleComponent {
                         try {
                             return IrisObject.sampleSize(getData().getObjectLoader().findFile(i));
                         } catch (IOException ex) {
-                            NaturalWorldGen.reportError(ex);
+                            NaturalGenerator.reportError(ex);
                             ex.printStackTrace();
                         }
 
@@ -202,7 +202,7 @@ public class MantleObjectComponent extends IrisMantleComponent {
                     }
 
                     if (Math.max(bv.getBlockX(), bv.getBlockZ()) > 128) {
-                        NaturalWorldGen.warn("Object " + i + " has a large size (" + bv + ") and may increase memory usage!");
+                        NaturalGenerator.warn("Object " + i + " has a large size (" + bv + ") and may increase memory usage!");
                     }
 
                     synchronized (xg) {
@@ -213,7 +213,7 @@ public class MantleObjectComponent extends IrisMantleComponent {
                         zg.getAndSet(Math.max(bv.getBlockZ(), zg.get()));
                     }
                 } catch (Throwable ed) {
-                    NaturalWorldGen.reportError(ed);
+                    NaturalGenerator.reportError(ed);
 
                 }
             });
@@ -228,7 +228,7 @@ public class MantleObjectComponent extends IrisMantleComponent {
                             try {
                                 return IrisObject.sampleSize(getData().getObjectLoader().findFile(j));
                             } catch (IOException ioException) {
-                                NaturalWorldGen.reportError(ioException);
+                                NaturalGenerator.reportError(ioException);
                                 ioException.printStackTrace();
                             }
 
@@ -240,7 +240,7 @@ public class MantleObjectComponent extends IrisMantleComponent {
                         }
 
                         if (Math.max(bv.getBlockX(), bv.getBlockZ()) > 128) {
-                            NaturalWorldGen.warn("Object " + j + " has a large size (" + bv + ") and may increase memory usage! (Object scaled up to " + Form.pc(ms, 2) + ")");
+                            NaturalGenerator.warn("Object " + j + " has a large size (" + bv + ") and may increase memory usage! (Object scaled up to " + Form.pc(ms, 2) + ")");
                         }
 
                         synchronized (xg) {
@@ -251,7 +251,7 @@ public class MantleObjectComponent extends IrisMantleComponent {
                             zg.getAndSet((int) Math.max(Math.ceil(bv.getBlockZ() * ms), zg.get()));
                         }
                     } catch (Throwable ee) {
-                        NaturalWorldGen.reportError(ee);
+                        NaturalGenerator.reportError(ee);
 
                     }
                 });

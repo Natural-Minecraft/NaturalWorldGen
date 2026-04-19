@@ -18,7 +18,7 @@
 
 package id.naturalsmp.NaturalWorldGen.util.plugin;
 
-import id.naturalsmp.NaturalWorldGen.NaturalWorldGen;
+import id.naturalsmp.NaturalWorldGen.NaturalGenerator;
 
 public abstract class Controller implements IController {
     private final String name;
@@ -39,22 +39,22 @@ public abstract class Controller implements IController {
 
     @Override
     public void l(Object l) {
-        NaturalWorldGen.info("[" + getName() + "]: " + l);
+        NaturalGenerator.info("[" + getName() + "]: " + l);
     }
 
     @Override
     public void w(Object l) {
-        NaturalWorldGen.warn("[" + getName() + "]: " + l);
+        NaturalGenerator.warn("[" + getName() + "]: " + l);
     }
 
     @Override
     public void f(Object l) {
-        NaturalWorldGen.error("[" + getName() + "]: " + l);
+        NaturalGenerator.error("[" + getName() + "]: " + l);
     }
 
     @Override
     public void v(Object l) {
-        NaturalWorldGen.verbose("[" + getName() + "]: " + l);
+        NaturalGenerator.verbose("[" + getName() + "]: " + l);
     }
 
     @Override

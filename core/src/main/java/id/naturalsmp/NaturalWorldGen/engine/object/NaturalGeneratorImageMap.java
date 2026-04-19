@@ -18,7 +18,7 @@
 
 package id.naturalsmp.NaturalWorldGen.engine.object;
 
-import id.naturalsmp.NaturalWorldGen.NaturalWorldGen;
+import id.naturalsmp.NaturalWorldGen.NaturalGenerator;
 import id.naturalsmp.NaturalWorldGen.core.loader.IrisData;
 import id.naturalsmp.NaturalWorldGen.engine.data.cache.AtomicCache;
 import id.naturalsmp.NaturalWorldGen.engine.object.annotations.Desc;
@@ -67,7 +67,7 @@ public class IrisImageMap {
     public double getNoise(IrisData data, int x, int z) {
         IrisImage i = imageCache.aquire(() -> data.getImageLoader().load(image));
         if (i == null) {
-            NaturalWorldGen.error("NULL IMAGE FOR " + image);
+            NaturalGenerator.error("NULL IMAGE FOR " + image);
             return 0;
         }
 

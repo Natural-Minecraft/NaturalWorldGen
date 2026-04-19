@@ -18,7 +18,7 @@
 
 package id.naturalsmp.NaturalWorldGen.util.hunk.view;
 
-import id.naturalsmp.NaturalWorldGen.NaturalWorldGen;
+import id.naturalsmp.NaturalWorldGen.NaturalGenerator;
 import id.naturalsmp.NaturalWorldGen.core.service.EditSVC;
 import id.naturalsmp.NaturalWorldGen.util.hunk.Hunk;
 import org.bukkit.Chunk;
@@ -53,12 +53,12 @@ public class ChunkBiomeHunkView implements Hunk<Biome> {
             return;
         }
 
-        NaturalWorldGen.service(EditSVC.class).setBiome(chunk.getWorld(), x + (chunk.getX() * 16), y, z + (chunk.getZ() * 16), t);
+        NaturalGenerator.service(EditSVC.class).setBiome(chunk.getWorld(), x + (chunk.getX() * 16), y, z + (chunk.getZ() * 16), t);
     }
 
     @Override
     public Biome getRaw(int x, int y, int z) {
-        return NaturalWorldGen.service(EditSVC.class)
+        return NaturalGenerator.service(EditSVC.class)
                 .getBiome(chunk.getWorld(), x + (chunk.getX() * 16), y, z + (chunk.getZ() * 16));
     }
 }

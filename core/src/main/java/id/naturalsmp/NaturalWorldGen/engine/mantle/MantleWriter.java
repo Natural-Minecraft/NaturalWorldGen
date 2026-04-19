@@ -19,7 +19,7 @@
 package id.naturalsmp.NaturalWorldGen.engine.mantle;
 
 import com.google.common.collect.ImmutableList;
-import id.naturalsmp.NaturalWorldGen.NaturalWorldGen;
+import id.naturalsmp.NaturalWorldGen.NaturalGenerator;
 import id.naturalsmp.NaturalWorldGen.core.loader.IrisData;
 import id.naturalsmp.NaturalWorldGen.engine.data.cache.Cache;
 import id.naturalsmp.NaturalWorldGen.engine.framework.Engine;
@@ -184,7 +184,7 @@ public class MantleWriter implements IObjectPlacer, AutoCloseable {
     public MantleChunk acquireChunk(int cx, int cz) {
         if (cx < this.x - radius || cx > this.x + radius
                 || cz < this.z - radius || cz > this.z + radius) {
-            NaturalWorldGen.error("Mantle Writer Accessed chunk out of bounds" + cx + "," + cz);
+            NaturalGenerator.error("Mantle Writer Accessed chunk out of bounds" + cx + "," + cz);
             return null;
         }
         final Long key = Cache.key(cx, cz);
@@ -694,7 +694,7 @@ public class MantleWriter implements IObjectPlacer, AutoCloseable {
         try {
             setData(pos.getX(), pos.getY(), pos.getZ(), data);
         } catch (Throwable e) {
-            NaturalWorldGen.error("No set? " + data.toString() + " for " + pos.toString());
+            NaturalGenerator.error("No set? " + data.toString() + " for " + pos.toString());
         }
     }
 

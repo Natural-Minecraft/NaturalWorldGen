@@ -19,7 +19,7 @@
 package id.naturalsmp.NaturalWorldGen.util.parallel;
 
 import com.googlecode.concurrentlinkedhashmap.ConcurrentLinkedHashMap;
-import id.naturalsmp.NaturalWorldGen.NaturalWorldGen;
+import id.naturalsmp.NaturalWorldGen.NaturalGenerator;
 import id.naturalsmp.NaturalWorldGen.engine.data.cache.Cache;
 import id.naturalsmp.NaturalWorldGen.util.function.NastyRunnable;
 import id.naturalsmp.NaturalWorldGen.util.function.NastySupplier;
@@ -50,7 +50,7 @@ public class HyperLock {
                 .maximumWeightedCapacity(capacity)
                 .listener((k, v) -> {
                     if (v.isLocked() || v.isHeldByCurrentThread()) {
-                        NaturalWorldGen.warn("InfiniLock Eviction of " + k + " still has locks on it!");
+                        NaturalGenerator.warn("InfiniLock Eviction of " + k + " still has locks on it!");
                     }
                 })
                 .concurrencyLevel(32)
@@ -134,7 +134,7 @@ public class HyperLock {
         try {
             return getLock(x, z).tryLock(timeout, TimeUnit.MILLISECONDS);
         } catch (InterruptedException e) {
-            NaturalWorldGen.reportError(e);
+            NaturalGenerator.reportError(e);
         }
 
         return false;

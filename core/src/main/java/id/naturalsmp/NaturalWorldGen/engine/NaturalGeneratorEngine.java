@@ -20,7 +20,7 @@ package id.naturalsmp.NaturalWorldGen.engine;
 
 import com.google.common.util.concurrent.AtomicDouble;
 import com.google.gson.Gson;
-import id.naturalsmp.NaturalWorldGen.NaturalWorldGen;
+import id.naturalsmp.NaturalWorldGen.NaturalGenerator;
 import id.naturalsmp.NaturalWorldGen.core.ServerConfigurator;
 import id.naturalsmp.NaturalWorldGen.core.events.IrisEngineHotloadEvent;
 import id.naturalsmp.NaturalWorldGen.core.gui.PregeneratorJob;
@@ -134,12 +134,12 @@ public class IrisEngine implements Engine {
         context.touch();
         getData().setEngine(this);
         getData().loadPrefetch(this);
-        NaturalWorldGen.info("Initializing Engine: " + target.getWorld().name() + "/" + target.getDimension().getLoadKey() + " (" + target.getDimension().getDimensionHeight() + " height) Seed: " + getSeedManager().getSeed());
+        NaturalGenerator.info("Initializing Engine: " + target.getWorld().name() + "/" + target.getDimension().getLoadKey() + " (" + target.getDimension().getDimensionHeight() + " height) Seed: " + getSeedManager().getSeed());
         failing = false;
         closed = false;
         art = J.ar(this::tickRandomPlayer, 0);
         setupEngine();
-        NaturalWorldGen.debug("Engine Initialized " + getCacheID());
+        NaturalGenerator.debug("Engine Initialized " + getCacheID());
     }
 
     private void verifySeed() {
@@ -172,7 +172,7 @@ public class IrisEngine implements Engine {
 
     private void setupEngine() {
         try {
-            NaturalWorldGen.debug("Setup Engine " + getCacheID());
+            NaturalGenerator.debug("Setup Engine " + getCacheID());
             cacheId = RNG.r.nextInt();
             worldManager = new IrisWorldManager(this);
             complex = new IrisComplex(this);
@@ -194,11 +194,11 @@ public class IrisEngine implements Engine {
                 hash32.complete(IO.hashRecursive(roots));
             });
         } catch (Throwable e) {
-            NaturalWorldGen.error("FAILED TO SETUP ENGINE!");
+            NaturalGenerator.error("FAILED TO SETUP ENGINE!");
             e.printStackTrace();
         }
 
-        NaturalWorldGen.debug("Engine Setup Complete " + getCacheID());
+        NaturalGenerator.debug("Engine Setup Complete " + getCacheID());
     }
 
     private void setupMode() {
@@ -251,7 +251,7 @@ public class IrisEngine implements Engine {
     @Override
     public void hotload() {
         hotloadSilently();
-        NaturalWorldGen.callEvent(new IrisEngineHotloadEvent(this));
+        NaturalGenerator.callEvent(new IrisEngineHotloadEvent(this));
     }
 
     public void hotloadComplex() {
@@ -283,7 +283,7 @@ public class IrisEngine implements Engine {
                 try {
                     data = new Gson().fromJson(IO.readAll(f), IrisEngineData.class);
                     if (data == null) {
-                        NaturalWorldGen.error("Failed to read Engine Data! Corrupted File? recreating...");
+                        NaturalGenerator.error("Failed to read Engine Data! Corrupted File? recreating...");
                     }
                 } catch (IOException e) {
                     e.printStackTrace();
@@ -296,7 +296,7 @@ public class IrisEngine implements Engine {
                 data.getStatistics().setMCVersion(NaturalGenerator.instance.getMCVersion());
                 data.getStatistics().setUpgradedVersion(NaturalGenerator.instance.getIrisVersion());
                 if (data.getStatistics().getVersion() == -1 || data.getStatistics().getMCVersion() == -1 ) {
-                    NaturalWorldGen.error("Failed to setup Engine Data!");
+                    NaturalGenerator.error("Failed to setup Engine Data!");
                 }
 
                 if (f.getParentFile().exists() || f.getParentFile().mkdirs()) {
@@ -306,7 +306,7 @@ public class IrisEngine implements Engine {
                         e.printStackTrace();
                     }
                 } else {
-                    NaturalWorldGen.error("Failed to setup Engine Data!");
+                    NaturalGenerator.error("Failed to setup Engine Data!");
                 }
             }
 
@@ -441,8 +441,8 @@ public class IrisEngine implements Engine {
         mode.close();
         getData().dump();
         getData().clearLists();
-        NaturalWorldGen.service(PreservationSVC.class).dereference();
-        NaturalWorldGen.debug("Engine Fully Shutdown!");
+        NaturalGenerator.service(PreservationSVC.class).dereference();
+        NaturalGenerator.debug("Engine Fully Shutdown!");
         complex = null;
     }
 
@@ -468,8 +468,8 @@ public class IrisEngine implements Engine {
             try {
                 getData().getObjectLoader().clean();
             } catch (Throwable e) {
-                NaturalWorldGen.reportError(e);
-                NaturalWorldGen.error("Cleanup failed! Enable debug to see stacktrace.");
+                NaturalGenerator.reportError(e);
+                NaturalGenerator.error("Cleanup failed! Enable debug to see stacktrace.");
             }
 
             cleaning.lazySet(false);
@@ -507,7 +507,7 @@ public class IrisEngine implements Engine {
                 J.a(() -> getData().savePrefetch(this));
             }
         } catch (Throwable e) {
-            NaturalWorldGen.reportError(e);
+            NaturalGenerator.reportError(e);
             fail("Failed to generate " + x + ", " + z, e);
         }
     }
@@ -519,9 +519,9 @@ public class IrisEngine implements Engine {
         f.getParentFile().mkdirs();
         try {
             IO.writeAll(f, new Gson().toJson(getEngineData()));
-            NaturalWorldGen.debug("Saved Engine Data");
+            NaturalGenerator.debug("Saved Engine Data");
         } catch (IOException e) {
-            NaturalWorldGen.error("Failed to save Engine Data");
+            NaturalGenerator.error("Failed to save Engine Data");
             e.printStackTrace();
         }
     }
@@ -552,7 +552,7 @@ public class IrisEngine implements Engine {
     @Override
     public void fail(String error, Throwable e) {
         failing = true;
-        NaturalWorldGen.error(error);
+        NaturalGenerator.error(error);
         e.printStackTrace();
     }
 

@@ -18,7 +18,7 @@
 
 package id.naturalsmp.NaturalWorldGen.engine.framework;
 
-import id.naturalsmp.NaturalWorldGen.NaturalWorldGen;
+import id.naturalsmp.NaturalWorldGen.NaturalGenerator;
 import id.naturalsmp.NaturalWorldGen.util.math.RollingSequence;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -33,7 +33,7 @@ public class EngineAssignedComponent implements EngineComponent {
     private final String name;
 
     public EngineAssignedComponent(Engine engine, String name) {
-        NaturalWorldGen.debug("Engine: " + engine.getCacheID() + " Starting " + name);
+        NaturalGenerator.debug("Engine: " + engine.getCacheID() + " Starting " + name);
         this.engine = engine;
         this.metrics = new RollingSequence(16);
         this.name = name;

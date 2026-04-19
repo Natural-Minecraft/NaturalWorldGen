@@ -18,7 +18,7 @@
 
 package id.naturalsmp.NaturalWorldGen.engine.object;
 
-import id.naturalsmp.NaturalWorldGen.NaturalWorldGen;
+import id.naturalsmp.NaturalWorldGen.NaturalGenerator;
 import id.naturalsmp.NaturalWorldGen.core.loader.IrisRegistrant;
 import id.naturalsmp.NaturalWorldGen.engine.data.cache.AtomicCache;
 import id.naturalsmp.NaturalWorldGen.engine.object.annotations.ArrayType;
@@ -66,7 +66,7 @@ public class IrisJigsawPiece extends IrisRegistrant {
                 BlockVector v = IrisObject.sampleSize(getLoader().getObjectLoader().findFile(getObject()));
                 return Math.max(v.getBlockX(), v.getBlockZ());
             } catch (IOException e) {
-                NaturalWorldGen.reportError(e);
+                NaturalGenerator.reportError(e);
                 e.printStackTrace();
             }
 
@@ -80,7 +80,7 @@ public class IrisJigsawPiece extends IrisRegistrant {
                 BlockVector v = IrisObject.sampleSize(getLoader().getObjectLoader().findFile(getObject()));
                 return Math.max(Math.max(v.getBlockX(), v.getBlockZ()), v.getBlockY());
             } catch (IOException e) {
-                NaturalWorldGen.reportError(e);
+                NaturalGenerator.reportError(e);
                 e.printStackTrace();
             }
 

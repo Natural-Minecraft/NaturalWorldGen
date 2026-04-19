@@ -18,7 +18,7 @@
 
 package id.naturalsmp.NaturalWorldGen.util.plugin;
 
-import id.naturalsmp.NaturalWorldGen.NaturalWorldGen;
+import id.naturalsmp.NaturalWorldGen.NaturalGenerator;
 import id.naturalsmp.NaturalWorldGen.util.collection.KList;
 import id.naturalsmp.NaturalWorldGen.util.collection.KMap;
 import id.naturalsmp.NaturalWorldGen.util.io.IO;
@@ -56,19 +56,19 @@ public abstract class NaturalDevPlugin extends JavaPlugin implements Listener {
     }
 
     public void l(Object l) {
-        NaturalWorldGen.info("[" + getName() + "]: " + l);
+        NaturalGenerator.info("[" + getName() + "]: " + l);
     }
 
     public void w(Object l) {
-        NaturalWorldGen.warn("[" + getName() + "]: " + l);
+        NaturalGenerator.warn("[" + getName() + "]: " + l);
     }
 
     public void f(Object l) {
-        NaturalWorldGen.error("[" + getName() + "]: " + l);
+        NaturalGenerator.error("[" + getName() + "]: " + l);
     }
 
     public void v(Object l) {
-        NaturalWorldGen.verbose("[" + getName() + "]: " + l);
+        NaturalGenerator.verbose("[" + getName() + "]: " + l);
     }
 
     public void onEnable() {
@@ -95,7 +95,7 @@ public abstract class NaturalDevPlugin extends JavaPlugin implements Listener {
             outputCommandInfo();
             outputPermissionInfo();
         } catch (Throwable e) {
-            NaturalWorldGen.reportError(e);
+            NaturalGenerator.reportError(e);
 
         }
     }
@@ -168,7 +168,7 @@ public abstract class NaturalDevPlugin extends JavaPlugin implements Listener {
                     v("Registered Permissions " + pc.getFullNode() + " (" + i.getName() + ")");
                 } catch (IllegalArgumentException | IllegalAccessException | InstantiationException |
                          InvocationTargetException | NoSuchMethodException | SecurityException e) {
-                    NaturalWorldGen.reportError(e);
+                    NaturalGenerator.reportError(e);
                     w("Failed to register permission (field " + i.getName() + ")");
                     e.printStackTrace();
                 }
@@ -179,7 +179,7 @@ public abstract class NaturalDevPlugin extends JavaPlugin implements Listener {
             try {
                 Bukkit.getPluginManager().addPermission(i);
             } catch (Throwable e) {
-                NaturalWorldGen.reportError(e);
+                NaturalGenerator.reportError(e);
 
             }
         }
@@ -194,7 +194,7 @@ public abstract class NaturalDevPlugin extends JavaPlugin implements Listener {
                     g.add(toPermission(x));
                     g.addAll(computePermissions(x));
                 } catch (IllegalArgumentException | IllegalAccessException | SecurityException e) {
-                    NaturalWorldGen.reportError(e);
+                    NaturalGenerator.reportError(e);
                     e.printStackTrace();
                 }
             }
@@ -266,7 +266,7 @@ public abstract class NaturalDevPlugin extends JavaPlugin implements Listener {
             } catch (Throwable e) {
                 w("Failed to tick controller " + i.getName());
                 e.printStackTrace();
-                NaturalWorldGen.reportError(e);
+                NaturalGenerator.reportError(e);
             }
         }
     }
@@ -284,7 +284,7 @@ public abstract class NaturalDevPlugin extends JavaPlugin implements Listener {
                 } catch (IllegalArgumentException | IllegalAccessException | SecurityException e) {
                     w("Failed to register instance (field " + i.getName() + ")");
                     e.printStackTrace();
-                    NaturalWorldGen.reportError(e);
+                    NaturalGenerator.reportError(e);
                 }
             }
         }
@@ -303,7 +303,7 @@ public abstract class NaturalDevPlugin extends JavaPlugin implements Listener {
                 } catch (IllegalArgumentException | IllegalAccessException | SecurityException e) {
                     w("Failed to unregister instance (field " + i.getName() + ")");
                     e.printStackTrace();
-                    NaturalWorldGen.reportError(e);
+                    NaturalGenerator.reportError(e);
                 }
             }
         }
@@ -329,7 +329,7 @@ public abstract class NaturalDevPlugin extends JavaPlugin implements Listener {
                          InvocationTargetException | NoSuchMethodException | SecurityException e) {
                     w("Failed to register command (field " + i.getName() + ")");
                     e.printStackTrace();
-                    NaturalWorldGen.reportError(e);
+                    NaturalGenerator.reportError(e);
                 }
             }
         }
@@ -438,7 +438,7 @@ public abstract class NaturalDevPlugin extends JavaPlugin implements Listener {
             }
         } catch (Throwable e) {
             e.printStackTrace();
-            NaturalWorldGen.reportError(e);
+            NaturalGenerator.reportError(e);
         }
     }
 
@@ -450,12 +450,12 @@ public abstract class NaturalDevPlugin extends JavaPlugin implements Listener {
     }
 
     public void registerListener(Listener l) {
-        NaturalWorldGen.debug("Register Listener " + l.getClass().getSimpleName());
+        NaturalGenerator.debug("Register Listener " + l.getClass().getSimpleName());
         Bukkit.getPluginManager().registerEvents(l, this);
     }
 
     public void unregisterListener(Listener l) {
-        NaturalWorldGen.debug("Register Listener " + l.getClass().getSimpleName());
+        NaturalGenerator.debug("Register Listener " + l.getClass().getSimpleName());
         HandlerList.unregisterAll(l);
     }
 
@@ -474,7 +474,7 @@ public abstract class NaturalDevPlugin extends JavaPlugin implements Listener {
             try {
                 unregisterCommand(i.getCommand());
             } catch (Throwable e) {
-                NaturalWorldGen.reportError(e);
+                NaturalGenerator.reportError(e);
 
             }
         }

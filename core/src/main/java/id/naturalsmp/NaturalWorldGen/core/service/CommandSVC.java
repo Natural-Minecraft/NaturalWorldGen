@@ -18,7 +18,7 @@
 
 package id.naturalsmp.NaturalWorldGen.core.service;
 
-import id.naturalsmp.NaturalWorldGen.NaturalWorldGen;
+import id.naturalsmp.NaturalWorldGen.NaturalGenerator;
 import id.naturalsmp.NaturalWorldGen.core.commands.CommandIris;
 import id.naturalsmp.NaturalWorldGen.core.tools.IrisToolbelt;
 import id.naturalsmp.NaturalWorldGen.engine.data.cache.AtomicCache;
@@ -46,7 +46,7 @@ public class CommandSVC implements IrisService, DecreeSystem {
     public void onEnable() {
         NaturalGenerator.instance.getCommand("nwg").setExecutor(this);
         J.a(() -> {
-            DecreeContext.touch(NaturalWorldGen.getSender());
+            DecreeContext.touch(NaturalGenerator.getSender());
             try {
                 getRoot().cacheAll();
             } finally {

@@ -18,7 +18,7 @@
 
 package id.naturalsmp.NaturalWorldGen.util.scheduling;
 
-import id.naturalsmp.NaturalWorldGen.NaturalWorldGen;
+import id.naturalsmp.NaturalWorldGen.NaturalGenerator;
 import id.naturalsmp.NaturalWorldGen.util.collection.KMap;
 import id.naturalsmp.NaturalWorldGen.util.function.NastyRunnable;
 
@@ -90,7 +90,7 @@ public class GroupedExecutor {
             try {
                 r.run();
             } catch (Throwable e) {
-                NaturalWorldGen.reportError(e);
+                NaturalGenerator.reportError(e);
                 e.printStackTrace();
             }
 

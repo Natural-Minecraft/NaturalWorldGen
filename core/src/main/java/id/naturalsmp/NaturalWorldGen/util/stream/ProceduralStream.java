@@ -18,7 +18,7 @@
 
 package id.naturalsmp.NaturalWorldGen.util.stream;
 
-import id.naturalsmp.NaturalWorldGen.NaturalWorldGen;
+import id.naturalsmp.NaturalWorldGen.NaturalGenerator;
 import id.naturalsmp.NaturalWorldGen.core.loader.IrisData;
 import id.naturalsmp.NaturalWorldGen.engine.data.cache.Cache;
 import id.naturalsmp.NaturalWorldGen.engine.framework.Engine;
@@ -49,8 +49,8 @@ public interface ProceduralStream<T> extends ProceduralLayer, Interpolated<T> {
         try {
             return of(f, Interpolated.DOUBLE);
         } catch (IncompatibleClassChangeError e) {
-            NaturalWorldGen.warn(f.toString());
-            NaturalWorldGen.reportError(e);
+            NaturalGenerator.warn(f.toString());
+            NaturalGenerator.reportError(e);
             e.printStackTrace();
             return null;
         }

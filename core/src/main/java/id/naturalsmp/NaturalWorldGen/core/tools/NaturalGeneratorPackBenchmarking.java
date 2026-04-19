@@ -1,7 +1,7 @@
 package id.naturalsmp.NaturalWorldGen.core.tools;
 
 
-import id.naturalsmp.NaturalWorldGen.NaturalWorldGen;
+import id.naturalsmp.NaturalWorldGen.NaturalGenerator;
 import id.naturalsmp.NaturalWorldGen.core.pregenerator.PregenTask;
 import id.naturalsmp.NaturalWorldGen.engine.framework.Engine;
 import id.naturalsmp.NaturalWorldGen.engine.object.IrisDimension;
@@ -44,14 +44,14 @@ public class IrisPackBenchmarking {
         Thread.ofVirtual()
                 .name("PackBenchmarking")
                 .start(() -> {
-                    NaturalWorldGen.info("Setting up benchmark environment ");
+                    NaturalGenerator.info("Setting up benchmark environment ");
                     IO.delete(new File(Bukkit.getWorldContainer(), "benchmark"));
                     createBenchmark();
                     while (!IrisToolbelt.isIrisWorld(Bukkit.getWorld("benchmark"))) {
                         J.sleep(1000);
-                        NaturalWorldGen.debug("NaturalWorldGen PackBenchmark: Waiting...");
+                        NaturalGenerator.debug("NaturalWorldGen PackBenchmark: Waiting...");
                     }
-                    NaturalWorldGen.info("Starting Benchmark!");
+                    NaturalGenerator.info("Starting Benchmark!");
                     stopwatch.begin();
                     startBenchmark();
                 });
@@ -62,15 +62,15 @@ public class IrisPackBenchmarking {
         try {
             String time = Form.duration((long) stopwatch.getMilliseconds());
             Engine engine = IrisToolbelt.access(Bukkit.getWorld("benchmark")).getEngine();
-            NaturalWorldGen.info("-----------------");
-            NaturalWorldGen.info("Results:");
-            NaturalWorldGen.info("- Total time: " + time);
-            NaturalWorldGen.info("- Average CPS: " + calculateAverage(cps));
-            NaturalWorldGen.info("  - Median CPS: " + calculateMedian(cps));
-            NaturalWorldGen.info("  - Highest CPS: " + findHighest(cps));
-            NaturalWorldGen.info("  - Lowest CPS: " + findLowest(cps));
-            NaturalWorldGen.info("-----------------");
-            NaturalWorldGen.info("Creating a report..");
+            NaturalGenerator.info("-----------------");
+            NaturalGenerator.info("Results:");
+            NaturalGenerator.info("- Total time: " + time);
+            NaturalGenerator.info("- Average CPS: " + calculateAverage(cps));
+            NaturalGenerator.info("  - Median CPS: " + calculateMedian(cps));
+            NaturalGenerator.info("  - Highest CPS: " + findHighest(cps));
+            NaturalGenerator.info("  - Lowest CPS: " + findLowest(cps));
+            NaturalGenerator.info("-----------------");
+            NaturalGenerator.info("Creating a report..");
             File results = NaturalGenerator.instance.getDataFile("packbenchmarks", dimension.getName() + " " + LocalDateTime.now(Clock.systemDefaultZone()).toString().replace(':', '-') + ".txt");
             KMap<String, Double> metrics = engine.getMetrics().pull();
             try (FileWriter writer = new FileWriter(results)) {
@@ -92,9 +92,9 @@ public class IrisPackBenchmarking {
                 writer.write("  - Highest CPS: " + findHighest(cps) + "\n");
                 writer.write("  - Lowest CPS: " + findLowest(cps) + "\n");
                 writer.write("-----------------\n");
-                NaturalWorldGen.info("Finished generating a report!");
+                NaturalGenerator.info("Finished generating a report!");
             } catch (IOException e) {
-                NaturalWorldGen.error("An error occurred writing to the file.");
+                NaturalGenerator.error("An error occurred writing to the file.");
                 e.printStackTrace();
             }
 
@@ -107,7 +107,7 @@ public class IrisPackBenchmarking {
 
             stopwatch.end();
         } catch (Exception e) {
-            NaturalWorldGen.error("Something has gone wrong!");
+            NaturalGenerator.error("Something has gone wrong!");
             e.printStackTrace();
         }
     }

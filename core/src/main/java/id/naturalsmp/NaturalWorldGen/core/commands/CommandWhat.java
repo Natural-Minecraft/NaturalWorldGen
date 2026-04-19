@@ -18,7 +18,7 @@
 
 package id.naturalsmp.NaturalWorldGen.core.commands;
 
-import id.naturalsmp.NaturalWorldGen.NaturalWorldGen;
+import id.naturalsmp.NaturalWorldGen.NaturalGenerator;
 import id.naturalsmp.NaturalWorldGen.core.edit.BlockSignal;
 import id.naturalsmp.NaturalWorldGen.core.nms.INMS;
 import id.naturalsmp.NaturalWorldGen.core.tools.IrisToolbelt;
@@ -55,7 +55,7 @@ public class CommandWhat implements DecreeExecutor {
                 sender().sendMessage("Please hold a block/item");
             }
         } catch (Throwable e) {
-            NaturalWorldGen.reportError(e);
+            NaturalGenerator.reportError(e);
             Material bd = player().getInventory().getItemInMainHand().getType();
             if (!bd.equals(Material.AIR)) {
                 sender().sendMessage("Material: " + C.GREEN + bd.name());
@@ -72,14 +72,14 @@ public class CommandWhat implements DecreeExecutor {
             sender().sendMessage("IBiome: " + b.getLoadKey() + " (" + b.getDerivative().name() + ")");
 
         } catch (Throwable e) {
-            NaturalWorldGen.reportError(e);
+            NaturalGenerator.reportError(e);
             sender().sendMessage("Non-NaturalWorldGen Biome: " + player().getLocation().getBlock().getBiome().name());
 
             if (player().getLocation().getBlock().getBiome().equals(Biome.CUSTOM)) {
                 try {
                     sender().sendMessage("Data Pack Biome: " + INMS.get().getTrueBiomeBaseKey(player().getLocation()) + " (ID: " + INMS.get().getTrueBiomeBaseId(INMS.get().getTrueBiomeBase(player().getLocation())) + ")");
                 } catch (Throwable ee) {
-                    NaturalWorldGen.reportError(ee);
+                    NaturalGenerator.reportError(ee);
                 }
             }
         }
@@ -93,7 +93,7 @@ public class CommandWhat implements DecreeExecutor {
             sender().sendMessage("IRegion: " + r.getLoadKey() + " (" + r.getName() + ")");
 
         } catch (Throwable e) {
-            NaturalWorldGen.reportError(e);
+            NaturalGenerator.reportError(e);
             sender().sendMessage(C.IRIS + "NaturalWorldGen worlds only.");
         }
     }
@@ -104,7 +104,7 @@ public class CommandWhat implements DecreeExecutor {
         try {
             bd = player().getTargetBlockExact(128, FluidCollisionMode.NEVER).getBlockData();
         } catch (NullPointerException e) {
-            NaturalWorldGen.reportError(e);
+            NaturalGenerator.reportError(e);
             sender().sendMessage("Please look at any block, not at the sky");
             bd = null;
         }

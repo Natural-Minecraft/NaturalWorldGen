@@ -1,7 +1,7 @@
 package id.naturalsmp.NaturalWorldGen.core.pregenerator;
 
 import com.google.gson.Gson;
-import id.naturalsmp.NaturalWorldGen.NaturalWorldGen;
+import id.naturalsmp.NaturalWorldGen.NaturalGenerator;
 import id.naturalsmp.NaturalWorldGen.core.IrisSettings;
 import id.naturalsmp.NaturalWorldGen.util.collection.KList;
 import id.naturalsmp.NaturalWorldGen.util.format.C;
@@ -102,7 +102,7 @@ public class TurboPregenerator extends Thread implements Listener {
             try {
                 TurboPregenerator p = new TurboPregenerator(turbogen);
                 p.start();
-                NaturalWorldGen.info("Started Turbo Pregenerator: " + p.job);
+                NaturalGenerator.info("Started Turbo Pregenerator: " + p.job);
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
@@ -141,7 +141,7 @@ public class TurboPregenerator extends Thread implements Listener {
             cachedLast.set(cache.mappingCount());
             secondCached = secondCached / 3;
             cachePerSecond.put(secondCached);
-            NaturalWorldGen.info("TurboGen: " + C.IRIS + world.getName() + C.RESET + C.BLUE + " Caching: " + Form.f(cache.mappingCount()) + " of " + Form.f(turboTotalChunks.get()) + " " + Form.f((int) cachePerSecond.getAverage()) + "/s");
+            NaturalGenerator.info("TurboGen: " + C.IRIS + world.getName() + C.RESET + C.BLUE + " Caching: " + Form.f(cache.mappingCount()) + " of " + Form.f(turboTotalChunks.get()) + " " + Form.f((int) cachePerSecond.getAverage()) + "/s");
         }
 
         if (latch.flip() && !job.paused && !cachinglock.isLocked()) {
@@ -152,11 +152,11 @@ public class TurboPregenerator extends Thread implements Listener {
             secondGenerated = secondGenerated / 3;
             chunksPerSecond.put(secondGenerated);
             chunksPerMinute.put(secondGenerated * 60);
-            NaturalWorldGen.info("TurboGen: " + C.IRIS + world.getName() + C.RESET + " RTT: " + Form.f(turboGeneratedChunks.get()) + " of " + Form.f(turboTotalChunks.get()) + " " + Form.f((int) chunksPerSecond.getAverage()) + "/s ETA: " + Form.duration((double) eta, 2));
+            NaturalGenerator.info("TurboGen: " + C.IRIS + world.getName() + C.RESET + " RTT: " + Form.f(turboGeneratedChunks.get()) + " of " + Form.f(turboTotalChunks.get()) + " " + Form.f((int) chunksPerSecond.getAverage()) + "/s ETA: " + Form.duration((double) eta, 2));
 
         }
         if (turboGeneratedChunks.get() >= turboTotalChunks.get()) {
-            NaturalWorldGen.info("Completed Turbo Gen!");
+            NaturalGenerator.info("Completed Turbo Gen!");
             interrupt();
         } else {
             if (!cachinglock.isLocked()) {
@@ -198,10 +198,10 @@ public class TurboPregenerator extends Thread implements Listener {
             if (order.get() < 0) {
                 cachinglock.unlock();
                 caching.set(false);
-                NaturalWorldGen.info("Completed Caching in: " + Form.duration(p.getMilliseconds(), 2));
+                NaturalGenerator.info("Completed Caching in: " + Form.duration(p.getMilliseconds(), 2));
             }
         } else {
-            NaturalWorldGen.error("TurboCache is locked!");
+            NaturalGenerator.error("TurboCache is locked!");
         }
     }
 
@@ -274,9 +274,9 @@ public class TurboPregenerator extends Thread implements Listener {
         }
 
         if (job.paused) {
-            NaturalWorldGen.info(C.BLUE + "TurboGen: " + C.IRIS + world.getName() + C.BLUE + " Paused");
+            NaturalGenerator.info(C.BLUE + "TurboGen: " + C.IRIS + world.getName() + C.BLUE + " Paused");
         } else {
-            NaturalWorldGen.info(C.BLUE + "TurboGen: " + C.IRIS + world.getName() + C.BLUE + " Resumed");
+            NaturalGenerator.info(C.BLUE + "TurboGen: " + C.IRIS + world.getName() + C.BLUE + " Resumed");
         }
     }
 
@@ -286,13 +286,13 @@ public class TurboPregenerator extends Thread implements Listener {
     }
 
     public void shutdownInstance(World world) throws IOException {
-        NaturalWorldGen.info("turboGen: " + C.IRIS + world.getName() + C.BLUE + " Shutting down..");
+        NaturalGenerator.info("turboGen: " + C.IRIS + world.getName() + C.BLUE + " Shutting down..");
         TurboPregenJob job = jobs.get(world.getName());
         File worldDirectory = new File(Bukkit.getWorldContainer(), world.getName());
         File turboFile = new File(worldDirectory, "turbogen.json");
 
         if (job == null) {
-            NaturalWorldGen.error("No turbogen job found for world: " + world.getName());
+            NaturalGenerator.error("No turbogen job found for world: " + world.getName());
             return;
         }
 
@@ -309,11 +309,11 @@ public class TurboPregenerator extends Thread implements Listener {
                         turboFile.delete();
                         J.sleep(1000);
                     }
-                    NaturalWorldGen.info("turboGen: " + C.IRIS + world.getName() + C.BLUE + " File deleted and instance closed.");
+                    NaturalGenerator.info("turboGen: " + C.IRIS + world.getName() + C.BLUE + " File deleted and instance closed.");
                 }
             }.runTaskLater(NaturalGenerator.instance, 20L);
         } catch (Exception e) {
-            NaturalWorldGen.error("Failed to shutdown turbogen for " + world.getName());
+            NaturalGenerator.error("Failed to shutdown turbogen for " + world.getName());
             e.printStackTrace();
         } finally {
             saveNow();

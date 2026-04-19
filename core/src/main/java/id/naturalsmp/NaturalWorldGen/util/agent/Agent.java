@@ -1,6 +1,6 @@
 package id.naturalsmp.NaturalWorldGen.util.agent;
 
-import id.naturalsmp.NaturalWorldGen.NaturalWorldGen;
+import id.naturalsmp.NaturalWorldGen.NaturalGenerator;
 import net.bytebuddy.agent.ByteBuddyAgent;
 import net.bytebuddy.dynamic.loading.ClassReloadingStrategy;
 
@@ -28,7 +28,7 @@ public class Agent {
             return true;
         try {
             Files.copy(NaturalGenerator.instance.getResource("agent.jar"), AGENT_JAR.toPath(), StandardCopyOption.REPLACE_EXISTING);
-            NaturalWorldGen.info("Installing Java Agent...");
+            NaturalGenerator.info("Installing Java Agent...");
             ByteBuddyAgent.attach(AGENT_JAR, ByteBuddyAgent.ProcessProvider.ForCurrentVm.INSTANCE);
         } catch (Throwable e) {
             e.printStackTrace();

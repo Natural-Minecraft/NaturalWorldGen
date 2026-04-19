@@ -1,6 +1,6 @@
 package id.naturalsmp.NaturalWorldGen.core.pregenerator.methods;
 
-import id.naturalsmp.NaturalWorldGen.NaturalWorldGen;
+import id.naturalsmp.NaturalWorldGen.NaturalGenerator;
 import id.naturalsmp.NaturalWorldGen.core.pregenerator.PregenListener;
 import id.naturalsmp.NaturalWorldGen.core.pregenerator.PregeneratorMethod;
 import id.naturalsmp.NaturalWorldGen.core.pregenerator.cache.PregenCache;
@@ -15,9 +15,9 @@ public class CachedPregenMethod implements PregeneratorMethod {
 
     public CachedPregenMethod(PregeneratorMethod method, String worldName) {
         this.method = method;
-        var cache = NaturalWorldGen.service(GlobalCacheSVC.class).get(worldName);
+        var cache = NaturalGenerator.service(GlobalCacheSVC.class).get(worldName);
         if (cache == null) {
-            NaturalWorldGen.debug("Could not find existing cache for " + worldName  + " creating fallback");
+            NaturalGenerator.debug("Could not find existing cache for " + worldName  + " creating fallback");
             cache = GlobalCacheSVC.createDefault(worldName);
         }
         this.cache = cache;

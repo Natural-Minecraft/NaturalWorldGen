@@ -2,7 +2,7 @@ package id.naturalsmp.NaturalWorldGen.util.misc;
 
 import com.google.gson.JsonSyntaxException;
 import id.naturalsmp.NaturalWorldGen.BuildConstants;
-import id.naturalsmp.NaturalWorldGen.NaturalWorldGen;
+import id.naturalsmp.NaturalWorldGen.NaturalGenerator;
 import id.naturalsmp.NaturalWorldGen.core.IrisSettings;
 import id.naturalsmp.NaturalWorldGen.core.nms.INMS;
 import id.naturalsmp.NaturalWorldGen.core.safeguard.IrisSafeguard;
@@ -40,8 +40,8 @@ public class Bindings {
     public static void setupSentry() {
         var settings = IrisSettings.get().getSentry();
         if (settings.disableAutoReporting || Sentry.isEnabled() || Boolean.getBoolean("naturalworldgen.suppressReporting")) return;
-        NaturalWorldGen.info("Enabling Sentry for anonymous error reporting. You can disable this in the settings.");
-        NaturalWorldGen.info("Your server ID is: " + ServerID.ID);
+        NaturalGenerator.info("Enabling Sentry for anonymous error reporting. You can disable this in the settings.");
+        NaturalGenerator.info("Your server ID is: " + ServerID.ID);
 
         Sentry.init(options -> {
             options.setDsn("http://4cdbb9ac953306529947f4ca1e8e6b26@sentry.naturalsmp.id:8080/2");

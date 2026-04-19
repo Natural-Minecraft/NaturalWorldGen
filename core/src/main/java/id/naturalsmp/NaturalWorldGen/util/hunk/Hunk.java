@@ -18,7 +18,7 @@
 
 package id.naturalsmp.NaturalWorldGen.util.hunk;
 
-import id.naturalsmp.NaturalWorldGen.NaturalWorldGen;
+import id.naturalsmp.NaturalWorldGen.NaturalGenerator;
 import id.naturalsmp.NaturalWorldGen.engine.object.IrisPosition;
 import id.naturalsmp.NaturalWorldGen.util.collection.KList;
 import id.naturalsmp.NaturalWorldGen.util.function.*;
@@ -1179,7 +1179,7 @@ public interface Hunk<T> {
      */
     default void set(int x, int y, int z, T t) {
         if (!contains(x, y, z)) {
-            NaturalWorldGen.warn("OUT OF BOUNDS " + x + " " + y + " " + z + " in bounds " + getWidth() + " " + getHeight() + " " + getDepth());
+            NaturalGenerator.warn("OUT OF BOUNDS " + x + " " + y + " " + z + " in bounds " + getWidth() + " " + getHeight() + " " + getDepth());
             return;
         }
 

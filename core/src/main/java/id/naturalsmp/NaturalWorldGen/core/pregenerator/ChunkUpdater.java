@@ -1,6 +1,6 @@
 package id.naturalsmp.NaturalWorldGen.core.pregenerator;
 
-import id.naturalsmp.NaturalWorldGen.NaturalWorldGen;
+import id.naturalsmp.NaturalWorldGen.NaturalGenerator;
 import id.naturalsmp.NaturalWorldGen.core.IrisSettings;
 import id.naturalsmp.NaturalWorldGen.core.service.PreservationSVC;
 import id.naturalsmp.NaturalWorldGen.core.tools.IrisToolbelt;
@@ -53,7 +53,7 @@ public class ChunkUpdater {
     public ChunkUpdater(World world) {
         this.engine = IrisToolbelt.access(world).getEngine();
         this.world = world;
-        this.holder = NaturalWorldGen.tickets.getHolder(world);
+        this.holder = NaturalGenerator.tickets.getHolder(world);
         this.dimensions = calculateWorldDimensions(new File(world.getWorldFolder(), "region"));
         this.task = dimensions.task();
         this.totalMaxChunks.set(dimensions.count * 1024);
@@ -90,7 +90,7 @@ public class ChunkUpdater {
     }
 
     private void update() {
-        NaturalWorldGen.info("Updating..");
+        NaturalGenerator.info("Updating..");
         try {
             startTime.set(System.currentTimeMillis());
             scheduler.scheduleAtFixedRate(() -> {
@@ -103,12 +103,12 @@ public class ChunkUpdater {
                         chunksPerSecond.put(cps);
                         double percentage = ((double) processed / (double) totalMaxChunks.get()) * 100;
                         if (!cancelled.get()) {
-                            NaturalWorldGen.info("Updated: " + Form.f(processed) + " of " + Form.f(totalMaxChunks.get()) + " (%.0f%%) " + Form.f(chunksPerSecond.getAverage()) + "/s, ETA: " + Form.duration(eta,
+                            NaturalGenerator.info("Updated: " + Form.f(processed) + " of " + Form.f(totalMaxChunks.get()) + " (%.0f%%) " + Form.f(chunksPerSecond.getAverage()) + "/s, ETA: " + Form.duration(eta,
                                     2), percentage);
                         }
                     }
                 } catch (Exception e) {
-                    NaturalWorldGen.reportError(e);
+                    NaturalGenerator.reportError(e);
                     e.printStackTrace();
                 }
             }, 0, 3, TimeUnit.SECONDS);
@@ -126,7 +126,7 @@ public class ChunkUpdater {
             t.setPriority(Thread.MAX_PRIORITY);
             t.start();
 
-            NaturalWorldGen.service(PreservationSVC.class).register(t);
+            NaturalGenerator.service(PreservationSVC.class).register(t);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -143,12 +143,12 @@ public class ChunkUpdater {
             unloadAndSaveAllChunks();
         } catch (Exception ignored) {}
         if (cancelled.get()) {
-            NaturalWorldGen.info("Updated: " + Form.f(chunksUpdated.get()) + " Chunks");
-            NaturalWorldGen.info("Irritated: " + Form.f(chunksProcessed.get()) + " of " + Form.f(totalMaxChunks.get()));
-            NaturalWorldGen.info("Stopped updater.");
+            NaturalGenerator.info("Updated: " + Form.f(chunksUpdated.get()) + " Chunks");
+            NaturalGenerator.info("Irritated: " + Form.f(chunksProcessed.get()) + " of " + Form.f(totalMaxChunks.get()));
+            NaturalGenerator.info("Stopped updater.");
         } else {
-            NaturalWorldGen.info("Processed: " + Form.f(chunksProcessed.get()) + " Chunks");
-            NaturalWorldGen.info("Finished Updating: " + Form.f(chunksUpdated.get()) + " Chunks");
+            NaturalGenerator.info("Processed: " + Form.f(chunksProcessed.get()) + " Chunks");
+            NaturalGenerator.info("Finished Updating: " + Form.f(chunksUpdated.get()) + " Chunks");
         }
     }
 
@@ -244,7 +244,7 @@ public class ChunkUpdater {
         try {
             latch.await();
         } catch (InterruptedException e) {
-            NaturalWorldGen.info("Interrupted while waiting for chunks to load");
+            NaturalGenerator.info("Interrupted while waiting for chunks to load");
         }
 
         if (generated.get()) return true;
@@ -264,14 +264,14 @@ public class ChunkUpdater {
         try {
             J.sfut(() -> {
                 if (world == null) {
-                    NaturalWorldGen.warn("World was null somehow...");
+                    NaturalGenerator.warn("World was null somehow...");
                     return;
                 }
 
                 world.save();
             }).get();
         } catch (Throwable e) {
-            NaturalWorldGen.reportError(e);
+            NaturalGenerator.reportError(e);
             e.printStackTrace();
         }
     }

@@ -1,6 +1,6 @@
 package id.naturalsmp.NaturalWorldGen.core.link.data;
 
-import id.naturalsmp.NaturalWorldGen.NaturalWorldGen;
+import id.naturalsmp.NaturalWorldGen.NaturalGenerator;
 import id.naturalsmp.NaturalWorldGen.core.link.ExternalDataProvider;
 import id.naturalsmp.NaturalWorldGen.core.link.Identifier;
 import id.naturalsmp.NaturalWorldGen.engine.framework.Engine;
@@ -88,7 +88,7 @@ public class ItemAdderDataProvider extends ExternalDataProvider {
             updateNamespaces(DataType.ITEM);
             updateNamespaces(DataType.BLOCK);
         } catch (Throwable e) {
-            NaturalWorldGen.warn("Failed to update ItemAdder namespaces: " + e.getMessage());
+            NaturalGenerator.warn("Failed to update ItemAdder namespaces: " + e.getMessage());
         }
     }
 
@@ -96,7 +96,7 @@ public class ItemAdderDataProvider extends ExternalDataProvider {
         var namespaces = getTypes(dataType).stream().map(Identifier::namespace).collect(Collectors.toSet());
         if (dataType == DataType.ITEM) itemNamespaces = namespaces;
         else blockNamespaces = namespaces;
-        NaturalWorldGen.debug("Updated ItemAdder namespaces: " + dataType + " - " + namespaces);
+        NaturalGenerator.debug("Updated ItemAdder namespaces: " + dataType + " - " + namespaces);
     }
 
     @Override

@@ -18,7 +18,7 @@
 
 package id.naturalsmp.NaturalWorldGen.core;
 
-import id.naturalsmp.NaturalWorldGen.NaturalWorldGen;
+import id.naturalsmp.NaturalWorldGen.NaturalGenerator;
 import id.naturalsmp.NaturalWorldGen.core.loader.IrisData;
 import id.naturalsmp.NaturalWorldGen.core.nms.INMS;
 import id.naturalsmp.NaturalWorldGen.core.nms.datapack.DataVersion;
@@ -72,8 +72,8 @@ public class ServerConfigurator {
         long spigotTimeout = TimeUnit.MINUTES.toSeconds(5);
 
         if (tt < spigotTimeout) {
-            NaturalWorldGen.warn("Updating spigot.yml timeout-time: " + tt + " -> " + spigotTimeout + " (5 minutes)");
-            NaturalWorldGen.warn("You can disable this change (autoconfigureServer) in NaturalWorldGen settings, then change back the value.");
+            NaturalGenerator.warn("Updating spigot.yml timeout-time: " + tt + " -> " + spigotTimeout + " (5 minutes)");
+            NaturalGenerator.warn("You can disable this change (autoconfigureServer) in NaturalWorldGen settings, then change back the value.");
             f.set("settings.timeout-time", spigotTimeout);
             f.save(spigotConfig);
         }
@@ -86,8 +86,8 @@ public class ServerConfigurator {
 
         long watchdog = TimeUnit.MINUTES.toMillis(3);
         if (tt < watchdog) {
-            NaturalWorldGen.warn("Updating paper.yml watchdog early-warning-delay: " + tt + " -> " + watchdog + " (3 minutes)");
-            NaturalWorldGen.warn("You can disable this change (autoconfigureServer) in NaturalWorldGen settings, then change back the value.");
+            NaturalGenerator.warn("Updating paper.yml watchdog early-warning-delay: " + tt + " -> " + watchdog + " (3 minutes)");
+            NaturalGenerator.warn("You can disable this change (autoconfigureServer) in NaturalWorldGen settings, then change back the value.");
             f.set("watchdog.early-warning-delay", watchdog);
             f.save(spigotConfig);
         }
@@ -109,10 +109,10 @@ public class ServerConfigurator {
 
     public static boolean installDataPacks(IDataFixer fixer, boolean fullInstall) {
         if (fixer == null) {
-            NaturalWorldGen.error("Unable to install datapacks, fixer is null!");
+            NaturalGenerator.error("Unable to install datapacks, fixer is null!");
             return false;
         }
-        NaturalWorldGen.info("Checking Data Packs...");
+        NaturalGenerator.info("Checking Data Packs...");
         DimensionHeight height = new DimensionHeight(fixer);
         KList<File> folders = getDatapacksFolder();
         KMap<String, KSet<String>> biomes = new KMap<>();
@@ -121,13 +121,13 @@ public class ServerConfigurator {
             stream.flatMap(height::merge)
                     .parallel()
                     .forEach(dim -> {
-                        NaturalWorldGen.verbose("  Checking Dimension " + dim.getLoadFile().getPath());
+                        NaturalGenerator.verbose("  Checking Dimension " + dim.getLoadFile().getPath());
                         dim.installBiomes(fixer, dim::getLoader, folders, biomes.computeIfAbsent(dim.getLoadKey(), k -> new KSet<>()));
                         dim.installDimensionType(fixer, folders);
                     });
         }
         IrisDimension.writeShared(folders, height);
-        NaturalWorldGen.info("Data Packs Setup!");
+        NaturalGenerator.info("Data Packs Setup!");
 
         return fullInstall && verifyDataPacksPost(IrisSettings.get().getAutoConfiguration().isAutoRestartOnCustomBiomeInstall());
     }
@@ -136,7 +136,7 @@ public class ServerConfigurator {
         try (Stream<IrisData> stream = allPacks()) {
             boolean bad = stream
                     .map(data -> {
-                        NaturalWorldGen.verbose("Checking Pack: " + data.getDataFolder().getPath());
+                        NaturalGenerator.verbose("Checking Pack: " + data.getDataFolder().getPath());
                         var loader = data.getDimensionLoader();
                         return loader.loadAll(loader.getPossibleKeys())
                                 .stream()
@@ -154,12 +154,12 @@ public class ServerConfigurator {
         if (allowRestarting) {
             restart();
         } else if (INMS.get().supportsDataPacks()) {
-            NaturalWorldGen.error("============================================================================");
-            NaturalWorldGen.error(C.ITALIC + "You need to restart your server to properly generate custom biomes.");
-            NaturalWorldGen.error(C.ITALIC + "By continuing, NaturalWorldGen will use backup biomes in place of the custom biomes.");
-            NaturalWorldGen.error("----------------------------------------------------------------------------");
-            NaturalWorldGen.error(C.UNDERLINE + "IT IS HIGHLY RECOMMENDED YOU RESTART THE SERVER BEFORE GENERATING!");
-            NaturalWorldGen.error("============================================================================");
+            NaturalGenerator.error("============================================================================");
+            NaturalGenerator.error(C.ITALIC + "You need to restart your server to properly generate custom biomes.");
+            NaturalGenerator.error(C.ITALIC + "By continuing, NaturalWorldGen will use backup biomes in place of the custom biomes.");
+            NaturalGenerator.error("----------------------------------------------------------------------------");
+            NaturalGenerator.error(C.UNDERLINE + "IT IS HIGHLY RECOMMENDED YOU RESTART THE SERVER BEFORE GENERATING!");
+            NaturalGenerator.error("============================================================================");
 
             for (Player i : Bukkit.getOnlinePlayers()) {
                 if (i.isOp() || i.hasPermission("naturalworldgen.all")) {
@@ -176,11 +176,11 @@ public class ServerConfigurator {
 
     public static void restart() {
         J.s(() -> {
-            NaturalWorldGen.warn("New data pack entries have been installed in NaturalWorldGen! Restarting server!");
-            NaturalWorldGen.warn("This will only happen when your pack changes (updates/first time setup)");
-            NaturalWorldGen.warn("(You can disable this auto restart in naturalworldgen settings)");
+            NaturalGenerator.warn("New data pack entries have been installed in NaturalWorldGen! Restarting server!");
+            NaturalGenerator.warn("This will only happen when your pack changes (updates/first time setup)");
+            NaturalGenerator.warn("(You can disable this auto restart in naturalworldgen settings)");
             J.s(() -> {
-                NaturalWorldGen.warn("Looks like the restart command didn't work. Stopping the server instead!");
+                NaturalGenerator.warn("Looks like the restart command didn't work. Stopping the server instead!");
                 Bukkit.shutdown();
             }, 100);
             Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "restart");
@@ -204,11 +204,11 @@ public class ServerConfigurator {
 
         if (!INMS.get().supportsDataPacks()) {
             if (!keys.isEmpty()) {
-                NaturalWorldGen.warn("===================================================================================");
-                NaturalWorldGen.warn("Pack " + key + " has " + keys.size() + " custom biome(s). ");
-                NaturalWorldGen.warn("Your server version does not yet support datapacks for naturalworldgen.");
-                NaturalWorldGen.warn("The world will generate these biomes as backup biomes.");
-                NaturalWorldGen.warn("====================================================================================");
+                NaturalGenerator.warn("===================================================================================");
+                NaturalGenerator.warn("Pack " + key + " has " + keys.size() + " custom biome(s). ");
+                NaturalGenerator.warn("Your server version does not yet support datapacks for naturalworldgen.");
+                NaturalGenerator.warn("The world will generate these biomes as backup biomes.");
+                NaturalGenerator.warn("====================================================================================");
             }
 
             return true;
@@ -218,19 +218,19 @@ public class ServerConfigurator {
             Object o = INMS.get().getCustomBiomeBaseFor(i);
 
             if (o == null) {
-                NaturalWorldGen.warn("The Biome " + i + " is not registered on the server.");
+                NaturalGenerator.warn("The Biome " + i + " is not registered on the server.");
                 warn = true;
             }
         }
 
         if (INMS.get().missingDimensionTypes(dimension.getDimensionTypeKey())) {
-            NaturalWorldGen.warn("The Dimension Type for " + dimension.getLoadFile() + " is not registered on the server.");
+            NaturalGenerator.warn("The Dimension Type for " + dimension.getLoadFile() + " is not registered on the server.");
             warn = true;
         }
 
         if (warn) {
-            NaturalWorldGen.error("The Pack " + key + " is INCAPABLE of generating custom biomes");
-            NaturalWorldGen.error("If not done automatically, restart your server before generating with this pack!");
+            NaturalGenerator.error("The Pack " + key + " is INCAPABLE of generating custom biomes");
+            NaturalGenerator.error("If not done automatically, restart your server before generating with this pack!");
         }
 
         return !warn;
@@ -277,7 +277,7 @@ public class ServerConfigurator {
         }
 
         public Stream<IrisDimension> merge(IrisData data) {
-            NaturalWorldGen.verbose("Checking Pack: " + data.getDataFolder().getPath());
+            NaturalGenerator.verbose("Checking Pack: " + data.getDataFolder().getPath());
             var loader = data.getDimensionLoader();
             return loader.loadAll(loader.getPossibleKeys())
                     .stream()

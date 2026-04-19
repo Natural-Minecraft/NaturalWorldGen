@@ -18,7 +18,7 @@
 
 package id.naturalsmp.NaturalWorldGen.core.commands;
 
-import id.naturalsmp.NaturalWorldGen.NaturalWorldGen;
+import id.naturalsmp.NaturalWorldGen.NaturalGenerator;
 import id.naturalsmp.NaturalWorldGen.core.pregenerator.LazyPregenerator;
 import id.naturalsmp.NaturalWorldGen.core.pregenerator.TurboPregenerator;
 import id.naturalsmp.NaturalWorldGen.core.pregenerator.TurboPregenerator;
@@ -52,13 +52,13 @@ public class CommandTurboPregen implements DecreeExecutor {
         if (TurboFile.exists()) {
             if (TurboPregenerator.getInstance() != null) {
                 sender().sendMessage(C.BLUE + "Turbo pregen is already in progress");
-                NaturalWorldGen.info(C.YELLOW + "Turbo pregen is already in progress");
+                NaturalGenerator.info(C.YELLOW + "Turbo pregen is already in progress");
                 return;
             } else {
                 try {
                     TurboFile.delete();
                 } catch (Exception e){
-                   NaturalWorldGen.error("Failed to delete the old instance file of Turbo Pregen!");
+                   NaturalGenerator.error("Failed to delete the old instance file of Turbo Pregen!");
                    return;
                 }
             }
@@ -82,10 +82,10 @@ public class CommandTurboPregen implements DecreeExecutor {
 
             String msg = C.GREEN + "TurboPregen started in " + C.GOLD + worldName + C.GREEN + " of " + C.GOLD + (radius * 2) + C.GREEN + " by " + C.GOLD + (radius * 2) + C.GREEN + " blocks from " + C.GOLD + center.getX() + "," + center.getZ();
             sender().sendMessage(msg);
-            NaturalWorldGen.info(msg);
+            NaturalGenerator.info(msg);
         } catch (Throwable e) {
             sender().sendMessage(C.RED + "Epic fail. See console.");
-            NaturalWorldGen.reportError(e);
+            NaturalGenerator.reportError(e);
             e.printStackTrace();
         }
     }
@@ -102,7 +102,7 @@ public class CommandTurboPregen implements DecreeExecutor {
         } else if (turboFile.exists() && turboFile.delete()) {
             sender().sendMessage(C.LIGHT_PURPLE + "Closed Turbogen instance for " + world.getName());
         } else if (turboFile.exists()) {
-            NaturalWorldGen.error("Failed to delete the old instance file of Turbo Pregen!");
+            NaturalGenerator.error("Failed to delete the old instance file of Turbo Pregen!");
         } else {
             sender().sendMessage(C.YELLOW + "No active pregeneration tasks to stop");
         }

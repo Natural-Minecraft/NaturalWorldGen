@@ -18,7 +18,7 @@
 
 package id.naturalsmp.NaturalWorldGen.core.commands;
 
-import id.naturalsmp.NaturalWorldGen.NaturalWorldGen;
+import id.naturalsmp.NaturalWorldGen.NaturalGenerator;
 import id.naturalsmp.NaturalWorldGen.core.service.StudioSVC;
 import id.naturalsmp.NaturalWorldGen.engine.object.*;
 import id.naturalsmp.NaturalWorldGen.util.decree.DecreeExecutor;
@@ -38,7 +38,7 @@ public class CommandEdit implements DecreeExecutor {
             sender().sendMessage(C.RED + "Players only!");
             return true;
         }
-        if (!NaturalWorldGen.service(StudioSVC.class).isProjectOpen()) {
+        if (!NaturalGenerator.service(StudioSVC.class).isProjectOpen()) {
             sender().sendMessage(C.RED + "No studio world is open!");
             return true;
         }
@@ -73,7 +73,7 @@ public class CommandEdit implements DecreeExecutor {
             Desktop.getDesktop().open(biome.getLoadFile());
             sender().sendMessage(C.GREEN + "Opening " + biome.getTypeName() + " " + biome.getLoadFile().getName().split("\\Q.\\E")[0] + " in VSCode! ");
         } catch (Throwable e) {
-            NaturalWorldGen.reportError(e);
+            NaturalGenerator.reportError(e);
             sender().sendMessage(C.RED + "Cant find the file. Or registrant does not exist");
         }
     }
@@ -91,7 +91,7 @@ public class CommandEdit implements DecreeExecutor {
             Desktop.getDesktop().open(region.getLoadFile());
             sender().sendMessage(C.GREEN + "Opening " + region.getTypeName() + " " + region.getLoadFile().getName().split("\\Q.\\E")[0] + " in VSCode! ");
         } catch (Throwable e) {
-            NaturalWorldGen.reportError(e);
+            NaturalGenerator.reportError(e);
             sender().sendMessage(C.RED + "Cant find the file. Or registrant does not exist");
         }
     }
@@ -109,7 +109,7 @@ public class CommandEdit implements DecreeExecutor {
             Desktop.getDesktop().open(dimension.getLoadFile());
             sender().sendMessage(C.GREEN + "Opening " + dimension.getTypeName() + " " + dimension.getLoadFile().getName().split("\\Q.\\E")[0] + " in VSCode! ");
         } catch (Throwable e) {
-            NaturalWorldGen.reportError(e);
+            NaturalGenerator.reportError(e);
             sender().sendMessage(C.RED + "Cant find the file. Or registrant does not exist");
         }
     }
@@ -127,7 +127,7 @@ public class CommandEdit implements DecreeExecutor {
             Desktop.getDesktop().open(cave.getLoadFile());
             sender().sendMessage(C.GREEN + "Opening " + cave.getTypeName() + " " + cave.getLoadFile().getName().split("\\Q.\\E")[0] + " in VSCode! ");
         } catch (Throwable e) {
-            NaturalWorldGen.reportError(e);
+            NaturalGenerator.reportError(e);
             sender().sendMessage(C.RED + "Cant find the file. Or registrant does not exist");
         }
     }
@@ -145,7 +145,7 @@ public class CommandEdit implements DecreeExecutor {
             Desktop.getDesktop().open(jigsaw.getLoadFile());
             sender().sendMessage(C.GREEN + "Opening " + jigsaw.getTypeName() + " " + jigsaw.getLoadFile().getName().split("\\Q.\\E")[0] + " in VSCode! ");
         } catch (Throwable e) {
-            NaturalWorldGen.reportError(e);
+            NaturalGenerator.reportError(e);
             sender().sendMessage(C.RED + "Cant find the file. Or registrant does not exist");
         }
     }
@@ -163,7 +163,7 @@ public class CommandEdit implements DecreeExecutor {
             Desktop.getDesktop().open(pool.getLoadFile());
             sender().sendMessage(C.GREEN + "Opening " + pool.getTypeName() + " " + pool.getLoadFile().getName().split("\\Q.\\E")[0] + " in VSCode! ");
         } catch (Throwable e) {
-            NaturalWorldGen.reportError(e);
+            NaturalGenerator.reportError(e);
             sender().sendMessage(C.RED + "Cant find the file. Or registrant does not exist");
         }
     }
@@ -181,7 +181,7 @@ public class CommandEdit implements DecreeExecutor {
             Desktop.getDesktop().open(piece.getLoadFile());
             sender().sendMessage(C.GREEN + "Opening " + piece.getTypeName() + " " + piece.getLoadFile().getName().split("\\Q.\\E")[0] + " in VSCode! ");
         } catch (Throwable e) {
-            NaturalWorldGen.reportError(e);
+            NaturalGenerator.reportError(e);
             sender().sendMessage(C.RED + "Cant find the file. Or registrant does not exist");
         }
     }

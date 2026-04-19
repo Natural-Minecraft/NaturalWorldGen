@@ -16,7 +16,7 @@ import java.util.stream.Collectors;
 
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import com.mojang.datafixers.util.Pair;
-import id.naturalsmp.NaturalWorldGen.NaturalWorldGen;
+import id.naturalsmp.NaturalWorldGen.NaturalGenerator;
 import id.naturalsmp.NaturalWorldGen.core.nms.INMSBinding;
 import com.mojang.serialization.Lifecycle;
 import id.naturalsmp.NaturalWorldGen.core.link.Identifier;
@@ -139,7 +139,7 @@ public class NMSBinding implements INMSBinding {
             if (i.getReturnType().equals(returns)) {
                 i.setAccessible(true);
                 try {
-                    NaturalWorldGen.debug("[NMS] Found " + returns.getSimpleName() + " in " + in.getClass().getSimpleName() + "." + i.getName() + "()");
+                    NaturalGenerator.debug("[NMS] Found " + returns.getSimpleName() + " in " + in.getClass().getSimpleName() + "." + i.getName() + "()");
                     return i.invoke(in);
                 } catch (Throwable e) {
                     e.printStackTrace();
@@ -160,7 +160,7 @@ public class NMSBinding implements INMSBinding {
             if (i.getType().equals(returnType)) {
                 i.setAccessible(true);
                 try {
-                    NaturalWorldGen.debug("[NMS] Found " + returnType.getSimpleName() + " in " + sourceType.getSimpleName() + "." + i.getName());
+                    NaturalGenerator.debug("[NMS] Found " + returnType.getSimpleName() + " in " + sourceType.getSimpleName() + "." + i.getName());
                     return (T) i.get(in);
                 } catch (IllegalAccessException e) {
                     e.printStackTrace();
@@ -238,7 +238,7 @@ public class NMSBinding implements INMSBinding {
     private void merge(ServerLevel level, BlockPos blockPos, net.minecraft.nbt.CompoundTag tag) {
         var blockEntity = level.getBlockEntity(blockPos);
         if (blockEntity == null) {
-            NaturalWorldGen.warn("[NMS] BlockEntity not found at " + blockPos);
+            NaturalGenerator.warn("[NMS] BlockEntity not found at " + blockPos);
             var state = level.getBlockState(blockPos);
             if (!state.hasBlockEntity())
                 return;
@@ -462,7 +462,7 @@ public class NMSBinding implements INMSBinding {
             }
 
             a.incrementAndGet();
-            NaturalWorldGen.debug("Custom Biome: " + i);
+            NaturalGenerator.debug("Custom Biome: " + i);
         });
 
         return a.get();
@@ -485,7 +485,7 @@ public class NMSBinding implements INMSBinding {
             Holder<net.minecraft.world.level.biome.Biome> biome = (Holder<net.minecraft.world.level.biome.Biome>) somethingVeryDirty;
             s.setBiome(x, y, z, biome);
         } catch (IllegalAccessException e) {
-            NaturalWorldGen.reportError(e);
+            NaturalGenerator.reportError(e);
             e.printStackTrace();
         }
     }
@@ -501,9 +501,9 @@ public class NMSBinding implements INMSBinding {
             f.setAccessible(true);
             return f;
         } catch (Throwable e) {
-            NaturalWorldGen.reportError(e);
+            NaturalGenerator.reportError(e);
             e.printStackTrace();
-            NaturalWorldGen.error(storage.getClass().getCanonicalName());
+            NaturalGenerator.error(storage.getClass().getCanonicalName());
         }
 
         biomeStorageCache = f;
@@ -575,7 +575,7 @@ public class NMSBinding implements INMSBinding {
         var chunkMap = ((CraftWorld)world).getHandle().getChunkSource().chunkMap;
         var dimensionType = chunkMap.level.dimensionTypeRegistration().unwrapKey().orElse(null);
         if (dimensionType != null && !dimensionType.location().getNamespace().equals("nwg"))
-            NaturalWorldGen.error("Loaded world %s with invalid dimension type! (%s)", world.getName(), dimensionType.location().toString());
+            NaturalGenerator.error("Loaded world %s with invalid dimension type! (%s)", world.getName(), dimensionType.location().toString());
         chunkMap.generator = new IrisChunkGenerator(chunkMap.generator, seed, engine, world);
     }
 
@@ -594,7 +594,7 @@ public class NMSBinding implements INMSBinding {
                         return box;
                     }
                 } catch (IllegalAccessException e) {
-                    NaturalWorldGen.error("Unable to get entity dimensions!");
+                    NaturalGenerator.error("Unable to get entity dimensions!");
                     e.printStackTrace();
                 }
             }
@@ -683,7 +683,7 @@ public class NMSBinding implements INMSBinding {
         if (injected.getAndSet(true))
             return true;
         try {
-            NaturalWorldGen.info("Injecting Bukkit");
+            NaturalGenerator.info("Injecting Bukkit");
             var buddy = new ByteBuddy();
             buddy.redefine(ServerLevel.class)
                     .visit(Advice.to(ServerLevelAdvice.class).on(ElementMatchers.isConstructor().and(ElementMatchers.takesArguments(
@@ -701,7 +701,7 @@ public class NMSBinding implements INMSBinding {
 
             return true;
         } catch (Throwable e) {
-            NaturalWorldGen.error(C.RED + "Failed to inject Bukkit");
+            NaturalGenerator.error(C.RED + "Failed to inject Bukkit");
             e.printStackTrace();
         }
         return false;
@@ -765,7 +765,7 @@ public class NMSBinding implements INMSBinding {
                                 .spread(rings.spread())
                                 .count(rings.count());
                     } else {
-                        NaturalWorldGen.warn("Unsupported structure placement for set " + key + " with type " + structurePlacements.getKey(placement.type()));
+                        NaturalGenerator.warn("Unsupported structure placement for set " + key + " with type " + structurePlacements.getKey(placement.type()));
                         return null;
                     }
 

@@ -18,7 +18,7 @@
 
 package id.naturalsmp.NaturalWorldGen.core.service;
 
-import id.naturalsmp.NaturalWorldGen.NaturalWorldGen;
+import id.naturalsmp.NaturalWorldGen.NaturalGenerator;
 import id.naturalsmp.NaturalWorldGen.core.loader.IrisData;
 import id.naturalsmp.NaturalWorldGen.engine.framework.MeteredCache;
 import id.naturalsmp.NaturalWorldGen.util.context.IrisContext;
@@ -63,7 +63,7 @@ public class PreservationSVC implements IrisService {
             p += i.getUsage();
         }
 
-        NaturalWorldGen.info("Cached " + Form.f(s) + " / " + Form.f(m) + " (" + Form.pc(p / mf) + ") from " + caches.size() + " Caches");
+        NaturalGenerator.info("Cached " + Form.f(s) + " / " + Form.f(m) + " (" + Form.pc(p / mf) + ") from " + caches.size() + " Caches");
     }
 
     public void dereference() {
@@ -99,9 +99,9 @@ public class PreservationSVC implements IrisService {
                 if (i.isAlive()) {
                     try {
                         i.interrupt();
-                        NaturalWorldGen.info("Shutdown Thread " + i.getName());
+                        NaturalGenerator.info("Shutdown Thread " + i.getName());
                     } catch (Throwable e) {
-                        NaturalWorldGen.reportError(e);
+                        NaturalGenerator.reportError(e);
                     }
                 }
             }
@@ -109,9 +109,9 @@ public class PreservationSVC implements IrisService {
             for (ExecutorService i : services) {
                 try {
                     i.shutdownNow();
-                    NaturalWorldGen.info("Shutdown Executor Service " + i);
+                    NaturalGenerator.info("Shutdown Executor Service " + i);
                 } catch (Throwable e) {
-                    NaturalWorldGen.reportError(e);
+                    NaturalGenerator.reportError(e);
                 }
             }
         });

@@ -18,7 +18,7 @@
 
 package id.naturalsmp.NaturalWorldGen.core.commands;
 
-import id.naturalsmp.NaturalWorldGen.NaturalWorldGen;
+import id.naturalsmp.NaturalWorldGen.NaturalGenerator;
 import id.naturalsmp.NaturalWorldGen.core.IrisSettings;
 import id.naturalsmp.NaturalWorldGen.core.gui.PregeneratorJob;
 import id.naturalsmp.NaturalWorldGen.core.pregenerator.LazyPregenerator;
@@ -58,7 +58,7 @@ public class CommandLazyPregen implements DecreeExecutor {
         File lazyFile = new File(worldDirectory, "lazygen.json");
         if (lazyFile.exists()) {
             sender().sendMessage(C.BLUE + "Lazy pregen is already in progress");
-            NaturalWorldGen.info(C.YELLOW + "Lazy pregen is already in progress");
+            NaturalGenerator.info(C.YELLOW + "Lazy pregen is already in progress");
             return;
         }
 
@@ -84,10 +84,10 @@ public class CommandLazyPregen implements DecreeExecutor {
 
             String msg = C.GREEN + "LazyPregen started in " + C.GOLD + worldName + C.GREEN + " of " + C.GOLD + (radius * 2) + C.GREEN + " by " + C.GOLD + (radius * 2) + C.GREEN + " blocks from " + C.GOLD + center.getX() + "," + center.getZ();
             sender().sendMessage(msg);
-            NaturalWorldGen.info(msg);
+            NaturalGenerator.info(msg);
         } catch (Throwable e) {
             sender().sendMessage(C.RED + "Epic fail. See console.");
-            NaturalWorldGen.reportError(e);
+            NaturalGenerator.reportError(e);
             e.printStackTrace();
         }
     }

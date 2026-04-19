@@ -1,6 +1,6 @@
 package id.naturalsmp.NaturalWorldGen.core.link.data;
 
-import id.naturalsmp.NaturalWorldGen.NaturalWorldGen;
+import id.naturalsmp.NaturalWorldGen.NaturalGenerator;
 import id.naturalsmp.NaturalWorldGen.core.IrisSettings;
 import id.naturalsmp.NaturalWorldGen.core.link.ExternalDataProvider;
 import id.naturalsmp.NaturalWorldGen.core.link.Identifier;
@@ -51,7 +51,7 @@ public class HMCLeavesDataProvider extends ExternalDataProvider {
 			blockDataMap = getMap(config, "blockDataMap");
 			itemDataField = getMap(config, "itemSupplierMap");
 		} catch (Throwable e) {
-			NaturalWorldGen.error("Failed to initialize HMCLeavesDataProvider: " + e.getMessage());
+			NaturalGenerator.error("Failed to initialize HMCLeavesDataProvider: " + e.getMessage());
 		}
 	}
 
@@ -84,7 +84,7 @@ public class HMCLeavesDataProvider extends ExternalDataProvider {
 		blockId = pair.getA();
 		Boolean result = setCustomBlock.invoke(apiInstance, new Object[]{block.getLocation(), blockId.key(), false});
 		if (result == null || !result)
-			NaturalWorldGen.warn("Failed to set custom block! " + blockId.key() + " " + block.getX() + " " + block.getY() + " " + block.getZ());
+			NaturalGenerator.warn("Failed to set custom block! " + blockId.key() + " " + block.getX() + " " + block.getY() + " " + block.getZ());
 		else if (IrisSettings.get().getGenerator().preventLeafDecay) {
 			BlockData blockData = block.getBlockData();
 			if (blockData instanceof Leaves leaves)

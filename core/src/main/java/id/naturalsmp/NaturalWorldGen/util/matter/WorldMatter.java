@@ -18,7 +18,7 @@
 
 package id.naturalsmp.NaturalWorldGen.util.matter;
 
-import id.naturalsmp.NaturalWorldGen.NaturalWorldGen;
+import id.naturalsmp.NaturalWorldGen.NaturalGenerator;
 import id.naturalsmp.NaturalWorldGen.engine.object.TileData;
 import id.naturalsmp.NaturalWorldGen.util.data.Cuboid;
 import org.bukkit.Location;
@@ -42,7 +42,7 @@ public class WorldMatter {
     public static Matter createMatter(String author, Location a, Location b) {
         Cuboid c = new Cuboid(a, b);
         Matter s = new IrisMatter(c.getSizeX(), c.getSizeY(), c.getSizeZ());
-        NaturalWorldGen.info(s.getWidth() + " " + s.getHeight() + " " + s.getDepth());
+        NaturalGenerator.info(s.getWidth() + " " + s.getHeight() + " " + s.getDepth());
         s.getHeader().setAuthor(author);
         s.slice(BlockData.class).readFrom(c.getLowerNE());
         s.slice(MatterEntityGroup.class).readFrom(c.getLowerNE());

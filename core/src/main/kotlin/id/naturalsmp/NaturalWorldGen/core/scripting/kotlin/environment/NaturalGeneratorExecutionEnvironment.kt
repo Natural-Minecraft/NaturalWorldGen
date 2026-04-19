@@ -9,7 +9,7 @@ import id.naturalsmp.NaturalWorldGen.core.scripting.kotlin.base.EngineScript
 import id.naturalsmp.NaturalWorldGen.core.scripting.kotlin.base.MobSpawningScript
 import id.naturalsmp.NaturalWorldGen.core.scripting.kotlin.base.PostMobSpawningScript
 import id.naturalsmp.NaturalWorldGen.core.scripting.kotlin.base.PreprocessorScript
-import id.naturalsmp.NaturalWorldGen.core.scripting.kotlin.environment.IrisSimpleExecutionEnvironment
+import id.naturalsmp.NaturalWorldGen.core.scripting.kotlin.environment.NaturalGeneratorSimpleExecutionEnvironment
 import id.naturalsmp.NaturalWorldGen.core.scripting.kotlin.runner.ScriptRunner
 import id.naturalsmp.NaturalWorldGen.engine.framework.Engine
 import id.naturalsmp.NaturalWorldGen.util.mantle.MantleChunk

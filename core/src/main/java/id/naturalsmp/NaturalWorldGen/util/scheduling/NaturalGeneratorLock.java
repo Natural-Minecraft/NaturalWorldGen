@@ -18,7 +18,7 @@
 
 package id.naturalsmp.NaturalWorldGen.util.scheduling;
 
-import id.naturalsmp.NaturalWorldGen.NaturalWorldGen;
+import id.naturalsmp.NaturalWorldGen.NaturalGenerator;
 import lombok.Data;
 import lombok.experimental.Accessors;
 
@@ -53,7 +53,7 @@ public class IrisLock {
         try {
             lock.unlock();
         } catch (Throwable e) {
-            NaturalWorldGen.reportError(e);
+            NaturalGenerator.reportError(e);
 
         }
     }

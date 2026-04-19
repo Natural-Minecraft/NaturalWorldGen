@@ -19,7 +19,7 @@
 package id.naturalsmp.NaturalWorldGen.core.tools;
 
 import com.google.common.util.concurrent.AtomicDouble;
-import id.naturalsmp.NaturalWorldGen.NaturalWorldGen;
+import id.naturalsmp.NaturalWorldGen.NaturalGenerator;
 import id.naturalsmp.NaturalWorldGen.core.IrisSettings;
 import id.naturalsmp.NaturalWorldGen.core.ServerConfigurator;
 import id.naturalsmp.NaturalWorldGen.core.nms.INMS;
@@ -121,10 +121,10 @@ public class IrisCreator {
         }
 
         if (sender == null)
-            sender = NaturalWorldGen.getSender();
+            sender = NaturalGenerator.getSender();
 
         if (!studio() || benchmark) {
-            NaturalWorldGen.service(StudioSVC.class).installIntoWorld(sender, d.getLoadKey(), new File(Bukkit.getWorldContainer(), name()));
+            NaturalGenerator.service(StudioSVC.class).installIntoWorld(sender, d.getLoadKey(), new File(Bukkit.getWorldContainer(), name()));
         }
 
         AtomicDouble pp = new AtomicDouble(0);
@@ -234,9 +234,9 @@ public class IrisCreator {
             section.createSection(name).set("generator", gen);
             try {
                 yml.save(BUKKIT_YML);
-                NaturalWorldGen.info("Registered \"" + name + "\" in bukkit.yml");
+                NaturalGenerator.info("Registered \"" + name + "\" in bukkit.yml");
             } catch (IOException e) {
-                NaturalWorldGen.error("Failed to update bukkit.yml!");
+                NaturalGenerator.error("Failed to update bukkit.yml!");
                 e.printStackTrace();
             }
         }

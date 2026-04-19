@@ -1,6 +1,6 @@
 package id.naturalsmp.NaturalWorldGen.engine.framework.placer;
 
-import id.naturalsmp.NaturalWorldGen.NaturalWorldGen;
+import id.naturalsmp.NaturalWorldGen.NaturalGenerator;
 import id.naturalsmp.NaturalWorldGen.core.loader.IrisData;
 import id.naturalsmp.NaturalWorldGen.core.tools.IrisToolbelt;
 import id.naturalsmp.NaturalWorldGen.engine.data.cache.Cache;
@@ -61,7 +61,7 @@ public class WorldObjectPlacer implements IObjectPlacer {
 
         if (d instanceof IrisCustomData data) {
             block.setBlockData(data.getBase(), false);
-            NaturalWorldGen.warn("Tried to place custom block at " + x + ", " + y + ", " + z + " which is not supported!");
+            NaturalGenerator.warn("Tried to place custom block at " + x + ", " + y + ", " + z + " which is not supported!");
         } else block.setBlockData(d, false);
 
         if (slot != null) {
@@ -72,7 +72,7 @@ public class WorldObjectPlacer implements IObjectPlacer {
                 Bukkit.getPluginManager().callEvent(new IrisLootEvent(engine, block, slot, tables));
 
                 if (!tables.isEmpty()){
-                    NaturalWorldGen.debug("IrisLootEvent has been accessed");
+                    NaturalGenerator.debug("IrisLootEvent has been accessed");
                 }
 
                 if (tables.isEmpty())
@@ -80,7 +80,7 @@ public class WorldObjectPlacer implements IObjectPlacer {
                 InventoryHolder m = (InventoryHolder) block.getState();
                 engine.addItems(false, m.getInventory(), rx, tables, slot, world, x, y, z, 15);
             } catch (Throwable e) {
-                NaturalWorldGen.reportError(e);
+                NaturalGenerator.reportError(e);
             }
         }
     }

@@ -18,7 +18,7 @@
 
 package id.naturalsmp.NaturalWorldGen.util.scheduling;
 
-import id.naturalsmp.NaturalWorldGen.NaturalWorldGen;
+import id.naturalsmp.NaturalWorldGen.NaturalGenerator;
 import id.naturalsmp.NaturalWorldGen.util.collection.KList;
 import id.naturalsmp.NaturalWorldGen.util.function.NastyRunnable;
 import id.naturalsmp.NaturalWorldGen.util.math.M;
@@ -195,9 +195,9 @@ public class TaskExecutor {
                     task.run();
                     state = TaskState.COMPLETED;
                 } catch (Throwable ex) {
-                    NaturalWorldGen.reportError(ex);
+                    NaturalGenerator.reportError(ex);
                     ex.printStackTrace();
-                    NaturalWorldGen.reportError(ex);
+                    NaturalGenerator.reportError(ex);
                     state = TaskState.FAILED;
                 }
             });

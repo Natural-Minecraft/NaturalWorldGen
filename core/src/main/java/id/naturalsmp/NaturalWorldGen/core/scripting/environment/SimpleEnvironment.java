@@ -1,6 +1,6 @@
 package id.naturalsmp.NaturalWorldGen.core.scripting.environment;
 
-import id.naturalsmp.NaturalWorldGen.core.scripting.kotlin.environment.IrisSimpleExecutionEnvironment;
+import id.naturalsmp.NaturalWorldGen.core.scripting.kotlin.environment.NaturalGeneratorSimpleExecutionEnvironment;
 import lombok.NonNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -9,11 +9,11 @@ import java.util.Map;
 
 public interface SimpleEnvironment {
     static SimpleEnvironment create() {
-        return new IrisSimpleExecutionEnvironment();
+        return new NaturalGeneratorSimpleExecutionEnvironment();
     }
 
     static SimpleEnvironment create(@NonNull File projectDir) {
-        return new IrisSimpleExecutionEnvironment(projectDir);
+        return new NaturalGeneratorSimpleExecutionEnvironment(projectDir);
     }
 
     void configureProject();

@@ -21,7 +21,7 @@ package id.naturalsmp.NaturalWorldGen.core.commands;
 import lombok.Synchronized;
 import org.bukkit.World;
 
-import id.naturalsmp.NaturalWorldGen.NaturalWorldGen;
+import id.naturalsmp.NaturalWorldGen.NaturalGenerator;
 import id.naturalsmp.NaturalWorldGen.core.pregenerator.ChunkUpdater;
 import id.naturalsmp.NaturalWorldGen.core.tools.IrisToolbelt;
 import id.naturalsmp.NaturalWorldGen.util.decree.DecreeExecutor;
@@ -54,7 +54,7 @@ public class CommandUpdater implements DecreeExecutor {
             if (sender().isPlayer()) {
                 sender().sendMessage(C.GREEN + "Updating " + world.getName()  + C.GRAY + " Total chunks: " + Form.f(chunkUpdater.getChunks()));
             } else {
-                NaturalWorldGen.info(C.GREEN + "Updating " + world.getName() + C.GRAY + " Total chunks: " + Form.f(chunkUpdater.getChunks()));
+                NaturalGenerator.info(C.GREEN + "Updating " + world.getName() + C.GRAY + " Total chunks: " + Form.f(chunkUpdater.getChunks()));
             }
             chunkUpdater.start();
         }
@@ -76,9 +76,9 @@ public class CommandUpdater implements DecreeExecutor {
             }
         } else {
             if (status) {
-                NaturalWorldGen.info(C.IRIS + "Paused task for: " + C.GRAY + chunkUpdater.getName());
+                NaturalGenerator.info(C.IRIS + "Paused task for: " + C.GRAY + chunkUpdater.getName());
             } else {
-                NaturalWorldGen.info(C.IRIS + "Unpause task for: " + C.GRAY + chunkUpdater.getName());
+                NaturalGenerator.info(C.IRIS + "Unpause task for: " + C.GRAY + chunkUpdater.getName());
             }
         }
     }
@@ -93,7 +93,7 @@ public class CommandUpdater implements DecreeExecutor {
         if (sender().isPlayer()) {
             sender().sendMessage("Stopping Updater for: " + C.GRAY + chunkUpdater.getName());
         } else {
-            NaturalWorldGen.info("Stopping Updater for: " + C.GRAY + chunkUpdater.getName());
+            NaturalGenerator.info("Stopping Updater for: " + C.GRAY + chunkUpdater.getName());
         }
         chunkUpdater.stop();
     }

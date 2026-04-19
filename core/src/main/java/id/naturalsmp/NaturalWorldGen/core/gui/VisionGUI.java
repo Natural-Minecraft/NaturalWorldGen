@@ -18,7 +18,7 @@
 
 package id.naturalsmp.NaturalWorldGen.core.gui;
 
-import id.naturalsmp.NaturalWorldGen.NaturalWorldGen;
+import id.naturalsmp.NaturalWorldGen.NaturalGenerator;
 import id.naturalsmp.NaturalWorldGen.core.gui.components.IrisRenderer;
 import id.naturalsmp.NaturalWorldGen.core.gui.components.RenderType;
 import id.naturalsmp.NaturalWorldGen.core.tools.IrisToolbelt;
@@ -106,7 +106,7 @@ public class VisionGUI extends JPanel implements MouseWheelListener, KeyListener
         t.setPriority(Thread.MIN_PRIORITY);
         t.setUncaughtExceptionHandler((et, e) ->
         {
-            NaturalWorldGen.info("Exception encountered in " + et.getName());
+            NaturalGenerator.info("Exception encountered in " + et.getName());
             e.printStackTrace();
         });
 
@@ -120,7 +120,7 @@ public class VisionGUI extends JPanel implements MouseWheelListener, KeyListener
         t.setPriority(Thread.NORM_PRIORITY);
         t.setUncaughtExceptionHandler((et, e) ->
         {
-            NaturalWorldGen.info("Exception encountered in " + et.getName());
+            NaturalGenerator.info("Exception encountered in " + et.getName());
             e.printStackTrace();
         });
 
@@ -167,7 +167,7 @@ public class VisionGUI extends JPanel implements MouseWheelListener, KeyListener
                 nv.texture = ImageIO.read(file);
                 frame.setIconImage(ImageIO.read(file));
             } catch (IOException e) {
-                NaturalWorldGen.reportError(e);
+                NaturalGenerator.reportError(e);
 
             }
         }

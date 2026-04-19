@@ -16,10 +16,10 @@ object SimpleScriptDefinition : ScriptCompilationConfiguration({
     defaultImports(
         DependsOn::class.qualifiedName!!,
         Repository::class.qualifiedName!!,
-        "id.naturalsmp.NaturalWorldGen.NaturalWorldGen.info",
-        "id.naturalsmp.NaturalWorldGen.NaturalWorldGen.debug",
-        "id.naturalsmp.NaturalWorldGen.NaturalWorldGen.warn",
-        "id.naturalsmp.NaturalWorldGen.NaturalWorldGen.error"
+        "id.naturalsmp.NaturalWorldGen.NaturalGenerator.info",
+        "id.naturalsmp.NaturalWorldGen.NaturalGenerator.debug",
+        "id.naturalsmp.NaturalWorldGen.NaturalGenerator.warn",
+        "id.naturalsmp.NaturalWorldGen.NaturalGenerator.error"
     )
 
     jvm {

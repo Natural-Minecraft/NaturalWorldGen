@@ -18,7 +18,7 @@
 
 package id.naturalsmp.NaturalWorldGen.util.mantle.io;
 
-import id.naturalsmp.NaturalWorldGen.NaturalWorldGen;
+import id.naturalsmp.NaturalWorldGen.NaturalGenerator;
 import id.naturalsmp.NaturalWorldGen.core.IrisSettings;
 import id.naturalsmp.NaturalWorldGen.util.format.C;
 import id.naturalsmp.NaturalWorldGen.util.format.Form;
@@ -64,7 +64,7 @@ public class IOWorker {
                     File dump = NaturalGenerator.instance.getDataFolder("dump", name + ".bin");
                     Files.copy(new LZ4BlockInputStream(channel.read()), dump.toPath(), StandardCopyOption.REPLACE_EXISTING);
                 } else {
-                    NaturalWorldGen.debug("Read Tectonic Plate " + C.DARK_GREEN + name + C.RED + " in " + Form.duration(p.getMilliseconds(), 2));
+                    NaturalGenerator.debug("Read Tectonic Plate " + C.DARK_GREEN + name + C.RED + " in " + Form.duration(p.getMilliseconds(), 2));
                 }
             }
         }
@@ -88,7 +88,7 @@ public class IOWorker {
                 file.delete();
             }
         }
-        NaturalWorldGen.debug("Saved Tectonic Plate " + C.DARK_GREEN + name + C.RED + " in " + Form.duration(p.getMilliseconds(), 2));
+        NaturalGenerator.debug("Saved Tectonic Plate " + C.DARK_GREEN + name + C.RED + " in " + Form.duration(p.getMilliseconds(), 2));
     }
 
     public void close() throws IOException {
@@ -124,7 +124,7 @@ public class IOWorker {
                 return Objects.requireNonNull(holder.acquire());
             }
         } finally {
-            NaturalWorldGen.debug("Acquired Channel for " + C.DARK_GREEN + name + C.RED + " in " + Form.duration(p.getMilliseconds(), 2));
+            NaturalGenerator.debug("Acquired Channel for " + C.DARK_GREEN + name + C.RED + " in " + Form.duration(p.getMilliseconds(), 2));
         }
     }
 }

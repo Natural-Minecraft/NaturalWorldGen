@@ -18,7 +18,7 @@
 
 package id.naturalsmp.NaturalWorldGen.util.plugin;
 
-import id.naturalsmp.NaturalWorldGen.NaturalWorldGen;
+import id.naturalsmp.NaturalWorldGen.NaturalGenerator;
 import id.naturalsmp.NaturalWorldGen.util.collection.KList;
 import org.bukkit.command.CommandSender;
 
@@ -39,7 +39,7 @@ public abstract class MortarPermission {
                 } catch (IllegalArgumentException | IllegalAccessException | InstantiationException |
                          InvocationTargetException | NoSuchMethodException | SecurityException e) {
                     e.printStackTrace();
-                    NaturalWorldGen.reportError(e);
+                    NaturalGenerator.reportError(e);
                 }
             }
         }
@@ -54,7 +54,7 @@ public abstract class MortarPermission {
                     p.add((MortarPermission) i.get(Modifier.isStatic(i.getModifiers()) ? null : this));
                 } catch (IllegalArgumentException | IllegalAccessException | SecurityException e) {
                     e.printStackTrace();
-                    NaturalWorldGen.reportError(e);
+                    NaturalGenerator.reportError(e);
                 }
             }
         }

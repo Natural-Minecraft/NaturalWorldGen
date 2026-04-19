@@ -18,7 +18,7 @@
 
 package id.naturalsmp.NaturalWorldGen.engine.object;
 
-import id.naturalsmp.NaturalWorldGen.NaturalWorldGen;
+import id.naturalsmp.NaturalWorldGen.NaturalGenerator;
 import id.naturalsmp.NaturalWorldGen.core.nms.INMS;
 import id.naturalsmp.NaturalWorldGen.engine.data.cache.AtomicCache;
 import id.naturalsmp.NaturalWorldGen.engine.framework.Engine;
@@ -160,7 +160,7 @@ public class IrisEntitySpawn implements IRare {
         try {
             IrisEntity irisEntity = getRealEntity(g);
             if (irisEntity == null) { // No entity
-                NaturalWorldGen.debug("      You are trying to spawn an entity that does not exist!");
+                NaturalGenerator.debug("      You are trying to spawn an entity that does not exist!");
                 return null;
             }
 
@@ -178,14 +178,14 @@ public class IrisEntitySpawn implements IRare {
 
             Entity e = irisEntity.spawn(g, at.add(0.5, 0.5, 0.5), rng.aquire(() -> new RNG(g.getSeedManager().getEntity())));
             if (e != null) {
-                NaturalWorldGen.debug("Spawned " + C.DARK_AQUA + "Entity<" + getEntity() + "> " + C.GREEN + e.getType() + C.LIGHT_PURPLE + " @ " + C.GRAY + e.getLocation().getX() + ", " + e.getLocation().getY() + ", " + e.getLocation().getZ());
+                NaturalGenerator.debug("Spawned " + C.DARK_AQUA + "Entity<" + getEntity() + "> " + C.GREEN + e.getType() + C.LIGHT_PURPLE + " @ " + C.GRAY + e.getLocation().getX() + ", " + e.getLocation().getY() + ", " + e.getLocation().getZ());
             }
 
             return e;
         } catch (Throwable e) {
-            NaturalWorldGen.reportError(e);
+            NaturalGenerator.reportError(e);
             e.printStackTrace();
-            NaturalWorldGen.error("      Failed to retrieve real entity @ " + at + " (entity: " + getEntity() + ")");
+            NaturalGenerator.error("      Failed to retrieve real entity @ " + at + " (entity: " + getEntity() + ")");
             return null;
         }
     }

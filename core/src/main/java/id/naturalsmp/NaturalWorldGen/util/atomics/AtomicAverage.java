@@ -19,7 +19,7 @@
 package id.naturalsmp.NaturalWorldGen.util.atomics;
 
 import com.google.common.util.concurrent.AtomicDoubleArray;
-import id.naturalsmp.NaturalWorldGen.NaturalWorldGen;
+import id.naturalsmp.NaturalWorldGen.NaturalGenerator;
 import id.naturalsmp.NaturalWorldGen.util.data.DoubleArrayUtils;
 
 /**
@@ -74,7 +74,7 @@ public class AtomicAverage {
             values.set(cursor, i);
             cursor = cursor + 1 < size() ? cursor + 1 : 0;
         } catch (Throwable e) {
-            NaturalWorldGen.reportError(e);
+            NaturalGenerator.reportError(e);
 
         }
     }

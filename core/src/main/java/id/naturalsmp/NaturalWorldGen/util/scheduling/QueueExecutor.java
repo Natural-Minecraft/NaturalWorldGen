@@ -18,7 +18,7 @@
 
 package id.naturalsmp.NaturalWorldGen.util.scheduling;
 
-import id.naturalsmp.NaturalWorldGen.NaturalWorldGen;
+import id.naturalsmp.NaturalWorldGen.NaturalGenerator;
 
 public class QueueExecutor extends Looper {
     private final Queue<Runnable> queue;
@@ -39,7 +39,7 @@ public class QueueExecutor extends Looper {
             try {
                 queue.next().run();
             } catch (Throwable e) {
-                NaturalWorldGen.reportError(e);
+                NaturalGenerator.reportError(e);
                 e.printStackTrace();
             }
         }

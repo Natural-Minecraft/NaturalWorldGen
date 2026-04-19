@@ -18,7 +18,7 @@
 
 package id.naturalsmp.NaturalWorldGen.util.parallel;
 
-import id.naturalsmp.NaturalWorldGen.NaturalWorldGen;
+import id.naturalsmp.NaturalWorldGen.NaturalGenerator;
 import id.naturalsmp.NaturalWorldGen.core.IrisSettings;
 import id.naturalsmp.NaturalWorldGen.util.collection.KList;
 import id.naturalsmp.NaturalWorldGen.util.math.M;
@@ -268,9 +268,9 @@ public class MultiBurst implements ExecutorService {
         PrecisionStopwatch p = PrecisionStopwatch.start();
         try {
             while (!service.awaitTermination(1, TimeUnit.SECONDS)) {
-                NaturalWorldGen.info("Still waiting to shutdown burster...");
+                NaturalGenerator.info("Still waiting to shutdown burster...");
                 if (p.getMilliseconds() > TIMEOUT) {
-                    NaturalWorldGen.warn("Forcing Shutdown...");
+                    NaturalGenerator.warn("Forcing Shutdown...");
 
                     try {
                         service.shutdownNow();
@@ -283,7 +283,7 @@ public class MultiBurst implements ExecutorService {
             }
         } catch (Throwable e) {
             e.printStackTrace();
-            NaturalWorldGen.reportError(e);
+            NaturalGenerator.reportError(e);
         }
     }
 }

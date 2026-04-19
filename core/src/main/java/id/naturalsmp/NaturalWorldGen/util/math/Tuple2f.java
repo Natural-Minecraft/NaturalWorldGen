@@ -18,7 +18,7 @@
 
 package id.naturalsmp.NaturalWorldGen.util.math;
 
-import id.naturalsmp.NaturalWorldGen.NaturalWorldGen;
+import id.naturalsmp.NaturalWorldGen.NaturalGenerator;
 
 /**
  * A generic 2-element tuple that is represented by single-precision
@@ -298,7 +298,7 @@ public abstract class Tuple2f implements java.io.Serializable, Cloneable {
         try {
             return (this.x == t1.x && this.y == t1.y);
         } catch (NullPointerException e2) {
-            NaturalWorldGen.reportError(e2);
+            NaturalGenerator.reportError(e2);
             return false;
         }
 
@@ -317,7 +317,7 @@ public abstract class Tuple2f implements java.io.Serializable, Cloneable {
             Tuple2f t2 = (Tuple2f) t1;
             return (this.x == t2.x && this.y == t2.y);
         } catch (NullPointerException | ClassCastException e2) {
-            NaturalWorldGen.reportError(e2);
+            NaturalGenerator.reportError(e2);
             return false;
         }
 
@@ -513,7 +513,7 @@ public abstract class Tuple2f implements java.io.Serializable, Cloneable {
         try {
             return super.clone();
         } catch (CloneNotSupportedException e) {
-            NaturalWorldGen.reportError(e);
+            NaturalGenerator.reportError(e);
             // this shouldn't happen, since we are Cloneable
             throw new InternalError();
         }

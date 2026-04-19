@@ -18,7 +18,7 @@
 
 package id.naturalsmp.NaturalWorldGen.util.scheduling;
 
-import id.naturalsmp.NaturalWorldGen.NaturalWorldGen;
+import id.naturalsmp.NaturalWorldGen.NaturalGenerator;
 import id.naturalsmp.NaturalWorldGen.util.collection.KList;
 import id.naturalsmp.NaturalWorldGen.util.function.NastyFunction;
 import id.naturalsmp.NaturalWorldGen.util.function.NastyFuture;
@@ -55,7 +55,7 @@ public class J {
                 return true;
             }
         } catch (NullPointerException e) {
-            NaturalWorldGen.reportError(e);
+            NaturalGenerator.reportError(e);
             // TODO: Fix this because this is just a suppression for an NPE on g
             return false;
         }
@@ -68,8 +68,8 @@ public class J {
             try {
                 a.run();
             } catch (Throwable e) {
-                NaturalWorldGen.reportError(e);
-                NaturalWorldGen.error("Failed to run async task");
+                NaturalGenerator.reportError(e);
+                NaturalGenerator.error("Failed to run async task");
                 e.printStackTrace();
             }
         });
@@ -80,8 +80,8 @@ public class J {
             try {
                 a.run();
             } catch (Throwable e) {
-                NaturalWorldGen.reportError(e);
-                NaturalWorldGen.error("Failed to run async task");
+                NaturalGenerator.reportError(e);
+                NaturalGenerator.error("Failed to run async task");
                 e.printStackTrace();
             }
         });
@@ -106,7 +106,7 @@ public class J {
         try {
             return r.run();
         } catch (Throwable e) {
-            NaturalWorldGen.reportError(e);
+            NaturalGenerator.reportError(e);
 
         }
 
@@ -117,7 +117,7 @@ public class J {
         try {
             return r.run(param);
         } catch (Throwable e) {
-            NaturalWorldGen.reportError(e);
+            NaturalGenerator.reportError(e);
 
         }
 
@@ -154,7 +154,7 @@ public class J {
         try {
             return t.get();
         } catch (Throwable e) {
-            NaturalWorldGen.reportError(e);
+            NaturalGenerator.reportError(e);
             return i;
         }
     }
@@ -290,7 +290,7 @@ public class J {
             }
             Bukkit.getScheduler().scheduleSyncDelayedTask(NaturalGenerator.instance, r, delay);
         } catch (Throwable e) {
-            NaturalWorldGen.reportError(e);
+            NaturalGenerator.reportError(e);
         }
     }
 

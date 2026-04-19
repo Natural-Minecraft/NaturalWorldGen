@@ -1,7 +1,7 @@
 package id.naturalsmp.NaturalWorldGen.core.pregenerator;
 
 import com.google.gson.Gson;
-import id.naturalsmp.NaturalWorldGen.NaturalWorldGen;
+import id.naturalsmp.NaturalWorldGen.NaturalGenerator;
 import id.naturalsmp.NaturalWorldGen.core.tools.IrisToolbelt;
 import id.naturalsmp.NaturalWorldGen.engine.framework.Engine;
 import id.naturalsmp.NaturalWorldGen.engine.object.IrisBiome;
@@ -110,7 +110,7 @@ public class DeepSearchPregenerator extends Thread implements Listener {
        // chunkCache(); //todo finish this
         if (latch.flip() && !job.paused) {
             if (cacheLock.isLocked()) {
-                NaturalWorldGen.info("DeepFinder: Caching: " + chunkCachePos.get() + " Of " + chunkCacheSize.get());
+                NaturalGenerator.info("DeepFinder: Caching: " + chunkCachePos.get() + " Of " + chunkCacheSize.get());
             } else {
                 long eta = computeETA();
                 save();
@@ -119,12 +119,12 @@ public class DeepSearchPregenerator extends Thread implements Listener {
                 secondGenerated = secondGenerated / 3;
                 chunksPerSecond.put(secondGenerated);
                 chunksPerMinute.put(secondGenerated * 60);
-                NaturalWorldGen.info("DeepFinder: " + C.IRIS + world.getName() + C.RESET + " Searching: " + Form.f(foundChunks.get()) + " of " + Form.f(foundTotalChunks.get()) + " " + Form.f((int) chunksPerSecond.getAverage()) + "/s ETA: " + Form.duration((double) eta, 2));
+                NaturalGenerator.info("DeepFinder: " + C.IRIS + world.getName() + C.RESET + " Searching: " + Form.f(foundChunks.get()) + " of " + Form.f(foundTotalChunks.get()) + " " + Form.f((int) chunksPerSecond.getAverage()) + "/s ETA: " + Form.duration((double) eta, 2));
             }
 
         }
         if (foundChunks.get() >= foundTotalChunks.get()) {
-            NaturalWorldGen.info("Completed DeepSearch!");
+            NaturalGenerator.info("Completed DeepSearch!");
             interrupt();
         }
     }
@@ -164,7 +164,7 @@ public class DeepSearchPregenerator extends Thread implements Listener {
                         found.createNewFile();
                     }
                     IrisBiome biome = engine.getBiome(xx, engine.getHeight(), zz);
-                    NaturalWorldGen.info("Found at! " + xx + ", " + zz + "Biome ID: " + biome.getName() + ", ");
+                    NaturalGenerator.info("Found at! " + xx + ", " + zz + "Biome ID: " + biome.getName() + ", ");
                     writer.write("Biome at: X: " + xx + " Z: " + zz + "Biome ID: " + biome.getName() +  ", ");
                     return;
                }
@@ -207,9 +207,9 @@ public class DeepSearchPregenerator extends Thread implements Listener {
         }
 
         if ( job.paused) {
-            NaturalWorldGen.info(C.BLUE + "DeepSearch: " + C.IRIS + world.getName() + C.BLUE + " Paused");
+            NaturalGenerator.info(C.BLUE + "DeepSearch: " + C.IRIS + world.getName() + C.BLUE + " Paused");
         } else {
-            NaturalWorldGen.info(C.BLUE + "DeepSearch: " + C.IRIS + world.getName() + C.BLUE + " Resumed");
+            NaturalGenerator.info(C.BLUE + "DeepSearch: " + C.IRIS + world.getName() + C.BLUE + " Resumed");
         }
     }
 
@@ -219,13 +219,13 @@ public class DeepSearchPregenerator extends Thread implements Listener {
     }
 
     public void shutdownInstance(World world) throws IOException {
-        NaturalWorldGen.info("DeepSearch: " + C.IRIS + world.getName() + C.BLUE + " Shutting down..");
+        NaturalGenerator.info("DeepSearch: " + C.IRIS + world.getName() + C.BLUE + " Shutting down..");
         DeepSearchJob job = jobs.get(world.getName());
         File worldDirectory = new File(Bukkit.getWorldContainer(), world.getName());
         File deepFile = new File(worldDirectory, "DeepSearch.json");
 
         if (job == null) {
-            NaturalWorldGen.error("No DeepSearch job found for world: " + world.getName());
+            NaturalGenerator.error("No DeepSearch job found for world: " + world.getName());
             return;
         }
 
@@ -242,11 +242,11 @@ public class DeepSearchPregenerator extends Thread implements Listener {
                         deepFile.delete();
                         J.sleep(1000);
                     }
-                    NaturalWorldGen.info("DeepSearch: " + C.IRIS + world.getName() + C.BLUE + " File deleted and instance closed.");
+                    NaturalGenerator.info("DeepSearch: " + C.IRIS + world.getName() + C.BLUE + " File deleted and instance closed.");
                 }
             }.runTaskLater(NaturalGenerator.instance, 20L);
         } catch (Exception e) {
-            NaturalWorldGen.error("Failed to shutdown DeepSearch for " + world.getName());
+            NaturalGenerator.error("Failed to shutdown DeepSearch for " + world.getName());
             e.printStackTrace();
         } finally {
             saveNow();

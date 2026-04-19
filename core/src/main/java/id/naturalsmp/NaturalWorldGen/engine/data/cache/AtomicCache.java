@@ -18,7 +18,7 @@
 
 package id.naturalsmp.NaturalWorldGen.engine.data.cache;
 
-import id.naturalsmp.NaturalWorldGen.NaturalWorldGen;
+import id.naturalsmp.NaturalWorldGen.NaturalGenerator;
 import id.naturalsmp.NaturalWorldGen.util.function.NastySupplier;
 
 import java.util.concurrent.atomic.AtomicBoolean;
@@ -96,7 +96,7 @@ public class AtomicCache<T> {
                 set.set(true);
             }
         } catch (Throwable e) {
-            NaturalWorldGen.error("Atomic cache failure!");
+            NaturalGenerator.error("Atomic cache failure!");
             e.printStackTrace();
         }
 

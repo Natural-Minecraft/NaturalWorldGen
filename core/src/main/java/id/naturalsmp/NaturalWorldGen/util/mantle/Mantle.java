@@ -19,7 +19,7 @@
 package id.naturalsmp.NaturalWorldGen.util.mantle;
 
 import com.google.common.util.concurrent.AtomicDouble;
-import id.naturalsmp.NaturalWorldGen.NaturalWorldGen;
+import id.naturalsmp.NaturalWorldGen.NaturalGenerator;
 import id.naturalsmp.NaturalWorldGen.core.IrisSettings;
 import id.naturalsmp.NaturalWorldGen.core.tools.IrisToolbelt;
 import id.naturalsmp.NaturalWorldGen.engine.data.cache.Cache;
@@ -97,7 +97,7 @@ public class Mantle {
         adjustedIdleDuration = new AtomicDouble(0);
         toUnload = new KSet<>();
         worker = new IOWorker(dataFolder, worldHeight);
-        NaturalWorldGen.debug("Opened The Mantle " + C.DARK_AQUA + dataFolder.getAbsolutePath());
+        NaturalGenerator.debug("Opened The Mantle " + C.DARK_AQUA + dataFolder.getAbsolutePath());
     }
 
     /**
@@ -437,7 +437,7 @@ public class Mantle {
      * loaded regions to the disk in parallel.
      */
     public synchronized void close() {
-        NaturalWorldGen.debug("Closing The Mantle " + C.DARK_AQUA + dataFolder.getAbsolutePath());
+        NaturalGenerator.debug("Closing The Mantle " + C.DARK_AQUA + dataFolder.getAbsolutePath());
         if (closed.getAndSet(true)) {
             return;
         }
@@ -450,8 +450,8 @@ public class Mantle {
                 worker.write(fileForRegion(dataFolder, i, false).getName(), plate);
                 oldFileForRegion(dataFolder, i).delete();
             } catch (Throwable e) {
-                NaturalWorldGen.error("Failed to write Tectonic Plate " + C.DARK_GREEN + Cache.keyX(i) + " " + Cache.keyZ(i));
-                NaturalWorldGen.reportError(e);
+                NaturalGenerator.error("Failed to write Tectonic Plate " + C.DARK_GREEN + Cache.keyX(i) + " " + Cache.keyZ(i));
+                NaturalGenerator.reportError(e);
                 e.printStackTrace();
             }
         }));
@@ -460,16 +460,16 @@ public class Mantle {
         try {
             b.complete();
         } catch (Throwable e) {
-            NaturalWorldGen.reportError(e);
+            NaturalGenerator.reportError(e);
         }
         try {
             worker.close();
         } catch (Throwable e) {
-            NaturalWorldGen.reportError(e);
+            NaturalGenerator.reportError(e);
         }
 
         IO.delete(new File(dataFolder, ".tmp"));
-        NaturalWorldGen.debug("The Mantle has Closed " + C.DARK_AQUA + dataFolder.getAbsolutePath());
+        NaturalGenerator.debug("The Mantle has Closed " + C.DARK_AQUA + dataFolder.getAbsolutePath());
     }
 
     /**
@@ -492,7 +492,7 @@ public class Mantle {
 
         ioTrim.acquireUninterruptibly(LOCK_SIZE);
         try {
-            NaturalWorldGen.debug("Trimming Tectonic Plates older than " + Form.duration(idleDuration, 0));
+            NaturalGenerator.debug("Trimming Tectonic Plates older than " + Form.duration(idleDuration, 0));
 
             if (lastUse.isEmpty()) return;
             double unloadTime = M.ms() - idleDuration;
@@ -501,12 +501,12 @@ public class Mantle {
                     Long lastUseTime = lastUse.get(id);
                     if (lastUseTime != null && lastUseTime < unloadTime) {
                         toUnload.add(id);
-                        NaturalWorldGen.debug("Tectonic Region added to unload");
+                        NaturalGenerator.debug("Tectonic Region added to unload");
                     }
                 });
             }
         } catch (Throwable e) {
-            NaturalWorldGen.reportError(e);
+            NaturalGenerator.reportError(e);
         } finally {
             ioTrim.release(LOCK_SIZE);
         }
@@ -528,7 +528,7 @@ public class Mantle {
                 burst.queue(() -> hyperLock.withLong(id, () -> {
                     TectonicPlate m = loadedRegions.get(id);
                     if (m == null) {
-                        NaturalWorldGen.debug("Tectonic Plate was added to unload while not loaded " + C.DARK_GREEN + Cache.keyX(id) + " " + Cache.keyZ(id));
+                        NaturalGenerator.debug("Tectonic Plate was added to unload while not loaded " + C.DARK_GREEN + Cache.keyX(id) + " " + Cache.keyZ(id));
                         toUnload.remove(id);
                         return;
                     }
@@ -539,7 +539,7 @@ public class Mantle {
                     }
 
                     if (m.inUse()) {
-                        NaturalWorldGen.debug("Tectonic Plate was added to unload while in use " + C.DARK_GREEN + m.getX() + " " + m.getZ());
+                        NaturalGenerator.debug("Tectonic Plate was added to unload while in use " + C.DARK_GREEN + m.getX() + " " + m.getZ());
                         use(id);
                         return;
                     }
@@ -552,15 +552,15 @@ public class Mantle {
                         lastUse.remove(id);
                         toUnload.remove(id);
                         i.incrementAndGet();
-                        NaturalWorldGen.debug("Unloaded Tectonic Plate " + C.DARK_GREEN + Cache.keyX(id) + " " + Cache.keyZ(id));
+                        NaturalGenerator.debug("Unloaded Tectonic Plate " + C.DARK_GREEN + Cache.keyX(id) + " " + Cache.keyZ(id));
                     } catch (IOException | InterruptedException e) {
-                        NaturalWorldGen.reportError(e);
+                        NaturalGenerator.reportError(e);
                     }
                 }));
             }
             burst.complete();
         } catch (Throwable e) {
-            NaturalWorldGen.reportError(e);
+            NaturalGenerator.reportError(e);
             e.printStackTrace();
             burst.complete();
         } finally {
@@ -602,21 +602,21 @@ public class Mantle {
             try {
                 return getSafe(x, z).get();
             } catch (InterruptedException e) {
-                NaturalWorldGen.warn("Failed to get Tectonic Plate " + x + " " + z + " Due to a thread intterruption (hotload?)");
-                NaturalWorldGen.reportError(e);
+                NaturalGenerator.warn("Failed to get Tectonic Plate " + x + " " + z + " Due to a thread intterruption (hotload?)");
+                NaturalGenerator.reportError(e);
             } catch (ExecutionException e) {
-                NaturalWorldGen.warn("Failed to get Tectonic Plate " + x + " " + z + " Due to a thread execution exception (engine close?)");
-                NaturalWorldGen.reportError(e);
+                NaturalGenerator.warn("Failed to get Tectonic Plate " + x + " " + z + " Due to a thread execution exception (engine close?)");
+                NaturalGenerator.reportError(e);
             } catch (Throwable e) {
-                NaturalWorldGen.warn("Failed to get Tectonic Plate " + x + " " + z + " Due to a unknown exception");
-                NaturalWorldGen.reportError(e);
+                NaturalGenerator.warn("Failed to get Tectonic Plate " + x + " " + z + " Due to a unknown exception");
+                NaturalGenerator.reportError(e);
             }
         } finally {
             if (trim) ioTrim.release();
             if (unload) ioTectonicUnload.release();
         }
 
-        NaturalWorldGen.warn("Retrying to get " + x + " " + z + " Mantle Region");
+        NaturalGenerator.warn("Retrying to get " + x + " " + z + " Mantle Region");
         return get(x, z);
     }
 
@@ -632,11 +632,11 @@ public class Mantle {
         final Supplier<CompletableFuture<TectonicPlate>> fallback = () -> getSafe(x, z)
                 .exceptionally(e -> {
                     if (e instanceof InterruptedException) {
-                        NaturalWorldGen.warn("Failed to get Tectonic Plate " + x + " " + z + " Due to a thread intterruption (hotload?)");
-                        NaturalWorldGen.reportError(e);
+                        NaturalGenerator.warn("Failed to get Tectonic Plate " + x + " " + z + " Due to a thread intterruption (hotload?)");
+                        NaturalGenerator.reportError(e);
                     } else {
-                        NaturalWorldGen.warn("Failed to get Tectonic Plate " + x + " " + z + " Due to a unknown exception");
-                        NaturalWorldGen.reportError(e);
+                        NaturalGenerator.warn("Failed to get Tectonic Plate " + x + " " + z + " Due to a unknown exception");
+                        NaturalGenerator.reportError(e);
                         e.printStackTrace();
                     }
                     return null;
@@ -644,7 +644,7 @@ public class Mantle {
                 .thenCompose(p -> {
                     release.apply(p);
                     if (p != null) return CompletableFuture.completedFuture(p);
-                    NaturalWorldGen.warn("Retrying to get " + x + " " + z + " Mantle Region");
+                    NaturalGenerator.warn("Retrying to get " + x + " " + z + " Mantle Region");
                     return getFuture(x, z);
                 });
 
@@ -693,21 +693,21 @@ public class Mantle {
                     region = worker.read(file.getName());
 
                     if (region.getX() != x || region.getZ() != z) {
-                        NaturalWorldGen.warn("Loaded Tectonic Plate " + x + "," + z + " but read it as " + region.getX() + "," + region.getZ() + "... Assuming " + x + "," + z);
+                        NaturalGenerator.warn("Loaded Tectonic Plate " + x + "," + z + " but read it as " + region.getX() + "," + region.getZ() + "... Assuming " + x + "," + z);
                     }
 
                     loadedRegions.put(k, region);
-                    NaturalWorldGen.debug("Loaded Tectonic Plate " + C.DARK_GREEN + x + " " + z + C.DARK_AQUA + " " + file.getName());
+                    NaturalGenerator.debug("Loaded Tectonic Plate " + C.DARK_GREEN + x + " " + z + C.DARK_AQUA + " " + file.getName());
                 } catch (Throwable e) {
-                    NaturalWorldGen.error("Failed to read Tectonic Plate " + file.getAbsolutePath() + " creating a new chunk instead.");
-                    NaturalWorldGen.reportError(e);
+                    NaturalGenerator.error("Failed to read Tectonic Plate " + file.getAbsolutePath() + " creating a new chunk instead.");
+                    NaturalGenerator.reportError(e);
                     if (!(e instanceof EOFException)) {
                         e.printStackTrace();
                     }
                     NaturalWorldGen.panic();
                     region = new TectonicPlate(worldHeight, x, z);
                     loadedRegions.put(k, region);
-                    NaturalWorldGen.debug("Created new Tectonic Plate (Due to Load Failure) " + C.DARK_GREEN + x + " " + z);
+                    NaturalGenerator.debug("Created new Tectonic Plate (Due to Load Failure) " + C.DARK_GREEN + x + " " + z);
                 }
 
                 use(k);
@@ -716,7 +716,7 @@ public class Mantle {
 
             region = new TectonicPlate(worldHeight, x, z);
             loadedRegions.put(k, region);
-            NaturalWorldGen.debug("Created new Tectonic Plate " + C.DARK_GREEN + x + " " + z);
+            NaturalGenerator.debug("Created new Tectonic Plate " + C.DARK_GREEN + x + " " + z);
             use(k);
             return region;
         }));

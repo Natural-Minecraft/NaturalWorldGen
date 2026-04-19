@@ -1,6 +1,6 @@
 package id.naturalsmp.NaturalWorldGen.util.stream.utility;
 
-import id.naturalsmp.NaturalWorldGen.NaturalWorldGen;
+import id.naturalsmp.NaturalWorldGen.NaturalGenerator;
 import id.naturalsmp.NaturalWorldGen.util.collection.KList;
 import id.naturalsmp.NaturalWorldGen.util.collection.KMap;
 import id.naturalsmp.NaturalWorldGen.util.stream.BasicStream;
@@ -24,19 +24,19 @@ public class WasteDetector<T> extends BasicStream<T> {
 
     public static void printAll() {
         if (checking) {
-            NaturalWorldGen.warn("=========================================================");
+            NaturalGenerator.warn("=========================================================");
             for (String i : allAccesses.sortKNumber().reverse()) {
-                NaturalWorldGen.warn(i + ": " + allAccesses.get(i) + " Time(s)");
+                NaturalGenerator.warn(i + ": " + allAccesses.get(i) + " Time(s)");
             }
-            NaturalWorldGen.warn("=========================================================");
+            NaturalGenerator.warn("=========================================================");
             for (String i : allAccesses.sortKNumber().reverse()) {
-                NaturalWorldGen.warn("======== " + i + " ========");
+                NaturalGenerator.warn("======== " + i + " ========");
                 for (Throwable j : allThrows.get(i)) {
                     j.printStackTrace();
                 }
-                NaturalWorldGen.warn("---------------------------------------------------------");
+                NaturalGenerator.warn("---------------------------------------------------------");
             }
-            NaturalWorldGen.warn("=========================================================");
+            NaturalGenerator.warn("=========================================================");
         }
     }
 

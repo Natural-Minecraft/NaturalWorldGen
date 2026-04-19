@@ -18,7 +18,7 @@
 
 package id.naturalsmp.NaturalWorldGen.util.data;
 
-import id.naturalsmp.NaturalWorldGen.NaturalWorldGen;
+import id.naturalsmp.NaturalWorldGen.NaturalGenerator;
 import id.naturalsmp.NaturalWorldGen.core.IrisSettings;
 import id.naturalsmp.NaturalWorldGen.core.link.Identifier;
 import id.naturalsmp.NaturalWorldGen.core.link.data.DataType;
@@ -395,9 +395,9 @@ public class B {
         try {
             return Material.valueOf(bdx.trim().toUpperCase());
         } catch (Throwable e) {
-            NaturalWorldGen.reportError(e);
+            NaturalGenerator.reportError(e);
             if (clw.flip()) {
-                NaturalWorldGen.warn("Unknown Material: " + bdx);
+                NaturalGenerator.warn("Unknown Material: " + bdx);
             }
             return null;
         }
@@ -439,17 +439,17 @@ public class B {
 
             if (bdx == null && warn) {
                 if (clw.flip()) {
-                    NaturalWorldGen.warn("Unknown Block Data '" + bd + "'");
+                    NaturalGenerator.warn("Unknown Block Data '" + bd + "'");
                 }
                 return AIR;
             }
 
             return bdx;
         } catch (Throwable e) {
-            NaturalWorldGen.reportError(e);
+            NaturalGenerator.reportError(e);
 
             if (clw.flip()) {
-                NaturalWorldGen.warn("Unknown Block Data '" + bdxf + "'");
+                NaturalGenerator.warn("Unknown Block Data '" + bdxf + "'");
             }
         }
 
@@ -488,7 +488,7 @@ public class B {
         }
 
         if (warn) {
-            NaturalWorldGen.error("Can't find block data for " + s);
+            NaturalGenerator.error("Can't find block data for " + s);
         }
         return null;
     }
@@ -499,8 +499,8 @@ public class B {
 
             if (!ix.startsWith("minecraft:") && ix.contains(":")) {
                 Identifier key = Identifier.fromString(ix);
-                Optional<BlockData> bd = NaturalWorldGen.service(ExternalDataSVC.class).getBlockData(key);
-                NaturalWorldGen.debug("Loading block data " + key);
+                Optional<BlockData> bd = NaturalGenerator.service(ExternalDataSVC.class).getBlockData(key);
+                NaturalGenerator.debug("Loading block data " + key);
                 if (bd.isPresent())
                     bx = bd.get();
             }
@@ -542,7 +542,7 @@ public class B {
             return bx;
         } catch (Throwable e) {
             if (clw.flip()) {
-                NaturalWorldGen.warn("Unknown Block Data: " + ix);
+                NaturalGenerator.warn("Unknown Block Data: " + ix);
             }
 
             String block = ix.contains(":") ? ix.split(":")[1].toLowerCase() : ix.toLowerCase();
@@ -586,12 +586,12 @@ public class B {
             state = newStates.entrySet().stream().map(entry -> entry.getKey() + "=" + entry.getValue()).collect(Collectors.joining(","));
             if (!state.equals("")) state = "[" + state + "]";
             String newBlock = block + state;
-            NaturalWorldGen.debug("Converting " + ix + " to " + newBlock);
+            NaturalGenerator.debug("Converting " + ix + " to " + newBlock);
 
             try {
                 return createBlockData(newBlock, warn);
             } catch (Throwable e1) {
-                NaturalWorldGen.reportError(e1);
+                NaturalGenerator.reportError(e1);
             }
 
             return null;
@@ -674,7 +674,7 @@ public class B {
             }
         }
 
-        for (Identifier id : NaturalWorldGen.service(ExternalDataSVC.class).getAllIdentifiers(DataType.BLOCK))
+        for (Identifier id : NaturalGenerator.service(ExternalDataSVC.class).getAllIdentifiers(DataType.BLOCK))
             bt.add(id.toString());
         bt.addAll(custom.k());
 
@@ -688,7 +688,7 @@ public class B {
         });
 
         var emptyStates = flipped.computeIfAbsent(new KList<>(0), $ -> new KList<>());
-        for (var pair : NaturalWorldGen.service(ExternalDataSVC.class).getAllBlockProperties()) {
+        for (var pair : NaturalGenerator.service(ExternalDataSVC.class).getAllBlockProperties()) {
             if (pair.getB().isEmpty()) emptyStates.add(pair.getA().toString());
             else flipped.computeIfAbsent(pair.getB(), $ -> new KList<>()).add(pair.getA().toString());
         }
@@ -697,7 +697,7 @@ public class B {
         KMap<List<String>, List<BlockProperty>> states = new KMap<>();
         flipped.forEach((k, v) -> {
             var old = states.put(v, k);
-            if (old != null) NaturalWorldGen.error("Duplicate block state: " + v + " (" + old + " and " + k + ")");
+            if (old != null) NaturalGenerator.error("Duplicate block state: " + v + " (" + old + " and " + k + ")");
         });
 
         return states;
@@ -711,7 +711,7 @@ public class B {
             bt.add(v);
         }
 
-        for (Identifier id : NaturalWorldGen.service(ExternalDataSVC.class).getAllIdentifiers(DataType.ITEM))
+        for (Identifier id : NaturalGenerator.service(ExternalDataSVC.class).getAllIdentifiers(DataType.ITEM))
             bt.add(id.toString());
 
         return bt.toArray(new String[0]);

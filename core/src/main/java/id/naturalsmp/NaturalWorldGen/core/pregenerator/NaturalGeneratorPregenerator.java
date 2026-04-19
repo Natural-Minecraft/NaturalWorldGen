@@ -18,7 +18,7 @@
 
 package id.naturalsmp.NaturalWorldGen.core.pregenerator;
 
-import id.naturalsmp.NaturalWorldGen.NaturalWorldGen;
+import id.naturalsmp.NaturalWorldGen.NaturalGenerator;
 import id.naturalsmp.NaturalWorldGen.core.tools.IrisPackBenchmarking;
 import id.naturalsmp.NaturalWorldGen.util.collection.KList;
 import id.naturalsmp.NaturalWorldGen.util.collection.KSet;
@@ -136,7 +136,7 @@ public class IrisPregenerator {
                 if (cl.flip()) {
                     double percentage = ((double) generated.get() / (double) totalChunks.get()) * 100;
 
-                    NaturalWorldGen.info("%s: %s of %s (%.0f%%), %s/s ETA: %s",
+                    NaturalGenerator.info("%s: %s of %s (%.0f%%), %s/s ETA: %s",
                             benchmarking != null ? "Benchmarking" : "Pregen",
                             Form.f(generated.get()),
                             Form.f(totalChunks.get()),
@@ -173,10 +173,10 @@ public class IrisPregenerator {
         var p = PrecisionStopwatch.start();
         task.iterateRegions((x, z) -> visitRegion(x, z, true));
         task.iterateRegions((x, z) -> visitRegion(x, z, false));
-        NaturalWorldGen.info("Pregen took " + Form.duration((long) p.getMilliseconds()));
+        NaturalGenerator.info("Pregen took " + Form.duration((long) p.getMilliseconds()));
         shutdown();
         if (benchmarking == null) {
-            NaturalWorldGen.info(C.IRIS + "Pregen stopped.");
+            NaturalGenerator.info(C.IRIS + "Pregen stopped.");
         } else {
             benchmarking.finishedBenchmark(chunksPerSecondHistory);
         }

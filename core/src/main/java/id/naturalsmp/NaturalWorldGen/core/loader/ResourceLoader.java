@@ -19,7 +19,7 @@
 package id.naturalsmp.NaturalWorldGen.core.loader;
 
 import com.google.common.util.concurrent.AtomicDouble;
-import id.naturalsmp.NaturalWorldGen.NaturalWorldGen;
+import id.naturalsmp.NaturalWorldGen.NaturalGenerator;
 import id.naturalsmp.NaturalWorldGen.core.IrisSettings;
 import id.naturalsmp.NaturalWorldGen.core.project.SchemaBuilder;
 import id.naturalsmp.NaturalWorldGen.core.service.PreservationSVC;
@@ -86,12 +86,12 @@ public class ResourceLoader<T extends IrisRegistrant> implements MeteredCache {
         this.root = root;
         this.folderName = folderName;
         loadCache = new KCache<>(this::loadRaw, IrisSettings.get().getPerformance().getResourceLoaderCacheSize());
-        NaturalWorldGen.debug("Loader<" + C.GREEN + resourceTypeName + C.LIGHT_PURPLE + "> created in " + C.RED + "IDM/" + manager.getId() + C.LIGHT_PURPLE + " on " + C.GRAY + manager.getDataFolder().getPath());
-        NaturalWorldGen.service(PreservationSVC.class).registerCache(this);
+        NaturalGenerator.debug("Loader<" + C.GREEN + resourceTypeName + C.LIGHT_PURPLE + "> created in " + C.RED + "IDM/" + manager.getId() + C.LIGHT_PURPLE + " on " + C.GRAY + manager.getDataFolder().getPath());
+        NaturalGenerator.service(PreservationSVC.class).registerCache(this);
     }
 
     public JSONObject buildSchema() {
-        NaturalWorldGen.debug("Building Schema " + objectClass.getSimpleName() + " " + root.getPath());
+        NaturalGenerator.debug("Building Schema " + objectClass.getSimpleName() + " " + root.getPath());
         JSONObject o = new JSONObject();
         KList<String> fm = new KList<>();
 
@@ -122,7 +122,7 @@ public class ResourceLoader<T extends IrisRegistrant> implements MeteredCache {
             }
         }
 
-        NaturalWorldGen.warn("Couldn't find " + resourceTypeName + ": " + name);
+        NaturalGenerator.warn("Couldn't find " + resourceTypeName + ": " + name);
 
         return null;
     }
@@ -136,16 +136,16 @@ public class ResourceLoader<T extends IrisRegistrant> implements MeteredCache {
 
         if (sec.flip()) {
             J.a(() -> {
-                NaturalWorldGen.verbose("Loaded " + C.WHITE + loads.get() + " " + resourceTypeName + (loads.get() == 1 ? "" : "s") + C.GRAY + " (" + Form.f(getLoadCache().getSize()) + " " + resourceTypeName + (loadCache.getSize() == 1 ? "" : "s") + " Loaded)");
+                NaturalGenerator.verbose("Loaded " + C.WHITE + loads.get() + " " + resourceTypeName + (loads.get() == 1 ? "" : "s") + C.GRAY + " (" + Form.f(getLoadCache().getSize()) + " " + resourceTypeName + (loadCache.getSize() == 1 ? "" : "s") + " Loaded)");
                 loads.set(0);
             });
         }
 
-        NaturalWorldGen.debug("Loader<" + C.GREEN + resourceTypeName + C.LIGHT_PURPLE + "> iload " + C.YELLOW + t.getLoadKey() + C.LIGHT_PURPLE + " in " + C.GRAY + t.getLoadFile().getPath() + C.LIGHT_PURPLE + " TLT: " + C.RED + Form.duration(tlt.get(), 2));
+        NaturalGenerator.debug("Loader<" + C.GREEN + resourceTypeName + C.LIGHT_PURPLE + "> iload " + C.YELLOW + t.getLoadKey() + C.LIGHT_PURPLE + " in " + C.GRAY + t.getLoadFile().getPath() + C.LIGHT_PURPLE + " TLT: " + C.RED + Form.duration(tlt.get(), 2));
     }
 
     public void failLoad(File path, Throwable e) {
-        J.a(() -> NaturalWorldGen.warn("Couldn't Load " + resourceTypeName + " file: " + path.getPath() + ": " + e.getMessage()));
+        J.a(() -> NaturalGenerator.warn("Couldn't Load " + resourceTypeName + " file: " + path.getPath() + ": " + e.getMessage()));
     }
 
     private KList<File> matchAllFiles(File root, Predicate<File> f) {
@@ -207,7 +207,7 @@ public class ResourceLoader<T extends IrisRegistrant> implements MeteredCache {
             tlt.addAndGet(p.getMilliseconds());
             return t;
         } catch (Throwable e) {
-            NaturalWorldGen.reportError(e);
+            NaturalGenerator.reportError(e);
             failLoad(j, e);
             return null;
         }
@@ -344,7 +344,7 @@ public class ResourceLoader<T extends IrisRegistrant> implements MeteredCache {
         }
 
         din.close();
-        NaturalWorldGen.info("Loading " + s.size() + " prefetch " + getFolderName());
+        NaturalGenerator.info("Loading " + s.size() + " prefetch " + getFolderName());
         firstAccess = null;
         loadAllParallel(s);
     }

@@ -18,7 +18,7 @@
 
 package id.naturalsmp.NaturalWorldGen.util.matter;
 
-import id.naturalsmp.NaturalWorldGen.NaturalWorldGen;
+import id.naturalsmp.NaturalWorldGen.NaturalGenerator;
 import id.naturalsmp.NaturalWorldGen.core.loader.IrisRegistrant;
 import id.naturalsmp.NaturalWorldGen.util.collection.KMap;
 import id.naturalsmp.NaturalWorldGen.util.json.JSONObject;

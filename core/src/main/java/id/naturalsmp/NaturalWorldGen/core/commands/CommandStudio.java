@@ -18,7 +18,7 @@
 
 package id.naturalsmp.NaturalWorldGen.core.commands;
 
-import id.naturalsmp.NaturalWorldGen.NaturalWorldGen;
+import id.naturalsmp.NaturalWorldGen.NaturalGenerator;
 import id.naturalsmp.NaturalWorldGen.core.IrisSettings;
 import id.naturalsmp.NaturalWorldGen.core.gui.NoiseExplorerGUI;
 import id.naturalsmp.NaturalWorldGen.core.gui.VisionGUI;
@@ -114,7 +114,7 @@ public class CommandStudio implements DecreeExecutor {
             @Param(defaultValue = "1337", description = "The seed to generate the studio with", aliases = "s")
             long seed) {
         sender().sendMessage(C.GREEN + "Opening studio for the \"" + dimension.getName() + "\" pack (seed: " + seed + ")");
-        NaturalWorldGen.service(StudioSVC.class).open(sender(), seed, dimension.getLoadKey());
+        NaturalGenerator.service(StudioSVC.class).open(sender(), seed, dimension.getLoadKey());
     }
 
     @Decree(description = "Open VSCode for a dimension", aliases = {"vsc", "edit"})
@@ -123,17 +123,17 @@ public class CommandStudio implements DecreeExecutor {
             IrisDimension dimension
     ) {
         sender().sendMessage(C.GREEN + "Opening VSCode for the \"" + dimension.getName() + "\" pack");
-        NaturalWorldGen.service(StudioSVC.class).openVSCode(sender(), dimension.getLoadKey());
+        NaturalGenerator.service(StudioSVC.class).openVSCode(sender(), dimension.getLoadKey());
     }
 
     @Decree(description = "Close an open studio project", aliases = {"x", "c"}, sync = true)
     public void close() {
-        if (!NaturalWorldGen.service(StudioSVC.class).isProjectOpen()) {
+        if (!NaturalGenerator.service(StudioSVC.class).isProjectOpen()) {
             sender().sendMessage(C.RED + "No open studio projects.");
             return;
         }
 
-        NaturalWorldGen.service(StudioSVC.class).close();
+        NaturalGenerator.service(StudioSVC.class).close();
         sender().sendMessage(C.GREEN + "Project Closed.");
     }
 
@@ -144,9 +144,9 @@ public class CommandStudio implements DecreeExecutor {
             @Param(description = "Copy the contents of an existing project in your packs folder and use it as a template in this new project.", contextual = true)
             IrisDimension template) {
         if (template != null) {
-            NaturalWorldGen.service(StudioSVC.class).create(sender(), name, template.getLoadKey());
+            NaturalGenerator.service(StudioSVC.class).create(sender(), name, template.getLoadKey());
         } else {
-            NaturalWorldGen.service(StudioSVC.class).create(sender(), name);
+            NaturalGenerator.service(StudioSVC.class).create(sender(), name);
         }
     }
 
@@ -235,7 +235,7 @@ public class CommandStudio implements DecreeExecutor {
 
     @Decree(description = "Convert objects in the \"convert\" folder")
     public void convert() {
-        NaturalWorldGen.service(ConversionSVC.class).check(sender());
+        NaturalGenerator.service(ConversionSVC.class).check(sender());
         //IrisConverter.convertSchematics(sender());
     }
 
@@ -287,11 +287,11 @@ public class CommandStudio implements DecreeExecutor {
 
     @Decree(description = "Hotload a studio", aliases = {"reload", "h"})
     public void hotload() {
-        if (!NaturalWorldGen.service(StudioSVC.class).isProjectOpen()) {
+        if (!NaturalGenerator.service(StudioSVC.class).isProjectOpen()) {
             sender().sendMessage(C.RED + "No studio world open!");
             return;
         }
-        NaturalWorldGen.service(StudioSVC.class).getActiveProject().getActiveProvider().getEngine().hotload();
+        NaturalGenerator.service(StudioSVC.class).getActiveProject().getActiveProvider().getEngine().hotload();
         sender().sendMessage(C.GREEN + "Hotloaded");
     }
 
@@ -310,7 +310,7 @@ public class CommandStudio implements DecreeExecutor {
         try {
             engine().addItems(true, inv, RNG.r, tables, InventorySlotType.STORAGE, player().getWorld(), player().getLocation().getBlockX(), player().getLocation().getBlockY(), player().getLocation().getBlockZ(), 1);
         } catch (Throwable e) {
-            NaturalWorldGen.reportError(e);
+            NaturalGenerator.reportError(e);
             sender().sendMessage(C.RED + "Cannot add items to virtual inventory because of: " + e.getMessage());
             return;
         }
@@ -470,7 +470,7 @@ public class CommandStudio implements DecreeExecutor {
             @Param(name = "minify", description = "Whether or not to minify the pack", defaultValue = "true")
             boolean minify
     ) {
-        NaturalWorldGen.service(StudioSVC.class).compilePackage(sender(), dimension.getLoadKey(), obfuscate, minify);
+        NaturalGenerator.service(StudioSVC.class).compilePackage(sender(), dimension.getLoadKey(), obfuscate, minify);
     }
 
     @Decree(description = "Profiles the performance of a dimension", origin = DecreeOrigin.PLAYER)
@@ -655,7 +655,7 @@ public class CommandStudio implements DecreeExecutor {
         try {
             IO.writeAll(report, fileText.toString("\n"));
         } catch (IOException e) {
-            NaturalWorldGen.reportError(e);
+            NaturalGenerator.reportError(e);
             e.printStackTrace();
         }
 
@@ -677,7 +677,7 @@ public class CommandStudio implements DecreeExecutor {
 
     @Decree(description = "Teleport to the active studio world", aliases = "stp", origin = DecreeOrigin.PLAYER, sync = true)
     public void tpstudio() {
-        if (!NaturalWorldGen.service(StudioSVC.class).isProjectOpen()) {
+        if (!NaturalGenerator.service(StudioSVC.class).isProjectOpen()) {
             sender().sendMessage(C.RED + "No studio world is open!");
             return;
         }
@@ -689,7 +689,7 @@ public class CommandStudio implements DecreeExecutor {
 
         sender().sendMessage(C.GREEN + "Sending you to the studio world!");
         var player = player();
-        PaperLib.teleportAsync(player(), NaturalWorldGen.service(StudioSVC.class)
+        PaperLib.teleportAsync(player(), NaturalGenerator.service(StudioSVC.class)
                 .getActiveProject()
                 .getActiveProvider()
                 .getTarget()
@@ -735,7 +735,7 @@ public class CommandStudio implements DecreeExecutor {
             int cz = l.getChunk().getZ();
             new Spiraler(3, 3, (x, z) -> chunks.addIfMissing(world.getChunkAt(x + cx, z + cz))).drain();
         } catch (Throwable e) {
-            NaturalWorldGen.reportError(e);
+            NaturalGenerator.reportError(e);
         }
 
         new Spiraler(3, 3, (x, z) -> chunks.addIfMissing(world.getChunkAt(x + bx, z + bz))).drain();
@@ -767,14 +767,14 @@ public class CommandStudio implements DecreeExecutor {
                     }
                 }
             } catch (Throwable e) {
-                NaturalWorldGen.reportError(e);
+                NaturalGenerator.reportError(e);
             }
 
             try {
                 FileTime creationTime = (FileTime) Files.getAttribute(world.getWorldFolder().toPath(), "creationTime");
                 age = hrf(Duration.of(M.ms() - creationTime.toMillis(), ChronoUnit.MILLIS));
             } catch (IOException e) {
-                NaturalWorldGen.reportError(e);
+                NaturalGenerator.reportError(e);
             }
 
             KList<String> biomes = new KList<>();
@@ -836,7 +836,7 @@ public class CommandStudio implements DecreeExecutor {
             sender().sendMessage("Reported to: " + ff.getPath());
         } catch (FileNotFoundException e) {
             e.printStackTrace();
-            NaturalWorldGen.reportError(e);
+            NaturalGenerator.reportError(e);
         }
     }
 
@@ -861,7 +861,7 @@ public class CommandStudio implements DecreeExecutor {
                     nn3 = i + ": size=[" + sz.getBlockX() + "," + sz.getBlockY() + "," + sz.getBlockZ() + "] location=[" + ff.getPath() + "]";
                     stop.add(i);
                 } catch (Throwable e) {
-                    NaturalWorldGen.reportError(e);
+                    NaturalGenerator.reportError(e);
                 }
 
                 String n3 = nn3;
@@ -890,7 +890,7 @@ public class CommandStudio implements DecreeExecutor {
             sender().sendMessage(C.RED + "Players only!");
             return true;
         }
-        if (!NaturalWorldGen.service(StudioSVC.class).isProjectOpen()) {
+        if (!NaturalGenerator.service(StudioSVC.class).isProjectOpen()) {
             sender().sendMessage(C.RED + "No studio world is open!");
             return true;
         }
@@ -911,8 +911,8 @@ public class CommandStudio implements DecreeExecutor {
             try {
                 files.add(clean);
             } catch (Throwable e) {
-                NaturalWorldGen.reportError(e);
-                NaturalWorldGen.error("Failed to beautify " + clean.getAbsolutePath() + " You may have errors in your json!");
+                NaturalGenerator.reportError(e);
+                NaturalGenerator.error("Failed to beautify " + clean.getAbsolutePath() + " You may have errors in your json!");
             }
         }
     }

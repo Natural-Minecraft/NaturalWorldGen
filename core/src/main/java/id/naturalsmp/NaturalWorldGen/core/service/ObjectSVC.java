@@ -18,7 +18,7 @@
 
 package id.naturalsmp.NaturalWorldGen.core.service;
 
-import id.naturalsmp.NaturalWorldGen.NaturalWorldGen;
+import id.naturalsmp.NaturalWorldGen.NaturalGenerator;
 import id.naturalsmp.NaturalWorldGen.util.plugin.IrisService;
 import id.naturalsmp.NaturalWorldGen.util.scheduling.J;
 import lombok.Getter;

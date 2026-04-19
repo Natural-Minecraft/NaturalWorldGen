@@ -18,7 +18,7 @@
 
 package id.naturalsmp.NaturalWorldGen.util.reflect;
 
-import id.naturalsmp.NaturalWorldGen.NaturalWorldGen;
+import id.naturalsmp.NaturalWorldGen.NaturalGenerator;
 import id.naturalsmp.NaturalWorldGen.util.collection.KList;
 
 import java.lang.annotation.Annotation;
@@ -114,7 +114,7 @@ public class Violator {
                 f.setAccessible(true);
                 p(id(c, null) + "." + name, f);
             } catch (NoSuchFieldException e) {
-                NaturalWorldGen.reportError(e);
+                NaturalGenerator.reportError(e);
                 Class s = c.getSuperclass();
                 if (null == s) {
                     throw e;
@@ -136,7 +136,7 @@ public class Violator {
                 f.setAccessible(true);
                 p(id(c, null) + "." + name, f);
             } catch (NoSuchFieldException e) {
-                NaturalWorldGen.reportError(e);
+                NaturalGenerator.reportError(e);
                 Class s = c.getSuperclass();
                 if (null == s) {
                     throw e;
@@ -182,7 +182,7 @@ public class Violator {
             Constructor<?> co = getConstructor(c, cv.toArray(new Class<?>[0]));
             return (T) co.newInstance(parameters);
         } catch (Exception e) {
-            NaturalWorldGen.reportError(e);
+            NaturalGenerator.reportError(e);
             e.printStackTrace();
         }
 
@@ -265,7 +265,7 @@ public class Violator {
             T f = c.getDeclaredAnnotation(a);
             p(id(f, c), f);
 
-            NaturalWorldGen.debug("Set as " + id(f, c) + " as " + ("@" + a.getCanonicalName() + "[" + id(c, null) + "]"));
+            NaturalGenerator.debug("Set as " + id(f, c) + " as " + ("@" + a.getCanonicalName() + "[" + id(c, null) + "]"));
         }
 
         return (T) g("@" + a.getCanonicalName() + "[" + id(c, null) + "]");

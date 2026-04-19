@@ -18,7 +18,7 @@
 
 package id.naturalsmp.NaturalWorldGen.engine.object;
 
-import id.naturalsmp.NaturalWorldGen.NaturalWorldGen;
+import id.naturalsmp.NaturalWorldGen.NaturalGenerator;
 import id.naturalsmp.NaturalWorldGen.engine.data.cache.AtomicCache;
 import id.naturalsmp.NaturalWorldGen.engine.object.annotations.*;
 import lombok.AllArgsConstructor;
@@ -73,11 +73,11 @@ public class IrisPotionEffect {
                     }
                 }
             } catch (Throwable e) {
-                NaturalWorldGen.reportError(e);
+                NaturalGenerator.reportError(e);
 
             }
 
-            NaturalWorldGen.warn("Unknown Potion Effect Type: " + getPotionEffect());
+            NaturalGenerator.warn("Unknown Potion Effect Type: " + getPotionEffect());
 
             return t;
         });

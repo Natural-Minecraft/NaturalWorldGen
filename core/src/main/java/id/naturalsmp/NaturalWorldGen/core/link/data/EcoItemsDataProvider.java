@@ -1,6 +1,6 @@
 package id.naturalsmp.NaturalWorldGen.core.link.data;
 
-import id.naturalsmp.NaturalWorldGen.NaturalWorldGen;
+import id.naturalsmp.NaturalWorldGen.NaturalGenerator;
 import id.naturalsmp.NaturalWorldGen.core.link.ExternalDataProvider;
 import id.naturalsmp.NaturalWorldGen.core.link.Identifier;
 import id.naturalsmp.NaturalWorldGen.util.collection.KMap;
@@ -25,14 +25,14 @@ public class EcoItemsDataProvider extends ExternalDataProvider {
 
     @Override
     public void init() {
-        NaturalWorldGen.info("Setting up EcoItems Link...");
+        NaturalGenerator.info("Setting up EcoItems Link...");
         itemStack = new WrappedField<>(EcoItem.class, "_itemStack");
         if (this.itemStack.hasFailed()) {
-            NaturalWorldGen.error("Failed to set up EcoItems Link: Unable to fetch ItemStack field!");
+            NaturalGenerator.error("Failed to set up EcoItems Link: Unable to fetch ItemStack field!");
         }
         id = new WrappedField<>(EcoItem.class, "id");
         if (this.id.hasFailed()) {
-            NaturalWorldGen.error("Failed to set up EcoItems Link: Unable to fetch id field!");
+            NaturalGenerator.error("Failed to set up EcoItems Link: Unable to fetch id field!");
         }
     }
 

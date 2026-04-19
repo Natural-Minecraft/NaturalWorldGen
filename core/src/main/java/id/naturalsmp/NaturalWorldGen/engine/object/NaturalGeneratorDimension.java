@@ -18,7 +18,7 @@
 
 package id.naturalsmp.NaturalWorldGen.engine.object;
 
-import id.naturalsmp.NaturalWorldGen.NaturalWorldGen;
+import id.naturalsmp.NaturalWorldGen.NaturalGenerator;
 import id.naturalsmp.NaturalWorldGen.core.IrisSettings;
 import id.naturalsmp.NaturalWorldGen.core.ServerConfigurator.DimensionHeight;
 import id.naturalsmp.NaturalWorldGen.core.loader.IrisData;
@@ -422,7 +422,7 @@ public class IrisDimension extends IrisRegistrant {
                     String json = j.generateJson(fixer);
                     synchronized (biomes) {
                         if (!biomes.add(j.getId())) {
-                            NaturalWorldGen.verbose("Duplicate Data Pack Biome: " + getLoadKey() + "/" + j.getId());
+                            NaturalGenerator.verbose("Duplicate Data Pack Biome: " + getLoadKey() + "/" + j.getId());
                             return;
                         }
                     }
@@ -430,12 +430,12 @@ public class IrisDimension extends IrisRegistrant {
                     for (File datapacks : folders) {
                         File output = new File(datapacks, "naturalworldgen/data/" + getLoadKey().toLowerCase() + "/worldgen/biome/" + j.getId() + ".json");
 
-                        NaturalWorldGen.verbose("    Installing Data Pack Biome: " + output.getPath());
+                        NaturalGenerator.verbose("    Installing Data Pack Biome: " + output.getPath());
                         output.getParentFile().mkdirs();
                         try {
                             IO.writeAll(output, json);
                         } catch (IOException e) {
-                            NaturalWorldGen.reportError(e);
+                            NaturalGenerator.reportError(e);
                             e.printStackTrace();
                         }
                     }
@@ -462,14 +462,14 @@ public class IrisDimension extends IrisRegistrant {
         IrisDimensionType type = getDimensionType();
         String json = type.toJson(fixer);
 
-        NaturalWorldGen.verbose("    Installing Data Pack Dimension Type: \"naturalworldgen:" + type.key() + '"');
+        NaturalGenerator.verbose("    Installing Data Pack Dimension Type: \"naturalworldgen:" + type.key() + '"');
         for (File datapacks : folders) {
             File output = new File(datapacks, "naturalworldgen/data/naturalworldgen/dimension_type/" + type.key() + ".json");
             output.getParentFile().mkdirs();
             try {
                 IO.writeAll(output, json);
             } catch (IOException e) {
-                NaturalWorldGen.reportError(e);
+                NaturalGenerator.reportError(e);
                 e.printStackTrace();
             }
         }
@@ -491,7 +491,7 @@ public class IrisDimension extends IrisRegistrant {
     }
 
     public static void writeShared(KList<File> folders, DimensionHeight height) {
-        NaturalWorldGen.verbose("    Installing Data Pack Vanilla Dimension Types");
+        NaturalGenerator.verbose("    Installing Data Pack Vanilla Dimension Types");
         String[] jsonStrings = height.jsonStrings();
         for (File datapacks : folders) {
             write(datapacks, "overworld", jsonStrings[0]);
@@ -513,10 +513,10 @@ public class IrisDimension extends IrisRegistrant {
             try {
                 IO.writeAll(mcm, raw);
             } catch (IOException e) {
-                NaturalWorldGen.reportError(e);
+                NaturalGenerator.reportError(e);
                 e.printStackTrace();
             }
-            NaturalWorldGen.verbose("    Installing Data Pack MCMeta: " + mcm.getPath());
+            NaturalGenerator.verbose("    Installing Data Pack MCMeta: " + mcm.getPath());
         }
     }
 
@@ -529,7 +529,7 @@ public class IrisDimension extends IrisRegistrant {
             try {
                 IO.writeAll(dimTypeVanilla, json);
             } catch (IOException e) {
-                NaturalWorldGen.reportError(e);
+                NaturalGenerator.reportError(e);
                 e.printStackTrace();
             }
         }

@@ -18,7 +18,7 @@
 
 package id.naturalsmp.NaturalWorldGen.core.service;
 
-import id.naturalsmp.NaturalWorldGen.NaturalWorldGen;
+import id.naturalsmp.NaturalWorldGen.NaturalGenerator;
 import id.naturalsmp.NaturalWorldGen.core.edit.BlockEditor;
 import id.naturalsmp.NaturalWorldGen.core.edit.BukkitBlockEditor;
 import id.naturalsmp.NaturalWorldGen.util.collection.KMap;

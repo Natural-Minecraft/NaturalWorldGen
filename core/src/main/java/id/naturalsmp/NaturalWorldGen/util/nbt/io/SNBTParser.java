@@ -18,7 +18,7 @@
 
 package id.naturalsmp.NaturalWorldGen.util.nbt.io;
 
-import id.naturalsmp.NaturalWorldGen.NaturalWorldGen;
+import id.naturalsmp.NaturalWorldGen.NaturalGenerator;
 import id.naturalsmp.NaturalWorldGen.engine.data.io.MaxDepthIO;
 import id.naturalsmp.NaturalWorldGen.util.nbt.tag.*;
 
@@ -87,28 +87,28 @@ public final class SNBTParser implements MaxDepthIO {
             try {
                 return new ByteTag(Byte.parseByte(s.substring(0, s.length() - 1)));
             } catch (NumberFormatException ex) {
-                NaturalWorldGen.reportError(ex);
+                NaturalGenerator.reportError(ex);
                 throw ptr.parseException("byte not in range: \"" + s.substring(0, s.length() - 1) + "\"");
             }
         } else if (SHORT_LITERAL_PATTERN.matcher(s).matches()) {
             try {
                 return new ShortTag(Short.parseShort(s.substring(0, s.length() - 1)));
             } catch (NumberFormatException ex) {
-                NaturalWorldGen.reportError(ex);
+                NaturalGenerator.reportError(ex);
                 throw ptr.parseException("short not in range: \"" + s.substring(0, s.length() - 1) + "\"");
             }
         } else if (LONG_LITERAL_PATTERN.matcher(s).matches()) {
             try {
                 return new LongTag(Long.parseLong(s.substring(0, s.length() - 1)));
             } catch (NumberFormatException ex) {
-                NaturalWorldGen.reportError(ex);
+                NaturalGenerator.reportError(ex);
                 throw ptr.parseException("long not in range: \"" + s.substring(0, s.length() - 1) + "\"");
             }
         } else if (INT_LITERAL_PATTERN.matcher(s).matches()) {
             try {
                 return new IntTag(Integer.parseInt(s));
             } catch (NumberFormatException ex) {
-                NaturalWorldGen.reportError(ex);
+                NaturalGenerator.reportError(ex);
                 throw ptr.parseException("int not in range: \"" + s.substring(0, s.length() - 1) + "\"");
             }
         } else if (DOUBLE_LITERAL_PATTERN.matcher(s).matches()) {
@@ -156,7 +156,7 @@ public final class SNBTParser implements MaxDepthIO {
             try {
                 list.addUnchecked(element);
             } catch (IllegalArgumentException ex) {
-                NaturalWorldGen.reportError(ex);
+                NaturalGenerator.reportError(ex);
                 throw ptr.parseException(ex.getMessage());
             }
             if (!ptr.nextArrayElement()) {
@@ -192,7 +192,7 @@ public final class SNBTParser implements MaxDepthIO {
                 try {
                     byteList.add(Byte.parseByte(s));
                 } catch (NumberFormatException ex) {
-                    NaturalWorldGen.reportError(ex);
+                    NaturalGenerator.reportError(ex);
                     throw ptr.parseException("byte not in range: \"" + s + "\"");
                 }
             } else {
@@ -219,7 +219,7 @@ public final class SNBTParser implements MaxDepthIO {
                 try {
                     intList.add(Integer.parseInt(s));
                 } catch (NumberFormatException ex) {
-                    NaturalWorldGen.reportError(ex);
+                    NaturalGenerator.reportError(ex);
                     throw ptr.parseException("int not in range: \"" + s + "\"");
                 }
             } else {
@@ -242,7 +242,7 @@ public final class SNBTParser implements MaxDepthIO {
                 try {
                     longList.add(Long.parseLong(s));
                 } catch (NumberFormatException ex) {
-                    NaturalWorldGen.reportError(ex);
+                    NaturalGenerator.reportError(ex);
                     throw ptr.parseException("long not in range: \"" + s + "\"");
                 }
             } else {

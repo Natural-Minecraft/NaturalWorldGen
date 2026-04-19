@@ -18,7 +18,7 @@
 
 package id.naturalsmp.NaturalWorldGen.engine.object;
 
-import id.naturalsmp.NaturalWorldGen.NaturalWorldGen;
+import id.naturalsmp.NaturalWorldGen.NaturalGenerator;
 import id.naturalsmp.NaturalWorldGen.core.loader.IrisData;
 import id.naturalsmp.NaturalWorldGen.engine.data.cache.AtomicCache;
 import id.naturalsmp.NaturalWorldGen.engine.object.annotations.*;
@@ -136,7 +136,7 @@ public class IrisDecorator {
 
     public BlockData getBlockData(IrisBiome b, RNG rng, double x, double z, IrisData data) {
         if (getBlockData(data).isEmpty()) {
-            NaturalWorldGen.warn("Empty Block Data for " + b.getName());
+            NaturalGenerator.warn("Empty Block Data for " + b.getName());
             return null;
         }
 
@@ -156,7 +156,7 @@ public class IrisDecorator {
 
     public BlockData getBlockData100(IrisBiome b, RNG rng, double x, double y, double z, IrisData data) {
         if (getBlockData(data).isEmpty()) {
-            NaturalWorldGen.warn("Empty Block Data for " + b.getName());
+            NaturalGenerator.warn("Empty Block Data for " + b.getName());
             return null;
         }
 

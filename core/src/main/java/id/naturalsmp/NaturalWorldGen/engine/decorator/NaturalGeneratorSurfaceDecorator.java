@@ -18,7 +18,7 @@
 
 package id.naturalsmp.NaturalWorldGen.engine.decorator;
 
-import id.naturalsmp.NaturalWorldGen.NaturalWorldGen;
+import id.naturalsmp.NaturalWorldGen.NaturalGenerator;
 import id.naturalsmp.NaturalWorldGen.engine.framework.Engine;
 import id.naturalsmp.NaturalWorldGen.engine.object.InferredType;
 import id.naturalsmp.NaturalWorldGen.engine.object.IrisBiome;
@@ -84,7 +84,7 @@ public class IrisSurfaceDecorator extends IrisEngineDecorator {
                     try {
                         data.set(x, height + 2, z, bd);
                     } catch (Throwable e) {
-                        NaturalWorldGen.reportError(e);
+                        NaturalGenerator.reportError(e);
                     }
                     bd = bd.clone();
                     ((Bisected) bd).setHalf(Bisected.Half.BOTTOM);

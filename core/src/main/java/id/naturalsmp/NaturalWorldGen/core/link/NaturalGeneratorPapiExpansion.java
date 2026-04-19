@@ -18,7 +18,7 @@
 
 package id.naturalsmp.NaturalWorldGen.core.link;
 
-import id.naturalsmp.NaturalWorldGen.NaturalWorldGen;
+import id.naturalsmp.NaturalWorldGen.NaturalGenerator;
 import id.naturalsmp.NaturalWorldGen.core.tools.IrisToolbelt;
 import id.naturalsmp.NaturalWorldGen.engine.object.IrisBiome;
 import id.naturalsmp.NaturalWorldGen.engine.platform.PlatformChunkGenerator;

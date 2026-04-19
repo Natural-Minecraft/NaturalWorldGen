@@ -1,6 +1,6 @@
 package id.naturalsmp.NaturalWorldGen.util.reflect;
 
-import id.naturalsmp.NaturalWorldGen.NaturalWorldGen;
+import id.naturalsmp.NaturalWorldGen.NaturalGenerator;
 
 import java.lang.reflect.Field;
 
@@ -14,7 +14,7 @@ public class WrappedField<C, T> {
             f = origin.getDeclaredField(methodName);
             f.setAccessible(true);
         } catch (NoSuchFieldException e) {
-            NaturalWorldGen.error("Failed to created WrappedField %s#%s: %s%s", origin.getSimpleName(), methodName, e.getClass().getSimpleName(), e.getMessage().equals("") ? "" : " | " + e.getMessage());
+            NaturalGenerator.error("Failed to created WrappedField %s#%s: %s%s", origin.getSimpleName(), methodName, e.getClass().getSimpleName(), e.getMessage().equals("") ? "" : " | " + e.getMessage());
         }
         this.field = f;
     }
@@ -31,7 +31,7 @@ public class WrappedField<C, T> {
         try {
             return (T) field.get(instance);
         } catch (IllegalAccessException e) {
-            NaturalWorldGen.error("Failed to get WrappedField %s#%s: %s%s", field.getDeclaringClass().getSimpleName(), field.getName(), e.getClass().getSimpleName(), e.getMessage().equals("") ? "" : " | " + e.getMessage());
+            NaturalGenerator.error("Failed to get WrappedField %s#%s: %s%s", field.getDeclaringClass().getSimpleName(), field.getName(), e.getClass().getSimpleName(), e.getMessage().equals("") ? "" : " | " + e.getMessage());
             return null;
         }
     }

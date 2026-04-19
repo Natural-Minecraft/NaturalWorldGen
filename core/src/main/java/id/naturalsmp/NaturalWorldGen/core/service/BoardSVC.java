@@ -18,7 +18,7 @@
 
 package id.naturalsmp.NaturalWorldGen.core.service;
 
-import id.naturalsmp.NaturalWorldGen.NaturalWorldGen;
+import id.naturalsmp.NaturalWorldGen.NaturalGenerator;
 import id.naturalsmp.NaturalWorldGen.core.IrisSettings;
 import id.naturalsmp.NaturalWorldGen.core.loader.IrisData;
 import id.naturalsmp.NaturalWorldGen.core.tools.IrisToolbelt;
@@ -119,7 +119,7 @@ public class BoardSVC implements IrisService, BoardProvider {
         }
 
         private void tick() {
-            if (!NaturalWorldGen.service(StudioSVC.class).isProjectOpen()) {
+            if (!NaturalGenerator.service(StudioSVC.class).isProjectOpen()) {
                 return;
             }
 

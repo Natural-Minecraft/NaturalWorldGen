@@ -1,6 +1,6 @@
 package id.naturalsmp.NaturalWorldGen.engine.object.annotations.functions;
 
-import id.naturalsmp.NaturalWorldGen.NaturalWorldGen;
+import id.naturalsmp.NaturalWorldGen.NaturalGenerator;
 import id.naturalsmp.NaturalWorldGen.core.loader.IrisData;
 import id.naturalsmp.NaturalWorldGen.engine.framework.ListFunction;
 import id.naturalsmp.NaturalWorldGen.engine.mantle.ComponentFlag;

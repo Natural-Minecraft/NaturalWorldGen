@@ -18,7 +18,7 @@
 
 package id.naturalsmp.NaturalWorldGen.engine;
 
-import id.naturalsmp.NaturalWorldGen.NaturalWorldGen;
+import id.naturalsmp.NaturalWorldGen.NaturalGenerator;
 import id.naturalsmp.NaturalWorldGen.core.IrisSettings;
 import id.naturalsmp.NaturalWorldGen.core.loader.IrisData;
 import id.naturalsmp.NaturalWorldGen.engine.data.cache.Cache;
@@ -319,9 +319,9 @@ public class IrisComplex implements DataProvider {
 
                 return b;
             } catch (Throwable e) {
-                NaturalWorldGen.reportError(e);
+                NaturalGenerator.reportError(e);
                 e.printStackTrace();
-                NaturalWorldGen.error("Failed to sample hi biome at " + xx + " " + zz + "...");
+                NaturalGenerator.error("Failed to sample hi biome at " + xx + " " + zz + "...");
             }
 
             return 0;
@@ -342,9 +342,9 @@ public class IrisComplex implements DataProvider {
 
                 return b;
             } catch (Throwable e) {
-                NaturalWorldGen.reportError(e);
+                NaturalGenerator.reportError(e);
                 e.printStackTrace();
-                NaturalWorldGen.error("Failed to sample lo biome at " + xx + " " + zz + "...");
+                NaturalGenerator.error("Failed to sample lo biome at " + xx + " " + zz + "...");
             }
 
             return 0;

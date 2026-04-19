@@ -18,13 +18,13 @@
 
 package id.naturalsmp.NaturalWorldGen.util.scheduling;
 
-import id.naturalsmp.NaturalWorldGen.NaturalWorldGen;
+import id.naturalsmp.NaturalWorldGen.NaturalGenerator;
 import id.naturalsmp.NaturalWorldGen.core.service.PreservationSVC;
 
 public abstract class Looper extends Thread {
     @SuppressWarnings("BusyWait")
     public void run() {
-        NaturalWorldGen.service(PreservationSVC.class).register(this);
+        NaturalGenerator.service(PreservationSVC.class).register(this);
         while (!interrupted()) {
             try {
                 long m = loop();
@@ -38,12 +38,12 @@ public abstract class Looper extends Thread {
             } catch (InterruptedException e) {
                 break;
             } catch (Throwable e) {
-                NaturalWorldGen.reportError(e);
+                NaturalGenerator.reportError(e);
                 e.printStackTrace();
             }
         }
 
-        NaturalWorldGen.debug("NaturalWorldGen Thread " + getName() + " Shutdown.");
+        NaturalGenerator.debug("NaturalWorldGen Thread " + getName() + " Shutdown.");
     }
 
     protected abstract long loop();

@@ -18,7 +18,7 @@
 
 package id.naturalsmp.NaturalWorldGen.engine.object;
 
-import id.naturalsmp.NaturalWorldGen.NaturalWorldGen;
+import id.naturalsmp.NaturalWorldGen.NaturalGenerator;
 import id.naturalsmp.NaturalWorldGen.core.loader.IrisData;
 import id.naturalsmp.NaturalWorldGen.engine.data.cache.AtomicCache;
 import id.naturalsmp.NaturalWorldGen.engine.framework.Engine;
@@ -80,7 +80,7 @@ public class IrisCavePlacer implements IRare {
         IrisCave cave = getRealCave(data);
 
         if (cave == null) {
-            NaturalWorldGen.warn("Unable to locate cave for generation!");
+            NaturalGenerator.warn("Unable to locate cave for generation!");
             fail.set(true);
             return;
         }

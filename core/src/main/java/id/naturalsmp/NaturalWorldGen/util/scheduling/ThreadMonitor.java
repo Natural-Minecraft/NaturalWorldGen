@@ -18,7 +18,7 @@
 
 package id.naturalsmp.NaturalWorldGen.util.scheduling;
 
-import id.naturalsmp.NaturalWorldGen.NaturalWorldGen;
+import id.naturalsmp.NaturalWorldGen.NaturalGenerator;
 import id.naturalsmp.NaturalWorldGen.util.format.Form;
 import id.naturalsmp.NaturalWorldGen.util.math.RollingSequence;
 
@@ -64,10 +64,10 @@ public class ThreadMonitor extends Thread {
                 lastState = s;
 
                 if (cl.flip()) {
-                    NaturalWorldGen.info("Cycles: " + Form.f(cycles) + " (" + Form.duration(sq.getAverage(), 2) + ")");
+                    NaturalGenerator.info("Cycles: " + Form.f(cycles) + " (" + Form.duration(sq.getAverage(), 2) + ")");
                 }
             } catch (Throwable e) {
-                NaturalWorldGen.reportError(e);
+                NaturalGenerator.reportError(e);
                 running = false;
                 break;
             }

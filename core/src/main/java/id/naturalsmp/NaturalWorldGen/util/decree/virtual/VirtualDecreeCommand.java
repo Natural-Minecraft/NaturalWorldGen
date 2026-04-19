@@ -18,7 +18,7 @@
 
 package id.naturalsmp.NaturalWorldGen.util.decree.virtual;
 
-import id.naturalsmp.NaturalWorldGen.NaturalWorldGen;
+import id.naturalsmp.NaturalWorldGen.NaturalGenerator;
 import id.naturalsmp.NaturalWorldGen.core.IrisSettings;
 import id.naturalsmp.NaturalWorldGen.util.collection.KList;
 import id.naturalsmp.NaturalWorldGen.util.collection.KMap;
@@ -324,7 +324,7 @@ public class VirtualDecreeCommand {
 
             //Still failed to find, error them
             if (param == null) {
-                NaturalWorldGen.debug("Can't find parameter key for " + key + "=" + value + " in " + getPath());
+                NaturalGenerator.debug("Can't find parameter key for " + key + "=" + value + " in " + getPath());
                 sender.sendMessage(C.YELLOW + "Unknown Parameter: " + key);
                 unknownInputs.add(value); //Add the value to the unknowns and see if we can assume it later
                 continue;
@@ -335,7 +335,7 @@ public class VirtualDecreeCommand {
             try {
                 data.put(key, param.getHandler().parse(value, nowhich.contains(original))); //Parse and put
             } catch (DecreeParsingException e) {
-                NaturalWorldGen.debug("Can't parse parameter value for " + key + "=" + value + " in " + getPath() + " using handler " + param.getHandler().getClass().getSimpleName());
+                NaturalGenerator.debug("Can't parse parameter value for " + key + "=" + value + " in " + getPath() + " using handler " + param.getHandler().getClass().getSimpleName());
                 sender.sendMessage(C.RED + "Cannot convert \"" + value + "\" into a " + param.getType().getSimpleName());
                 e.printStackTrace();
                 return null;
@@ -355,7 +355,7 @@ public class VirtualDecreeCommand {
                 try {
                     data.put(par.getName(), par.getHandler().parse(stringParam, nowhich.contains(original)));
                 } catch (DecreeParsingException e) {
-                    NaturalWorldGen.debug("Can't parse parameter value for " + par.getName() + "=" + stringParam + " in " + getPath() + " using handler " + par.getHandler().getClass().getSimpleName());
+                    NaturalGenerator.debug("Can't parse parameter value for " + par.getName() + "=" + stringParam + " in " + getPath() + " using handler " + par.getHandler().getClass().getSimpleName());
                     sender.sendMessage(C.RED + "Cannot convert \"" + stringParam + "\" into a " + par.getType().getSimpleName());
                     e.printStackTrace();
                     return null;
@@ -384,9 +384,9 @@ public class VirtualDecreeCommand {
             return false;
         }
 
-        NaturalWorldGen.debug("@ " + getPath() + " with " + args.toString(", "));
+        NaturalGenerator.debug("@ " + getPath() + " with " + args.toString(", "));
         if (isNode()) {
-            NaturalWorldGen.debug("Invoke " + getPath() + "(" + args.toString(",") + ") at ");
+            NaturalGenerator.debug("Invoke " + getPath() + "(" + args.toString(",") + ") at ");
             if (invokeNode(sender, map(sender, args))) {
                 return true;
             }
@@ -436,31 +436,31 @@ public class VirtualDecreeCommand {
                     value = i.getDefaultValue();
                 }
             } catch (DecreeParsingException e) {
-                NaturalWorldGen.debug("Can't parse parameter value for " + i.getName() + "=" + i.getParam().defaultValue() + " in " + getPath() + " using handler " + i.getHandler().getClass().getSimpleName());
+                NaturalGenerator.debug("Can't parse parameter value for " + i.getName() + "=" + i.getParam().defaultValue() + " in " + getPath() + " using handler " + i.getHandler().getClass().getSimpleName());
                 sender.sendMessage(C.RED + "Cannot convert \"" + i.getParam().defaultValue() + "\" into a " + i.getType().getSimpleName());
                 return false;
             }
 
             if (sender.isPlayer() && i.isContextual() && value == null) {
-                NaturalWorldGen.debug("Contextual!");
+                NaturalGenerator.debug("Contextual!");
                 DecreeContextHandler<?> ch = DecreeContextHandler.contextHandlers.get(i.getType());
 
                 if (ch != null) {
                     value = ch.handle(sender);
 
                     if (value != null) {
-                        NaturalWorldGen.debug("Parameter \"" + i.getName() + "\" derived a value of \"" + i.getHandler().toStringForce(value) + "\" from " + ch.getClass().getSimpleName());
+                        NaturalGenerator.debug("Parameter \"" + i.getName() + "\" derived a value of \"" + i.getHandler().toStringForce(value) + "\" from " + ch.getClass().getSimpleName());
                     } else {
-                        NaturalWorldGen.debug("Parameter \"" + i.getName() + "\" could not derive a value from \"" + ch.getClass().getSimpleName());
+                        NaturalGenerator.debug("Parameter \"" + i.getName() + "\" could not derive a value from \"" + ch.getClass().getSimpleName());
                     }
                 } else {
-                    NaturalWorldGen.debug("Parameter \"" + i.getName() + "\" is contextual but has no context handler for \"" + i.getType().getCanonicalName() + "\"");
+                    NaturalGenerator.debug("Parameter \"" + i.getName() + "\" is contextual but has no context handler for \"" + i.getType().getCanonicalName() + "\"");
                 }
             }
 
             if (i.hasDefault() && value == null) {
                 try {
-                    NaturalWorldGen.debug("Parameter \"" + i.getName() + "\" is using default value \"" + i.getParam().defaultValue() + "\"");
+                    NaturalGenerator.debug("Parameter \"" + i.getName() + "\" is using default value \"" + i.getParam().defaultValue() + "\"");
                     value = i.getDefaultValue();
                 } catch (Throwable e) {
                     e.printStackTrace();

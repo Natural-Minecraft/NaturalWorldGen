@@ -18,7 +18,7 @@
 
 package id.naturalsmp.NaturalWorldGen.engine.object;
 
-import id.naturalsmp.NaturalWorldGen.NaturalWorldGen;
+import id.naturalsmp.NaturalWorldGen.NaturalGenerator;
 import id.naturalsmp.NaturalWorldGen.core.loader.IrisData;
 import id.naturalsmp.NaturalWorldGen.engine.data.cache.AtomicCache;
 import id.naturalsmp.NaturalWorldGen.engine.object.annotations.*;
@@ -239,7 +239,7 @@ public class IrisObjectPlacement {
                 continue;
             IrisLootTable table = loader.apply(loot.getName());
             if (table == null) {
-                NaturalWorldGen.warn("Couldn't find loot table " + loot.getName());
+                NaturalGenerator.warn("Couldn't find loot table " + loot.getName());
                 continue;
             }
 

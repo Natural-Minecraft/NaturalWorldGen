@@ -18,7 +18,7 @@
 
 package id.naturalsmp.NaturalWorldGen.core.nms;
 
-import id.naturalsmp.NaturalWorldGen.NaturalWorldGen;
+import id.naturalsmp.NaturalWorldGen.NaturalGenerator;
 import id.naturalsmp.NaturalWorldGen.core.IrisSettings;
 import id.naturalsmp.NaturalWorldGen.core.nms.v1X.NMSBinding1X;
 import org.bukkit.Bukkit;
@@ -69,8 +69,8 @@ public class INMS {
                 return name.split("\\Q.\\E")[3];
             }
         } catch (Throwable e) {
-            NaturalWorldGen.reportError(e);
-            NaturalWorldGen.error("Failed to determine server nms version!");
+            NaturalGenerator.reportError(e);
+            NaturalGenerator.error("Failed to determine server nms version!");
             e.printStackTrace();
         }
 
@@ -79,25 +79,25 @@ public class INMS {
 
     private static INMSBinding bind() {
         String code = getNMSTag();
-        NaturalWorldGen.info("Locating NMS Binding for " + code);
+        NaturalGenerator.info("Locating NMS Binding for " + code);
 
         try {
             Class<?> clazz = Class.forName("id.naturalsmp.NaturalWorldGen.core.nms."+code+".NMSBinding");
             try {
                 Object b = clazz.getConstructor().newInstance();
                 if (b instanceof INMSBinding binding) {
-                    NaturalWorldGen.info("Craftbukkit " + code + " <-> " + b.getClass().getSimpleName() + " Successfully Bound");
+                    NaturalGenerator.info("Craftbukkit " + code + " <-> " + b.getClass().getSimpleName() + " Successfully Bound");
                     return binding;
                 }
             } catch (Throwable e) {
-                NaturalWorldGen.reportError(e);
+                NaturalGenerator.reportError(e);
                 e.printStackTrace();
             }
         } catch (ClassNotFoundException|NoClassDefFoundError classNotFoundException) {}
 
-        NaturalWorldGen.info("Craftbukkit " + code + " <-> " + NMSBinding1X.class.getSimpleName() + " Successfully Bound");
-        NaturalWorldGen.warn("Note: Some features of NaturalWorldGen may not work the same since you are on an unsupported version of Minecraft.");
-        NaturalWorldGen.warn("Note: If this is a new version, expect an update soon.");
+        NaturalGenerator.info("Craftbukkit " + code + " <-> " + NMSBinding1X.class.getSimpleName() + " Successfully Bound");
+        NaturalGenerator.warn("Note: Some features of NaturalWorldGen may not work the same since you are on an unsupported version of Minecraft.");
+        NaturalGenerator.warn("Note: If this is a new version, expect an update soon.");
 
         return new NMSBinding1X();
     }

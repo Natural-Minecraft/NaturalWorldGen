@@ -19,7 +19,7 @@
 package id.naturalsmp.NaturalWorldGen.engine.object;
 
 import com.google.gson.Gson;
-import id.naturalsmp.NaturalWorldGen.NaturalWorldGen;
+import id.naturalsmp.NaturalWorldGen.NaturalGenerator;
 import id.naturalsmp.NaturalWorldGen.util.collection.KList;
 import id.naturalsmp.NaturalWorldGen.util.data.B;
 import id.naturalsmp.NaturalWorldGen.util.io.IO;
@@ -53,8 +53,8 @@ public class IrisCompat {
                 try {
                     IO.writeAll(f, defa);
                 } catch (IOException e) {
-                    NaturalWorldGen.error("Failed to writeNodeData to compat file");
-                    NaturalWorldGen.reportError(e);
+                    NaturalGenerator.error("Failed to writeNodeData to compat file");
+                    NaturalGenerator.reportError(e);
                 }
             });
         } else {
@@ -72,7 +72,7 @@ public class IrisCompat {
                 }
             } catch (Throwable e) {
                 e.printStackTrace();
-                NaturalWorldGen.reportError(e);
+                NaturalGenerator.reportError(e);
             }
         }
 
@@ -275,7 +275,7 @@ public class IrisCompat {
         searching:
         while (true) {
             if (err-- <= 0) {
-                NaturalWorldGen.error("Can't find block data for " + n);
+                NaturalGenerator.error("Can't find block data for " + n);
                 return B.getNoCompat("STONE");
             }
             String m = buf;
@@ -299,7 +299,7 @@ public class IrisCompat {
                 }
             }
 
-            NaturalWorldGen.error("Can't find block data for " + n);
+            NaturalGenerator.error("Can't find block data for " + n);
             return B.getNoCompat("STONE");
         }
     }

@@ -18,7 +18,7 @@
 
 package id.naturalsmp.NaturalWorldGen.util.matter;
 
-import id.naturalsmp.NaturalWorldGen.NaturalWorldGen;
+import id.naturalsmp.NaturalWorldGen.NaturalGenerator;
 import id.naturalsmp.NaturalWorldGen.engine.object.IrisObject;
 import id.naturalsmp.NaturalWorldGen.engine.object.IrisPosition;
 import id.naturalsmp.NaturalWorldGen.util.collection.KSet;
@@ -69,9 +69,9 @@ public interface Matter {
                 long fs = folder.length();
                 object.read(folder);
                 Matter.from(object).write(folder);
-                NaturalWorldGen.info("Converted " + folder.getPath() + " Saved " + (fs - folder.length()));
+                NaturalGenerator.info("Converted " + folder.getPath() + " Saved " + (fs - folder.length()));
             } catch (Throwable e) {
-                NaturalWorldGen.error("Failed to convert " + folder.getPath());
+                NaturalGenerator.error("Failed to convert " + folder.getPath());
                 e.printStackTrace();
             }
         }
@@ -155,10 +155,10 @@ public interface Matter {
                 matter.putSlice(type, slice);
             } catch (Throwable e) {
                 if (!(e instanceof ClassNotFoundException)) {
-                    NaturalWorldGen.error("Failed to read matter slice, skipping it.");
+                    NaturalGenerator.error("Failed to read matter slice, skipping it.");
                     NaturalWorldGen.addPanic("read.byte.range", start + " " + end);
                     NaturalWorldGen.addPanic("read.byte.current", din.count() + "");
-                    NaturalWorldGen.reportError(e);
+                    NaturalGenerator.reportError(e);
                     e.printStackTrace();
                     NaturalWorldGen.panic();
                     TectonicPlate.addError();

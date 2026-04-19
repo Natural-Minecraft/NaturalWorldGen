@@ -18,7 +18,7 @@
 
 package id.naturalsmp.NaturalWorldGen.core.project;
 
-import id.naturalsmp.NaturalWorldGen.NaturalWorldGen;
+import id.naturalsmp.NaturalWorldGen.NaturalGenerator;
 import id.naturalsmp.NaturalWorldGen.core.link.Identifier;
 import id.naturalsmp.NaturalWorldGen.core.link.data.DataType;
 import id.naturalsmp.NaturalWorldGen.core.loader.IrisData;
@@ -102,7 +102,7 @@ public class SchemaBuilder {
         schema.put("definitions", defs);
 
         for (String i : warnings) {
-            NaturalWorldGen.warn(root.getSimpleName() + ": " + i);
+            NaturalGenerator.warn(root.getSimpleName() + ": " + i);
         }
 
         return schema;
@@ -233,7 +233,7 @@ public class SchemaBuilder {
                         prop.put("$ref", "#/definitions/" + key);
                         description.add(SYMBOL_TYPE__N + "  Must be a valid " + loader.getFolderName() + " (use ctrl+space for auto complete!)");
                     } else {
-                        NaturalWorldGen.error("Cannot find Registry Loader for type " + rr.value() + " used in " + k.getDeclaringClass().getCanonicalName() + " in field " + k.getName());
+                        NaturalGenerator.error("Cannot find Registry Loader for type " + rr.value() + " used in " + k.getDeclaringClass().getCanonicalName() + " in field " + k.getName());
                     }
                 } else if (k.isAnnotationPresent(RegistryListBlockType.class)) {
                     String key = "enum-block-type";
@@ -276,7 +276,7 @@ public class SchemaBuilder {
 
                     if (!definitions.containsKey(key)) {
                         JSONObject j = new JSONObject();
-                        KList<String> list = NaturalWorldGen.service(ExternalDataSVC.class)
+                        KList<String> list = NaturalGenerator.service(ExternalDataSVC.class)
                                 .getAllIdentifiers(DataType.ENTITY)
                                 .stream()
                                 .map(Identifier::toString)
@@ -329,7 +329,7 @@ public class SchemaBuilder {
                         prop.put("$ref", "#/definitions/" + key);
                         description.add(SYMBOL_TYPE__N + "  Must be a valid " + fancyType + " (use ctrl+space for auto complete!)");
                     } catch (Throwable e) {
-                        NaturalWorldGen.error("Could not execute apply method in " + functionClass.getName());
+                        NaturalGenerator.error("Could not execute apply method in " + functionClass.getName());
                     }
                 } else if (k.getType().equals(PotionEffectType.class)) {
                     String key = "enum-potion-effect-type";
@@ -460,7 +460,7 @@ public class SchemaBuilder {
                                     prop.put("items", items);
                                     description.add(SYMBOL_TYPE__N + "  Must be a valid " + loader.getResourceTypeName() + " (use ctrl+space for auto complete!)");
                                 } else {
-                                    NaturalWorldGen.error("Cannot find Registry Loader for type (list schema) " + rr.value() + " used in " + k.getDeclaringClass().getCanonicalName() + " in field " + k.getName());
+                                    NaturalGenerator.error("Cannot find Registry Loader for type (list schema) " + rr.value() + " used in " + k.getDeclaringClass().getCanonicalName() + " in field " + k.getName());
                                 }
                             } else if (k.isAnnotationPresent(RegistryListBlockType.class)) {
                                 fancyType = "List of Block Types";
@@ -546,7 +546,7 @@ public class SchemaBuilder {
                                     prop.put("items", items);
                                     description.add(SYMBOL_TYPE__N + "  Must be a valid " + fancyType + " (use ctrl+space for auto complete!)");
                                 } catch (Throwable e) {
-                                    NaturalWorldGen.error("Could not execute apply method in " + functionClass.getName());
+                                    NaturalGenerator.error("Could not execute apply method in " + functionClass.getName());
                                 }
                             } else if (t.type().equals(PotionEffectType.class)) {
                                 fancyType = "List of Potion Effect Types";
@@ -686,7 +686,7 @@ public class SchemaBuilder {
                     j.put("x-intellij-html-description", desc.replace("\n", "<br>"));
                     a.put(j);
                 } catch (Throwable e) {
-                    NaturalWorldGen.reportError(e);
+                    NaturalGenerator.reportError(e);
                     e.printStackTrace();
                 }
             } else {

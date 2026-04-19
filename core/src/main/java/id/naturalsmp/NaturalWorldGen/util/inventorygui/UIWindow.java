@@ -18,7 +18,7 @@
 
 package id.naturalsmp.NaturalWorldGen.util.inventorygui;
 
-import id.naturalsmp.NaturalWorldGen.NaturalWorldGen;
+import id.naturalsmp.NaturalWorldGen.NaturalGenerator;
 import id.naturalsmp.NaturalWorldGen.util.collection.KMap;
 import id.naturalsmp.NaturalWorldGen.util.collection.KSet;
 import id.naturalsmp.NaturalWorldGen.util.scheduling.Callback;

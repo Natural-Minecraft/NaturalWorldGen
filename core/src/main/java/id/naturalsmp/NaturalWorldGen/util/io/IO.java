@@ -22,7 +22,7 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
-import id.naturalsmp.NaturalWorldGen.NaturalWorldGen;
+import id.naturalsmp.NaturalWorldGen.NaturalGenerator;
 import id.naturalsmp.NaturalWorldGen.util.format.Form;
 import id.naturalsmp.NaturalWorldGen.util.scheduling.J;
 import org.apache.commons.io.function.IOConsumer;
@@ -125,11 +125,11 @@ public class IO {
             MessageDigest d = MessageDigest.getInstance("SHA-256");
             return bytesToHex(d.digest(b.getBytes(StandardCharsets.UTF_8)));
         } catch (NoSuchAlgorithmException e) {
-            NaturalWorldGen.reportError(e);
+            NaturalGenerator.reportError(e);
             e.printStackTrace();
         }
 
-        return "Â¯\\_(ãƒ„)_/Â¯";
+        return "Ã‚Â¯\\_(Ã£Æ’â€ž)_/Ã‚Â¯";
     }
 
     public static long hashRecursive(File... bases) {
@@ -158,14 +158,14 @@ public class IO {
                 try (var din = new CheckedInputStream(readDeterministic(file), crc)) {
                     fullTransfer(din, new VoidOutputStream(), 8192);
                 } catch (IOException e) {
-                    NaturalWorldGen.reportError(e);
+                    NaturalGenerator.reportError(e);
                     e.printStackTrace();
                 }
             }
 
             return crc.getValue();
         } catch (Throwable e) {
-            NaturalWorldGen.reportError(e);
+            NaturalGenerator.reportError(e);
             e.printStackTrace();
         }
 
@@ -215,11 +215,11 @@ public class IO {
             din.close();
             return bytesToHex(din.getMessageDigest().digest());
         } catch (Throwable e) {
-            NaturalWorldGen.reportError(e);
+            NaturalGenerator.reportError(e);
             e.printStackTrace();
         }
 
-        return "Â¯\\_(ãƒ„)_/Â¯";
+        return "Ã‚Â¯\\_(Ã£Æ’â€ž)_/Ã‚Â¯";
     }
 
     public static String bytesToHex(byte[] bytes) {
@@ -430,7 +430,7 @@ public class IO {
                 }
             }
         } catch (Exception ex) {
-            NaturalWorldGen.reportError(ex);
+            NaturalGenerator.reportError(ex);
             x = ex.getCause();
         } finally {
             file.close();
@@ -465,7 +465,7 @@ public class IO {
         try {
             fr = new FileReader(f);
         } catch (IOException e) {
-            NaturalWorldGen.reportError(e);
+            NaturalGenerator.reportError(e);
             throw e;
         }
         BufferedReader bu = new BufferedReader(fr);
@@ -620,7 +620,7 @@ public class IO {
                     Files.copy(sourcePath, targetPath, StandardCopyOption.REPLACE_EXISTING, StandardCopyOption.COPY_ATTRIBUTES);
                 }
             } catch (IOException e) {
-                NaturalWorldGen.error("Failed to copy " + targetPath);
+                NaturalGenerator.error("Failed to copy " + targetPath);
                 e.printStackTrace();
             }
         });
@@ -640,7 +640,7 @@ public class IO {
                 input.close();
             }
         } catch (IOException e) {
-            NaturalWorldGen.reportError(e);
+            NaturalGenerator.reportError(e);
             // ignore
         }
     }
@@ -659,7 +659,7 @@ public class IO {
                 output.close();
             }
         } catch (IOException e) {
-            NaturalWorldGen.reportError(e);
+            NaturalGenerator.reportError(e);
             // ignore
         }
     }
@@ -678,7 +678,7 @@ public class IO {
                 input.close();
             }
         } catch (IOException e) {
-            NaturalWorldGen.reportError(e);
+            NaturalGenerator.reportError(e);
             // ignore
         }
     }
@@ -700,7 +700,7 @@ public class IO {
                 output.close();
             }
         } catch (IOException e) {
-            NaturalWorldGen.reportError(e);
+            NaturalGenerator.reportError(e);
             // ignore
         }
     }

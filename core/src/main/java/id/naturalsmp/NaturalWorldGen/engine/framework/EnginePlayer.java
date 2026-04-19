@@ -18,7 +18,7 @@
 
 package id.naturalsmp.NaturalWorldGen.engine.framework;
 
-import id.naturalsmp.NaturalWorldGen.NaturalWorldGen;
+import id.naturalsmp.NaturalWorldGen.NaturalGenerator;
 import id.naturalsmp.NaturalWorldGen.core.IrisSettings;
 import id.naturalsmp.NaturalWorldGen.engine.object.IrisBiome;
 import id.naturalsmp.NaturalWorldGen.engine.object.IrisEffect;
@@ -56,7 +56,7 @@ public class EnginePlayer {
                     try {
                         j.apply(player, getEngine());
                     } catch (Throwable e) {
-                        NaturalWorldGen.reportError(e);
+                        NaturalGenerator.reportError(e);
 
                     }
                 }
@@ -67,7 +67,7 @@ public class EnginePlayer {
                     try {
                         j.apply(player, getEngine());
                     } catch (Throwable e) {
-                        NaturalWorldGen.reportError(e);
+                        NaturalGenerator.reportError(e);
 
                     }
                 }
@@ -92,7 +92,7 @@ public class EnginePlayer {
             }
             return false;
         } catch (Throwable e) {
-            NaturalWorldGen.reportError(e);
+            NaturalGenerator.reportError(e);
 
         }
         return true;

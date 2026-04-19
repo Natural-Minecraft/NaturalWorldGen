@@ -18,7 +18,7 @@
 
 package id.naturalsmp.NaturalWorldGen.engine.framework;
 
-import id.naturalsmp.NaturalWorldGen.NaturalWorldGen;
+import id.naturalsmp.NaturalWorldGen.NaturalGenerator;
 import id.naturalsmp.NaturalWorldGen.core.events.IrisEngineHotloadEvent;
 import id.naturalsmp.NaturalWorldGen.util.collection.KList;
 import id.naturalsmp.NaturalWorldGen.util.format.C;

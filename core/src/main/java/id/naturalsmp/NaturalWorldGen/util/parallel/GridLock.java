@@ -18,7 +18,7 @@
 
 package id.naturalsmp.NaturalWorldGen.util.parallel;
 
-import id.naturalsmp.NaturalWorldGen.NaturalWorldGen;
+import id.naturalsmp.NaturalWorldGen.NaturalGenerator;
 import id.naturalsmp.NaturalWorldGen.util.function.NastyRunnable;
 import id.naturalsmp.NaturalWorldGen.util.hunk.Hunk;
 import id.naturalsmp.NaturalWorldGen.util.io.IORunnable;
@@ -83,7 +83,7 @@ public class GridLock {
         try {
             return locks.get(x, 0, z).tryLock(timeout, TimeUnit.MILLISECONDS);
         } catch (InterruptedException e) {
-            NaturalWorldGen.reportError(e);
+            NaturalGenerator.reportError(e);
         }
 
         return false;

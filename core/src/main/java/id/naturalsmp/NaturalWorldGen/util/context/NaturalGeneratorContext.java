@@ -18,7 +18,7 @@
 
 package id.naturalsmp.NaturalWorldGen.util.context;
 
-import id.naturalsmp.NaturalWorldGen.NaturalWorldGen;
+import id.naturalsmp.NaturalWorldGen.NaturalGenerator;
 import id.naturalsmp.NaturalWorldGen.core.loader.IrisData;
 import id.naturalsmp.NaturalWorldGen.engine.IrisComplex;
 import id.naturalsmp.NaturalWorldGen.engine.framework.Engine;
@@ -75,7 +75,7 @@ public class IrisContext {
             }
 
             if (!thread.isAlive() || context.engine.isClosed()) {
-                NaturalWorldGen.debug("Dereferenced Context<Engine> " + thread.getName() + " " + thread.threadId());
+                NaturalGenerator.debug("Dereferenced Context<Engine> " + thread.getName() + " " + thread.threadId());
                 it.remove();
             }
         }

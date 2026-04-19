@@ -19,7 +19,7 @@
 package id.naturalsmp.NaturalWorldGen.engine.jigsaw;
 
 import com.googlecode.concurrentlinkedhashmap.ConcurrentLinkedHashMap;
-import id.naturalsmp.NaturalWorldGen.NaturalWorldGen;
+import id.naturalsmp.NaturalWorldGen.NaturalGenerator;
 import id.naturalsmp.NaturalWorldGen.core.loader.IrisData;
 import id.naturalsmp.NaturalWorldGen.engine.framework.Engine;
 import id.naturalsmp.NaturalWorldGen.engine.framework.placer.WorldObjectPlacer;
@@ -71,10 +71,10 @@ public class PlannedStructure {
 
         generateTerminators();
 
-        NaturalWorldGen.debug("JPlace: ROOT @ relative " + position.toString());
+        NaturalGenerator.debug("JPlace: ROOT @ relative " + position.toString());
 
         for (PlannedPiece i : pieces) {
-            NaturalWorldGen.debug("Place: " + i.getObject().getLoadKey() + " at @ relative " + i.getPosition().toString());
+            NaturalGenerator.debug("Place: " + i.getObject().getLoadKey() + " at @ relative " + i.getPosition().toString());
         }
     }
 
@@ -139,7 +139,7 @@ public class PlannedStructure {
                 height = pos.getY();
                 offset = 0;
             } else {
-                NaturalWorldGen.warn("Failed to get target position for " + v.getLoadKey());
+                NaturalGenerator.warn("Failed to get target position for " + v.getLoadKey());
             }
         }
 

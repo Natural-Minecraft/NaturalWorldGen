@@ -19,7 +19,7 @@
 package id.naturalsmp.NaturalWorldGen.core.service;
 
 import com.google.gson.JsonSyntaxException;
-import id.naturalsmp.NaturalWorldGen.NaturalWorldGen;
+import id.naturalsmp.NaturalWorldGen.NaturalGenerator;
 import id.naturalsmp.NaturalWorldGen.core.IrisSettings;
 import id.naturalsmp.NaturalWorldGen.core.ServerConfigurator;
 import id.naturalsmp.NaturalWorldGen.core.loader.IrisData;
@@ -62,12 +62,12 @@ public class StudioSVC implements IrisService {
             File f = IrisPack.packsPack(pack);
 
             if (!f.exists()) {
-                NaturalWorldGen.info("Downloading Default Pack " + pack);
+                NaturalGenerator.info("Downloading Default Pack " + pack);
                 if (pack.equals("overworld")) {
                     String url = "https://github.com/IrisDimensions/overworld/releases/download/" + INMS.OVERWORLD_TAG + "/overworld.zip";
-                    NaturalWorldGen.service(StudioSVC.class).downloadRelease(NaturalWorldGen.getSender(), url, false, false);
+                    NaturalGenerator.service(StudioSVC.class).downloadRelease(NaturalGenerator.getSender(), url, false, false);
                 } else {
-                    downloadSearch(NaturalWorldGen.getSender(), pack, false);
+                    downloadSearch(NaturalGenerator.getSender(), pack, false);
                 }
             }
         });
@@ -75,7 +75,7 @@ public class StudioSVC implements IrisService {
 
     @Override
     public void onDisable() {
-        NaturalWorldGen.debug("Studio Mode Active: Closing Projects");
+        NaturalGenerator.debug("Studio Mode Active: Closing Projects");
 
         for (World i : Bukkit.getWorlds()) {
             if (IrisToolbelt.isIrisWorld(i)) {
@@ -110,7 +110,7 @@ public class StudioSVC implements IrisService {
             try {
                 FileUtils.copyDirectory(f, folder);
             } catch (IOException e) {
-                NaturalWorldGen.reportError(e);
+                NaturalGenerator.reportError(e);
             }
         }
 
@@ -126,14 +126,14 @@ public class StudioSVC implements IrisService {
                         FileUtils.copyFile(i, new File(folder, i.getName()));
                     } catch (IOException e) {
                         e.printStackTrace();
-                        NaturalWorldGen.reportError(e);
+                        NaturalGenerator.reportError(e);
                     }
                 } else {
                     try {
                         FileUtils.copyDirectory(i, new File(folder, i.getName()));
                     } catch (IOException e) {
                         e.printStackTrace();
-                        NaturalWorldGen.reportError(e);
+                        NaturalGenerator.reportError(e);
                     }
                 }
             }
@@ -170,18 +170,18 @@ public class StudioSVC implements IrisService {
             url = getListing(false).get(key);
 
             if (url == null) {
-                NaturalWorldGen.warn("ITS ULL for " + key);
+                NaturalGenerator.warn("ITS ULL for " + key);
             }
 
             url = url == null ? key : url;
-            NaturalWorldGen.info("Assuming URL " + url);
+            NaturalGenerator.info("Assuming URL " + url);
             String branch = "master";
             String[] nodes = url.split("\\Q/\\E");
             String repo = nodes.length == 1 ? "IrisDimensions/" + nodes[0] : nodes[0] + "/" + nodes[1];
             branch = nodes.length > 2 ? nodes[2] : branch;
             download(sender, repo, branch, trim, forceOverwrite, false);
         } catch (Throwable e) {
-            NaturalWorldGen.reportError(e);
+            NaturalGenerator.reportError(e);
             e.printStackTrace();
             sender.sendMessage("Failed to download '" + key + "' from " + url + ".");
         }
@@ -191,7 +191,7 @@ public class StudioSVC implements IrisService {
         try {
             download(sender, "IrisDimensions", url, trim, forceOverwrite, true);
         } catch (Throwable e) {
-            NaturalWorldGen.reportError(e);
+            NaturalGenerator.reportError(e);
             e.printStackTrace();
             sender.sendMessage("Failed to download 'IrisDimensions/overworld' from " + url + ".");
         }
@@ -205,7 +205,7 @@ public class StudioSVC implements IrisService {
         String url = directUrl ? branch : "https://codeload.github.com/" + repo + "/zip/refs/heads/" + branch;
         sender.sendMessage("Downloading " + url + " "); //The extra space stops a bug in adventure API from repeating the last letter of the URL
         File zip = NaturalWorldGen.getNonCachedFile("pack-" + trim + "-" + repo, url);
-        File temp = NaturalWorldGen.getTemp();
+        File temp = NaturalGenerator.getTemp();
         File work = new File(temp, "dl-" + UUID.randomUUID());
         File packs = getWorkspaceFolder();
 
@@ -219,7 +219,7 @@ public class StudioSVC implements IrisService {
         try {
             ZipUtil.unpack(zip, work);
         } catch (Throwable e) {
-            NaturalWorldGen.reportError(e);
+            NaturalGenerator.reportError(e);
             e.printStackTrace();
             sender.sendMessage(
                     """
@@ -242,7 +242,7 @@ public class StudioSVC implements IrisService {
         try {
             dir = zipFiles.length > 1 ? work : zipFiles[0].isDirectory() ? zipFiles[0] : null;
         } catch (NullPointerException e) {
-            NaturalWorldGen.reportError(e);
+            NaturalGenerator.reportError(e);
             sender.sendMessage("Error when finding home directory. Are there any non-text characters in the file name?");
             return;
         }
@@ -340,7 +340,7 @@ public class StudioSVC implements IrisService {
             open(sender, seed, dimm, (w) -> {
             });
         } catch (Exception e) {
-            NaturalWorldGen.reportError(e);
+            NaturalGenerator.reportError(e);
             sender.sendMessage("Error when creating studio world:");
             e.printStackTrace();
         }
@@ -370,7 +370,7 @@ public class StudioSVC implements IrisService {
 
     public void close() {
         if (isProjectOpen()) {
-            NaturalWorldGen.debug("Closing Active Project");
+            NaturalGenerator.debug("Closing Active Project");
             activeProject.close();
             activeProject = null;
         }
@@ -385,14 +385,14 @@ public class StudioSVC implements IrisService {
         File newPack = getWorkspaceFolder(newName);
 
         if (importPack.listFiles().length == 0) {
-            NaturalWorldGen.warn("Couldn't find the pack to create a new dimension from.");
+            NaturalGenerator.warn("Couldn't find the pack to create a new dimension from.");
             return;
         }
 
         try {
             FileUtils.copyDirectory(importPack, newPack, pathname -> !pathname.getAbsolutePath().contains(".git"), false);
         } catch (IOException e) {
-            NaturalWorldGen.reportError(e);
+            NaturalGenerator.reportError(e);
             e.printStackTrace();
         }
 
@@ -403,7 +403,7 @@ public class StudioSVC implements IrisService {
         try {
             FileUtils.copyFile(dimFile, newDimFile);
         } catch (IOException e) {
-            NaturalWorldGen.reportError(e);
+            NaturalGenerator.reportError(e);
             e.printStackTrace();
         }
 
@@ -417,7 +417,7 @@ public class StudioSVC implements IrisService {
                 IO.writeAll(newDimFile, json.toString(4));
             }
         } catch (JSONException | IOException e) {
-            NaturalWorldGen.reportError(e);
+            NaturalGenerator.reportError(e);
             e.printStackTrace();
         }
 
@@ -426,7 +426,7 @@ public class StudioSVC implements IrisService {
             JSONObject ws = p.createCodeWorkspaceConfig();
             IO.writeAll(getWorkspaceFile(newName, newName + ".code-workspace"), ws.toString(0));
         } catch (JSONException | IOException e) {
-            NaturalWorldGen.reportError(e);
+            NaturalGenerator.reportError(e);
             e.printStackTrace();
         }
     }

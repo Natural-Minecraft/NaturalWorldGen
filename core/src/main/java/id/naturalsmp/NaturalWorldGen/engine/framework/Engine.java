@@ -18,7 +18,7 @@
 
 package id.naturalsmp.NaturalWorldGen.engine.framework;
 
-import id.naturalsmp.NaturalWorldGen.NaturalWorldGen;
+import id.naturalsmp.NaturalWorldGen.NaturalGenerator;
 import id.naturalsmp.NaturalWorldGen.core.IrisSettings;
 import id.naturalsmp.NaturalWorldGen.core.events.IrisLootEvent;
 import id.naturalsmp.NaturalWorldGen.core.gui.components.RenderType;
@@ -280,16 +280,16 @@ public interface Engine extends DataProvider, Fallible, LootProvider, BlockUpdat
                 if (c.getWorld().isChunkLoaded(c.getX() + x, c.getZ() + z))
                     continue;
                 var msg = "Chunk %s, %s [%s, %s] is not loaded".formatted(c.getX() + x, c.getZ() + z, x, z);
-                if (W.getStack().getCallerClass().equals(ChunkUpdater.class)) NaturalWorldGen.warn(msg);
-                else NaturalWorldGen.debug(msg);
+                if (W.getStack().getCallerClass().equals(ChunkUpdater.class)) NaturalGenerator.warn(msg);
+                else NaturalGenerator.debug(msg);
                 return;
             }
         }
         var mantle = getMantle().getMantle();
         if (!mantle.isLoaded(c)) {
             var msg = "Mantle Chunk " + c.getX() + c.getX() + " is not loaded";
-            if (W.getStack().getCallerClass().equals(ChunkUpdater.class)) NaturalWorldGen.warn(msg);
-            else NaturalWorldGen.debug(msg);
+            if (W.getStack().getCallerClass().equals(ChunkUpdater.class)) NaturalGenerator.warn(msg);
+            else NaturalGenerator.debug(msg);
             return;
         }
 
@@ -301,12 +301,12 @@ public interface Engine extends DataProvider, Fallible, LootProvider, BlockUpdat
                     chunk.iterate(TileWrapper.class, (x, y, z, v) -> {
                         Block block = c.getBlock(x & 15, y + getWorld().minHeight(), z & 15);
                         if (!TileData.setTileState(block, v.getData()))
-                            NaturalWorldGen.warn("Failed to set tile entity data at [%d %d %d | %s] for tile %s!", block.getX(), block.getY(), block.getZ(), block.getType().getKey(), v.getData().getMaterial().getKey());
+                            NaturalGenerator.warn("Failed to set tile entity data at [%d %d %d | %s] for tile %s!", block.getX(), block.getY(), block.getZ(), block.getType().getKey(), v.getData().getMaterial().getKey());
                     });
                 }, 0));
                 chunk.raiseFlagUnchecked(MantleFlag.CUSTOM, run(semaphore, () -> {
                     chunk.iterate(Identifier.class, (x, y, z, v) -> {
-                        NaturalWorldGen.service(ExternalDataSVC.class).processUpdate(this, c.getBlock(x & 15, y + getWorld().minHeight(), z & 15), v);
+                        NaturalGenerator.service(ExternalDataSVC.class).processUpdate(this, c.getBlock(x & 15, y + getWorld().minHeight(), z & 15), v);
                     });
                 }, 0));
 
@@ -417,7 +417,7 @@ public interface Engine extends DataProvider, Fallible, LootProvider, BlockUpdat
                     addItems(false, m.getInventory(), rx, tables, slot, c.getWorld(), x, y, z, 15);
 
                 } catch (Throwable e) {
-                    NaturalWorldGen.reportError(e);
+                    NaturalGenerator.reportError(e);
                 }
             }
         } else {
@@ -648,7 +648,7 @@ public interface Engine extends DataProvider, Fallible, LootProvider, BlockUpdat
 
     default IrisPosition lookForBiome(IrisBiome biome, long timeout, Consumer<Integer> triesc) {
         if (!getWorld().hasRealWorld()) {
-            NaturalWorldGen.error("Cannot GOTO without a bound world (headless mode)");
+            NaturalGenerator.error("Cannot GOTO without a bound world (headless mode)");
             return null;
         }
 
@@ -688,13 +688,13 @@ public interface Engine extends DataProvider, Fallible, LootProvider, BlockUpdat
 
                             tries.getAndIncrement();
                         } catch (Throwable ex) {
-                            NaturalWorldGen.reportError(ex);
+                            NaturalGenerator.reportError(ex);
                             ex.printStackTrace();
                             return;
                         }
                     }
                 } catch (Throwable e) {
-                    NaturalWorldGen.reportError(e);
+                    NaturalGenerator.reportError(e);
                     e.printStackTrace();
                 }
             });
@@ -719,7 +719,7 @@ public interface Engine extends DataProvider, Fallible, LootProvider, BlockUpdat
 
     default IrisPosition lookForRegion(IrisRegion reg, long timeout, Consumer<Integer> triesc) {
         if (!getWorld().hasRealWorld()) {
-            NaturalWorldGen.error("Cannot GOTO without a bound world (headless mode)");
+            NaturalGenerator.error("Cannot GOTO without a bound world (headless mode)");
             return null;
         }
 
@@ -755,7 +755,7 @@ public interface Engine extends DataProvider, Fallible, LootProvider, BlockUpdat
 
                         tries.getAndIncrement();
                     } catch (Throwable xe) {
-                        NaturalWorldGen.reportError(xe);
+                        NaturalGenerator.reportError(xe);
                         xe.printStackTrace();
                         return;
                     }

@@ -1,6 +1,6 @@
 package id.naturalsmp.NaturalWorldGen.core.pregenerator.cache
 
-import id.naturalsmp.NaturalWorldGen.NaturalWorldGen
+import id.naturalsmp.NaturalWorldGen.NaturalGenerator
 import id.naturalsmp.NaturalWorldGen.util.data.Varint
 import id.naturalsmp.NaturalWorldGen.util.documentation.ChunkCoordinates
 import id.naturalsmp.NaturalWorldGen.util.documentation.RegionCoordinates
@@ -105,9 +105,9 @@ class PregenCacheImpl(
                 return readPlate(x, z, it)
             }
         } catch (e: IOException) {
-            NaturalWorldGen.error("Failed to read pregen cache $file")
+            NaturalGenerator.error("Failed to read pregen cache $file")
             e.printStackTrace()
-            NaturalWorldGen.reportError(e)
+            NaturalGenerator.reportError(e)
         }
         return Plate(x, z)
     }
@@ -119,9 +119,9 @@ class PregenCacheImpl(
             IO.write(file, { DataOutputStream(LZ4BlockOutputStream(it)) }, plate::write)
             plate.dirty = false
         } catch (e: IOException) {
-            NaturalWorldGen.error("Failed to write preen cache $file")
+            NaturalGenerator.error("Failed to write preen cache $file")
             e.printStackTrace()
-            NaturalWorldGen.reportError(e)
+            NaturalGenerator.reportError(e)
         }
     }
 

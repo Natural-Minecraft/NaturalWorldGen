@@ -18,7 +18,7 @@
 
 package id.naturalsmp.NaturalWorldGen.core.service;
 
-import id.naturalsmp.NaturalWorldGen.NaturalWorldGen;
+import id.naturalsmp.NaturalWorldGen.NaturalGenerator;
 import id.naturalsmp.NaturalWorldGen.core.loader.IrisData;
 import id.naturalsmp.NaturalWorldGen.core.tools.IrisToolbelt;
 import id.naturalsmp.NaturalWorldGen.engine.framework.Engine;
@@ -73,50 +73,50 @@ public class TreeSVC implements IrisService {
         if (block || event.isCancelled()) {
             return;
         }
-        NaturalWorldGen.debug(this.getClass().getName() + " received a structure grow event");
+        NaturalGenerator.debug(this.getClass().getName() + " received a structure grow event");
 
         if (!IrisToolbelt.isIrisWorld(event.getWorld())) {
-            NaturalWorldGen.debug(this.getClass().getName() + " passed grow event off to vanilla since not an NaturalWorldGen world");
+            NaturalGenerator.debug(this.getClass().getName() + " passed grow event off to vanilla since not an NaturalWorldGen world");
             return;
         }
 
         PlatformChunkGenerator worldAccess = IrisToolbelt.access(event.getWorld());
         if (worldAccess == null) {
-            NaturalWorldGen.debug(this.getClass().getName() + " passed it off to vanilla because could not get IrisAccess for this world");
-            NaturalWorldGen.reportError(new NullPointerException(event.getWorld().getName() + " could not be accessed despite being an NaturalWorldGen world"));
+            NaturalGenerator.debug(this.getClass().getName() + " passed it off to vanilla because could not get IrisAccess for this world");
+            NaturalGenerator.reportError(new NullPointerException(event.getWorld().getName() + " could not be accessed despite being an NaturalWorldGen world"));
             return;
         }
 
         Engine engine = worldAccess.getEngine();
 
         if (engine == null) {
-            NaturalWorldGen.debug(this.getClass().getName() + " passed it off to vanilla because could not get Engine for this world");
-            NaturalWorldGen.reportError(new NullPointerException(event.getWorld().getName() + " could not be accessed despite being an NaturalWorldGen world"));
+            NaturalGenerator.debug(this.getClass().getName() + " passed it off to vanilla because could not get Engine for this world");
+            NaturalGenerator.reportError(new NullPointerException(event.getWorld().getName() + " could not be accessed despite being an NaturalWorldGen world"));
             return;
         }
 
         IrisDimension dimension = engine.getDimension();
 
         if (dimension == null) {
-            NaturalWorldGen.debug(this.getClass().getName() + " passed it off to vanilla because could not get Dimension for this world");
-            NaturalWorldGen.reportError(new NullPointerException(event.getWorld().getName() + " could not be accessed despite being an NaturalWorldGen world"));
+            NaturalGenerator.debug(this.getClass().getName() + " passed it off to vanilla because could not get Dimension for this world");
+            NaturalGenerator.reportError(new NullPointerException(event.getWorld().getName() + " could not be accessed despite being an NaturalWorldGen world"));
             return;
         }
 
         if (!dimension.getTreeSettings().isEnabled()) {
-            NaturalWorldGen.debug(this.getClass().getName() + " cancelled because tree overrides are disabled");
+            NaturalGenerator.debug(this.getClass().getName() + " cancelled because tree overrides are disabled");
             return;
         }
 
         BlockData first = event.getLocation().getBlock().getBlockData().clone();
         Cuboid saplingPlane = getSaplings(event.getLocation(), blockData -> blockData instanceof Sapling && blockData.getMaterial().equals(first.getMaterial()), event.getWorld());
 
-        NaturalWorldGen.debug("Sapling grew @ " + event.getLocation() + " for " + event.getSpecies().name() + " usedBoneMeal is " + event.isFromBonemeal());
-        NaturalWorldGen.debug("Sapling plane is: " + saplingPlane.getSizeX() + " by " + saplingPlane.getSizeZ());
+        NaturalGenerator.debug("Sapling grew @ " + event.getLocation() + " for " + event.getSpecies().name() + " usedBoneMeal is " + event.isFromBonemeal());
+        NaturalGenerator.debug("Sapling plane is: " + saplingPlane.getSizeX() + " by " + saplingPlane.getSizeZ());
         IrisObjectPlacement placement = getObjectPlacement(worldAccess, event.getLocation(), event.getSpecies(), new IrisTreeSize(1, 1));
 
         if (placement == null) {
-            NaturalWorldGen.debug(this.getClass().getName() + " had options but did not manage to find objectPlacements for them");
+            NaturalGenerator.debug(this.getClass().getName() + " had options but did not manage to find objectPlacements for them");
             return;
         }
 
@@ -234,7 +234,7 @@ public class TreeSVC implements IrisService {
 
                     if (d instanceof IrisCustomData data) {
                         block.setBlockData(data.getBase(), false);
-                        NaturalWorldGen.service(ExternalDataSVC.class).processUpdate(engine, block, data.getCustom());
+                        NaturalGenerator.service(ExternalDataSVC.class).processUpdate(engine, block, data.getCustom());
                     } else block.setBlockData(d, false);
                 }
             }
@@ -311,8 +311,8 @@ public class TreeSVC implements IrisService {
             b.min(blockPosition);
         }
 
-        NaturalWorldGen.debug("Blocks: " + blockPositions.size());
-        NaturalWorldGen.debug("Min: " + a + " Max: " + b);
+        NaturalGenerator.debug("Blocks: " + blockPositions.size());
+        NaturalGenerator.debug("Min: " + a + " Max: " + b);
 
         // Create a cuboid with the size calculated before
         Cuboid cuboid = new Cuboid(a.toBlock(world).getLocation(), b.toBlock(world).getLocation());

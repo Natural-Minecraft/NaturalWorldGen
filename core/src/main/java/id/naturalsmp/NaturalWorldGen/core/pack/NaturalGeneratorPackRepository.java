@@ -18,7 +18,7 @@
 
 package id.naturalsmp.NaturalWorldGen.core.pack;
 
-import id.naturalsmp.NaturalWorldGen.NaturalWorldGen;
+import id.naturalsmp.NaturalWorldGen.NaturalGenerator;
 import id.naturalsmp.NaturalWorldGen.core.service.StudioSVC;
 import id.naturalsmp.NaturalWorldGen.util.format.Form;
 import id.naturalsmp.NaturalWorldGen.util.plugin.NaturalDevSender;
@@ -113,8 +113,8 @@ public class IrisPackRepository {
         File pack = NaturalGenerator.instance.getDataFolderNoCreate(StudioSVC.WORKSPACE_NAME, getRepo());
 
         if (!pack.exists()) {
-            File dl = new File(NaturalWorldGen.getTemp(), "dltk-" + UUID.randomUUID() + ".zip");
-            File work = new File(NaturalWorldGen.getTemp(), "extk-" + UUID.randomUUID());
+            File dl = new File(NaturalGenerator.getTemp(), "dltk-" + UUID.randomUUID() + ".zip");
+            File work = new File(NaturalGenerator.getTemp(), "extk-" + UUID.randomUUID());
             new JobCollection(Form.capitalize(getRepo()),
                     new DownloadJob(toURL(), pack),
                     new SingleJob("Extracting", () -> ZipUtil.unpack(dl, work)),

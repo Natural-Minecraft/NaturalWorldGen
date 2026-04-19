@@ -18,7 +18,7 @@
 
 package id.naturalsmp.NaturalWorldGen.core.edit;
 
-import id.naturalsmp.NaturalWorldGen.NaturalWorldGen;
+import id.naturalsmp.NaturalWorldGen.NaturalGenerator;
 import id.naturalsmp.NaturalWorldGen.core.tools.IrisToolbelt;
 import id.naturalsmp.NaturalWorldGen.engine.framework.Engine;
 import id.naturalsmp.NaturalWorldGen.util.collection.KList;
@@ -86,7 +86,7 @@ public class DustRevealer {
                     is(new BlockPosition(block.getX() + 1, block.getY() - 1, block.getZ() - 1));
                     is(new BlockPosition(block.getX() + 1, block.getY() - 1, block.getZ() + 1));
                 } catch (Throwable e) {
-                    NaturalWorldGen.reportError(e);
+                    NaturalGenerator.reportError(e);
                     e.printStackTrace();
                 }
             });

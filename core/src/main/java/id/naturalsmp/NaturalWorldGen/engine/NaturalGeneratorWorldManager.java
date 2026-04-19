@@ -18,7 +18,7 @@
 
 package id.naturalsmp.NaturalWorldGen.engine;
 
-import id.naturalsmp.NaturalWorldGen.NaturalWorldGen;
+import id.naturalsmp.NaturalWorldGen.NaturalGenerator;
 import id.naturalsmp.NaturalWorldGen.core.IrisSettings;
 import id.naturalsmp.NaturalWorldGen.core.link.Identifier;
 import id.naturalsmp.NaturalWorldGen.core.loader.IrisData;
@@ -253,14 +253,14 @@ public class IrisWorldManager extends EngineAssignedWorldManager {
         }
 
         if (!getEngine().getWorld().hasRealWorld()) {
-            NaturalWorldGen.debug("Can't spawn. No real world");
+            NaturalGenerator.debug("Can't spawn. No real world");
             J.sleep(5000);
             return false;
         }
 
         double epx = getEntitySaturation();
         if (epx > IrisSettings.get().getWorld().getTargetSpawnEntitiesPerChunk()) {
-            NaturalWorldGen.debug("Can't spawn. The entity per chunk ratio is at " + Form.pc(epx, 2) + " > 100% (total entities " + entityCount + ")");
+            NaturalGenerator.debug("Can't spawn. The entity per chunk ratio is at " + Form.pc(epx, 2) + " > 100% (total entities " + entityCount + ")");
             J.sleep(5000);
             return false;
         }
@@ -278,7 +278,7 @@ public class IrisWorldManager extends EngineAssignedWorldManager {
         Chunk[] cc = getEngine().getWorld().realWorld().getLoadedChunks();
         while (spawnBuffer-- > 0) {
             if (cc.length == 0) {
-                NaturalWorldGen.debug("Can't spawn. No chunks!");
+                NaturalGenerator.debug("Can't spawn. No chunks!");
                 return false;
             }
 
@@ -443,19 +443,19 @@ public class IrisWorldManager extends EngineAssignedWorldManager {
             //INMS.get().injectBiomesFromMantle(e, getMantle());
 
             if (!IrisSettings.get().getGenerator().earlyCustomBlocks) return;
-            NaturalWorldGen.tickets.addTicket(e);
+            NaturalGenerator.tickets.addTicket(e);
             J.s(() -> {
                 var chunk = getMantle().getChunk(e).use();
                 int minY = getTarget().getWorld().minHeight();
                 try {
                     chunk.raiseFlagUnchecked(MantleFlag.CUSTOM, () -> {
                         chunk.iterate(Identifier.class, (x, y, z, v) -> {
-                            NaturalWorldGen.service(ExternalDataSVC.class).processUpdate(getEngine(), e.getBlock(x & 15, y + minY, z & 15), v);
+                            NaturalGenerator.service(ExternalDataSVC.class).processUpdate(getEngine(), e.getBlock(x & 15, y + minY, z & 15), v);
                         });
                     });
                 } finally {
                     chunk.release();
-                    NaturalWorldGen.tickets.removeTicket(e);
+                    NaturalGenerator.tickets.removeTicket(e);
                 }
             }, RNG.r.i(20, 60));
         }
@@ -583,7 +583,7 @@ public class IrisWorldManager extends EngineAssignedWorldManager {
             for (String i : mark.getSpawners()) {
                 IrisSpawner m = getData().getSpawnerLoader().load(i);
                 if (m == null) {
-                    NaturalWorldGen.error("Cannot load spawner: " + i + " for marker on " + getName());
+                    NaturalGenerator.error("Cannot load spawner: " + i + " for marker on " + getName());
                     continue;
                 }
                 m.setReferenceMarker(mark);

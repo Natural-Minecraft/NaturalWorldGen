@@ -21,7 +21,7 @@ package id.naturalsmp.NaturalWorldGen.core.commands;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import id.naturalsmp.NaturalWorldGen.NaturalWorldGen;
+import id.naturalsmp.NaturalWorldGen.NaturalGenerator;
 import id.naturalsmp.NaturalWorldGen.core.ServerConfigurator;
 import id.naturalsmp.NaturalWorldGen.core.loader.IrisData;
 import id.naturalsmp.NaturalWorldGen.core.nms.INMS;
@@ -84,7 +84,7 @@ public class CommandDeveloper implements DecreeExecutor {
 
     @Decree(description = "Get Loaded TectonicPlates Count", origin = DecreeOrigin.BOTH, sync = true)
     public void EngineStatus() {
-        NaturalWorldGen.service(IrisEngineSVC.class)
+        NaturalGenerator.service(IrisEngineSVC.class)
                 .engineStatus(sender());
     }
 
@@ -92,7 +92,7 @@ public class CommandDeveloper implements DecreeExecutor {
     public void Sentry() {
         Engine engine = engine();
         if (engine != null) IrisContext.getOr(engine);
-        NaturalWorldGen.reportError(new Exception("This is a test"));
+        NaturalGenerator.reportError(new Exception("This is a test"));
     }
 
     @Decree(description = "Dev cmd to fix all the broken objects caused by faulty shrinkwarp")
@@ -145,7 +145,7 @@ public class CommandDeveloper implements DecreeExecutor {
                                     }
                                     completeWork();
                                 } catch (IOException e) {
-                                    NaturalWorldGen.error("Failed to write object " + obj.getLoadKey());
+                                    NaturalGenerator.error("Failed to write object " + obj.getLoadKey());
                                     e.printStackTrace();
                                     return new IrisPosition();
                                 }
@@ -160,7 +160,7 @@ public class CommandDeveloper implements DecreeExecutor {
                             try {
                                 IO.writeAll(piece.getLoadFile(), dm.getGson().toJson(piece));
                             } catch (IOException e) {
-                                NaturalWorldGen.error("Failed to write jigsaw piece " + piece.getLoadKey());
+                                NaturalGenerator.error("Failed to write jigsaw piece " + piece.getLoadKey());
                                 e.printStackTrace();
                             }
                         });
@@ -185,7 +185,7 @@ public class CommandDeveloper implements DecreeExecutor {
                                 completeWork();
                                 changed.incrementAndGet();
                             } catch (IOException e) {
-                                NaturalWorldGen.error("Failed to write object " + obj.getLoadKey());
+                                NaturalGenerator.error("Failed to write object " + obj.getLoadKey());
                                 e.printStackTrace();
                             }
                         });
@@ -228,7 +228,7 @@ public class CommandDeveloper implements DecreeExecutor {
             }
         } else Matter.read(section);
         if (!TectonicPlate.hasError())
-            NaturalWorldGen.info("Read " + (plate ? base : section).length() + " bytes from " + (plate ? base : section).getAbsolutePath());
+            NaturalGenerator.info("Read " + (plate ? base : section).length() + " bytes from " + (plate ? base : section).getAbsolutePath());
     }
 
     private void extractSection(File source, File target, long offset, int length) throws IOException {
@@ -270,7 +270,7 @@ public class CommandDeveloper implements DecreeExecutor {
             }
 
             pw.close();
-            NaturalWorldGen.info("DUMPED! See " + fi.getAbsolutePath());
+            NaturalGenerator.info("DUMPED! See " + fi.getAbsolutePath());
         } catch (Throwable e) {
             e.printStackTrace();
         }
@@ -456,7 +456,7 @@ public class CommandDeveloper implements DecreeExecutor {
                 }
             }
         }
-        NaturalWorldGen.info(C.IRIS + "Chunks Unloaded: " + chunksUnloaded);
+        NaturalGenerator.info(C.IRIS + "Chunks Unloaded: " + chunksUnloaded);
 
     }
 
@@ -482,10 +482,10 @@ public class CommandDeveloper implements DecreeExecutor {
         try {
             Enumeration<NetworkInterface> networkInterfaces = NetworkInterface.getNetworkInterfaces();
             for (NetworkInterface ni : Collections.list(networkInterfaces)) {
-                NaturalWorldGen.info("Display Name: %s", ni.getDisplayName());
+                NaturalGenerator.info("Display Name: %s", ni.getDisplayName());
                 Enumeration<InetAddress> inetAddresses = ni.getInetAddresses();
                 for (InetAddress ia : Collections.list(inetAddresses)) {
-                    NaturalWorldGen.info("IP: %s", ia.getHostAddress());
+                    NaturalGenerator.info("IP: %s", ia.getHostAddress());
                 }
             }
         } catch (Exception e) {
@@ -550,7 +550,7 @@ public class CommandDeveloper implements DecreeExecutor {
             });
             service.shutdown();
 		} else {
-            NaturalWorldGen.info(C.RED + "Engine is null!");
+            NaturalGenerator.info(C.RED + "Engine is null!");
         }
     }
 

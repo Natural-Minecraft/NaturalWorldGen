@@ -19,7 +19,7 @@
 package id.naturalsmp.NaturalWorldGen.util.json;
 
 
-import id.naturalsmp.NaturalWorldGen.NaturalWorldGen;
+import id.naturalsmp.NaturalWorldGen.NaturalGenerator;
 
 import java.util.Iterator;
 
@@ -324,14 +324,14 @@ public class XML {
                 }
             }
         } catch (Exception ignore) {
-            NaturalWorldGen.reportError(ignore);
+            NaturalGenerator.reportError(ignore);
             try {
                 Double value = Double.valueOf(string);
                 if (value.toString().equals(string)) {
                     return value;
                 }
             } catch (Exception e) {
-                NaturalWorldGen.reportError(e);
+                NaturalGenerator.reportError(e);
             }
         }
         return string;

@@ -18,7 +18,7 @@
 
 package id.naturalsmp.NaturalWorldGen.core.commands;
 
-import id.naturalsmp.NaturalWorldGen.NaturalWorldGen;
+import id.naturalsmp.NaturalWorldGen.NaturalGenerator;
 import id.naturalsmp.NaturalWorldGen.core.gui.PregeneratorJob;
 import id.naturalsmp.NaturalWorldGen.core.pregenerator.PregenTask;
 import id.naturalsmp.NaturalWorldGen.core.tools.IrisToolbelt;
@@ -58,10 +58,10 @@ public class CommandPregen implements DecreeExecutor {
                     .build(), world);
             String msg = C.GREEN + "Pregen started in " + C.GOLD + world.getName() + C.GREEN + " of " + C.GOLD + (radius * 2) + C.GREEN + " by " + C.GOLD + (radius * 2) + C.GREEN + " blocks from " + C.GOLD + center.getX() + "," + center.getZ();
             sender().sendMessage(msg);
-            NaturalWorldGen.info(msg);
+            NaturalGenerator.info(msg);
         } catch (Throwable e) {
             sender().sendMessage(C.RED + "Epic fail. See console.");
-            NaturalWorldGen.reportError(e);
+            NaturalGenerator.reportError(e);
             e.printStackTrace();
         }
     }
@@ -69,7 +69,7 @@ public class CommandPregen implements DecreeExecutor {
     @Decree(description = "Stop the active pregeneration task", aliases = "x")
     public void stop() {
         if (PregeneratorJob.shutdownInstance()) {
-            NaturalWorldGen.info( C.BLUE + "Finishing up mca region...");
+            NaturalGenerator.info( C.BLUE + "Finishing up mca region...");
         } else {
             sender().sendMessage(C.YELLOW + "No active pregeneration tasks to stop");
         }

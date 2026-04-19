@@ -18,7 +18,7 @@
 
 package id.naturalsmp.NaturalWorldGen.engine.platform;
 
-import id.naturalsmp.NaturalWorldGen.NaturalWorldGen;
+import id.naturalsmp.NaturalWorldGen.NaturalGenerator;
 import id.naturalsmp.NaturalWorldGen.core.IrisSettings;
 import id.naturalsmp.NaturalWorldGen.core.IrisWorlds;
 import id.naturalsmp.NaturalWorldGen.core.loader.IrisData;
@@ -113,10 +113,10 @@ public class BukkitChunkGenerator extends ChunkGenerator implements PlatformChun
         world.setRawWorldSeed(event.getWorld().getSeed());
         if (initialize(event.getWorld())) return;
 
-        NaturalWorldGen.warn("Failed to get Engine for " + event.getWorld().getName() + " re-trying...");
+        NaturalGenerator.warn("Failed to get Engine for " + event.getWorld().getName() + " re-trying...");
         J.s(() -> {
             if (!initialize(event.getWorld())) {
-                NaturalWorldGen.error("Failed to get Engine for " + event.getWorld().getName() + "!");
+                NaturalGenerator.error("Failed to get Engine for " + event.getWorld().getName() + "!");
             }
         }, 10);
     }
@@ -126,10 +126,10 @@ public class BukkitChunkGenerator extends ChunkGenerator implements PlatformChun
         if (engine == null) return false;
         try {
             INMS.get().inject(world.getSeed(), engine, world);
-            NaturalWorldGen.info("Injected NaturalWorldGen Biome Source into " + world.getName());
+            NaturalGenerator.info("Injected NaturalWorldGen Biome Source into " + world.getName());
         } catch (Throwable e) {
-            NaturalWorldGen.reportError(e);
-            NaturalWorldGen.error("Failed to inject biome source into " + world.getName());
+            NaturalGenerator.reportError(e);
+            NaturalGenerator.error("Failed to inject biome source into " + world.getName());
             e.printStackTrace();
         }
         spawnChunks.complete(INMS.get().getSpawnChunkCount(world));
@@ -171,23 +171,23 @@ public class BukkitChunkGenerator extends ChunkGenerator implements PlatformChun
             IrisDimension dimension = data.getDimensionLoader().load(dimensionKey);
 
             if (dimension == null) {
-                NaturalWorldGen.error("Oh No! There's no pack in " + data.getDataFolder().getPath() + " or... there's no dimension for the key " + dimensionKey);
+                NaturalGenerator.error("Oh No! There's no pack in " + data.getDataFolder().getPath() + " or... there's no dimension for the key " + dimensionKey);
                 IrisDimension test = IrisData.loadAnyDimension(dimensionKey, null);
 
                 if (test != null) {
-                    NaturalWorldGen.warn("Looks like " + dimensionKey + " exists in " + test.getLoadFile().getPath() + " ");
-                    test = NaturalWorldGen.service(StudioSVC.class).installInto(NaturalWorldGen.getSender(), dimensionKey, dataLocation);
-                    NaturalWorldGen.warn("Attempted to install into " + data.getDataFolder().getPath());
+                    NaturalGenerator.warn("Looks like " + dimensionKey + " exists in " + test.getLoadFile().getPath() + " ");
+                    test = NaturalGenerator.service(StudioSVC.class).installInto(NaturalGenerator.getSender(), dimensionKey, dataLocation);
+                    NaturalGenerator.warn("Attempted to install into " + data.getDataFolder().getPath());
 
                     if (test != null) {
                         NaturalWorldGen.success("Woo! Patched the Engine!");
                         dimension = test;
                     } else {
-                        NaturalWorldGen.error("Failed to patch dimension!");
+                        NaturalGenerator.error("Failed to patch dimension!");
                         throw new RuntimeException("Missing Dimension: " + dimensionKey);
                     }
                 } else {
-                    NaturalWorldGen.error("Nope, you don't have an installation containing " + dimensionKey + " try downloading it?");
+                    NaturalGenerator.error("Nope, you don't have an installation containing " + dimensionKey + " try downloading it?");
                     throw new RuntimeException("Missing Dimension: " + dimensionKey);
                 }
             }
@@ -207,7 +207,7 @@ public class BukkitChunkGenerator extends ChunkGenerator implements PlatformChun
 
             Chunk c = PaperLib.getChunkAtAsync(world, x, z)
                     .thenApply(d -> {
-                        NaturalWorldGen.tickets.addTicket(d);
+                        NaturalGenerator.tickets.addTicket(d);
 
                         for (Entity ee : d.getEntities()) {
                             if (ee instanceof Player) {
@@ -242,19 +242,19 @@ public class BukkitChunkGenerator extends ChunkGenerator implements PlatformChun
 
             CompletableFuture.allOf(futures.toArray(new CompletableFuture[0]))
                     .thenRunAsync(() -> {
-                        NaturalWorldGen.tickets.removeTicket(c);
+                        NaturalGenerator.tickets.removeTicket(c);
                         engine.getWorldManager().onChunkLoad(c, true);
                     }, syncExecutor)
                     .get();
-            NaturalWorldGen.debug("Regenerated " + x + " " + z);
+            NaturalGenerator.debug("Regenerated " + x + " " + z);
 
             loadLock.release();
         } catch (Throwable e) {
             loadLock.release();
-            NaturalWorldGen.error("======================================");
+            NaturalGenerator.error("======================================");
             e.printStackTrace();
             NaturalWorldGen.reportErrorChunk(x, z, e, "CHUNK");
-            NaturalWorldGen.error("======================================");
+            NaturalGenerator.error("======================================");
 
             ChunkData d = Bukkit.createChunkData(world);
 
@@ -342,7 +342,7 @@ public class BukkitChunkGenerator extends ChunkGenerator implements PlatformChun
                 r.run();
                 loadLock.release(LOAD_LOCKS);
             } catch (Throwable e) {
-                NaturalWorldGen.reportError(e);
+                NaturalGenerator.reportError(e);
             }
         });
     }
@@ -369,12 +369,12 @@ public class BukkitChunkGenerator extends ChunkGenerator implements PlatformChun
                 biomes.apply();
             }
 
-            NaturalWorldGen.debug("Generated " + x + " " + z);
+            NaturalGenerator.debug("Generated " + x + " " + z);
         } catch (Throwable e) {
-            NaturalWorldGen.error("======================================");
+            NaturalGenerator.error("======================================");
             e.printStackTrace();
             NaturalWorldGen.reportErrorChunk(x, z, e, "CHUNK");
-            NaturalWorldGen.error("======================================");
+            NaturalGenerator.error("======================================");
 
             for (int i = 0; i < 16; i++) {
                 for (int j = 0; j < 16; j++) {

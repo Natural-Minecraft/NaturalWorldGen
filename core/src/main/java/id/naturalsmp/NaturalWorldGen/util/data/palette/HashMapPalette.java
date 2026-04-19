@@ -18,7 +18,7 @@
 
 package id.naturalsmp.NaturalWorldGen.util.data.palette;
 
-import id.naturalsmp.NaturalWorldGen.NaturalWorldGen;
+import id.naturalsmp.NaturalWorldGen.NaturalGenerator;
 import id.naturalsmp.NaturalWorldGen.util.collection.KMap;
 
 import java.util.List;
@@ -45,9 +45,9 @@ public class HashMapPalette<T> implements Palette<T> {
             int newId = id++;
 
             if (newId >= 1 << this.bits) {
-                NaturalWorldGen.info(newId + " to...");
+                NaturalGenerator.info(newId + " to...");
                 newId = this.resizeHandler.onResize(this.bits + 1, var0);
-                NaturalWorldGen.info(newId + "..");
+                NaturalGenerator.info(newId + "..");
             }
 
             return newId;

@@ -18,7 +18,7 @@
 
 package id.naturalsmp.NaturalWorldGen.engine.object;
 
-import id.naturalsmp.NaturalWorldGen.NaturalWorldGen;
+import id.naturalsmp.NaturalWorldGen.NaturalGenerator;
 import id.naturalsmp.NaturalWorldGen.core.loader.IrisData;
 import id.naturalsmp.NaturalWorldGen.core.loader.IrisRegistrant;
 import id.naturalsmp.NaturalWorldGen.engine.data.cache.AtomicCache;
@@ -133,7 +133,7 @@ public class IrisObject extends IrisRegistrant {
         FileInputStream in = new FileInputStream(file);
         DataInputStream din = new DataInputStream(in);
         BlockVector bv = new BlockVector(din.readInt(), din.readInt(), din.readInt());
-        NaturalWorldGen.later(din::close);
+        NaturalGenerator.later(din::close);
         return bv;
     }
 
@@ -171,7 +171,7 @@ public class IrisObject extends IrisRegistrant {
         AtomicInteger applied = new AtomicInteger();
         if (blocks.isEmpty()) {
             writeLock.unlock();
-            NaturalWorldGen.warn("Cannot Smart Bore " + getLoadKey() + " because it has 0 blocks in it.");
+            NaturalGenerator.warn("Cannot Smart Bore " + getLoadKey() + " because it has 0 blocks in it.");
             smartBored = true;
             return;
         }
@@ -280,7 +280,7 @@ public class IrisObject extends IrisRegistrant {
         burst.complete();
         smartBored = true;
         writeLock.unlock();
-        NaturalWorldGen.debug("Smart Bore: " + getLoadKey() + " in " + Form.duration(p.getMilliseconds(), 2) + " (" + Form.f(applied.get()) + ")");
+        NaturalGenerator.debug("Smart Bore: " + getLoadKey() + " in " + Form.duration(p.getMilliseconds(), 2) + " (" + Form.f(applied.get()) + ")");
     }
 
     public synchronized IrisObject copy() {
@@ -318,7 +318,7 @@ public class IrisObject extends IrisRegistrant {
                 states.put(new Vector3i(din.readShort(), din.readShort(), din.readShort()), TileData.read(din));
             }
         } catch (Throwable e) {
-            NaturalWorldGen.reportError(e);
+            NaturalGenerator.reportError(e);
         }
     }
 
@@ -479,7 +479,7 @@ public class IrisObject extends IrisRegistrant {
             read(fin);
         } catch (Throwable e) {
             if (!(e instanceof HeaderException))
-                NaturalWorldGen.reportError(e);
+                NaturalGenerator.reportError(e);
             try (var fin = new BufferedInputStream(new FileInputStream(file))) {
                 readLegacy(fin);
             }
@@ -592,7 +592,7 @@ public class IrisObject extends IrisRegistrant {
             blocks.put(v, data);
             TileData state = TileData.getTileState(block, legacy);
             if (state != null) {
-                NaturalWorldGen.debug("Saved State " + v);
+                NaturalGenerator.debug("Saved State " + v);
                 states.put(v, state);
             }
         }
@@ -861,7 +861,7 @@ public class IrisObject extends IrisRegistrant {
                         String key = o.getLoadKey();
                         if (key != null) {
                             if (config.getForbiddenCollisions().contains(key) && !config.getAllowedCollisions().contains(key)) {
-                                // NaturalWorldGen.debug("%s collides with %s (%s / %s / %s)", getLoadKey(), key, i, j, k);
+                                // NaturalGenerator.debug("%s collides with %s (%s / %s / %s)", getLoadKey(), key, i, j, k);
                                 return -1;
                             }
                         }
@@ -936,13 +936,13 @@ public class IrisObject extends IrisRegistrant {
                     d = entry.getValue();
                     tile = states.get(g);
                 } catch (Throwable e) {
-                    NaturalWorldGen.reportError(e);
-                    NaturalWorldGen.warn("Failed to read block node " + g.getBlockX() + "," + g.getBlockY() + "," + g.getBlockZ() + " in object " + getLoadKey() + " (cme)");
+                    NaturalGenerator.reportError(e);
+                    NaturalGenerator.warn("Failed to read block node " + g.getBlockX() + "," + g.getBlockY() + "," + g.getBlockZ() + " in object " + getLoadKey() + " (cme)");
                     d = AIR;
                 }
 
                 if (d == null) {
-                    NaturalWorldGen.warn("Failed to read block node " + g.getBlockX() + "," + g.getBlockY() + "," + g.getBlockZ() + " in object " + getLoadKey() + " (null)");
+                    NaturalGenerator.warn("Failed to read block node " + g.getBlockX() + "," + g.getBlockY() + "," + g.getBlockZ() + " in object " + getLoadKey() + " (null)");
                     d = AIR;
                 }
 
@@ -1045,7 +1045,7 @@ public class IrisObject extends IrisRegistrant {
             }
         } catch (Throwable e) {
             e.printStackTrace();
-            NaturalWorldGen.reportError(e);
+            NaturalGenerator.reportError(e);
         }
         readLock.unlock();
 
@@ -1059,13 +1059,13 @@ public class IrisObject extends IrisRegistrant {
                     try {
                         d = blocks.get(g);
                     } catch (Throwable e) {
-                        NaturalWorldGen.reportError(e);
-                        NaturalWorldGen.warn("Failed to read block node " + g.getBlockX() + "," + g.getBlockY() + "," + g.getBlockZ() + " in object " + getLoadKey() + " (stilt cme)");
+                        NaturalGenerator.reportError(e);
+                        NaturalGenerator.warn("Failed to read block node " + g.getBlockX() + "," + g.getBlockY() + "," + g.getBlockZ() + " in object " + getLoadKey() + " (stilt cme)");
                         d = AIR;
                     }
 
                     if (d == null) {
-                        NaturalWorldGen.warn("Failed to read block node " + g.getBlockX() + "," + g.getBlockY() + "," + g.getBlockZ() + " in object " + getLoadKey() + " (stilt null)");
+                        NaturalGenerator.warn("Failed to read block node " + g.getBlockX() + "," + g.getBlockY() + "," + g.getBlockZ() + " in object " + getLoadKey() + " (stilt null)");
                         d = AIR;
                     }
                 } else
@@ -1191,7 +1191,7 @@ public class IrisObject extends IrisRegistrant {
             b.setBlockData(Objects.requireNonNull(entry.getValue()), false);
 
             if (states.containsKey(i)) {
-                NaturalWorldGen.info(Objects.requireNonNull(states.get(i)).toString());
+                NaturalGenerator.info(Objects.requireNonNull(states.get(i)).toString());
                 Objects.requireNonNull(states.get(i)).toBukkitTry(b);
             }
         }

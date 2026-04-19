@@ -18,7 +18,7 @@
 
 package id.naturalsmp.NaturalWorldGen.util.mantle;
 
-import id.naturalsmp.NaturalWorldGen.NaturalWorldGen;
+import id.naturalsmp.NaturalWorldGen.NaturalGenerator;
 import id.naturalsmp.NaturalWorldGen.engine.EnginePanic;
 import id.naturalsmp.NaturalWorldGen.engine.data.cache.Cache;
 import id.naturalsmp.NaturalWorldGen.util.data.Varint;
@@ -86,10 +86,10 @@ public class TectonicPlate {
                 EnginePanic.saveLast();
             } catch (Throwable e) {
                 long end = start + size;
-                NaturalWorldGen.error("Failed to read chunk, creating a new chunk instead.");
+                NaturalGenerator.error("Failed to read chunk, creating a new chunk instead.");
                 NaturalWorldGen.addPanic("read.byte.range", start + " " + end);
                 NaturalWorldGen.addPanic("read.byte.current", din.count() + "");
-                NaturalWorldGen.reportError(e);
+                NaturalGenerator.reportError(e);
                 e.printStackTrace();
                 NaturalWorldGen.panic();
 

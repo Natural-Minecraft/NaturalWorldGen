@@ -1,6 +1,6 @@
 package id.naturalsmp.NaturalWorldGen.core.events;
 
-import id.naturalsmp.NaturalWorldGen.NaturalWorldGen;
+import id.naturalsmp.NaturalWorldGen.NaturalGenerator;
 import id.naturalsmp.NaturalWorldGen.engine.framework.Engine;
 import id.naturalsmp.NaturalWorldGen.engine.object.InventorySlotType;
 import id.naturalsmp.NaturalWorldGen.engine.object.IrisLootTable;
@@ -103,7 +103,7 @@ public class IrisLootEvent extends Event {
         LootContext context = new LootContext.Builder(loc).build();
         LootGenerateEvent event = new LootGenerateEvent(world, null, holder, EMPTY, context, loot, true);
         if (!Bukkit.isPrimaryThread()) {
-            NaturalWorldGen.warn("LootGenerateEvent was not called on the main thread, please report this issue.");
+            NaturalGenerator.warn("LootGenerateEvent was not called on the main thread, please report this issue.");
             Thread.dumpStack();
             J.sfut(() -> Bukkit.getPluginManager().callEvent(event)).join();
         } else Bukkit.getPluginManager().callEvent(event);

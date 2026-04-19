@@ -18,7 +18,7 @@
 
 package id.naturalsmp.NaturalWorldGen.util.inventorygui;
 
-import id.naturalsmp.NaturalWorldGen.NaturalWorldGen;
+import id.naturalsmp.NaturalWorldGen.NaturalGenerator;
 import id.naturalsmp.NaturalWorldGen.util.collection.KList;
 import id.naturalsmp.NaturalWorldGen.util.data.MaterialBlock;
 import id.naturalsmp.NaturalWorldGen.util.scheduling.Callback;
@@ -164,10 +164,10 @@ public class UIElement implements Element {
                 }
             }
         } catch (NullPointerException e) {
-            NaturalWorldGen.reportError(e);
+            NaturalGenerator.reportError(e);
 
         } catch (Throwable e) {
-            NaturalWorldGen.reportError(e);
+            NaturalGenerator.reportError(e);
             e.printStackTrace();
         }
 
@@ -218,7 +218,7 @@ public class UIElement implements Element {
             is.setItemMeta(im);
             return is;
         } catch (Throwable e) {
-            NaturalWorldGen.reportError(e);
+            NaturalGenerator.reportError(e);
             e.printStackTrace();
         }
 

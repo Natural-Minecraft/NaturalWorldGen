@@ -18,7 +18,7 @@
 
 package id.naturalsmp.NaturalWorldGen.util.nbt.mca;
 
-import id.naturalsmp.NaturalWorldGen.NaturalWorldGen;
+import id.naturalsmp.NaturalWorldGen.NaturalGenerator;
 import id.naturalsmp.NaturalWorldGen.core.nms.INMS;
 import id.naturalsmp.NaturalWorldGen.engine.data.cache.Cache;
 import id.naturalsmp.NaturalWorldGen.util.collection.KMap;
@@ -141,7 +141,7 @@ public class NBTWorld {
         saveQueue.shutdown();
         try {
             while (!saveQueue.awaitTermination(3, TimeUnit.SECONDS)) {
-                NaturalWorldGen.info("Still Waiting to save MCA Files...");
+                NaturalGenerator.info("Still Waiting to save MCA Files...");
             }
         } catch (InterruptedException e) {
             e.printStackTrace();
@@ -183,7 +183,7 @@ public class NBTWorld {
             }
         }
 
-        NaturalWorldGen.debug("Regions: " + C.GOLD + loadedRegions.size() + C.LIGHT_PURPLE);
+        NaturalGenerator.debug("Regions: " + C.GOLD + loadedRegions.size() + C.LIGHT_PURPLE);
     }
 
     public void queueSave() {
@@ -194,7 +194,7 @@ public class NBTWorld {
         long key = Cache.key(x, z);
         loadedRegions.remove(key);
         lastUse.remove(key);
-        NaturalWorldGen.debug("Unloaded Region " + C.GOLD + x + " " + z);
+        NaturalGenerator.debug("Unloaded Region " + C.GOLD + x + " " + z);
     }
 
     public void saveRegion(int x, int z) {
@@ -202,9 +202,9 @@ public class NBTWorld {
         MCAFile mca = getMCAOrNull(x, z);
         try {
             MCAUtil.write(mca, getRegionFile(x, z), true);
-            NaturalWorldGen.debug("Saved Region " + C.GOLD + x + " " + z);
+            NaturalGenerator.debug("Saved Region " + C.GOLD + x + " " + z);
         } catch (IOException e) {
-            NaturalWorldGen.error("Failed to save region " + getRegionFile(x, z).getPath());
+            NaturalGenerator.error("Failed to save region " + getRegionFile(x, z).getPath());
             e.printStackTrace();
         }
     }
@@ -212,9 +212,9 @@ public class NBTWorld {
     public void saveRegion(int x, int z, MCAFile mca) {
         try {
             MCAUtil.write(mca, getRegionFile(x, z), true);
-            NaturalWorldGen.debug("Saved Region " + C.GOLD + x + " " + z);
+            NaturalGenerator.debug("Saved Region " + C.GOLD + x + " " + z);
         } catch (IOException e) {
-            NaturalWorldGen.error("Failed to save region " + getRegionFile(x, z).getPath());
+            NaturalGenerator.error("Failed to save region " + getRegionFile(x, z).getPath());
             e.printStackTrace();
         }
     }
@@ -237,7 +237,7 @@ public class NBTWorld {
 
             return getBlockData(tag);
         } catch (Throwable e) {
-            NaturalWorldGen.reportError(e);
+            NaturalGenerator.reportError(e);
 
         }
         return AIR;

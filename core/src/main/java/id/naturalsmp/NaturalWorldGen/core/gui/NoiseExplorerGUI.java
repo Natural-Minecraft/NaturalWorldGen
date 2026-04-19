@@ -18,7 +18,7 @@
 
 package id.naturalsmp.NaturalWorldGen.core.gui;
 
-import id.naturalsmp.NaturalWorldGen.NaturalWorldGen;
+import id.naturalsmp.NaturalWorldGen.NaturalGenerator;
 import id.naturalsmp.NaturalWorldGen.core.IrisSettings;
 import id.naturalsmp.NaturalWorldGen.core.events.IrisEngineHotloadEvent;
 import id.naturalsmp.NaturalWorldGen.engine.object.NoiseStyle;
@@ -123,7 +123,7 @@ public class NoiseExplorerGUI extends JPanel implements MouseWheelListener, List
             try {
                 frame.setIconImage(ImageIO.read(file));
             } catch (IOException e) {
-                NaturalWorldGen.reportError(e);
+                NaturalGenerator.reportError(e);
             }
         }
         frame.setSize(1440, 820);
@@ -157,7 +157,7 @@ public class NoiseExplorerGUI extends JPanel implements MouseWheelListener, List
             try {
                 frame.setIconImage(ImageIO.read(file));
             } catch (IOException e) {
-                NaturalWorldGen.reportError(e);
+                NaturalGenerator.reportError(e);
             }
         }
         frame.setSize(1440, 820);

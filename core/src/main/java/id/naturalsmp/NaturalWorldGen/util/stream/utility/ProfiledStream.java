@@ -18,7 +18,7 @@
 
 package id.naturalsmp.NaturalWorldGen.util.stream.utility;
 
-import id.naturalsmp.NaturalWorldGen.NaturalWorldGen;
+import id.naturalsmp.NaturalWorldGen.NaturalGenerator;
 import id.naturalsmp.NaturalWorldGen.util.collection.KList;
 import id.naturalsmp.NaturalWorldGen.util.format.Form;
 import id.naturalsmp.NaturalWorldGen.util.math.RollingSequence;
@@ -133,7 +133,7 @@ public class ProfiledStream<T> extends BasicStream<T> {
         try {
             metrics.put(p.getMilliseconds());
         } catch (Throwable e) {
-            NaturalWorldGen.reportError(e);
+            NaturalGenerator.reportError(e);
         }
 
         return t;
@@ -146,7 +146,7 @@ public class ProfiledStream<T> extends BasicStream<T> {
         try {
             metrics.put(p.getMilliseconds());
         } catch (Throwable e) {
-            NaturalWorldGen.reportError(e);
+            NaturalGenerator.reportError(e);
         }
 
         return t;

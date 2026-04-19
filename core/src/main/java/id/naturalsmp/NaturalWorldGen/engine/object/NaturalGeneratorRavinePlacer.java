@@ -18,7 +18,7 @@
 
 package id.naturalsmp.NaturalWorldGen.engine.object;
 
-import id.naturalsmp.NaturalWorldGen.NaturalWorldGen;
+import id.naturalsmp.NaturalWorldGen.NaturalGenerator;
 import id.naturalsmp.NaturalWorldGen.core.loader.IrisData;
 import id.naturalsmp.NaturalWorldGen.engine.data.cache.AtomicCache;
 import id.naturalsmp.NaturalWorldGen.engine.framework.Engine;
@@ -76,7 +76,7 @@ public class IrisRavinePlacer implements IRare {
         IrisRavine ravine = getRealRavine(data);
 
         if (ravine == null) {
-            NaturalWorldGen.warn("Unable to locate ravine for generation!");
+            NaturalGenerator.warn("Unable to locate ravine for generation!");
             fail.set(true);
             return;
         }

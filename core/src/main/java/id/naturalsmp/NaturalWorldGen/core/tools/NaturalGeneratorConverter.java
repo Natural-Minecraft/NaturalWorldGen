@@ -1,6 +1,6 @@
 package id.naturalsmp.NaturalWorldGen.core.tools;
 
-import id.naturalsmp.NaturalWorldGen.NaturalWorldGen;
+import id.naturalsmp.NaturalWorldGen.NaturalGenerator;
 import id.naturalsmp.NaturalWorldGen.engine.object.*;
 import id.naturalsmp.NaturalWorldGen.util.data.Varint;
 import id.naturalsmp.NaturalWorldGen.util.format.C;
@@ -45,7 +45,7 @@ public class IrisConverter {
                     try {
                         tag = NBTUtil.read(schem);
                     } catch (IOException e) {
-                        NaturalWorldGen.info(C.RED + "Failed to read: " + schem.getName());
+                        NaturalGenerator.info(C.RED + "Failed to read: " + schem.getName());
                         throw new RuntimeException(e);
                     }
                     CompoundTag compound = (CompoundTag) tag.getTag();
@@ -62,8 +62,8 @@ public class IrisConverter {
                     AtomicInteger v = new AtomicInteger(0);
                     if (mv > 2_000_000) {
                         largeObject = true;
-                        NaturalWorldGen.info(C.GRAY + "Converting.. " + schem.getName() + " -> " + schem.getName().replace(".schem", ".iob"));
-                        NaturalWorldGen.info(C.GRAY + "- It may take a while");
+                        NaturalGenerator.info(C.GRAY + "Converting.. " + schem.getName() + " -> " + schem.getName().replace(".schem", ".iob"));
+                        NaturalGenerator.info(C.GRAY + "- It may take a while");
                         if (sender.isPlayer()) {
                             i = J.ar(() -> {
                                 sender.sendProgress((double) v.get() / mv, "Converting");
@@ -113,9 +113,9 @@ public class IrisConverter {
                             }
                         }
                         if (largeObject) {
-                            NaturalWorldGen.info(C.GRAY + "Converted " + schem.getName() + " -> " + schem.getName().replace(".schem", ".iob") + " in " + Form.duration(p.getMillis()));
+                            NaturalGenerator.info(C.GRAY + "Converted " + schem.getName() + " -> " + schem.getName().replace(".schem", ".iob") + " in " + Form.duration(p.getMillis()));
                         } else {
-                            NaturalWorldGen.info(C.GRAY + "Converted " + schem.getName() + " -> " + schem.getName().replace(".schem", ".iob"));
+                            NaturalGenerator.info(C.GRAY + "Converted " + schem.getName() + " -> " + schem.getName().replace(".schem", ".iob"));
                         }
                         FileUtils.delete(schem);
                     } catch (IOException e) {

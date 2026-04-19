@@ -1,7 +1,7 @@
 package id.naturalsmp.NaturalWorldGen.core.pregenerator;
 
 import com.google.gson.Gson;
-import id.naturalsmp.NaturalWorldGen.NaturalWorldGen;
+import id.naturalsmp.NaturalWorldGen.NaturalGenerator;
 import id.naturalsmp.NaturalWorldGen.util.format.C;
 import id.naturalsmp.NaturalWorldGen.util.format.Form;
 import id.naturalsmp.NaturalWorldGen.util.io.IO;
@@ -79,7 +79,7 @@ public class LazyPregenerator extends Thread implements Listener {
                 try {
                     LazyPregenerator p = new LazyPregenerator(lazygen);
                     p.start();
-                    NaturalWorldGen.info("Started Lazy Pregenerator: " + p.job);
+                    NaturalGenerator.info("Started Lazy Pregenerator: " + p.job);
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }
@@ -118,7 +118,7 @@ public class LazyPregenerator extends Thread implements Listener {
             chunksPerSecond.put(secondGenerated);
             chunksPerMinute.put(secondGenerated * 60);
             if (!job.isSilent()) {
-                NaturalWorldGen.info("LazyGen: " + C.IRIS + world.getName() + C.RESET + " RTT: " + Form.f(lazyGeneratedChunks.get()) + " of " + Form.f(lazyTotalChunks.get()) + " " + Form.f((int) chunksPerMinute.getAverage()) + "/m ETA: " + Form.duration((double) eta, 2));
+                NaturalGenerator.info("LazyGen: " + C.IRIS + world.getName() + C.RESET + " RTT: " + Form.f(lazyGeneratedChunks.get()) + " of " + Form.f(lazyTotalChunks.get()) + " " + Form.f((int) chunksPerMinute.getAverage()) + "/m ETA: " + Form.duration((double) eta, 2));
             }
         }
 
@@ -128,7 +128,7 @@ public class LazyPregenerator extends Thread implements Listener {
                 job.setHealingPosition(pos);
                 tickRegenerate(getChunk(pos));
             } else {
-                NaturalWorldGen.info("Completed Lazy Gen!");
+                NaturalGenerator.info("Completed Lazy Gen!");
                 interrupt();
             }
         } else {
@@ -153,13 +153,13 @@ public class LazyPregenerator extends Thread implements Listener {
             if (PaperLib.isPaper()) {
                 PaperLib.getChunkAtAsync(world, chunk.getX(), chunk.getZ(), true)
                         .thenAccept((i) -> {
-                            NaturalWorldGen.verbose("Generated Async " + chunk);
+                            NaturalGenerator.verbose("Generated Async " + chunk);
                             latch.countDown();
                         });
             } else {
                 J.s(() -> {
                     world.getChunkAt(chunk.getX(), chunk.getZ());
-                    NaturalWorldGen.verbose("Generated " + chunk);
+                    NaturalGenerator.verbose("Generated " + chunk);
                     latch.countDown();
                 });
             }
@@ -172,7 +172,7 @@ public class LazyPregenerator extends Thread implements Listener {
 
     private void tickRegenerate(Position2 chunk) {
         J.s(() -> world.regenerateChunk(chunk.getX(), chunk.getZ()));
-        NaturalWorldGen.verbose("Regenerated " + chunk);
+        NaturalGenerator.verbose("Regenerated " + chunk);
     }
 
     public Position2 getChunk(int position) {
@@ -210,9 +210,9 @@ public class LazyPregenerator extends Thread implements Listener {
         }
 
         if ( job.paused) {
-            NaturalWorldGen.info(C.BLUE + "LazyGen: " + C.IRIS + world.getName() + C.BLUE + " Paused");
+            NaturalGenerator.info(C.BLUE + "LazyGen: " + C.IRIS + world.getName() + C.BLUE + " Paused");
         } else {
-            NaturalWorldGen.info(C.BLUE + "LazyGen: " + C.IRIS + world.getName() + C.BLUE + " Resumed");
+            NaturalGenerator.info(C.BLUE + "LazyGen: " + C.IRIS + world.getName() + C.BLUE + " Resumed");
         }
     }
 
@@ -222,13 +222,13 @@ public class LazyPregenerator extends Thread implements Listener {
     }
 
     public void shutdownInstance(World world) throws IOException {
-        NaturalWorldGen.info("LazyGen: " + C.IRIS + world.getName() + C.BLUE + " Shutting down..");
+        NaturalGenerator.info("LazyGen: " + C.IRIS + world.getName() + C.BLUE + " Shutting down..");
         LazyPregenJob job = jobs.get(world.getName());
         File worldDirectory = new File(Bukkit.getWorldContainer(), world.getName());
         File lazyFile = new File(worldDirectory, "lazygen.json");
 
         if (job == null) {
-            NaturalWorldGen.error("No Lazygen job found for world: " + world.getName());
+            NaturalGenerator.error("No Lazygen job found for world: " + world.getName());
             return;
         }
 
@@ -245,11 +245,11 @@ public class LazyPregenerator extends Thread implements Listener {
                         lazyFile.delete();
                         J.sleep(1000);
                     }
-                    NaturalWorldGen.info("LazyGen: " + C.IRIS + world.getName() + C.BLUE + " File deleted and instance closed.");
+                    NaturalGenerator.info("LazyGen: " + C.IRIS + world.getName() + C.BLUE + " File deleted and instance closed.");
                 }
             }.runTaskLater(NaturalGenerator.instance, 20L);
         } catch (Exception e) {
-            NaturalWorldGen.error("Failed to shutdown Lazygen for " + world.getName());
+            NaturalGenerator.error("Failed to shutdown Lazygen for " + world.getName());
             e.printStackTrace();
         } finally {
             saveNow();

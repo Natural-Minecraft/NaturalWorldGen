@@ -18,7 +18,7 @@
 
 package id.naturalsmp.NaturalWorldGen.engine.decorator;
 
-import id.naturalsmp.NaturalWorldGen.NaturalWorldGen;
+import id.naturalsmp.NaturalWorldGen.NaturalGenerator;
 import id.naturalsmp.NaturalWorldGen.engine.framework.Engine;
 import id.naturalsmp.NaturalWorldGen.engine.framework.EngineAssignedComponent;
 import id.naturalsmp.NaturalWorldGen.engine.framework.EngineDecorator;
@@ -65,8 +65,8 @@ public abstract class IrisEngineDecorator extends EngineAssignedComponent implem
                     v.add(i);
                 }
             } catch (Throwable e) {
-                NaturalWorldGen.reportError(e);
-                NaturalWorldGen.error("PART OF: " + biome.getLoadFile().getAbsolutePath() + " HAS AN INVALID DECORATOR near 'partOf'!!!");
+                NaturalGenerator.reportError(e);
+                NaturalGenerator.error("PART OF: " + biome.getLoadFile().getAbsolutePath() + " HAS AN INVALID DECORATOR near 'partOf'!!!");
             }
         }
 

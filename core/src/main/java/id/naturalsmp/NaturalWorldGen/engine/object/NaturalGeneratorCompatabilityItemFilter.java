@@ -18,7 +18,7 @@
 
 package id.naturalsmp.NaturalWorldGen.engine.object;
 
-import id.naturalsmp.NaturalWorldGen.NaturalWorldGen;
+import id.naturalsmp.NaturalWorldGen.NaturalGenerator;
 import id.naturalsmp.NaturalWorldGen.engine.data.cache.AtomicCache;
 import id.naturalsmp.NaturalWorldGen.engine.object.annotations.Desc;
 import id.naturalsmp.NaturalWorldGen.engine.object.annotations.Required;
@@ -60,7 +60,7 @@ public class IrisCompatabilityItemFilter {
                 return null;
             }
 
-            NaturalWorldGen.verbose("Compat: Using " + supplement + " in place of " + when + " since this server doesnt support '" + supplement + "'");
+            NaturalGenerator.verbose("Compat: Using " + supplement + " in place of " + when + " since this server doesnt support '" + supplement + "'");
 
             return b;
         });

@@ -1,6 +1,6 @@
 package id.naturalsmp.NaturalWorldGen.util.misc;
 
-import id.naturalsmp.NaturalWorldGen.NaturalWorldGen;
+import id.naturalsmp.NaturalWorldGen.NaturalGenerator;
 import io.github.slimjar.app.builder.ApplicationBuilder;
 import io.github.slimjar.app.builder.SpigotApplicationBuilder;
 import io.github.slimjar.injector.loader.factory.InjectableFactory;
@@ -37,7 +37,7 @@ public class SlimJar {
                         .remap(!DISABLE_REMAPPER)
                         .build();
             } catch (Throwable e) {
-                NaturalWorldGen.warn("Failed to inject the library loader, falling back to application builder");
+                NaturalGenerator.warn("Failed to inject the library loader, falling back to application builder");
                 ApplicationBuilder.appending(instance.getName())
                         .injectableFactory(InjectableFactory.selecting(InjectableFactory.ERROR, InjectableFactory.INJECTABLE, InjectableFactory.WRAPPED, InjectableFactory.UNSAFE))
                         .downloadDirectoryPath(downloadPath)

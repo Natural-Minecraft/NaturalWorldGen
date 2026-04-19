@@ -1,6 +1,6 @@
 package id.naturalsmp.NaturalWorldGen.core.link;
 
-import id.naturalsmp.NaturalWorldGen.NaturalWorldGen;
+import id.naturalsmp.NaturalWorldGen.NaturalGenerator;
 import id.naturalsmp.NaturalWorldGen.engine.data.cache.AtomicCache;
 import id.naturalsmp.NaturalWorldGen.util.data.Cuboid;
 import id.naturalsmp.NaturalWorldGen.util.data.KCache;
@@ -45,9 +45,9 @@ public class WorldEditLink {
                     (int) min.getClass().getDeclaredMethod("z").invoke(max)
             );
         } catch (Throwable e) {
-            NaturalWorldGen.error("Could not get selection");
+            NaturalGenerator.error("Could not get selection");
             e.printStackTrace();
-            NaturalWorldGen.reportError(e);
+            NaturalGenerator.reportError(e);
             active.reset();
             active.aquire(() -> false);
         }

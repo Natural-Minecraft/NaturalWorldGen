@@ -18,7 +18,7 @@
 
 package id.naturalsmp.NaturalWorldGen.util.json;
 
-import id.naturalsmp.NaturalWorldGen.NaturalWorldGen;
+import id.naturalsmp.NaturalWorldGen.NaturalGenerator;
 
 import java.io.IOException;
 import java.io.StringWriter;
@@ -118,7 +118,7 @@ public class JSONObject {
             try {
                 this.putOnce(names[i], jo.opt(names[i]));
             } catch (Exception e) {
-                NaturalWorldGen.reportError(e);
+                NaturalGenerator.reportError(e);
             }
         }
     }
@@ -241,7 +241,7 @@ public class JSONObject {
             try {
                 this.putOpt(name, c.getField(name).get(object));
             } catch (Exception e) {
-                NaturalWorldGen.reportError(e);
+                NaturalGenerator.reportError(e);
             }
         }
     }
@@ -411,7 +411,7 @@ public class JSONObject {
             try {
                 return quote(string, sw).toString();
             } catch (IOException e) {
-                NaturalWorldGen.reportError(e);
+                NaturalGenerator.reportError(e);
                 // will never happen - we are writing to a string writer
                 return "";
             }
@@ -522,7 +522,7 @@ public class JSONObject {
                     }
                 }
             } catch (Exception e) {
-                NaturalWorldGen.reportError(e);
+                NaturalGenerator.reportError(e);
             }
         }
         return string;
@@ -579,7 +579,7 @@ public class JSONObject {
             try {
                 object = ((JSONString) value).toJSONString();
             } catch (Exception e) {
-                NaturalWorldGen.reportError(e);
+                NaturalGenerator.reportError(e);
                 throw new JSONException(e);
             }
             if (object instanceof String) {
@@ -649,7 +649,7 @@ public class JSONObject {
             }
             return new JSONObject(object);
         } catch (Exception e) {
-            NaturalWorldGen.reportError(e);
+            NaturalGenerator.reportError(e);
             return null;
         }
     }
@@ -680,7 +680,7 @@ public class JSONObject {
             try {
                 o = ((JSONString) value).toJSONString();
             } catch (Exception e) {
-                NaturalWorldGen.reportError(e);
+                NaturalGenerator.reportError(e);
                 throw new JSONException(e);
             }
             writer.write(o != null ? o.toString() : quote(value.toString()));
@@ -819,7 +819,7 @@ public class JSONObject {
         try {
             return new BigInteger(object.toString());
         } catch (Exception e) {
-            NaturalWorldGen.reportError(e);
+            NaturalGenerator.reportError(e);
             throw new JSONException("JSONObject[" + quote(key) + "] could not be converted to BigInteger.");
         }
     }
@@ -837,7 +837,7 @@ public class JSONObject {
         try {
             return new BigDecimal(object.toString());
         } catch (Exception e) {
-            NaturalWorldGen.reportError(e);
+            NaturalGenerator.reportError(e);
             throw new JSONException("JSONObject[" + quote(key) + "] could not be converted to BigDecimal.");
         }
     }
@@ -855,7 +855,7 @@ public class JSONObject {
         try {
             return object instanceof Number ? ((Number) object).doubleValue() : Double.parseDouble((String) object);
         } catch (Exception e) {
-            NaturalWorldGen.reportError(e);
+            NaturalGenerator.reportError(e);
             throw new JSONException("JSONObject[" + quote(key) + "] is not a number.");
         }
     }
@@ -873,7 +873,7 @@ public class JSONObject {
         try {
             return object instanceof Number ? ((Number) object).intValue() : Integer.parseInt((String) object);
         } catch (Exception e) {
-            NaturalWorldGen.reportError(e);
+            NaturalGenerator.reportError(e);
             throw new JSONException("JSONObject[" + quote(key) + "] is not an int.");
         }
     }
@@ -921,7 +921,7 @@ public class JSONObject {
         try {
             return object instanceof Number ? ((Number) object).longValue() : Long.parseLong((String) object);
         } catch (Exception e) {
-            NaturalWorldGen.reportError(e);
+            NaturalGenerator.reportError(e);
             throw new JSONException("JSONObject[" + quote(key) + "] is not a long.");
         }
     }
@@ -1082,10 +1082,10 @@ public class JSONObject {
             }
             return Enum.valueOf(clazz, val.toString());
         } catch (IllegalArgumentException e) {
-            NaturalWorldGen.reportError(e);
+            NaturalGenerator.reportError(e);
             return defaultValue;
         } catch (NullPointerException e) {
-            NaturalWorldGen.reportError(e);
+            NaturalGenerator.reportError(e);
             return defaultValue;
         }
     }
@@ -1114,7 +1114,7 @@ public class JSONObject {
         try {
             return this.getBoolean(key);
         } catch (Exception e) {
-            NaturalWorldGen.reportError(e);
+            NaturalGenerator.reportError(e);
             return defaultValue;
         }
     }
@@ -1144,7 +1144,7 @@ public class JSONObject {
         try {
             return this.getBigInteger(key);
         } catch (Exception e) {
-            NaturalWorldGen.reportError(e);
+            NaturalGenerator.reportError(e);
             return defaultValue;
         }
     }
@@ -1162,7 +1162,7 @@ public class JSONObject {
         try {
             return this.getBigDecimal(key);
         } catch (Exception e) {
-            NaturalWorldGen.reportError(e);
+            NaturalGenerator.reportError(e);
             return defaultValue;
         }
     }
@@ -1180,7 +1180,7 @@ public class JSONObject {
         try {
             return this.getDouble(key);
         } catch (Exception e) {
-            NaturalWorldGen.reportError(e);
+            NaturalGenerator.reportError(e);
             return defaultValue;
         }
     }
@@ -1210,7 +1210,7 @@ public class JSONObject {
         try {
             return this.getInt(key);
         } catch (Exception e) {
-            NaturalWorldGen.reportError(e);
+            NaturalGenerator.reportError(e);
             return defaultValue;
         }
     }
@@ -1264,7 +1264,7 @@ public class JSONObject {
         try {
             return this.getLong(key);
         } catch (Exception e) {
-            NaturalWorldGen.reportError(e);
+            NaturalGenerator.reportError(e);
             return defaultValue;
         }
     }
@@ -1331,7 +1331,7 @@ public class JSONObject {
                     }
                 }
             } catch (Exception e) {
-                NaturalWorldGen.reportError(e);
+                NaturalGenerator.reportError(e);
             }
         }
     }
@@ -1523,7 +1523,7 @@ public class JSONObject {
             }
             return true;
         } catch (Throwable e) {
-            NaturalWorldGen.reportError(e);
+            NaturalGenerator.reportError(e);
             return false;
         }
     }
@@ -1564,7 +1564,7 @@ public class JSONObject {
         try {
             return this.toString(0);
         } catch (Exception e) {
-            NaturalWorldGen.reportError(e);
+            NaturalGenerator.reportError(e);
             return null;
         }
     }
@@ -1650,7 +1650,7 @@ public class JSONObject {
             writer.write('}');
             return writer;
         } catch (IOException e) {
-            NaturalWorldGen.reportError(e);
+            NaturalGenerator.reportError(e);
             throw new JSONException(e);
         }
     }

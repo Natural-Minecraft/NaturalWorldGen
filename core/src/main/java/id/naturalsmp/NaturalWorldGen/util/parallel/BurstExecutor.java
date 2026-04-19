@@ -18,7 +18,7 @@
 
 package id.naturalsmp.NaturalWorldGen.util.parallel;
 
-import id.naturalsmp.NaturalWorldGen.NaturalWorldGen;
+import id.naturalsmp.NaturalWorldGen.NaturalGenerator;
 import id.naturalsmp.NaturalWorldGen.util.collection.KList;
 import lombok.Getter;
 import lombok.Setter;
@@ -110,7 +110,7 @@ public class BurstExecutor {
 
                 futures.clear();
             } catch (InterruptedException | ExecutionException e) {
-                NaturalWorldGen.reportError(e);
+                NaturalGenerator.reportError(e);
             }
         }
     }

@@ -18,7 +18,7 @@
 
 package id.naturalsmp.NaturalWorldGen.core.link.data;
 
-import id.naturalsmp.NaturalWorldGen.NaturalWorldGen;
+import id.naturalsmp.NaturalWorldGen.NaturalGenerator;
 import id.naturalsmp.NaturalWorldGen.core.link.ExternalDataProvider;
 import id.naturalsmp.NaturalWorldGen.core.link.Identifier;
 import id.naturalsmp.NaturalWorldGen.core.nms.INMS;
@@ -56,11 +56,11 @@ public class MythicCrucibleDataProvider extends ExternalDataProvider {
 
     @Override
     public void init() {
-        NaturalWorldGen.info("Setting up MythicCrucible Link...");
+        NaturalGenerator.info("Setting up MythicCrucible Link...");
         try {
             this.itemManager = MythicCrucible.inst().getItemManager();
         } catch (Exception e) {
-            NaturalWorldGen.error("Failed to set up MythicCrucible Link: Unable to fetch MythicCrucible instance!");
+            NaturalGenerator.error("Failed to set up MythicCrucible Link: Unable to fetch MythicCrucible instance!");
         }
     }
 

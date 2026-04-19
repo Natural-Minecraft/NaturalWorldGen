@@ -18,7 +18,7 @@
 
 package id.naturalsmp.NaturalWorldGen.engine.framework;
 
-import id.naturalsmp.NaturalWorldGen.NaturalWorldGen;
+import id.naturalsmp.NaturalWorldGen.NaturalGenerator;
 import id.naturalsmp.NaturalWorldGen.util.context.ChunkContext;
 import id.naturalsmp.NaturalWorldGen.util.documentation.BlockCoordinates;
 import id.naturalsmp.NaturalWorldGen.util.hunk.Hunk;
@@ -37,7 +37,7 @@ public abstract class EngineAssignedModifier<T> extends EngineAssignedComponent 
         try {
             onModify(x, z, output, multicore, context);
         } catch (Throwable e) {
-            NaturalWorldGen.error("Modifier Failure: " + getName());
+            NaturalGenerator.error("Modifier Failure: " + getName());
             e.printStackTrace();
         }
     }

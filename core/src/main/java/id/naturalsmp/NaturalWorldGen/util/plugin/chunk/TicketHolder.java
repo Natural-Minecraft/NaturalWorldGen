@@ -1,6 +1,6 @@
 package id.naturalsmp.NaturalWorldGen.util.plugin.chunk;
 
-import id.naturalsmp.NaturalWorldGen.NaturalWorldGen;
+import id.naturalsmp.NaturalWorldGen.NaturalGenerator;
 import id.naturalsmp.NaturalWorldGen.engine.data.cache.Cache;
 import id.naturalsmp.NaturalWorldGen.util.collection.KMap;
 import lombok.NonNull;

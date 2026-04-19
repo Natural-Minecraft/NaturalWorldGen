@@ -20,7 +20,7 @@ package id.naturalsmp.NaturalWorldGen.engine.object;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import id.naturalsmp.NaturalWorldGen.NaturalWorldGen;
+import id.naturalsmp.NaturalWorldGen.NaturalGenerator;
 import id.naturalsmp.NaturalWorldGen.core.nms.INMS;
 import id.naturalsmp.NaturalWorldGen.util.collection.KMap;
 import lombok.*;
@@ -105,7 +105,7 @@ public class TileData implements Cloneable {
             toBukkit(block);
             return true;
         } catch (Throwable e) {
-            NaturalWorldGen.reportError(e);
+            NaturalGenerator.reportError(e);
         }
 
         return false;
@@ -117,7 +117,7 @@ public class TileData implements Cloneable {
             fromBukkit(block);
             return true;
         } catch (Throwable e) {
-            NaturalWorldGen.reportError(e);
+            NaturalGenerator.reportError(e);
 
         }
 

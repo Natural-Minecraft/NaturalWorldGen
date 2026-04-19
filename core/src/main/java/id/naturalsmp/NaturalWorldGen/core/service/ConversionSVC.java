@@ -19,7 +19,7 @@
 package id.naturalsmp.NaturalWorldGen.core.service;
 
 import com.google.gson.Gson;
-import id.naturalsmp.NaturalWorldGen.NaturalWorldGen;
+import id.naturalsmp.NaturalWorldGen.NaturalGenerator;
 import id.naturalsmp.NaturalWorldGen.engine.object.*;
 import id.naturalsmp.NaturalWorldGen.util.collection.KList;
 import id.naturalsmp.NaturalWorldGen.util.collection.KMap;
@@ -172,11 +172,11 @@ public class ConversionSVC implements IrisService {
                     jpool.getPieces().addIfMissing(id);
                     object.write(new File(destObjects, file.getName().split("\\Q.\\E")[0] + ".iob"));
                     IO.writeAll(new File(destPieces, file.getName().split("\\Q.\\E")[0] + ".json"), new JSONObject(new Gson().toJson(piece)).toString(4));
-                    NaturalWorldGen.info("[Jigsaw]: (" + Form.pc((double) at.get() / (double) total.get(), 0) + ") Exported Piece: " + id);
+                    NaturalGenerator.info("[Jigsaw]: (" + Form.pc((double) at.get() / (double) total.get(), 0) + ") Exported Piece: " + id);
                 }
             } catch (Throwable e) {
                 e.printStackTrace();
-                NaturalWorldGen.reportError(e);
+                NaturalGenerator.reportError(e);
             }
         });
 
@@ -185,11 +185,11 @@ public class ConversionSVC implements IrisService {
                 IO.writeAll(new File(destPools, i + ".json"), new JSONObject(new Gson().toJson(pools.get(i))).toString(4));
             } catch (IOException e) {
                 e.printStackTrace();
-                NaturalWorldGen.reportError(e);
+                NaturalGenerator.reportError(e);
             }
         }
 
-        NaturalWorldGen.info("Done! Exported " + Form.f((total.get() * 2) + pools.size()) + " Files!");
+        NaturalGenerator.info("Done! Exported " + Form.f((total.get() * 2) + pools.size()) + " Files!");
     }
 
     public void findAllNBT(File path, Consumer2<File, File> inFile) {

@@ -1,6 +1,6 @@
 package id.naturalsmp.NaturalWorldGen.util.plugin.chunk;
 
-import id.naturalsmp.NaturalWorldGen.NaturalWorldGen;
+import id.naturalsmp.NaturalWorldGen.NaturalGenerator;
 import lombok.NonNull;
 import org.bukkit.Bukkit;
 import org.bukkit.Chunk;

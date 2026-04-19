@@ -19,7 +19,7 @@
 package id.naturalsmp.NaturalWorldGen.core.project;
 
 import com.google.gson.Gson;
-import id.naturalsmp.NaturalWorldGen.NaturalWorldGen;
+import id.naturalsmp.NaturalWorldGen.NaturalGenerator;
 import id.naturalsmp.NaturalWorldGen.core.IrisSettings;
 import id.naturalsmp.NaturalWorldGen.core.loader.IrisData;
 import id.naturalsmp.NaturalWorldGen.core.loader.IrisRegistrant;
@@ -82,8 +82,8 @@ public class IrisProject {
             try {
                 clean(clean);
             } catch (Throwable e) {
-                NaturalWorldGen.reportError(e);
-                NaturalWorldGen.error("Failed to beautify " + clean.getAbsolutePath() + " You may have errors in your json!");
+                NaturalGenerator.reportError(e);
+                NaturalGenerator.error("Failed to beautify " + clean.getAbsolutePath() + " You may have errors in your json!");
             }
 
             c++;
@@ -105,7 +105,7 @@ public class IrisProject {
 
             if (i.equals("block") && o instanceof String && !o.toString().trim().isEmpty() && !o.toString().contains(":")) {
                 obj.put(i, "minecraft:" + o);
-                NaturalWorldGen.debug("Updated Block Key: " + o + " to " + obj.getString(i) + " in " + f.getPath());
+                NaturalGenerator.debug("Updated Block Key: " + o + " to " + obj.getString(i) + " in " + f.getPath());
             }
 
             if (o instanceof JSONObject) {
@@ -170,21 +170,21 @@ public class IrisProject {
 
                 if (!doOpenVSCode(f)) {
                     File ff = new File(d.getLoader().getDataFolder(), d.getLoadKey() + ".code-workspace");
-                    NaturalWorldGen.warn("Project missing code-workspace: " + ff.getAbsolutePath() + " Re-creating code workspace.");
+                    NaturalGenerator.warn("Project missing code-workspace: " + ff.getAbsolutePath() + " Re-creating code workspace.");
 
                     try {
                         IO.writeAll(ff, createCodeWorkspaceConfig());
                     } catch (IOException e1) {
-                        NaturalWorldGen.reportError(e1);
+                        NaturalGenerator.reportError(e1);
                         e1.printStackTrace();
                     }
                     updateWorkspace();
                     if (!doOpenVSCode(f)) {
-                        NaturalWorldGen.warn("Tried creating code workspace but failed a second time. Your project is likely corrupt.");
+                        NaturalGenerator.warn("Tried creating code workspace but failed a second time. Your project is likely corrupt.");
                     }
                 }
             } catch (Throwable e) {
-                NaturalWorldGen.reportError(e);
+                NaturalGenerator.reportError(e);
                 e.printStackTrace();
             }
         });
@@ -202,8 +202,8 @@ public class IrisProject {
 
                 if (IrisSettings.get().getStudio().isOpenVSCode()) {
                     if (!GraphicsEnvironment.isHeadless()) {
-                        NaturalWorldGen.msg("Opening VSCode. You may see the output from VSCode.");
-                        NaturalWorldGen.msg("VSCode output always starts with: '(node:#####) electron'");
+                        NaturalGenerator.msg("Opening VSCode. You may see the output from VSCode.");
+                        NaturalGenerator.msg("VSCode output always starts with: '(node:#####) electron'");
                         Desktop.getDesktop().open(i);
                     }
                 }
@@ -246,14 +246,14 @@ public class IrisProject {
     }
 
     public void close() {
-        NaturalWorldGen.debug("Closing Active Provider");
+        NaturalGenerator.debug("Closing Active Provider");
         IrisToolbelt.evacuate(activeProvider.getTarget().getWorld().realWorld());
         activeProvider.close();
         File folder = activeProvider.getTarget().getWorld().worldFolder();
         NaturalWorldGen.linkMultiverseCore.removeFromConfig(activeProvider.getTarget().getWorld().name());
         Bukkit.unloadWorld(activeProvider.getTarget().getWorld().name(), false);
         J.attemptAsync(() -> IO.delete(folder));
-        NaturalWorldGen.debug("Closed Active Provider " + activeProvider.getTarget().getWorld().name());
+        NaturalGenerator.debug("Closed Active Provider " + activeProvider.getTarget().getWorld().name());
         activeProvider = null;
     }
 
@@ -272,13 +272,13 @@ public class IrisProject {
             p.end();
             return true;
         } catch (Throwable e) {
-            NaturalWorldGen.reportError(e);
-            NaturalWorldGen.warn("Project invalid: " + ws.getAbsolutePath() + " Re-creating. You may loose some vs-code workspace settings! But not your actual project!");
+            NaturalGenerator.reportError(e);
+            NaturalGenerator.warn("Project invalid: " + ws.getAbsolutePath() + " Re-creating. You may loose some vs-code workspace settings! But not your actual project!");
             ws.delete();
             try {
                 IO.writeAll(ws, createCodeWorkspaceConfig());
             } catch (IOException e1) {
-                NaturalWorldGen.reportError(e1);
+                NaturalGenerator.reportError(e1);
                 e1.printStackTrace();
             }
         }
@@ -431,7 +431,7 @@ public class IrisProject {
         IrisDimension dimension = dm.getDimensionLoader().load(dimm);
         File folder = new File(NaturalGenerator.instance.getDataFolder(), "exports/" + dimension.getLoadKey());
         folder.mkdirs();
-        NaturalWorldGen.info("Packaging Dimension " + dimension.getName() + " " + (obfuscate ? "(Obfuscated)" : ""));
+        NaturalGenerator.info("Packaging Dimension " + dimension.getName() + " " + (obfuscate ? "(Obfuscated)" : ""));
         KSet<IrisRegion> regions = new KSet<>();
         KSet<IrisBiome> biomes = new KSet<>();
         KSet<IrisEntity> entities = new KSet<>();
@@ -500,7 +500,7 @@ public class IrisProject {
                     sender.sendMessage("Wrote another " + g + " Objects");
                 }
             } catch (Throwable e) {
-                NaturalWorldGen.reportError(e);
+                NaturalGenerator.reportError(e);
             }
         })));
 
@@ -508,7 +508,7 @@ public class IrisProject {
         c.append(IO.hash(b.toString()));
         b = new StringBuilder();
 
-        NaturalWorldGen.info("Writing Dimensional Scaffold");
+        NaturalGenerator.info("Writing Dimensional Scaffold");
 
         try {
             a = new JSONObject(new Gson().toJson(dimension)).toString(minify ? 0 : 4);
@@ -562,14 +562,14 @@ public class IrisProject {
             meta.put("version", dimension.getVersion());
             IO.writeAll(new File(folder, "package.json"), meta.toString(minify ? 0 : 4));
             File p = new File(NaturalGenerator.instance.getDataFolder(), "exports/" + dimension.getLoadKey() + ".naturalworldgen");
-            NaturalWorldGen.info("Compressing Package");
+            NaturalGenerator.info("Compressing Package");
             ZipUtil.pack(folder, p, 9);
             IO.delete(folder);
 
             sender.sendMessage("Package Compiled!");
             return p;
         } catch (Throwable e) {
-            NaturalWorldGen.reportError(e);
+            NaturalGenerator.reportError(e);
             e.printStackTrace();
         }
         sender.sendMessage("Failed!");
@@ -670,7 +670,7 @@ public class IrisProject {
             try {
                 files.add(clean);
             } catch (Throwable e) {
-                NaturalWorldGen.reportError(e);
+                NaturalGenerator.reportError(e);
             }
         }
     }
@@ -684,7 +684,7 @@ public class IrisProject {
             try {
                 files.add(clean);
             } catch (Throwable e) {
-                NaturalWorldGen.reportError(e);
+                NaturalGenerator.reportError(e);
             }
         }
     }

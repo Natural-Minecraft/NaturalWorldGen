@@ -18,7 +18,7 @@
 
 package id.naturalsmp.NaturalWorldGen.engine.framework;
 
-import id.naturalsmp.NaturalWorldGen.NaturalWorldGen;
+import id.naturalsmp.NaturalWorldGen.NaturalGenerator;
 import id.naturalsmp.NaturalWorldGen.core.loader.IrisData;
 import id.naturalsmp.NaturalWorldGen.engine.IrisComplex;
 import id.naturalsmp.NaturalWorldGen.engine.object.IrisDimension;
@@ -43,7 +43,7 @@ public interface EngineComponent {
                 NaturalGenerator.instance.unregisterListener((Listener) this);
             }
         } catch (Throwable e) {
-            NaturalWorldGen.reportError(e);
+            NaturalGenerator.reportError(e);
 
         }
     }

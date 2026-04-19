@@ -1,6 +1,6 @@
 package id.naturalsmp.NaturalWorldGen.core.project;
 
-import id.naturalsmp.NaturalWorldGen.NaturalWorldGen;
+import id.naturalsmp.NaturalWorldGen.NaturalGenerator;
 import id.naturalsmp.NaturalWorldGen.util.io.IO;
 import org.zeroturnaround.zip.ZipUtil;
 
@@ -24,9 +24,9 @@ public class Gradle {
             if (!settings.exists()) settings.createNewFile();
             runGradle(projectDir, "wrapper");
         } catch (Throwable e) {
-            NaturalWorldGen.error("Failed to install gradle wrapper!");
+            NaturalGenerator.error("Failed to install gradle wrapper!");
             e.printStackTrace();
-            NaturalWorldGen.reportError(e);
+            NaturalGenerator.reportError(e);
         }
     }
 

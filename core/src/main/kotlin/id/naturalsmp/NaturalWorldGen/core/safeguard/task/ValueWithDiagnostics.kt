@@ -1,6 +1,6 @@
 package id.naturalsmp.NaturalWorldGen.core.safeguard.task
 
-import id.naturalsmp.NaturalWorldGen.NaturalWorldGen
+import id.naturalsmp.NaturalWorldGen.NaturalGenerator
 import id.naturalsmp.NaturalWorldGen.util.format.C
 import java.io.ByteArrayOutputStream
 import java.io.PrintStream

@@ -18,7 +18,7 @@
 
 package id.naturalsmp.NaturalWorldGen.core.pregenerator.methods;
 
-import id.naturalsmp.NaturalWorldGen.NaturalWorldGen;
+import id.naturalsmp.NaturalWorldGen.NaturalGenerator;
 import id.naturalsmp.NaturalWorldGen.core.IrisSettings;
 import id.naturalsmp.NaturalWorldGen.core.pregenerator.PregenListener;
 import id.naturalsmp.NaturalWorldGen.core.pregenerator.PregeneratorMethod;
@@ -65,7 +65,7 @@ public class AsyncPregenMethod implements PregeneratorMethod {
         try {
             J.sfut(() -> {
                 if (world == null) {
-                    NaturalWorldGen.warn("World was null somehow...");
+                    NaturalGenerator.warn("World was null somehow...");
                     return;
                 }
 
@@ -155,10 +155,10 @@ public class AsyncPregenMethod implements PregeneratorMethod {
                 pool.getClass().getDeclaredMethod("adjustThreadCount", int.class).invoke(pool, adjusted);
                 return threads;
             } catch (Throwable e) {
-                NaturalWorldGen.warn("Failed to increase worker threads, if you are on paper or a fork of it please increase it manually to " + adjusted);
-                NaturalWorldGen.warn("For more information see https://docs.papermc.io/paper/reference/global-configuration#chunk_system_worker_threads");
+                NaturalGenerator.warn("Failed to increase worker threads, if you are on paper or a fork of it please increase it manually to " + adjusted);
+                NaturalGenerator.warn("For more information see https://docs.papermc.io/paper/reference/global-configuration#chunk_system_worker_threads");
                 if (e instanceof InvocationTargetException) {
-                    NaturalWorldGen.reportError(e);
+                    NaturalGenerator.reportError(e);
                     e.printStackTrace();
                 }
             }
@@ -176,8 +176,8 @@ public class AsyncPregenMethod implements PregeneratorMethod {
                 method.invoke(pool, i);
                 return 0;
             } catch (Throwable e) {
-                NaturalWorldGen.reportError(e);
-                NaturalWorldGen.error("Failed to reset worker threads");
+                NaturalGenerator.reportError(e);
+                NaturalGenerator.error("Failed to reset worker threads");
                 e.printStackTrace();
             }
             return i;
@@ -205,7 +205,7 @@ public class AsyncPregenMethod implements PregeneratorMethod {
                     }).get();
                 } catch (InterruptedException ignored) {
                 } catch (Throwable e) {
-                    NaturalWorldGen.reportError(e);
+                    NaturalGenerator.reportError(e);
                     e.printStackTrace();
                 } finally {
                     semaphore.release();
@@ -224,7 +224,7 @@ public class AsyncPregenMethod implements PregeneratorMethod {
         public void generate(int x, int z, PregenListener listener) {
             PaperLib.getChunkAtAsync(world, x, z, true, urgent)
                     .exceptionally(e -> {
-                        NaturalWorldGen.reportError(e);
+                        NaturalGenerator.reportError(e);
                         e.printStackTrace();
                         return null;
                     })

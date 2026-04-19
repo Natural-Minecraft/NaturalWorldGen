@@ -18,7 +18,7 @@
 
 package id.naturalsmp.NaturalWorldGen.util.stream.interpolation;
 
-import id.naturalsmp.NaturalWorldGen.NaturalWorldGen;
+import id.naturalsmp.NaturalWorldGen.NaturalGenerator;
 import id.naturalsmp.NaturalWorldGen.engine.object.CaveResult;
 import id.naturalsmp.NaturalWorldGen.util.collection.KList;
 import id.naturalsmp.NaturalWorldGen.util.math.RNG;
@@ -62,7 +62,7 @@ public interface Interpolated<T> {
             return new InterpolatorFactory<>((ProceduralStream<T>) this);
         }
 
-        NaturalWorldGen.warn("Cannot interpolate " + this.getClass().getCanonicalName() + "!");
+        NaturalGenerator.warn("Cannot interpolate " + this.getClass().getCanonicalName() + "!");
         return null;
     }
 }

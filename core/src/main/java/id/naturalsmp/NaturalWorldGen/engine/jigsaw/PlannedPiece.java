@@ -18,7 +18,7 @@
 
 package id.naturalsmp.NaturalWorldGen.engine.jigsaw;
 
-import id.naturalsmp.NaturalWorldGen.NaturalWorldGen;
+import id.naturalsmp.NaturalWorldGen.NaturalGenerator;
 import id.naturalsmp.NaturalWorldGen.core.loader.IrisData;
 import id.naturalsmp.NaturalWorldGen.engine.object.*;
 import id.naturalsmp.NaturalWorldGen.util.collection.KList;
@@ -171,10 +171,10 @@ public class PlannedPiece {
     }
 
     public void debugPrintConnectorPositions() {
-        NaturalWorldGen.debug("Connector World Positions for PlannedPiece at " + position + ":");
+        NaturalGenerator.debug("Connector World Positions for PlannedPiece at " + position + ":");
         List<IrisPosition> connectorPositions = getConnectorWorldPositions();
         for (IrisPosition pos : connectorPositions) {
-            NaturalWorldGen.debug(" - Connector at: " + pos);
+            NaturalGenerator.debug(" - Connector at: " + pos);
         }
     }
 

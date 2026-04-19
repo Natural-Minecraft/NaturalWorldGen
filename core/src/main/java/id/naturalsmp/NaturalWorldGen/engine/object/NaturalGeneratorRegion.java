@@ -18,7 +18,7 @@
 
 package id.naturalsmp.NaturalWorldGen.engine.object;
 
-import id.naturalsmp.NaturalWorldGen.NaturalWorldGen;
+import id.naturalsmp.NaturalWorldGen.NaturalGenerator;
 import id.naturalsmp.NaturalWorldGen.core.gui.components.RenderType;
 import id.naturalsmp.NaturalWorldGen.core.loader.IrisData;
 import id.naturalsmp.NaturalWorldGen.core.loader.IrisRegistrant;
@@ -385,14 +385,14 @@ public class IrisRegion extends IrisRegistrant implements IRare {
                     biomes.remove(index);
                 }
 
-                NaturalWorldGen.warn("Couldn't find a suitable color for region " + getName());
+                NaturalGenerator.warn("Couldn't find a suitable color for region " + getName());
                 return new Color(new RandomColor(rand).randomColor());
             }
 
             try {
                 return Color.decode(this.color);
             } catch (NumberFormatException e) {
-                NaturalWorldGen.warn("Could not parse color \"" + this.color + "\" for region " + getName());
+                NaturalGenerator.warn("Could not parse color \"" + this.color + "\" for region " + getName());
                 return Color.WHITE;
             }
         });

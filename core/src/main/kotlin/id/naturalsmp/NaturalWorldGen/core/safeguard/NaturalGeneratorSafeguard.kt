@@ -1,6 +1,6 @@
 package id.naturalsmp.NaturalWorldGen.core.safeguard
 
-import id.naturalsmp.NaturalWorldGen.NaturalWorldGen
+import id.naturalsmp.NaturalWorldGen.NaturalGenerator
 import id.naturalsmp.NaturalWorldGen.core.IrisSettings
 import id.naturalsmp.NaturalWorldGen.core.safeguard.task.Diagnostic
 import id.naturalsmp.NaturalWorldGen.core.safeguard.task.Task
@@ -32,7 +32,7 @@ object IrisSafeguard {
             try {
                 result = task.run()
             } catch (e: Throwable) {
-                NaturalWorldGen.reportError(e)
+                NaturalGenerator.reportError(e)
                 result = ValueWithDiagnostics(
                     Mode.WARNING,
                     Diagnostic(Diagnostic.Logger.ERROR, "Error while running task ${task.id}", e)
@@ -71,9 +71,9 @@ object IrisSafeguard {
     @JvmStatic
     fun printReports() {
         when (mode) {
-            Mode.STABLE -> NaturalWorldGen.info(C.BLUE.toString() + "0 Conflicts found")
-            Mode.WARNING -> NaturalWorldGen.warn(C.GOLD.toString() + "%s Issues found", count)
-            Mode.UNSTABLE -> NaturalWorldGen.error(C.DARK_RED.toString() + "%s Issues found", count)
+            Mode.STABLE -> NaturalGenerator.info(C.BLUE.toString() + "0 Conflicts found")
+            Mode.WARNING -> NaturalGenerator.warn(C.GOLD.toString() + "%s Issues found", count)
+            Mode.UNSTABLE -> NaturalGenerator.error(C.DARK_RED.toString() + "%s Issues found", count)
         }
 
         results.values.forEach { it.log(withStackTrace = true) }
@@ -82,7 +82,7 @@ object IrisSafeguard {
     @JvmStatic
     fun printFooter() {
         when (mode) {
-            Mode.STABLE -> NaturalWorldGen.info(C.BLUE.toString() + "NaturalWorldGen is running Stable")
+            Mode.STABLE -> NaturalGenerator.info(C.BLUE.toString() + "NaturalWorldGen is running Stable")
             Mode.WARNING -> warning()
             Mode.UNSTABLE -> unstable()
         }
@@ -92,45 +92,45 @@ object IrisSafeguard {
     fun isForceShutdown() = forceShutdown
 
     private fun warning() {
-        NaturalWorldGen.warn(C.GOLD.toString() + "NaturalWorldGen is running in Warning Mode")
+        NaturalGenerator.warn(C.GOLD.toString() + "NaturalWorldGen is running in Warning Mode")
 
-        NaturalWorldGen.warn("")
-        NaturalWorldGen.warn(C.DARK_GRAY.toString() + "--==<" + C.GOLD + " IMPORTANT " + C.DARK_GRAY + ">==--")
-        NaturalWorldGen.warn(C.GOLD.toString() + "NaturalWorldGen is running in warning mode which may cause the following issues:")
-        NaturalWorldGen.warn("- Data Loss")
-        NaturalWorldGen.warn("- Errors")
-        NaturalWorldGen.warn("- Broken worlds")
-        NaturalWorldGen.warn("- Unexpected behavior.")
-        NaturalWorldGen.warn("- And perhaps further complications.")
-        NaturalWorldGen.warn("")
+        NaturalGenerator.warn("")
+        NaturalGenerator.warn(C.DARK_GRAY.toString() + "--==<" + C.GOLD + " IMPORTANT " + C.DARK_GRAY + ">==--")
+        NaturalGenerator.warn(C.GOLD.toString() + "NaturalWorldGen is running in warning mode which may cause the following issues:")
+        NaturalGenerator.warn("- Data Loss")
+        NaturalGenerator.warn("- Errors")
+        NaturalGenerator.warn("- Broken worlds")
+        NaturalGenerator.warn("- Unexpected behavior.")
+        NaturalGenerator.warn("- And perhaps further complications.")
+        NaturalGenerator.warn("")
     }
 
     private fun unstable() {
-        NaturalWorldGen.error(C.DARK_RED.toString() + "NaturalWorldGen is running in Unstable Mode")
+        NaturalGenerator.error(C.DARK_RED.toString() + "NaturalWorldGen is running in Unstable Mode")
 
-        NaturalWorldGen.error("")
-        NaturalWorldGen.error(C.DARK_GRAY.toString() + "--==<" + C.RED + " IMPORTANT " + C.DARK_GRAY + ">==--")
-        NaturalWorldGen.error("NaturalWorldGen is running in unstable mode which may cause the following issues:")
-        NaturalWorldGen.error(C.DARK_RED.toString() + "Server Issues")
-        NaturalWorldGen.error("- Server won't boot")
-        NaturalWorldGen.error("- Data Loss")
-        NaturalWorldGen.error("- Unexpected behavior.")
-        NaturalWorldGen.error("- And More...")
-        NaturalWorldGen.error(C.DARK_RED.toString() + "World Issues")
-        NaturalWorldGen.error("- Worlds can't load due to corruption.")
-        NaturalWorldGen.error("- Worlds may slowly corrupt until they can't load.")
-        NaturalWorldGen.error("- World data loss.")
-        NaturalWorldGen.error("- And More...")
-        NaturalWorldGen.error(C.DARK_RED.toString() + "ATTENTION: " + C.RED + "While running NaturalWorldGen in unstable mode, you won't be eligible for support.")
+        NaturalGenerator.error("")
+        NaturalGenerator.error(C.DARK_GRAY.toString() + "--==<" + C.RED + " IMPORTANT " + C.DARK_GRAY + ">==--")
+        NaturalGenerator.error("NaturalWorldGen is running in unstable mode which may cause the following issues:")
+        NaturalGenerator.error(C.DARK_RED.toString() + "Server Issues")
+        NaturalGenerator.error("- Server won't boot")
+        NaturalGenerator.error("- Data Loss")
+        NaturalGenerator.error("- Unexpected behavior.")
+        NaturalGenerator.error("- And More...")
+        NaturalGenerator.error(C.DARK_RED.toString() + "World Issues")
+        NaturalGenerator.error("- Worlds can't load due to corruption.")
+        NaturalGenerator.error("- Worlds may slowly corrupt until they can't load.")
+        NaturalGenerator.error("- World data loss.")
+        NaturalGenerator.error("- And More...")
+        NaturalGenerator.error(C.DARK_RED.toString() + "ATTENTION: " + C.RED + "While running NaturalWorldGen in unstable mode, you won't be eligible for support.")
 
         if (IrisSettings.get().general.isDoomsdayAnnihilationSelfDestructMode) {
-            NaturalWorldGen.error(C.DARK_RED.toString() + "Boot Unstable is set to true, continuing with the startup process in 10 seconds.")
+            NaturalGenerator.error(C.DARK_RED.toString() + "Boot Unstable is set to true, continuing with the startup process in 10 seconds.")
             J.sleep(10000L)
         } else {
-            NaturalWorldGen.error(C.DARK_RED.toString() + "Go to plugins/naturalworldgen/settings.json and set DoomsdayAnnihilationSelfDestructMode to true if you wish to proceed.")
-            NaturalWorldGen.error(C.DARK_RED.toString() + "The server will shutdown in 10 seconds.")
+            NaturalGenerator.error(C.DARK_RED.toString() + "Go to plugins/naturalworldgen/settings.json and set DoomsdayAnnihilationSelfDestructMode to true if you wish to proceed.")
+            NaturalGenerator.error(C.DARK_RED.toString() + "The server will shutdown in 10 seconds.")
             J.sleep(10000L)
-            NaturalWorldGen.error(C.DARK_RED.toString() + "Shutting down server.")
+            NaturalGenerator.error(C.DARK_RED.toString() + "Shutting down server.")
             forceShutdown = true
             try {
                 Bukkit.getPluginManager().disablePlugins()
@@ -138,6 +138,6 @@ object IrisSafeguard {
                 Runtime.getRuntime().halt(42)
             }
         }
-        NaturalWorldGen.info("")
+        NaturalGenerator.info("")
     }
 }

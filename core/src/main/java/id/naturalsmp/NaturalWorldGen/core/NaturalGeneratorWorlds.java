@@ -3,7 +3,7 @@ package id.naturalsmp.NaturalWorldGen.core;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
-import id.naturalsmp.NaturalWorldGen.NaturalWorldGen;
+import id.naturalsmp.NaturalWorldGen.NaturalGenerator;
 import id.naturalsmp.NaturalWorldGen.core.loader.IrisData;
 import id.naturalsmp.NaturalWorldGen.engine.data.cache.AtomicCache;
 import id.naturalsmp.NaturalWorldGen.engine.object.IrisDimension;
@@ -45,9 +45,9 @@ public class IrisWorlds {
                 KMap<String, String> worlds = GSON.fromJson(json, TYPE);
                 return new IrisWorlds(Objects.requireNonNullElseGet(worlds, KMap::new));
             } catch (Throwable e) {
-                NaturalWorldGen.error("Failed to load worlds.json!");
+                NaturalGenerator.error("Failed to load worlds.json!");
                 e.printStackTrace();
-                NaturalWorldGen.reportError(e);
+                NaturalGenerator.reportError(e);
             }
 
             return new IrisWorlds(new KMap<>());
@@ -95,9 +95,9 @@ public class IrisWorlds {
             IO.write(NaturalGenerator.instance.getDataFile("worlds.json"), OutputStreamWriter::new, writer -> GSON.toJson(worlds, TYPE, writer));
             dirty = false;
         } catch (IOException e) {
-            NaturalWorldGen.error("Failed to save worlds.json!");
+            NaturalGenerator.error("Failed to save worlds.json!");
             e.printStackTrace();
-            NaturalWorldGen.reportError(e);
+            NaturalGenerator.reportError(e);
         }
     }
 

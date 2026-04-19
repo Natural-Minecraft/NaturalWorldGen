@@ -18,7 +18,7 @@
 
 package id.naturalsmp.NaturalWorldGen.engine.object;
 
-import id.naturalsmp.NaturalWorldGen.NaturalWorldGen;
+import id.naturalsmp.NaturalWorldGen.NaturalGenerator;
 import id.naturalsmp.NaturalWorldGen.engine.object.annotations.*;
 import id.naturalsmp.NaturalWorldGen.util.math.RNG;
 import lombok.AllArgsConstructor;
@@ -60,7 +60,7 @@ public class IrisEnchantment {
         try {
             Enchantment enchant = Enchantment.getByKey(NamespacedKey.minecraft(getEnchantment()));
             if (enchant == null) {
-                NaturalWorldGen.warn("Unknown Enchantment: " + getEnchantment());
+                NaturalGenerator.warn("Unknown Enchantment: " + getEnchantment());
                 return;
             }
             if (rng.nextDouble() < chance) {
@@ -71,7 +71,7 @@ public class IrisEnchantment {
                 meta.addEnchant(enchant, getLevel(rng), true);
             }
         } catch (Throwable e) {
-            NaturalWorldGen.reportError(e);
+            NaturalGenerator.reportError(e);
 
         }
     }

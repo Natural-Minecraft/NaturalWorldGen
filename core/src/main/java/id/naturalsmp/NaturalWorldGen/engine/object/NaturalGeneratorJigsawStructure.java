@@ -18,7 +18,7 @@
 
 package id.naturalsmp.NaturalWorldGen.engine.object;
 
-import id.naturalsmp.NaturalWorldGen.NaturalWorldGen;
+import id.naturalsmp.NaturalWorldGen.NaturalGenerator;
 import id.naturalsmp.NaturalWorldGen.core.loader.IrisRegistrant;
 import id.naturalsmp.NaturalWorldGen.engine.data.cache.AtomicCache;
 import id.naturalsmp.NaturalWorldGen.engine.object.annotations.*;
@@ -93,7 +93,7 @@ public class IrisJigsawStructure extends IrisRegistrant {
         IrisJigsawPool pool = getLoader().getJigsawPoolLoader().load(p);
 
         if (pool == null) {
-            NaturalWorldGen.warn("Can't find jigsaw pool: " + p);
+            NaturalGenerator.warn("Can't find jigsaw pool: " + p);
             return;
         }
 
@@ -108,7 +108,7 @@ public class IrisJigsawStructure extends IrisRegistrant {
         IrisJigsawPiece piece = getLoader().getJigsawPieceLoader().load(p);
 
         if (piece == null) {
-            NaturalWorldGen.warn("Can't find jigsaw piece: " + p);
+            NaturalGenerator.warn("Can't find jigsaw piece: " + p);
             return;
         }
 

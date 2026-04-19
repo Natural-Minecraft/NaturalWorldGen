@@ -18,7 +18,7 @@
 
 package id.naturalsmp.NaturalWorldGen.util.decree.specialhandlers;
 
-import id.naturalsmp.NaturalWorldGen.NaturalWorldGen;
+import id.naturalsmp.NaturalWorldGen.NaturalGenerator;
 import id.naturalsmp.NaturalWorldGen.core.loader.IrisData;
 import id.naturalsmp.NaturalWorldGen.util.collection.KList;
 import id.naturalsmp.NaturalWorldGen.util.decree.DecreeParameterHandler;

@@ -18,7 +18,7 @@
 
 package id.naturalsmp.NaturalWorldGen.core.commands;
 
-import id.naturalsmp.NaturalWorldGen.NaturalWorldGen;
+import id.naturalsmp.NaturalWorldGen.NaturalGenerator;
 import id.naturalsmp.NaturalWorldGen.core.IrisSettings;
 import id.naturalsmp.NaturalWorldGen.core.nms.INMS;
 import id.naturalsmp.NaturalWorldGen.core.service.StudioSVC;
@@ -68,7 +68,7 @@ public class CommandIris implements DecreeExecutor {
     private static final AtomicReference<Thread> mainWorld = new AtomicReference<>();
     String WorldEngine;
     String worldNameToCheck = "YourWorldName";
-    NaturalDevSender sender = NaturalWorldGen.getSender();
+    NaturalDevSender sender = NaturalGenerator.getSender();
 
     @Decree(description = "Create a new world", aliases = {"+", "c"})
     public void create(
@@ -115,8 +115,8 @@ public class CommandIris implements DecreeExecutor {
             }
         } catch (Throwable e) {
             sender().sendMessage(C.RED + "Exception raised during creation. See the console for more details.");
-            NaturalWorldGen.error("Exception raised during world creation: " + e.getMessage());
-            NaturalWorldGen.reportError(e);
+            NaturalGenerator.error("Exception raised during world creation: " + e.getMessage());
+            NaturalGenerator.reportError(e);
             worldCreation = false;
             return;
         }
@@ -192,15 +192,15 @@ public class CommandIris implements DecreeExecutor {
             sender().sendMessage(C.GREEN + "Total Height: " + (sender().player().getWorld().getMaxHeight() - sender().player().getWorld().getMinHeight()));
         } else {
             World mainWorld = getServer().getWorlds().get(0);
-            NaturalWorldGen.info(C.GREEN + "" + mainWorld.getMinHeight() + " to " + mainWorld.getMaxHeight());
-            NaturalWorldGen.info(C.GREEN + "Total Height: " + (mainWorld.getMaxHeight() - mainWorld.getMinHeight()));
+            NaturalGenerator.info(C.GREEN + "" + mainWorld.getMinHeight() + " to " + mainWorld.getMaxHeight());
+            NaturalGenerator.info(C.GREEN + "Total Height: " + (mainWorld.getMaxHeight() - mainWorld.getMinHeight()));
         }
     }
 
     @Decree(description = "QOL command to open a overworld studio world.", sync = true)
     public void so() {
         sender().sendMessage(C.GREEN + "Opening studio for the \"Overworld\" pack (seed: 1337)");
-        NaturalWorldGen.service(StudioSVC.class).open(sender(), 1337, "overworld");
+        NaturalGenerator.service(StudioSVC.class).open(sender(), 1337, "overworld");
     }
 
     @Decree(description = "Check access of all worlds.", aliases = {"accesslist"})
@@ -229,13 +229,13 @@ public class CommandIris implements DecreeExecutor {
                 sender().sendMessage(C.GRAY + "- " +BukkitWorld.getName());
             }
         } else {
-            NaturalWorldGen.info(C.BLUE + "NaturalWorldGen Worlds: ");
+            NaturalGenerator.info(C.BLUE + "NaturalWorldGen Worlds: ");
             for (World IrisWorld : IrisWorlds.copy()) {
-                NaturalWorldGen.info(C.IRIS + "- " +IrisWorld.getName());
+                NaturalGenerator.info(C.IRIS + "- " +IrisWorld.getName());
             }
-            NaturalWorldGen.info(C.GOLD + "Bukkit Worlds: ");
+            NaturalGenerator.info(C.GOLD + "Bukkit Worlds: ");
             for (World BukkitWorld : BukkitWorlds.copy()) {
-                NaturalWorldGen.info(C.GRAY + "- " +BukkitWorld.getName());
+                NaturalGenerator.info(C.GRAY + "- " +BukkitWorld.getName());
             }
             
         }
@@ -337,7 +337,7 @@ public class CommandIris implements DecreeExecutor {
     public void bitwise(
             @Param(description = "The first value to run calculations on")
             int value1,
-            @Param(description = "The operator: | & ^ â‰ºâ‰º â‰»â‰» ï¼…")
+            @Param(description = "The operator: | & ^ Ã¢â€°ÂºÃ¢â€°Âº Ã¢â€°Â»Ã¢â€°Â» Ã¯Â¼â€¦")
             String operator,
             @Param(description = "The second value to run calculations on")
             int value2
@@ -355,7 +355,7 @@ public class CommandIris implements DecreeExecutor {
             sender().sendMessage(C.RED + "The operator you entered: (" + operator + ") is invalid!");
             return;
         }
-        sender().sendMessage(C.GREEN + "" + value1 + " " + C.GREEN + operator.replaceAll("<", "â‰º").replaceAll(">", "â‰»").replaceAll("%", "ï¼…") + " " + C.GREEN + value2 + C.GREEN + " returns " + C.GREEN + v);
+        sender().sendMessage(C.GREEN + "" + value1 + " " + C.GREEN + operator.replaceAll("<", "Ã¢â€°Âº").replaceAll(">", "Ã¢â€°Â»").replaceAll("%", "Ã¯Â¼â€¦") + " " + C.GREEN + value2 + C.GREEN + " returns " + C.GREEN + v);
     }
 
     @Decree(description = "Toggle debug")
@@ -385,9 +385,9 @@ public class CommandIris implements DecreeExecutor {
         sender().sendMessage(C.GREEN + "Downloading pack: " + pack + "/" + branch + (trim ? " trimmed" : "") + (overwrite ? " overwriting" : ""));
         if (pack.equals("overworld")) {
             String url = "https://github.com/IrisDimensions/overworld/releases/download/" + INMS.OVERWORLD_TAG + "/overworld.zip";
-            NaturalWorldGen.service(StudioSVC.class).downloadRelease(sender(), url, trim, overwrite);
+            NaturalGenerator.service(StudioSVC.class).downloadRelease(sender(), url, trim, overwrite);
         } else {
-            NaturalWorldGen.service(StudioSVC.class).downloadSearch(sender(), "IrisDimensions/" + pack + "/" + branch, trim, overwrite);
+            NaturalGenerator.service(StudioSVC.class).downloadSearch(sender(), "IrisDimensions/" + pack + "/" + branch, trim, overwrite);
         }
     }
 
@@ -438,10 +438,10 @@ public class CommandIris implements DecreeExecutor {
         folder.mkdirs();
 
         if (freshDownload) {
-            NaturalWorldGen.service(StudioSVC.class).downloadSearch(sender(), pack.getLoadKey(), false, true);
+            NaturalGenerator.service(StudioSVC.class).downloadSearch(sender(), pack.getLoadKey(), false, true);
         }
 
-        NaturalWorldGen.service(StudioSVC.class).installIntoWorld(sender(), pack.getLoadKey(), folder);
+        NaturalGenerator.service(StudioSVC.class).installIntoWorld(sender(), pack.getLoadKey(), folder);
     }
 
     @Decree(description = "Unload an NaturalWorldGen World", origin = DecreeOrigin.PLAYER, sync = true)
@@ -509,9 +509,9 @@ public class CommandIris implements DecreeExecutor {
             section.createSection(world).set("generator", gen);
             try {
                 yml.save(BUKKIT_YML);
-                NaturalWorldGen.info("Registered \"" + world + "\" in bukkit.yml");
+                NaturalGenerator.info("Registered \"" + world + "\" in bukkit.yml");
             } catch (IOException e) {
-                NaturalWorldGen.error("Failed to update bukkit.yml!");
+                NaturalGenerator.error("Failed to update bukkit.yml!");
                 e.printStackTrace();
                 return;
             }

@@ -2,7 +2,7 @@ package id.naturalsmp.NaturalWorldGen.core.nms.v1_21_R2;
 
 import com.mojang.datafixers.util.Pair;
 import com.mojang.serialization.MapCodec;
-import id.naturalsmp.NaturalWorldGen.NaturalWorldGen;
+import id.naturalsmp.NaturalWorldGen.NaturalGenerator;
 import id.naturalsmp.NaturalWorldGen.engine.framework.Engine;
 import id.naturalsmp.NaturalWorldGen.engine.framework.ResultLocator;
 import id.naturalsmp.NaturalWorldGen.engine.framework.WrongEngineBroException;
@@ -108,7 +108,7 @@ public class IrisChunkGenerator extends CustomChunkGenerator {
                 var key = TagKey.create(Registries.STRUCTURE, location);
                 var set = registry.get(key).orElse(null);
                 if (set == null) {
-                    NaturalWorldGen.error("Could not find structure tag: " + raw);
+                    NaturalGenerator.error("Could not find structure tag: " + raw);
                     continue;
                 }
                 for (var holder : set) {
@@ -117,7 +117,7 @@ public class IrisChunkGenerator extends CustomChunkGenerator {
                     structures.computeIfAbsent(resourceKey, k -> new KSet<>()).add(s.getLoadKey());
                 }
             } catch (Throwable e) {
-                NaturalWorldGen.error("Failed to load structure: " + s.getLoadKey());
+                NaturalGenerator.error("Failed to load structure: " + s.getLoadKey());
                 e.printStackTrace();
             }
         }

@@ -18,7 +18,7 @@
 
 package id.naturalsmp.NaturalWorldGen.util.math;
 
-import id.naturalsmp.NaturalWorldGen.NaturalWorldGen;
+import id.naturalsmp.NaturalWorldGen.NaturalGenerator;
 
 /**
  * A 4-element tuple represented by single-precision floating point x,y,z,w
@@ -359,7 +359,7 @@ public abstract class Tuple4f implements java.io.Serializable, Cloneable {
             return (this.x == t1.x && this.y == t1.y && this.z == t1.z
                     && this.w == t1.w);
         } catch (NullPointerException e2) {
-            NaturalWorldGen.reportError(e2);
+            NaturalGenerator.reportError(e2);
             return false;
         }
     }
@@ -378,7 +378,7 @@ public abstract class Tuple4f implements java.io.Serializable, Cloneable {
             return (this.x == t2.x && this.y == t2.y &&
                     this.z == t2.z && this.w == t2.w);
         } catch (NullPointerException | ClassCastException e2) {
-            NaturalWorldGen.reportError(e2);
+            NaturalGenerator.reportError(e2);
             return false;
         }
     }
@@ -638,7 +638,7 @@ public abstract class Tuple4f implements java.io.Serializable, Cloneable {
         try {
             return super.clone();
         } catch (CloneNotSupportedException e) {
-            NaturalWorldGen.reportError(e);
+            NaturalGenerator.reportError(e);
             // this shouldn't happen, since we are Cloneable
             throw new InternalError();
         }

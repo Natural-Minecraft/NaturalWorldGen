@@ -18,7 +18,7 @@
 
 package id.naturalsmp.NaturalWorldGen.engine.object;
 
-import id.naturalsmp.NaturalWorldGen.NaturalWorldGen;
+import id.naturalsmp.NaturalWorldGen.NaturalGenerator;
 import id.naturalsmp.NaturalWorldGen.core.loader.IrisData;
 import id.naturalsmp.NaturalWorldGen.engine.data.cache.AtomicCache;
 import id.naturalsmp.NaturalWorldGen.engine.object.annotations.*;
@@ -108,7 +108,7 @@ public class IrisGeneratorStyle {
             cng = new CNG(rng, new ImageNoise(data, getImageMap()), 1D, 1).bake();
         } else if (getScript() != null) {
             Object result = data.getEnvironment().createNoise(getScript(), rng);
-            if (result == null) NaturalWorldGen.warn("Failed to create noise from script: " + getScript());
+            if (result == null) NaturalGenerator.warn("Failed to create noise from script: " + getScript());
             if (result instanceof NoiseGenerator generator) {
                 cng = new CNG(rng, generator, 1D, 1).bake();
             }

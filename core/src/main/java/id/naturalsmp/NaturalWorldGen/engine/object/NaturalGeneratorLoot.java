@@ -18,7 +18,7 @@
 
 package id.naturalsmp.NaturalWorldGen.engine.object;
 
-import id.naturalsmp.NaturalWorldGen.NaturalWorldGen;
+import id.naturalsmp.NaturalWorldGen.NaturalGenerator;
 import id.naturalsmp.NaturalWorldGen.core.link.Identifier;
 import id.naturalsmp.NaturalWorldGen.core.nms.INMS;
 import id.naturalsmp.NaturalWorldGen.core.service.ExternalDataSVC;
@@ -116,7 +116,7 @@ public class IrisLoot {
             is.setItemMeta(applyProperties(is, rng, debug, null));
             return INMS.get().applyCustomNbt(is, customNbt);
         } catch (Throwable e) {
-            NaturalWorldGen.reportError(e);
+            NaturalGenerator.reportError(e);
             return new ItemStack(Material.AIR);
         }
     }
@@ -134,7 +134,7 @@ public class IrisLoot {
                 is.setItemMeta(applyProperties(is, rng, debug, table));
                 return INMS.get().applyCustomNbt(is, customNbt);
             } catch (Throwable e) {
-                //NaturalWorldGen.reportError(e);
+                //NaturalGenerator.reportError(e);
                 e.printStackTrace();
             }
         }
@@ -145,9 +145,9 @@ public class IrisLoot {
     // TODO Better Third Party Item Acquisition
     private ItemStack getItemStack(RNG rng) {
         if (!type.startsWith("minecraft:") && type.contains(":")) {
-            Optional<ItemStack> opt = NaturalWorldGen.service(ExternalDataSVC.class).getItemStack(Identifier.fromString(type), customNbt);
+            Optional<ItemStack> opt = NaturalGenerator.service(ExternalDataSVC.class).getItemStack(Identifier.fromString(type), customNbt);
             if (opt.isEmpty()) {
-                NaturalWorldGen.warn("Unknown Material: " + type);
+                NaturalGenerator.warn("Unknown Material: " + type);
                 return new ItemStack(Material.AIR);
             }
             ItemStack is = opt.get();

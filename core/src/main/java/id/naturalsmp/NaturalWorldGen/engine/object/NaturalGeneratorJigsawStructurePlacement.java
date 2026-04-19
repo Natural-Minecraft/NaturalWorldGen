@@ -18,7 +18,7 @@
 
 package id.naturalsmp.NaturalWorldGen.engine.object;
 
-import id.naturalsmp.NaturalWorldGen.NaturalWorldGen;
+import id.naturalsmp.NaturalWorldGen.NaturalGenerator;
 import id.naturalsmp.NaturalWorldGen.core.loader.IrisData;
 import id.naturalsmp.NaturalWorldGen.engine.object.annotations.*;
 import id.naturalsmp.NaturalWorldGen.util.collection.KList;
@@ -120,7 +120,7 @@ public class IrisJigsawStructurePlacement implements IRare {
     private boolean shouldPlaceSpread(long seed, int x, int z) {
         if (separation > spacing) {
             separation = spacing;
-            NaturalWorldGen.warn("JigsawStructurePlacement: separation must be less than or equal to spacing");
+            NaturalGenerator.warn("JigsawStructurePlacement: separation must be less than or equal to spacing");
         }
 
         int i = Math.floorDiv(x, spacing);

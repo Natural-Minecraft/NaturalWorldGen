@@ -23,7 +23,7 @@ import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonToken;
 import com.google.gson.stream.JsonWriter;
-import id.naturalsmp.NaturalWorldGen.NaturalWorldGen;
+import id.naturalsmp.NaturalWorldGen.NaturalGenerator;
 import id.naturalsmp.NaturalWorldGen.core.scripting.environment.PackEnvironment;
 import id.naturalsmp.NaturalWorldGen.engine.data.cache.AtomicCache;
 import id.naturalsmp.NaturalWorldGen.engine.framework.Engine;
@@ -118,7 +118,7 @@ public class IrisData implements ExclusionStrategy, TypeAdapterFactory {
     }
 
     private static void printData(ResourceLoader<?> rl) {
-        NaturalWorldGen.warn("  " + rl.getResourceTypeName() + " @ /" + rl.getFolderName() + ": Cache=" + rl.getLoadCache().getSize() + " Folders=" + rl.getFolders().size());
+        NaturalGenerator.warn("  " + rl.getResourceTypeName() + " @ /" + rl.getFolderName() + ": Cache=" + rl.getLoadCache().getSize() + " Folders=" + rl.getFolders().size());
     }
 
     public static IrisObject loadAnyObject(String key, @Nullable IrisData nearest) {
@@ -222,7 +222,7 @@ public class IrisData implements ExclusionStrategy, TypeAdapterFactory {
                 }
             }
         } catch (Throwable e) {
-            NaturalWorldGen.reportError(e);
+            NaturalGenerator.reportError(e);
             e.printStackTrace();
         }
 
@@ -257,7 +257,7 @@ public class IrisData implements ExclusionStrategy, TypeAdapterFactory {
     public void cleanupEngine() {
         if (engine != null && engine.isClosed()) {
             engine = null;
-            NaturalWorldGen.debug("Dereferenced Data<Engine> " + getId() + " " + getDataFolder());
+            NaturalGenerator.debug("Dereferenced Data<Engine> " + getId() + " " + getDataFolder());
         }
     }
 
@@ -271,7 +271,7 @@ public class IrisData implements ExclusionStrategy, TypeAdapterFactory {
             }
 
             if (engine == null && t.getPreprocessors().isNotEmpty()) {
-                NaturalWorldGen.error("Failed to preprocess object " + t.getLoadKey() + " because there is no engine context here. (See stack below)");
+                NaturalGenerator.error("Failed to preprocess object " + t.getLoadKey() + " because there is no engine context here. (See stack below)");
                 try {
                     throw new RuntimeException();
                 } catch (Throwable ex) {
@@ -287,18 +287,18 @@ public class IrisData implements ExclusionStrategy, TypeAdapterFactory {
                     if (global != null) {
                         for (String i : global) {
                             engine.getExecution().preprocessObject(i, t);
-                            NaturalWorldGen.debug("Loader<" + C.GREEN + t.getTypeName() + C.LIGHT_PURPLE + "> iprocess " + C.YELLOW + t.getLoadKey() + C.LIGHT_PURPLE + " in <rainbow>" + i);
+                            NaturalGenerator.debug("Loader<" + C.GREEN + t.getTypeName() + C.LIGHT_PURPLE + "> iprocess " + C.YELLOW + t.getLoadKey() + C.LIGHT_PURPLE + " in <rainbow>" + i);
                         }
                     }
 
                     for (String i : local) {
                         engine.getExecution().preprocessObject(i, t);
-                        NaturalWorldGen.debug("Loader<" + C.GREEN + t.getTypeName() + C.LIGHT_PURPLE + "> iprocess " + C.YELLOW + t.getLoadKey() + C.LIGHT_PURPLE + " in <rainbow>" + i);
+                        NaturalGenerator.debug("Loader<" + C.GREEN + t.getTypeName() + C.LIGHT_PURPLE + "> iprocess " + C.YELLOW + t.getLoadKey() + C.LIGHT_PURPLE + " in <rainbow>" + i);
                     }
                 }
             }
         } catch (Throwable e) {
-            NaturalWorldGen.error("Failed to preprocess object!");
+            NaturalGenerator.error("Failed to preprocess object!");
             e.printStackTrace();
         }
     }
@@ -338,9 +338,9 @@ public class IrisData implements ExclusionStrategy, TypeAdapterFactory {
 
             return r;
         } catch (Throwable e) {
-            NaturalWorldGen.reportError(e);
+            NaturalGenerator.reportError(e);
             e.printStackTrace();
-            NaturalWorldGen.error("Failed to create loader! " + registrant.getCanonicalName());
+            NaturalGenerator.error("Failed to create loader! " + registrant.getCanonicalName());
         }
 
         return null;
@@ -452,10 +452,10 @@ public class IrisData implements ExclusionStrategy, TypeAdapterFactory {
 
             return g.substring(1).split("\\Q.\\E")[0];
         } else {
-            NaturalWorldGen.error("Forign file from loader " + f.getPath() + " (loader realm: " + getDataFolder().getPath() + ")");
+            NaturalGenerator.error("Forign file from loader " + f.getPath() + " (loader realm: " + getDataFolder().getPath() + ")");
         }
 
-        NaturalWorldGen.error("Failed to load " + f.getPath() + " (loader realm: " + getDataFolder().getPath() + ")");
+        NaturalGenerator.error("Failed to load " + f.getPath() + " (loader realm: " + getDataFolder().getPath() + ")");
 
         return null;
     }
@@ -503,10 +503,10 @@ public class IrisData implements ExclusionStrategy, TypeAdapterFactory {
                         try (JsonReader snippetReader = new JsonReader(new FileReader(f))){
                             return adapter.read(snippetReader);
                         } catch (Throwable e) {
-                            NaturalWorldGen.error("Couldn't read snippet " + r + " in " + reader.getPath() + " (" + e.getMessage() + ")");
+                            NaturalGenerator.error("Couldn't read snippet " + r + " in " + reader.getPath() + " (" + e.getMessage() + ")");
                         }
                     } else {
-                        NaturalWorldGen.error("Couldn't find snippet " + r + " in " + reader.getPath());
+                        NaturalGenerator.error("Couldn't find snippet " + r + " in " + reader.getPath());
                     }
 
                     return null;
@@ -515,8 +515,8 @@ public class IrisData implements ExclusionStrategy, TypeAdapterFactory {
                 try {
                     return adapter.read(reader);
                 } catch (Throwable e) {
-                    NaturalWorldGen.error("Failed to read " + typeToken.getRawType().getCanonicalName() + "... faking objects a little to load the file at least.");
-                    NaturalWorldGen.reportError(e);
+                    NaturalGenerator.error("Failed to read " + typeToken.getRawType().getCanonicalName() + "... faking objects a little to load the file at least.");
+                    NaturalGenerator.reportError(e);
                     try {
                         return (T) typeToken.getRawType().getConstructor().newInstance();
                     } catch (Throwable ignored) {
@@ -571,7 +571,7 @@ public class IrisData implements ExclusionStrategy, TypeAdapterFactory {
         }
 
         b.complete();
-        NaturalWorldGen.info("Saved Prefetch Cache to speed up future world startups");
+        NaturalGenerator.info("Saved Prefetch Cache to speed up future world startups");
     }
 
     public void loadPrefetch(Engine engine) {
@@ -588,6 +588,6 @@ public class IrisData implements ExclusionStrategy, TypeAdapterFactory {
         }
 
         b.complete();
-        NaturalWorldGen.info("Loaded Prefetch Cache to reduce generation disk use.");
+        NaturalGenerator.info("Loaded Prefetch Cache to reduce generation disk use.");
     }
 }

@@ -18,7 +18,7 @@
 
 package id.naturalsmp.NaturalWorldGen.core.nms.v1X;
 
-import id.naturalsmp.NaturalWorldGen.NaturalWorldGen;
+import id.naturalsmp.NaturalWorldGen.NaturalGenerator;
 import id.naturalsmp.NaturalWorldGen.core.link.Identifier;
 import id.naturalsmp.NaturalWorldGen.core.nms.INMSBinding;
 import id.naturalsmp.NaturalWorldGen.core.nms.container.BiomeColor;
@@ -244,14 +244,14 @@ public class NMSBinding1X implements INMSBinding {
 
     @Override
     public MCABiomeContainer newBiomeContainer(int min, int max) {
-        NaturalWorldGen.error("Cannot use the custom biome data! NaturalWorldGen is incapable of using MCA generation on this version of minecraft!");
+        NaturalGenerator.error("Cannot use the custom biome data! NaturalWorldGen is incapable of using MCA generation on this version of minecraft!");
 
         return null;
     }
 
     @Override
     public MCABiomeContainer newBiomeContainer(int min, int max, int[] v) {
-        NaturalWorldGen.error("Cannot use the custom biome data! NaturalWorldGen is incapable of using MCA generation on this version of minecraft!");
+        NaturalGenerator.error("Cannot use the custom biome data! NaturalWorldGen is incapable of using MCA generation on this version of minecraft!");
 
         return null;
     }
@@ -273,7 +273,7 @@ public class NMSBinding1X implements INMSBinding {
 
     @Override
     public MCAPaletteAccess createPalette() {
-        NaturalWorldGen.error("Cannot use the global data palette! NaturalWorldGen is incapable of using MCA generation on this version of minecraft!");
+        NaturalGenerator.error("Cannot use the global data palette! NaturalWorldGen is incapable of using MCA generation on this version of minecraft!");
         return null;
     }
 }

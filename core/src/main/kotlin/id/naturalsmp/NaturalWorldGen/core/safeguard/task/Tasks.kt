@@ -1,6 +1,6 @@
 package id.naturalsmp.NaturalWorldGen.core.safeguard.task
 
-import id.naturalsmp.NaturalWorldGen.NaturalWorldGen
+import id.naturalsmp.NaturalWorldGen.NaturalGenerator
 import id.naturalsmp.NaturalWorldGen.core.IrisWorlds
 import id.naturalsmp.NaturalWorldGen.core.nms.INMS
 import id.naturalsmp.NaturalWorldGen.core.nms.v1X.NMSBinding1X
