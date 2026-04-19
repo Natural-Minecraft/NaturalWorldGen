@@ -36,7 +36,7 @@ plugins {
 
 val apiVersion = "1.19"
 val main = "id.naturalsmp.nwg.NaturalGenerator"
-val lib = "id.naturalsmp.nwg.utilities"
+val lib = "id.naturalsmp.nwg.libs"
 
 /**
  * Dependencies.
@@ -227,5 +227,10 @@ rootProject.tasks.named("prepareKotlinBuildScriptModel") {
 }
 
 sourceSets.main {
-    java.srcDir(generateTemplates.map { it.outputs })
+    java {
+        srcDirs("src/main/java", generateTemplates.map { it.outputs })
+    }
+    kotlin {
+        srcDirs("src/main/kotlin")
+    }
 }
