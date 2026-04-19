@@ -1,6 +1,6 @@
 import NMSBinding.Type
-import com.naturalsmp.nmstools.NMSToolsExtension
-import com.naturalsmp.nmstools.NMSToolsPlugin
+import com.volmit.nmstools.NMSToolsExtension
+import com.volmit.nmstools.NMSToolsPlugin
 import io.papermc.paperweight.userdev.PaperweightUser
 import io.papermc.paperweight.userdev.PaperweightUserDependenciesExtension
 import io.papermc.paperweight.userdev.PaperweightUserExtension
