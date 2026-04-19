@@ -23,10 +23,10 @@ import id.naturalsmp.nwg.engine.data.cache.AtomicCache;
 import id.naturalsmp.nwg.engine.object.annotations.Desc;
 import id.naturalsmp.nwg.engine.object.annotations.Required;
 import id.naturalsmp.nwg.engine.object.annotations.Snippet;
-import id.naturalsmp.nwg.util.collection.KMap;
-import id.naturalsmp.nwg.util.math.RNG;
-import id.naturalsmp.nwg.util.noise.CNG;
-import id.naturalsmp.nwg.util.stream.ProceduralStream;
+import id.naturalsmp.nwg.utilities.collection.KMap;
+import id.naturalsmp.nwg.utilities.math.RNG;
+import id.naturalsmp.nwg.utilities.noise.CNG;
+import id.naturalsmp.nwg.utilities.stream.ProceduralStream;
 import lombok.*;
 import lombok.experimental.Accessors;
 

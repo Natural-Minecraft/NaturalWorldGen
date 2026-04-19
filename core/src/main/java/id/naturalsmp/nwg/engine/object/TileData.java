@@ -22,7 +22,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import id.naturalsmp.nwg.NaturalGenerator;
 import id.naturalsmp.nwg.core.nms.INMS;
-import id.naturalsmp.nwg.util.collection.KMap;
+import id.naturalsmp.nwg.utilities.collection.KMap;
 import lombok.*;
 import org.bukkit.Material;
 import org.bukkit.block.Block;

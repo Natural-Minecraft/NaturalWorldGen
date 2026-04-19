@@ -1,10 +1,10 @@
 package id.naturalsmp.nwg.core.pregenerator.cache
 
 import id.naturalsmp.nwg.NaturalGenerator
-import id.naturalsmp.nwg.util.data.Varint
-import id.naturalsmp.nwg.util.documentation.ChunkCoordinates
-import id.naturalsmp.nwg.util.documentation.RegionCoordinates
-import id.naturalsmp.nwg.util.io.IO
+import id.naturalsmp.nwg.utilities.data.Varint
+import id.naturalsmp.nwg.utilities.documentation.ChunkCoordinates
+import id.naturalsmp.nwg.utilities.documentation.RegionCoordinates
+import id.naturalsmp.nwg.utilities.io.IO
 import it.unimi.dsi.fastutil.objects.Object2ObjectLinkedOpenHashMap
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch

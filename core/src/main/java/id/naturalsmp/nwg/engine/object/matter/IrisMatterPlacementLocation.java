@@ -2,7 +2,7 @@ package id.naturalsmp.nwg.engine.object.matter;
 
 import id.naturalsmp.nwg.engine.IrisEngine;
 import id.naturalsmp.nwg.engine.object.annotations.Desc;
-import id.naturalsmp.nwg.util.function.Function3;
+import id.naturalsmp.nwg.utilities.function.Function3;
 
 @Desc("WHERE THINGS PLACE")
 public enum IrisMatterPlacementLocation {

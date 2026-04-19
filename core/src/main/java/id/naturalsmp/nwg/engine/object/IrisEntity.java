@@ -26,15 +26,15 @@ import id.naturalsmp.nwg.core.nms.INMS;
 import id.naturalsmp.nwg.core.service.ExternalDataSVC;
 import id.naturalsmp.nwg.engine.framework.Engine;
 import id.naturalsmp.nwg.engine.object.annotations.*;
-import id.naturalsmp.nwg.util.collection.KList;
-import id.naturalsmp.nwg.util.format.C;
-import id.naturalsmp.nwg.util.json.JSONObject;
-import id.naturalsmp.nwg.util.math.M;
-import id.naturalsmp.nwg.util.math.RNG;
-import id.naturalsmp.nwg.util.plugin.Chunks;
-import id.naturalsmp.nwg.util.plugin.NaturalDevSender;
-import id.naturalsmp.nwg.util.scheduling.J;
-import id.naturalsmp.nwg.util.scheduling.PrecisionStopwatch;
+import id.naturalsmp.nwg.utilities.collection.KList;
+import id.naturalsmp.nwg.utilities.format.C;
+import id.naturalsmp.nwg.utilities.json.JSONObject;
+import id.naturalsmp.nwg.utilities.math.M;
+import id.naturalsmp.nwg.utilities.math.RNG;
+import id.naturalsmp.nwg.utilities.plugin.Chunks;
+import id.naturalsmp.nwg.utilities.plugin.NaturalDevSender;
+import id.naturalsmp.nwg.utilities.scheduling.J;
+import id.naturalsmp.nwg.utilities.scheduling.PrecisionStopwatch;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -58,7 +58,7 @@ import java.util.concurrent.ExecutionException;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicReference;
 
-import static id.naturalsmp.nwg.util.data.registry.Particles.ITEM;
+import static id.naturalsmp.nwg.utilities.data.registry.Particles.ITEM;
 
 @SuppressWarnings("ALL")
 @Accessors(chain = true)

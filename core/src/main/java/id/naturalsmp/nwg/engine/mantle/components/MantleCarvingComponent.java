@@ -26,10 +26,10 @@ import id.naturalsmp.nwg.engine.mantle.MantleWriter;
 import id.naturalsmp.nwg.engine.object.IrisBiome;
 import id.naturalsmp.nwg.engine.object.IrisCarving;
 import id.naturalsmp.nwg.engine.object.IrisRegion;
-import id.naturalsmp.nwg.util.context.ChunkContext;
-import id.naturalsmp.nwg.util.documentation.ChunkCoordinates;
-import id.naturalsmp.nwg.util.mantle.flag.ReservedFlag;
-import id.naturalsmp.nwg.util.math.RNG;
+import id.naturalsmp.nwg.utilities.context.ChunkContext;
+import id.naturalsmp.nwg.utilities.documentation.ChunkCoordinates;
+import id.naturalsmp.nwg.utilities.mantle.flag.ReservedFlag;
+import id.naturalsmp.nwg.utilities.math.RNG;
 
 @ComponentFlag(ReservedFlag.CARVED)
 public class MantleCarvingComponent extends IrisMantleComponent {

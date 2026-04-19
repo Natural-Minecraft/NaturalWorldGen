@@ -19,7 +19,7 @@
 package id.naturalsmp.nwg.engine.framework;
 
 
-import id.naturalsmp.nwg.util.hunk.Hunk;
+import id.naturalsmp.nwg.utilities.hunk.Hunk;
 
 public abstract class EngineAssignedBiModifier<A, B> extends EngineAssignedComponent implements EngineBiModifier<A, B> {
     public EngineAssignedBiModifier(Engine engine, String name) {

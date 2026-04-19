@@ -20,11 +20,11 @@ package id.naturalsmp.nwg.engine.modifier;
 
 import id.naturalsmp.nwg.engine.framework.Engine;
 import id.naturalsmp.nwg.engine.framework.EngineAssignedModifier;
-import id.naturalsmp.nwg.util.context.ChunkContext;
-import id.naturalsmp.nwg.util.data.B;
-import id.naturalsmp.nwg.util.hunk.Hunk;
-import id.naturalsmp.nwg.util.parallel.BurstExecutor;
-import id.naturalsmp.nwg.util.scheduling.PrecisionStopwatch;
+import id.naturalsmp.nwg.utilities.context.ChunkContext;
+import id.naturalsmp.nwg.utilities.data.B;
+import id.naturalsmp.nwg.utilities.hunk.Hunk;
+import id.naturalsmp.nwg.utilities.parallel.BurstExecutor;
+import id.naturalsmp.nwg.utilities.scheduling.PrecisionStopwatch;
 import org.bukkit.block.data.Bisected;
 import org.bukkit.block.data.BlockData;
 

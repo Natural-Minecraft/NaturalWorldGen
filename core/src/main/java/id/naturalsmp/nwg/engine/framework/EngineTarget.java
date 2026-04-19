@@ -21,7 +21,7 @@ package id.naturalsmp.nwg.engine.framework;
 import id.naturalsmp.nwg.core.loader.IrisData;
 import id.naturalsmp.nwg.engine.object.IrisDimension;
 import id.naturalsmp.nwg.engine.object.IrisWorld;
-import id.naturalsmp.nwg.util.parallel.MultiBurst;
+import id.naturalsmp.nwg.utilities.parallel.MultiBurst;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;

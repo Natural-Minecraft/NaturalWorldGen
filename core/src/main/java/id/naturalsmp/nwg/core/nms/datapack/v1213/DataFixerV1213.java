@@ -2,8 +2,8 @@ package id.naturalsmp.nwg.core.nms.datapack.v1213;
 
 import id.naturalsmp.nwg.core.nms.datapack.v1206.DataFixerV1206;
 import id.naturalsmp.nwg.engine.object.IrisBiomeCustom;
-import id.naturalsmp.nwg.util.json.JSONArray;
-import id.naturalsmp.nwg.util.json.JSONObject;
+import id.naturalsmp.nwg.utilities.json.JSONArray;
+import id.naturalsmp.nwg.utilities.json.JSONObject;
 
 public class DataFixerV1213 extends DataFixerV1206 {
 

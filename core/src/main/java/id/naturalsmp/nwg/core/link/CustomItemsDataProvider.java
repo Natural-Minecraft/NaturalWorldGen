@@ -4,9 +4,9 @@
 //import com.jojodmo.customitems.item.custom.CustomItem;
 //import com.jojodmo.customitems.item.custom.block.CustomMushroomBlock;
 //import com.jojodmo.customitems.version.SafeMaterial;
-//import id.naturalsmp.nwg.util.collection.KList;
-//import id.naturalsmp.nwg.util.reflect.WrappedField;
-//import id.naturalsmp.nwg.util.reflect.WrappedReturningMethod;
+//import id.naturalsmp.nwg.utilities.collection.KList;
+//import id.naturalsmp.nwg.utilities.reflect.WrappedField;
+//import id.naturalsmp.nwg.utilities.reflect.WrappedReturningMethod;
 //import org.bukkit.block.BlockFace;
 //import org.bukkit.block.data.BlockData;
 //import org.bukkit.block.data.MultipleFacing;

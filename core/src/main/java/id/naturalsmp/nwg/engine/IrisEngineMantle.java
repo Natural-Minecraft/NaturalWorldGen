@@ -27,10 +27,10 @@ import id.naturalsmp.nwg.engine.mantle.components.MantleCarvingComponent;
 import id.naturalsmp.nwg.engine.mantle.components.MantleFluidBodyComponent;
 import id.naturalsmp.nwg.engine.mantle.components.MantleJigsawComponent;
 import id.naturalsmp.nwg.engine.mantle.components.MantleObjectComponent;
-import id.naturalsmp.nwg.util.collection.KList;
-import id.naturalsmp.nwg.util.collection.KMap;
-import id.naturalsmp.nwg.util.mantle.Mantle;
-import id.naturalsmp.nwg.util.mantle.flag.MantleFlag;
+import id.naturalsmp.nwg.utilities.collection.KList;
+import id.naturalsmp.nwg.utilities.collection.KMap;
+import id.naturalsmp.nwg.utilities.mantle.Mantle;
+import id.naturalsmp.nwg.utilities.mantle.flag.MantleFlag;
 import lombok.*;
 
 import java.io.File;

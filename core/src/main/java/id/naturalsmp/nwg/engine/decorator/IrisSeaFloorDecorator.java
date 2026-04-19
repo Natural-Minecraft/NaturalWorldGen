@@ -22,9 +22,9 @@ import id.naturalsmp.nwg.engine.framework.Engine;
 import id.naturalsmp.nwg.engine.object.IrisBiome;
 import id.naturalsmp.nwg.engine.object.IrisDecorationPart;
 import id.naturalsmp.nwg.engine.object.IrisDecorator;
-import id.naturalsmp.nwg.util.documentation.BlockCoordinates;
-import id.naturalsmp.nwg.util.hunk.Hunk;
-import id.naturalsmp.nwg.util.math.RNG;
+import id.naturalsmp.nwg.utilities.documentation.BlockCoordinates;
+import id.naturalsmp.nwg.utilities.hunk.Hunk;
+import id.naturalsmp.nwg.utilities.math.RNG;
 import org.bukkit.block.data.BlockData;
 
 public class IrisSeaFloorDecorator extends IrisEngineDecorator {

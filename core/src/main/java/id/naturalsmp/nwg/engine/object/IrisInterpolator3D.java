@@ -19,9 +19,9 @@
 package id.naturalsmp.nwg.engine.object;
 
 import id.naturalsmp.nwg.engine.object.annotations.*;
-import id.naturalsmp.nwg.util.function.NoiseProvider3;
-import id.naturalsmp.nwg.util.interpolation.InterpolationMethod3D;
-import id.naturalsmp.nwg.util.interpolation.IrisInterpolation;
+import id.naturalsmp.nwg.utilities.function.NoiseProvider3;
+import id.naturalsmp.nwg.utilities.interpolation.InterpolationMethod3D;
+import id.naturalsmp.nwg.utilities.interpolation.IrisInterpolation;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

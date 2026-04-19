@@ -23,7 +23,7 @@ import id.naturalsmp.nwg.engine.framework.Engine;
 import id.naturalsmp.nwg.engine.object.IObjectPlacer;
 import id.naturalsmp.nwg.engine.object.IrisObjectPlacement;
 import id.naturalsmp.nwg.engine.object.TileData;
-import id.naturalsmp.nwg.util.math.RNG;
+import id.naturalsmp.nwg.utilities.math.RNG;
 import org.bukkit.block.data.BlockData;
 
 public class HeightmapObjectPlacer implements IObjectPlacer {

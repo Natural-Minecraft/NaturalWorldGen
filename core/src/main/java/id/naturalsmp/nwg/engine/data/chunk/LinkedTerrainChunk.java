@@ -20,8 +20,8 @@ package id.naturalsmp.nwg.engine.data.chunk;
 
 import id.naturalsmp.nwg.core.nms.BiomeBaseInjector;
 import id.naturalsmp.nwg.core.nms.INMS;
-import id.naturalsmp.nwg.util.data.IrisBiomeStorage;
-import id.naturalsmp.nwg.util.data.IrisCustomData;
+import id.naturalsmp.nwg.utilities.data.IrisBiomeStorage;
+import id.naturalsmp.nwg.utilities.data.IrisCustomData;
 import lombok.Setter;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;

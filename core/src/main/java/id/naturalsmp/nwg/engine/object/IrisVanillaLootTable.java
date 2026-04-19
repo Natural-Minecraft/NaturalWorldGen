@@ -1,8 +1,8 @@
 package id.naturalsmp.nwg.engine.object;
 
 import id.naturalsmp.nwg.core.loader.IrisData;
-import id.naturalsmp.nwg.util.collection.KList;
-import id.naturalsmp.nwg.util.math.RNG;
+import id.naturalsmp.nwg.utilities.collection.KList;
+import id.naturalsmp.nwg.utilities.math.RNG;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import org.bukkit.Location;

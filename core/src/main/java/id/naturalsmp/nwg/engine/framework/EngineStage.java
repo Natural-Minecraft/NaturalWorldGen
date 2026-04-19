@@ -18,9 +18,9 @@
 
 package id.naturalsmp.nwg.engine.framework;
 
-import id.naturalsmp.nwg.util.context.ChunkContext;
-import id.naturalsmp.nwg.util.documentation.BlockCoordinates;
-import id.naturalsmp.nwg.util.hunk.Hunk;
+import id.naturalsmp.nwg.utilities.context.ChunkContext;
+import id.naturalsmp.nwg.utilities.documentation.BlockCoordinates;
+import id.naturalsmp.nwg.utilities.hunk.Hunk;
 import org.bukkit.block.Biome;
 import org.bukkit.block.data.BlockData;
 

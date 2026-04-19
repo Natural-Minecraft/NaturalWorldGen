@@ -22,7 +22,7 @@ import id.naturalsmp.nwg.core.loader.IrisData;
 import id.naturalsmp.nwg.engine.framework.Engine;
 import id.naturalsmp.nwg.engine.mantle.MantleWriter;
 import id.naturalsmp.nwg.engine.object.annotations.*;
-import id.naturalsmp.nwg.util.math.RNG;
+import id.naturalsmp.nwg.utilities.math.RNG;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

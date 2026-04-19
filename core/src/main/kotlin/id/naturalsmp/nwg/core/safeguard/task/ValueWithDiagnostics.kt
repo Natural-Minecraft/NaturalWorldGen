@@ -1,7 +1,7 @@
 package id.naturalsmp.nwg.core.safeguard.task
 
 import id.naturalsmp.nwg.NaturalGenerator
-import id.naturalsmp.nwg.util.format.C
+import id.naturalsmp.nwg.utilities.format.C
 import java.io.ByteArrayOutputStream
 import java.io.PrintStream
 

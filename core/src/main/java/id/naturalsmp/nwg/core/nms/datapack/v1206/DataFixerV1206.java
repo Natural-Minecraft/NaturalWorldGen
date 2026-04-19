@@ -4,9 +4,9 @@ import id.naturalsmp.nwg.core.nms.datapack.v1192.DataFixerV1192;
 import id.naturalsmp.nwg.engine.object.IrisBiomeCustom;
 import id.naturalsmp.nwg.engine.object.IrisBiomeCustomSpawn;
 import id.naturalsmp.nwg.engine.object.IrisBiomeCustomSpawnType;
-import id.naturalsmp.nwg.util.collection.KMap;
-import id.naturalsmp.nwg.util.json.JSONArray;
-import id.naturalsmp.nwg.util.json.JSONObject;
+import id.naturalsmp.nwg.utilities.collection.KMap;
+import id.naturalsmp.nwg.utilities.json.JSONArray;
+import id.naturalsmp.nwg.utilities.json.JSONObject;
 
 import java.util.Locale;
 

@@ -2,12 +2,12 @@ package id.naturalsmp.nwg.engine.modifier;
 import id.naturalsmp.nwg.core.link.Identifier;
 import id.naturalsmp.nwg.engine.framework.Engine;
 import id.naturalsmp.nwg.engine.framework.EngineAssignedModifier;
-import id.naturalsmp.nwg.util.context.ChunkContext;
-import id.naturalsmp.nwg.util.data.IrisCustomData;
-import id.naturalsmp.nwg.util.hunk.Hunk;
-import id.naturalsmp.nwg.util.mantle.flag.MantleFlag;
-import id.naturalsmp.nwg.util.parallel.BurstExecutor;
-import id.naturalsmp.nwg.util.parallel.MultiBurst;
+import id.naturalsmp.nwg.utilities.context.ChunkContext;
+import id.naturalsmp.nwg.utilities.data.IrisCustomData;
+import id.naturalsmp.nwg.utilities.hunk.Hunk;
+import id.naturalsmp.nwg.utilities.mantle.flag.MantleFlag;
+import id.naturalsmp.nwg.utilities.parallel.BurstExecutor;
+import id.naturalsmp.nwg.utilities.parallel.MultiBurst;
 import org.bukkit.block.data.BlockData;
 public class IrisCustomModifier extends EngineAssignedModifier<BlockData> {
     public IrisCustomModifier(Engine engine) {

@@ -2,8 +2,8 @@ package id.naturalsmp.nwg.core.link;
 
 import id.naturalsmp.nwg.NaturalGenerator;
 import id.naturalsmp.nwg.engine.data.cache.AtomicCache;
-import id.naturalsmp.nwg.util.data.Cuboid;
-import id.naturalsmp.nwg.util.data.KCache;
+import id.naturalsmp.nwg.utilities.data.Cuboid;
+import id.naturalsmp.nwg.utilities.data.KCache;
 import org.bukkit.Bukkit;
 import org.bukkit.World;
 import org.bukkit.entity.Player;

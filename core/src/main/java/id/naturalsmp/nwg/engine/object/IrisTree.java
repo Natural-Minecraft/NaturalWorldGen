@@ -22,7 +22,7 @@ import id.naturalsmp.nwg.engine.object.annotations.ArrayType;
 import id.naturalsmp.nwg.engine.object.annotations.Desc;
 import id.naturalsmp.nwg.engine.object.annotations.Required;
 import id.naturalsmp.nwg.engine.object.annotations.Snippet;
-import id.naturalsmp.nwg.util.collection.KList;
+import id.naturalsmp.nwg.utilities.collection.KList;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

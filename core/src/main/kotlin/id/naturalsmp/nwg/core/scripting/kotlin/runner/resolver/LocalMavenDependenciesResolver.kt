@@ -1,6 +1,6 @@
 package id.naturalsmp.nwg.core.scripting.kotlin.runner.resolver
 
-import id.naturalsmp.nwg.util.io.IO
+import id.naturalsmp.nwg.utilities.io.IO
 import org.dom4j.Document
 import org.dom4j.DocumentFactory
 import org.dom4j.io.SAXReader

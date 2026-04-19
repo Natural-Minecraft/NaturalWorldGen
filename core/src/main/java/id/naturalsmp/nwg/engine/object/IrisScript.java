@@ -19,8 +19,8 @@
 package id.naturalsmp.nwg.engine.object;
 
 import id.naturalsmp.nwg.core.loader.IrisRegistrant;
-import id.naturalsmp.nwg.util.json.JSONObject;
-import id.naturalsmp.nwg.util.plugin.NaturalDevSender;
+import id.naturalsmp.nwg.utilities.json.JSONObject;
+import id.naturalsmp.nwg.utilities.plugin.NaturalDevSender;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 

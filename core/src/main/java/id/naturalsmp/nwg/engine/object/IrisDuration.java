@@ -20,7 +20,7 @@ package id.naturalsmp.nwg.engine.object;
 
 import id.naturalsmp.nwg.engine.object.annotations.Desc;
 import id.naturalsmp.nwg.engine.object.annotations.Snippet;
-import id.naturalsmp.nwg.util.format.Form;
+import id.naturalsmp.nwg.utilities.format.Form;
 import lombok.Data;
 
 import java.util.concurrent.TimeUnit;

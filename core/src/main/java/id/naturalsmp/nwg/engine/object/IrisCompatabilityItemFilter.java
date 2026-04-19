@@ -22,7 +22,7 @@ import id.naturalsmp.nwg.NaturalGenerator;
 import id.naturalsmp.nwg.engine.data.cache.AtomicCache;
 import id.naturalsmp.nwg.engine.object.annotations.Desc;
 import id.naturalsmp.nwg.engine.object.annotations.Required;
-import id.naturalsmp.nwg.util.data.B;
+import id.naturalsmp.nwg.utilities.data.B;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;

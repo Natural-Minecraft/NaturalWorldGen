@@ -2,11 +2,11 @@ package id.naturalsmp.nwg.engine.object;
 
 import id.naturalsmp.nwg.engine.framework.Engine;
 import id.naturalsmp.nwg.engine.framework.EngineAssignedComponent;
-import id.naturalsmp.nwg.util.collection.KList;
-import id.naturalsmp.nwg.util.documentation.ChunkCoordinates;
-import id.naturalsmp.nwg.util.math.Position2;
-import id.naturalsmp.nwg.util.math.RNG;
-import id.naturalsmp.nwg.util.noise.CNG;
+import id.naturalsmp.nwg.utilities.collection.KList;
+import id.naturalsmp.nwg.utilities.documentation.ChunkCoordinates;
+import id.naturalsmp.nwg.utilities.math.Position2;
+import id.naturalsmp.nwg.utilities.math.RNG;
+import id.naturalsmp.nwg.utilities.noise.CNG;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;

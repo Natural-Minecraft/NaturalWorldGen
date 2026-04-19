@@ -36,7 +36,7 @@ plugins {
 
 val apiVersion = "1.19"
 val main = "id.naturalsmp.nwg.NaturalGenerator"
-val lib = "id.naturalsmp.nwg.util"
+val lib = "id.naturalsmp.nwg.utilities"
 
 /**
  * Dependencies.

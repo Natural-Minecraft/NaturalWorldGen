@@ -20,7 +20,7 @@ package id.naturalsmp.nwg.engine.object;
 
 import id.naturalsmp.nwg.engine.data.cache.Cache;
 import id.naturalsmp.nwg.engine.framework.Engine;
-import id.naturalsmp.nwg.util.collection.KMap;
+import id.naturalsmp.nwg.utilities.collection.KMap;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 

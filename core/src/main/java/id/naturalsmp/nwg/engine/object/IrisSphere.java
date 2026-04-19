@@ -22,9 +22,9 @@ import id.naturalsmp.nwg.engine.data.cache.AtomicCache;
 import id.naturalsmp.nwg.engine.framework.Engine;
 import id.naturalsmp.nwg.engine.mantle.MantleWriter;
 import id.naturalsmp.nwg.engine.object.annotations.*;
-import id.naturalsmp.nwg.util.math.RNG;
-import id.naturalsmp.nwg.util.matter.MatterCavern;
-import id.naturalsmp.nwg.util.matter.slices.CavernMatter;
+import id.naturalsmp.nwg.utilities.math.RNG;
+import id.naturalsmp.nwg.utilities.matter.MatterCavern;
+import id.naturalsmp.nwg.utilities.matter.slices.CavernMatter;
 import lombok.Data;
 
 @Snippet("carving-sphere")

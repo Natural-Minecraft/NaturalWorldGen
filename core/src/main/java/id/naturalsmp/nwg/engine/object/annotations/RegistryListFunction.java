@@ -1,7 +1,7 @@
 package id.naturalsmp.nwg.engine.object.annotations;
 
 import id.naturalsmp.nwg.engine.framework.ListFunction;
-import id.naturalsmp.nwg.util.collection.KList;
+import id.naturalsmp.nwg.utilities.collection.KList;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.Target;

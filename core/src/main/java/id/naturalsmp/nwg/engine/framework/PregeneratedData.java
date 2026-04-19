@@ -19,8 +19,8 @@
 package id.naturalsmp.nwg.engine.framework;
 
 import id.naturalsmp.nwg.engine.data.chunk.TerrainChunk;
-import id.naturalsmp.nwg.util.data.B;
-import id.naturalsmp.nwg.util.hunk.Hunk;
+import id.naturalsmp.nwg.utilities.data.B;
+import id.naturalsmp.nwg.utilities.hunk.Hunk;
 import lombok.Data;
 import org.bukkit.block.Biome;
 import org.bukkit.block.data.BlockData;

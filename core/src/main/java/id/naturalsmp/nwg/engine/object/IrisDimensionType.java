@@ -1,8 +1,8 @@
 package id.naturalsmp.nwg.engine.object;
 
 import id.naturalsmp.nwg.core.nms.datapack.IDataFixer;
-import id.naturalsmp.nwg.util.data.Varint;
-import id.naturalsmp.nwg.util.io.IO;
+import id.naturalsmp.nwg.utilities.data.Varint;
+import id.naturalsmp.nwg.utilities.io.IO;
 import lombok.*;
 import lombok.experimental.Accessors;
 

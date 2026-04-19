@@ -18,7 +18,7 @@
 
 package id.naturalsmp.nwg.engine.object;
 
-import id.naturalsmp.nwg.util.collection.KList;
+import id.naturalsmp.nwg.utilities.collection.KList;
 import org.bukkit.block.data.BlockData;
 import org.bukkit.generator.ChunkGenerator.ChunkData;
 

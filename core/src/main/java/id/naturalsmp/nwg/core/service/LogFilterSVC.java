@@ -1,7 +1,7 @@
 package id.naturalsmp.nwg.core.service;
 
-import id.naturalsmp.nwg.util.collection.KList;
-import id.naturalsmp.nwg.util.plugin.IrisService;
+import id.naturalsmp.nwg.utilities.collection.KList;
+import id.naturalsmp.nwg.utilities.plugin.IrisService;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Marker;

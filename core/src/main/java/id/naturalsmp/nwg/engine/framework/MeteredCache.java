@@ -18,7 +18,7 @@
 
 package id.naturalsmp.nwg.engine.framework;
 
-import id.naturalsmp.nwg.util.data.KCache;
+import id.naturalsmp.nwg.utilities.data.KCache;
 
 public interface MeteredCache {
     long getSize();

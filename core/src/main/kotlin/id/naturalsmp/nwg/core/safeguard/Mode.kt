@@ -3,8 +3,8 @@ package id.naturalsmp.nwg.core.safeguard
 import id.naturalsmp.nwg.BuildConstants
 import id.naturalsmp.nwg.NaturalGenerator
 import id.naturalsmp.nwg.core.IrisSettings
-import id.naturalsmp.nwg.util.format.C
-import id.naturalsmp.nwg.util.format.Form
+import id.naturalsmp.nwg.utilities.format.C
+import id.naturalsmp.nwg.utilities.format.Form
 
 enum class Mode(private val color: C) {
     STABLE(C.IRIS),

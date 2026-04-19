@@ -21,7 +21,7 @@ package id.naturalsmp.nwg.engine.object;
 import id.naturalsmp.nwg.core.loader.IrisData;
 import id.naturalsmp.nwg.engine.data.cache.AtomicCache;
 import id.naturalsmp.nwg.engine.object.annotations.*;
-import id.naturalsmp.nwg.util.collection.KList;
+import id.naturalsmp.nwg.utilities.collection.KList;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

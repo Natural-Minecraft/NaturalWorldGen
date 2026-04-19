@@ -19,7 +19,7 @@
 package id.naturalsmp.nwg.engine.framework;
 
 import id.naturalsmp.nwg.NaturalGenerator;
-import id.naturalsmp.nwg.util.math.RollingSequence;
+import id.naturalsmp.nwg.utilities.math.RollingSequence;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;

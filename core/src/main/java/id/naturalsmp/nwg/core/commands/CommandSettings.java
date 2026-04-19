@@ -18,7 +18,7 @@
 
 package id.naturalsmp.nwg.core.commands;
 
-import id.naturalsmp.nwg.util.decree.DecreeExecutor;
+import id.naturalsmp.nwg.utilities.decree.DecreeExecutor;
 
 public class CommandSettings implements DecreeExecutor {
 

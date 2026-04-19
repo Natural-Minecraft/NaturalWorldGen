@@ -3,11 +3,11 @@ package id.naturalsmp.nwg.engine.mantle
 import id.naturalsmp.nwg.core.IrisSettings
 import id.naturalsmp.nwg.core.nms.container.Pair
 import id.naturalsmp.nwg.engine.framework.Engine
-import id.naturalsmp.nwg.util.context.ChunkContext
-import id.naturalsmp.nwg.util.documentation.ChunkCoordinates
-import id.naturalsmp.nwg.util.mantle.Mantle
-import id.naturalsmp.nwg.util.mantle.flag.MantleFlag
-import id.naturalsmp.nwg.util.parallel.MultiBurst
+import id.naturalsmp.nwg.utilities.context.ChunkContext
+import id.naturalsmp.nwg.utilities.documentation.ChunkCoordinates
+import id.naturalsmp.nwg.utilities.mantle.Mantle
+import id.naturalsmp.nwg.utilities.mantle.flag.MantleFlag
+import id.naturalsmp.nwg.utilities.parallel.MultiBurst
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking

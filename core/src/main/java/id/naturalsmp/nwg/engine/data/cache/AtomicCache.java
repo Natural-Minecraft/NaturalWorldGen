@@ -19,7 +19,7 @@
 package id.naturalsmp.nwg.engine.data.cache;
 
 import id.naturalsmp.nwg.NaturalGenerator;
-import id.naturalsmp.nwg.util.function.NastySupplier;
+import id.naturalsmp.nwg.utilities.function.NastySupplier;
 
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicReference;

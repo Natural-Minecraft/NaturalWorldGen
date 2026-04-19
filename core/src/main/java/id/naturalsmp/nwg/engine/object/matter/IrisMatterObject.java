@@ -2,10 +2,10 @@ package id.naturalsmp.nwg.engine.object.matter;
 
 import id.naturalsmp.nwg.core.loader.IrisRegistrant;
 import id.naturalsmp.nwg.engine.object.IrisObject;
-import id.naturalsmp.nwg.util.json.JSONObject;
-import id.naturalsmp.nwg.util.matter.IrisMatter;
-import id.naturalsmp.nwg.util.matter.Matter;
-import id.naturalsmp.nwg.util.plugin.NaturalDevSender;
+import id.naturalsmp.nwg.utilities.json.JSONObject;
+import id.naturalsmp.nwg.utilities.matter.IrisMatter;
+import id.naturalsmp.nwg.utilities.matter.Matter;
+import id.naturalsmp.nwg.utilities.plugin.NaturalDevSender;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 

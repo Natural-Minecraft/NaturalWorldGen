@@ -20,8 +20,8 @@ package id.naturalsmp.nwg.engine.object;
 
 import id.naturalsmp.nwg.engine.data.cache.AtomicCache;
 import id.naturalsmp.nwg.engine.object.annotations.*;
-import id.naturalsmp.nwg.util.data.DataProvider;
-import id.naturalsmp.nwg.util.interpolation.IrisInterpolation;
+import id.naturalsmp.nwg.utilities.data.DataProvider;
+import id.naturalsmp.nwg.utilities.interpolation.IrisInterpolation;
 import lombok.*;
 import lombok.experimental.Accessors;
 

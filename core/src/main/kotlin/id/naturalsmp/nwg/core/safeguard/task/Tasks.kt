@@ -8,8 +8,8 @@ import id.naturalsmp.nwg.core.safeguard.Mode
 import id.naturalsmp.nwg.core.safeguard.Mode.*
 import id.naturalsmp.nwg.core.safeguard.task.Diagnostic.Logger.*
 import id.naturalsmp.nwg.core.safeguard.task.Task.Companion.of
-import id.naturalsmp.nwg.util.agent.Agent
-import id.naturalsmp.nwg.util.misc.getHardware
+import id.naturalsmp.nwg.utilities.agent.Agent
+import id.naturalsmp.nwg.utilities.misc.getHardware
 import org.bukkit.Bukkit
 import java.util.stream.Collectors
 import javax.tools.ToolProvider

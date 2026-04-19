@@ -20,8 +20,8 @@ package id.naturalsmp.nwg.engine.object;
 
 import id.naturalsmp.nwg.engine.object.annotations.Desc;
 import id.naturalsmp.nwg.engine.object.annotations.Snippet;
-import id.naturalsmp.nwg.util.format.Form;
-import id.naturalsmp.nwg.util.scheduling.ChronoLatch;
+import id.naturalsmp.nwg.utilities.format.Form;
+import id.naturalsmp.nwg.utilities.scheduling.ChronoLatch;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

@@ -19,8 +19,8 @@
 package id.naturalsmp.nwg.engine.framework;
 
 import id.naturalsmp.nwg.engine.object.NoiseStyle;
-import id.naturalsmp.nwg.util.math.RNG;
-import id.naturalsmp.nwg.util.noise.CNG;
+import id.naturalsmp.nwg.utilities.math.RNG;
+import id.naturalsmp.nwg.utilities.noise.CNG;
 import lombok.AccessLevel;
 import lombok.Data;
 import lombok.Setter;

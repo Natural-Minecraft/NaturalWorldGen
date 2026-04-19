@@ -19,8 +19,8 @@
 package id.naturalsmp.nwg.core.service;
 
 import id.naturalsmp.nwg.NaturalGenerator;
-import id.naturalsmp.nwg.util.plugin.IrisService;
-import id.naturalsmp.nwg.util.scheduling.J;
+import id.naturalsmp.nwg.utilities.plugin.IrisService;
+import id.naturalsmp.nwg.utilities.scheduling.J;
 import lombok.Getter;
 import org.bukkit.Bukkit;
 import org.bukkit.block.Block;

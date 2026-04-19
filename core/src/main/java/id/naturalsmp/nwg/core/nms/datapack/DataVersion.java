@@ -5,7 +5,7 @@ import id.naturalsmp.nwg.core.nms.datapack.v1192.DataFixerV1192;
 import id.naturalsmp.nwg.core.nms.datapack.v1206.DataFixerV1206;
 import id.naturalsmp.nwg.core.nms.datapack.v1213.DataFixerV1213;
 import id.naturalsmp.nwg.core.nms.datapack.v1217.DataFixerV1217;
-import id.naturalsmp.nwg.util.collection.KMap;
+import id.naturalsmp.nwg.utilities.collection.KMap;
 import lombok.AccessLevel;
 import lombok.Getter;
 

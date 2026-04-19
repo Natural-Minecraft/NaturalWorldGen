@@ -4,7 +4,7 @@ import id.naturalsmp.nwg.core.loader.IrisRegistrant;
 import id.naturalsmp.nwg.core.scripting.func.UpdateExecutor;
 import id.naturalsmp.nwg.core.scripting.kotlin.environment.IrisExecutionEnvironment;
 import id.naturalsmp.nwg.engine.framework.Engine;
-import id.naturalsmp.nwg.util.mantle.MantleChunk;
+import id.naturalsmp.nwg.utilities.mantle.MantleChunk;
 import lombok.NonNull;
 import org.bukkit.Chunk;
 import org.bukkit.Location;

@@ -3,7 +3,7 @@ package id.naturalsmp.nwg.engine.object.matter;
 import id.naturalsmp.nwg.core.loader.IrisData;
 import id.naturalsmp.nwg.engine.object.IrisStyledRange;
 import id.naturalsmp.nwg.engine.object.annotations.Desc;
-import id.naturalsmp.nwg.util.math.RNG;
+import id.naturalsmp.nwg.utilities.math.RNG;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;

@@ -18,8 +18,8 @@
 
 package id.naturalsmp.nwg.engine.framework;
 
-import id.naturalsmp.nwg.util.atomics.AtomicRollingSequence;
-import id.naturalsmp.nwg.util.collection.KMap;
+import id.naturalsmp.nwg.utilities.atomics.AtomicRollingSequence;
+import id.naturalsmp.nwg.utilities.collection.KMap;
 import lombok.Data;
 
 @Data

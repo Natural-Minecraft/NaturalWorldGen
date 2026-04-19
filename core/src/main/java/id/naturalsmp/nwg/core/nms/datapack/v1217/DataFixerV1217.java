@@ -2,8 +2,8 @@ package id.naturalsmp.nwg.core.nms.datapack.v1217;
 
 import id.naturalsmp.nwg.core.nms.datapack.v1213.DataFixerV1213;
 import id.naturalsmp.nwg.engine.object.IrisBiomeCustom;
-import id.naturalsmp.nwg.util.json.JSONArray;
-import id.naturalsmp.nwg.util.json.JSONObject;
+import id.naturalsmp.nwg.utilities.json.JSONArray;
+import id.naturalsmp.nwg.utilities.json.JSONObject;
 
 import java.util.Map;
 

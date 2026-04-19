@@ -20,7 +20,7 @@ package id.naturalsmp.nwg.core.pregenerator.methods;
 
 import id.naturalsmp.nwg.core.pregenerator.PregenListener;
 import id.naturalsmp.nwg.core.pregenerator.PregeneratorMethod;
-import id.naturalsmp.nwg.util.mantle.Mantle;
+import id.naturalsmp.nwg.utilities.mantle.Mantle;
 import io.papermc.lib.PaperLib;
 import org.bukkit.World;
 

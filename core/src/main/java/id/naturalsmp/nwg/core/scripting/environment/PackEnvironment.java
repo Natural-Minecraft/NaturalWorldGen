@@ -3,7 +3,7 @@ package id.naturalsmp.nwg.core.scripting.environment;
 import id.naturalsmp.nwg.core.loader.IrisData;
 import id.naturalsmp.nwg.core.scripting.kotlin.environment.IrisPackExecutionEnvironment;
 import id.naturalsmp.nwg.engine.framework.Engine;
-import id.naturalsmp.nwg.util.math.RNG;
+import id.naturalsmp.nwg.utilities.math.RNG;
 import lombok.NonNull;
 import org.jetbrains.annotations.Nullable;
 

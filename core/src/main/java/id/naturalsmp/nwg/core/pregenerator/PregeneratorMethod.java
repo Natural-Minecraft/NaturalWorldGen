@@ -18,7 +18,7 @@
 
 package id.naturalsmp.nwg.core.pregenerator;
 
-import id.naturalsmp.nwg.util.mantle.Mantle;
+import id.naturalsmp.nwg.utilities.mantle.Mantle;
 
 /**
  * Represents something that is capable of generating in chunks or regions, or both

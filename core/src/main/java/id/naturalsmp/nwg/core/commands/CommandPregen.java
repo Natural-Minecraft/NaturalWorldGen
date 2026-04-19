@@ -22,11 +22,11 @@ import id.naturalsmp.nwg.NaturalGenerator;
 import id.naturalsmp.nwg.core.gui.PregeneratorJob;
 import id.naturalsmp.nwg.core.pregenerator.PregenTask;
 import id.naturalsmp.nwg.core.tools.IrisToolbelt;
-import id.naturalsmp.nwg.util.decree.DecreeExecutor;
-import id.naturalsmp.nwg.util.decree.annotations.Decree;
-import id.naturalsmp.nwg.util.decree.annotations.Param;
-import id.naturalsmp.nwg.util.format.C;
-import id.naturalsmp.nwg.util.math.Position2;
+import id.naturalsmp.nwg.utilities.decree.DecreeExecutor;
+import id.naturalsmp.nwg.utilities.decree.annotations.Decree;
+import id.naturalsmp.nwg.utilities.decree.annotations.Param;
+import id.naturalsmp.nwg.utilities.format.C;
+import id.naturalsmp.nwg.utilities.math.Position2;
 import org.bukkit.World;
 import org.bukkit.util.Vector;
 

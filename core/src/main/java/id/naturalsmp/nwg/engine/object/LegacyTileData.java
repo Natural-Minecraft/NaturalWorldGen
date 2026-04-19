@@ -2,9 +2,9 @@ package id.naturalsmp.nwg.engine.object;
 
 import id.naturalsmp.nwg.core.nms.container.Pair;
 import id.naturalsmp.nwg.engine.data.cache.AtomicCache;
-import id.naturalsmp.nwg.util.collection.KList;
-import id.naturalsmp.nwg.util.collection.KMap;
-import id.naturalsmp.nwg.util.scheduling.J;
+import id.naturalsmp.nwg.utilities.collection.KList;
+import id.naturalsmp.nwg.utilities.collection.KMap;
+import id.naturalsmp.nwg.utilities.scheduling.J;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.NonNull;

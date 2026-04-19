@@ -23,14 +23,14 @@ import id.naturalsmp.nwg.engine.framework.Engine;
 import id.naturalsmp.nwg.engine.framework.EngineAssignedActuator;
 import id.naturalsmp.nwg.engine.object.IrisBiome;
 import id.naturalsmp.nwg.engine.object.IrisBiomeCustom;
-import id.naturalsmp.nwg.util.context.ChunkContext;
-import id.naturalsmp.nwg.util.documentation.BlockCoordinates;
-import id.naturalsmp.nwg.util.hunk.Hunk;
-import id.naturalsmp.nwg.util.math.RNG;
-import id.naturalsmp.nwg.util.matter.MatterBiomeInject;
-import id.naturalsmp.nwg.util.matter.slices.BiomeInjectMatter;
-import id.naturalsmp.nwg.util.scheduling.ChronoLatch;
-import id.naturalsmp.nwg.util.scheduling.PrecisionStopwatch;
+import id.naturalsmp.nwg.utilities.context.ChunkContext;
+import id.naturalsmp.nwg.utilities.documentation.BlockCoordinates;
+import id.naturalsmp.nwg.utilities.hunk.Hunk;
+import id.naturalsmp.nwg.utilities.math.RNG;
+import id.naturalsmp.nwg.utilities.matter.MatterBiomeInject;
+import id.naturalsmp.nwg.utilities.matter.slices.BiomeInjectMatter;
+import id.naturalsmp.nwg.utilities.scheduling.ChronoLatch;
+import id.naturalsmp.nwg.utilities.scheduling.PrecisionStopwatch;
 import org.bukkit.block.Biome;
 
 public class IrisBiomeActuator extends EngineAssignedActuator<Biome> {

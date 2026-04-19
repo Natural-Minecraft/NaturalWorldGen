@@ -1,6 +1,6 @@
 package id.naturalsmp.nwg.engine.mantle;
 
-import id.naturalsmp.nwg.util.mantle.flag.ReservedFlag;
+import id.naturalsmp.nwg.utilities.mantle.flag.ReservedFlag;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

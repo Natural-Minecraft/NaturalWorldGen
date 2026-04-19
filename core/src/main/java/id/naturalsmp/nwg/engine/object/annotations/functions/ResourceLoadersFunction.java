@@ -3,7 +3,7 @@ package id.naturalsmp.nwg.engine.object.annotations.functions;
 import id.naturalsmp.nwg.core.loader.IrisData;
 import id.naturalsmp.nwg.core.loader.ResourceLoader;
 import id.naturalsmp.nwg.engine.framework.ListFunction;
-import id.naturalsmp.nwg.util.collection.KList;
+import id.naturalsmp.nwg.utilities.collection.KList;
 
 public class ResourceLoadersFunction implements ListFunction<KList<String>> {
     @Override
