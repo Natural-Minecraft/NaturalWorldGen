@@ -1,0 +1,213 @@
+/*
+ * NaturalWorldGen is a World Generator for Minecraft Bukkit Servers
+ * Copyright (c) 2022 Arcane Arts (NaturalDev Software)
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ */
+
+package id.naturalsmp.NaturalWorldGen.core.service;
+
+import id.naturalsmp.NaturalWorldGen.NaturalWorldGen;
+import id.naturalsmp.NaturalWorldGen.core.link.*;
+import id.naturalsmp.NaturalWorldGen.core.link.data.DataType;
+import id.naturalsmp.NaturalWorldGen.core.nms.container.BlockProperty;
+import id.naturalsmp.NaturalWorldGen.core.nms.container.Pair;
+import id.naturalsmp.NaturalWorldGen.engine.framework.Engine;
+import id.naturalsmp.NaturalWorldGen.util.collection.KList;
+import id.naturalsmp.NaturalWorldGen.util.collection.KMap;
+import id.naturalsmp.NaturalWorldGen.util.io.JarScanner;
+import id.naturalsmp.NaturalWorldGen.util.plugin.IrisService;
+import id.naturalsmp.NaturalWorldGen.util.scheduling.J;
+import lombok.Data;
+import lombok.NonNull;
+import org.bukkit.Bukkit;
+import org.bukkit.Location;
+import org.bukkit.block.Block;
+import org.bukkit.block.data.BlockData;
+import org.bukkit.entity.Entity;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.server.PluginEnableEvent;
+import org.bukkit.inventory.ItemStack;
+
+import java.util.*;
+import java.util.stream.Collectors;
+
+@Data
+public class ExternalDataSVC implements IrisService {
+
+    private KList<ExternalDataProvider> providers = new KList<>(), activeProviders = new KList<>();
+
+    @Override
+    public void onEnable() {
+        NaturalWorldGen.info("Loading ExternalDataProvider...");
+        Bukkit.getPluginManager().registerEvents(this, NaturalGenerator.instance);
+
+        providers.addAll(createProviders());
+        for (ExternalDataProvider p : providers) {
+            if (p.isReady()) {
+                activeProviders.add(p);
+                p.init();
+                NaturalGenerator.instance.registerListener(p);
+                NaturalWorldGen.info("Enabled ExternalDataProvider for %s.", p.getPluginId());
+            }
+        }
+    }
+
+    @Override
+    public void onDisable() {
+    }
+
+    @EventHandler
+    public void onPluginEnable(PluginEnableEvent e) {
+        if (activeProviders.stream().noneMatch(p -> e.getPlugin().equals(p.getPlugin()))) {
+            providers.stream().filter(p -> p.isReady() && e.getPlugin().equals(p.getPlugin())).findFirst().ifPresent(edp -> {
+                activeProviders.add(edp);
+                edp.init();
+                NaturalGenerator.instance.registerListener(edp);
+                NaturalWorldGen.info("Enabled ExternalDataProvider for %s.", edp.getPluginId());
+            });
+        }
+    }
+
+    public void registerProvider(@NonNull ExternalDataProvider provider) {
+        String plugin = provider.getPluginId();
+        if (providers.stream().map(ExternalDataProvider::getPluginId).anyMatch(plugin::equals))
+            throw new IllegalArgumentException("A provider with the same plugin id already exists.");
+
+        providers.add(provider);
+        if (provider.isReady()) {
+            activeProviders.add(provider);
+            provider.init();
+            NaturalGenerator.instance.registerListener(provider);
+        }
+    }
+
+    public Optional<BlockData> getBlockData(final Identifier key) {
+        var pair = parseState(key);
+        Identifier mod = pair.getA();
+
+        Optional<ExternalDataProvider> provider = activeProviders.stream().filter(p -> p.isValidProvider(mod, DataType.BLOCK)).findFirst();
+        if (provider.isEmpty())
+            return Optional.empty();
+        try {
+            return Optional.of(provider.get().getBlockData(mod, pair.getB()));
+        } catch (MissingResourceException e) {
+            NaturalWorldGen.error(e.getMessage() + " - [" + e.getClassName() + ":" + e.getKey() + "]");
+            return Optional.empty();
+        }
+    }
+
+    public Optional<List<BlockProperty>> getBlockProperties(final Identifier key) {
+        Optional<ExternalDataProvider> provider = activeProviders.stream().filter(p -> p.isValidProvider(key, DataType.BLOCK)).findFirst();
+        if (provider.isEmpty())
+            return Optional.empty();
+        try {
+            return Optional.of(provider.get().getBlockProperties(key));
+        } catch (MissingResourceException e) {
+            NaturalWorldGen.error(e.getMessage() + " - [" + e.getClassName() + ":" + e.getKey() + "]");
+            return Optional.empty();
+        }
+    }
+
+    public Optional<ItemStack> getItemStack(Identifier key, KMap<String, Object> customNbt) {
+        Optional<ExternalDataProvider> provider = activeProviders.stream().filter(p -> p.isValidProvider(key, DataType.ITEM)).findFirst();
+        if (provider.isEmpty()) {
+            NaturalWorldGen.warn("No matching Provider found for modded material \"%s\"!", key);
+            return Optional.empty();
+        }
+        try {
+            return Optional.of(provider.get().getItemStack(key, customNbt));
+        } catch (MissingResourceException e) {
+            NaturalWorldGen.error(e.getMessage() + " - [" + e.getClassName() + ":" + e.getKey() + "]");
+            return Optional.empty();
+        }
+    }
+
+    public void processUpdate(Engine engine, Block block, Identifier blockId) {
+        Optional<ExternalDataProvider> provider = activeProviders.stream().filter(p -> p.isValidProvider(blockId, DataType.BLOCK)).findFirst();
+        if (provider.isEmpty()) {
+            NaturalWorldGen.warn("No matching Provider found for modded material \"%s\"!", blockId);
+            return;
+        }
+        provider.get().processUpdate(engine, block, blockId);
+    }
+
+    public Entity spawnMob(Location location, Identifier mobId) {
+        Optional<ExternalDataProvider> provider = activeProviders.stream().filter(p -> p.isValidProvider(mobId, DataType.ENTITY)).findFirst();
+        if (provider.isEmpty()) {
+            NaturalWorldGen.warn("No matching Provider found for modded mob \"%s\"!", mobId);
+            return null;
+        }
+        try {
+            return provider.get().spawnMob(location, mobId);
+        } catch (MissingResourceException e) {
+            NaturalWorldGen.error(e.getMessage() + " - [" + e.getClassName() + ":" + e.getKey() + "]");
+            return null;
+        }
+    }
+
+    public Collection<Identifier> getAllIdentifiers(DataType dataType) {
+        return activeProviders.stream()
+                .flatMap(p -> p.getTypes(dataType).stream())
+                .toList();
+    }
+
+    public Collection<Pair<Identifier, List<BlockProperty>>> getAllBlockProperties() {
+        return activeProviders.stream()
+                .flatMap(p -> p.getTypes(DataType.BLOCK)
+                        .stream()
+                        .map(id -> new Pair<>(id, p.getBlockProperties(id))))
+                .toList();
+    }
+
+    public static Pair<Identifier, KMap<String, String>> parseState(Identifier key) {
+        if (!key.key().contains("[") || !key.key().contains("]")) {
+            return new Pair<>(key, new KMap<>());
+        }
+        String state = key.key().split("\\Q[\\E")[1].split("\\Q]\\E")[0];
+        KMap<String, String> stateMap = new KMap<>();
+        if (!state.isEmpty()) {
+            Arrays.stream(state.split(",")).forEach(s -> stateMap.put(s.split("=")[0], s.split("=")[1]));
+        }
+        return new Pair<>(new Identifier(key.namespace(), key.key().split("\\Q[\\E")[0]), stateMap);
+    }
+
+    public static Identifier buildState(Identifier key, KMap<String, String> state) {
+        if (state.isEmpty()) {
+            return key;
+        }
+        String path = state.entrySet()
+                .stream()
+                .map(e -> e.getKey() + "=" + e.getValue())
+                .collect(Collectors.joining(",", key.key() + "[", "]"));
+        return new Identifier(key.namespace(), path);
+    }
+
+    private static KList<ExternalDataProvider> createProviders() {
+        JarScanner jar = new JarScanner(NaturalGenerator.instance.getJarFile(), "id.naturalsmp.NaturalWorldGen.core.link.data", false);
+        J.attempt(jar::scan);
+        KList<ExternalDataProvider> providers = new KList<>();
+
+        for (Class<?> c : jar.getClasses()) {
+            if (ExternalDataProvider.class.isAssignableFrom(c)) {
+                try {
+                    ExternalDataProvider p = (ExternalDataProvider) c.getDeclaredConstructor().newInstance();
+                    if (p.getPlugin() != null) NaturalWorldGen.info(p.getPluginId() + " found, loading " + c.getSimpleName() + "...");
+                    providers.add(p);
+                } catch (Throwable ignored) {}
+            }
+        }
+        return providers;
+    }
+}

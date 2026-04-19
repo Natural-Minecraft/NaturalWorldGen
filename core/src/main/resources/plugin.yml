@@ -1,0 +1,11 @@
+name: ${name}
+version: ${version}
+main: ${main}
+load: STARTUP
+authors: [ NaturalDev ]
+website: naturalsmp.id
+description: More than a Dimension!
+commands:
+  nwg:
+    aliases: [ nwg, natural ]
+api-version: '${apiVersion}'
