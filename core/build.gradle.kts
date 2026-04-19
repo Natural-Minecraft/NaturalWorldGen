@@ -231,6 +231,12 @@ sourceSets.main {
         srcDirs("src/main/java", generateTemplates.map { it.outputs })
     }
     kotlin {
-        srcDirs("src/main/kotlin", "src/main/java")
+        srcDirs("src/main/kotlin")
     }
+}
+
+// Ensure Java compiler can always see Kotlin-compiled classes (KList, KMap, etc.)
+tasks.named<JavaCompile>("compileJava") {
+    dependsOn(tasks.named("compileKotlin"))
+    classpath += files(tasks.named<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>("compileKotlin").get().destinationDirectory)
 }
