@@ -35,7 +35,7 @@ class ScriptRunner(
         type: KClass<*>,
         code: SourceCode
     ): ResultWithDiagnostics<Script> = host.runInCoroutineContext {
-        host.compiler(code, configs.computeIfAbsent(type, ::createConfig))
+        host.compiler(code, configs.getOrPut(type) { createConfig(type) })
             .map { CachedScript(it, host, hostConfig) }
     }
 

@@ -38,7 +38,7 @@ internal class FileComponents(
     val children get() = children0.values
 
     fun append(segment: String): FileComponents =
-        children0.computeIfAbsent(segment) { FileComponents(segment) }
+        children0.getOrPut(segment) { FileComponents(segment) }
 
     override fun hashCode(): Int {
         var result = segment.hashCode()
