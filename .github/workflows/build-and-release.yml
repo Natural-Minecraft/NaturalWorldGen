@@ -31,7 +31,9 @@ jobs:
           gradle-version: wrapper
 
       - name: Build with Gradle
-        run: ./gradlew build --no-daemon
+        run: |
+          chmod +x gradlew
+          ./gradlew build --no-daemon
 
       - name: Extract Project Info
         id: info
