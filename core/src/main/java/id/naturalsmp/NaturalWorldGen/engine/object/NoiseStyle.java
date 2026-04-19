@@ -1,5 +1,5 @@
 /*
- * NaturalWorldGen is a World Generator for Minecraft Bukkit Servers
+ * NaturalGenerator is a World Generator for Minecraft Bukkit Servers
  * Copyright (c) 2022 Arcane Arts (NaturalDev Software)
  *
  * This program is free software: you can redistribute it and/or modify
@@ -225,22 +225,22 @@ public enum NoiseStyle {
     @Desc("FBM Fractal Simplex Noise. Single octave.")
     FRACTAL_FBM_SIMPLEX(rng -> new CNG(rng, NoiseType.FRACTAL_FBM_SIMPLEX, 1D, 1)),
 
-    @Desc("Billow Fractal NaturalWorldGen Noise. Single octave.")
+    @Desc("Billow Fractal NaturalGenerator Noise. Single octave.")
     FRACTAL_BILLOW_IRIS(rng -> CNG.signature(rng, NoiseType.FRACTAL_BILLOW_SIMPLEX)),
 
-    @Desc("FBM Fractal NaturalWorldGen Noise. Single octave.")
+    @Desc("FBM Fractal NaturalGenerator Noise. Single octave.")
     FRACTAL_FBM_IRIS(rng -> CNG.signature(rng, NoiseType.FRACTAL_FBM_SIMPLEX)),
 
-    @Desc("Billow Fractal NaturalWorldGen Noise. Single octave.")
+    @Desc("Billow Fractal NaturalGenerator Noise. Single octave.")
     FRACTAL_BILLOW_IRIS_HALF(rng -> CNG.signatureHalf(rng, NoiseType.FRACTAL_BILLOW_SIMPLEX)),
 
-    @Desc("FBM Fractal NaturalWorldGen Noise. Single octave.")
+    @Desc("FBM Fractal NaturalGenerator Noise. Single octave.")
     FRACTAL_FBM_IRIS_HALF(rng -> CNG.signatureHalf(rng, NoiseType.FRACTAL_FBM_SIMPLEX)),
 
-    @Desc("Billow Fractal NaturalWorldGen Noise. Single octave.")
+    @Desc("Billow Fractal NaturalGenerator Noise. Single octave.")
     FRACTAL_BILLOW_IRIS_THICK(rng -> CNG.signatureThick(rng, NoiseType.FRACTAL_BILLOW_SIMPLEX)),
 
-    @Desc("FBM Fractal NaturalWorldGen Noise. Single octave.")
+    @Desc("FBM Fractal NaturalGenerator Noise. Single octave.")
     FRACTAL_FBM_IRIS_THICK(rng -> CNG.signatureThick(rng, NoiseType.FRACTAL_FBM_SIMPLEX)),
 
     @Desc("Rigid Multi Fractal Simplex Noise. Single octave.")
@@ -375,16 +375,16 @@ public enum NoiseStyle {
     @Desc("Fractal Cubic Noise")
     FRACTAL_CUBIC(rng -> new CNG(rng, NoiseType.FRACTAL_CUBIC, 1D, 1).scale(2)),
 
-    @Desc("Fractal Cubic Noise With NaturalWorldGen Swirls")
+    @Desc("Fractal Cubic Noise With NaturalGenerator Swirls")
     FRACTAL_CUBIC_IRIS(rng -> CNG.signature(rng, NoiseType.FRACTAL_CUBIC).scale(2)),
 
-    @Desc("Fractal Cubic Noise With NaturalWorldGen Swirls")
+    @Desc("Fractal Cubic Noise With NaturalGenerator Swirls")
     FRACTAL_CUBIC_IRIS_THICK(rng -> CNG.signatureThick(rng, NoiseType.FRACTAL_CUBIC).scale(2)),
 
-    @Desc("Fractal Cubic Noise With NaturalWorldGen Swirls")
+    @Desc("Fractal Cubic Noise With NaturalGenerator Swirls")
     FRACTAL_CUBIC_IRIS_HALF(rng -> CNG.signatureHalf(rng, NoiseType.FRACTAL_CUBIC).scale(2)),
 
-    @Desc("Fractal Cubic Noise With NaturalWorldGen Swirls")
+    @Desc("Fractal Cubic Noise With NaturalGenerator Swirls")
     FRACTAL_CUBIC_IRIS_DOUBLE(rng -> CNG.signatureDouble(rng, NoiseType.FRACTAL_CUBIC).scale(2)),
 
     @Desc("Fractal Cubic Noise, 2 Octaves")
@@ -408,16 +408,16 @@ public enum NoiseStyle {
     @Desc("Cubic Noise")
     CUBIC_IRIS_THICK(rng -> CNG.signatureThick(rng, NoiseType.CUBIC).scale(256)),
 
-    @Desc("Cellular noise creates the same noise level for cells, changes noise level on cell borders. Cells are distorted using NaturalWorldGen styled wispy noise.")
+    @Desc("Cellular noise creates the same noise level for cells, changes noise level on cell borders. Cells are distorted using NaturalGenerator styled wispy noise.")
     CELLULAR_IRIS(rng -> CNG.signature(rng, NoiseType.CELLULAR)),
 
-    @Desc("Cellular noise creates the same noise level for cells, changes noise level on cell borders. Cells are distorted using NaturalWorldGen styled wispy noise.")
+    @Desc("Cellular noise creates the same noise level for cells, changes noise level on cell borders. Cells are distorted using NaturalGenerator styled wispy noise.")
     CELLULAR_IRIS_THICK(rng -> CNG.signatureThick(rng, NoiseType.CELLULAR)),
 
-    @Desc("Cellular noise creates the same noise level for cells, changes noise level on cell borders. Cells are distorted using NaturalWorldGen styled wispy noise.")
+    @Desc("Cellular noise creates the same noise level for cells, changes noise level on cell borders. Cells are distorted using NaturalGenerator styled wispy noise.")
     CELLULAR_IRIS_DOUBLE(rng -> CNG.signatureDouble(rng, NoiseType.CELLULAR)),
 
-    @Desc("Cellular noise creates the same noise level for cells, changes noise level on cell borders. Cells are distorted using NaturalWorldGen styled wispy noise.")
+    @Desc("Cellular noise creates the same noise level for cells, changes noise level on cell borders. Cells are distorted using NaturalGenerator styled wispy noise.")
     CELLULAR_IRIS_HALF(rng -> CNG.signatureHalf(rng, NoiseType.CELLULAR)),
 
     @Desc("Inverse of vascular, height gets to 1.0 as it approaches the center of a cell")
@@ -435,16 +435,16 @@ public enum NoiseStyle {
     @Desc("Inverse of vascular, height gets to 1.0 as it approaches the center of a cell, using the naturalworldgen style.")
     CELLULAR_HEIGHT_IRIS_HALF(rng -> CNG.signatureHalf(rng, NoiseType.CELLULAR_HEIGHT)),
 
-    @Desc("Vascular noise gets higher as the position nears a cell border. Cells are distorted using NaturalWorldGen styled wispy noise.")
+    @Desc("Vascular noise gets higher as the position nears a cell border. Cells are distorted using NaturalGenerator styled wispy noise.")
     VASCULAR_IRIS(rng -> CNG.signature(rng, NoiseType.VASCULAR)),
 
-    @Desc("Vascular noise gets higher as the position nears a cell border. Cells are distorted using NaturalWorldGen styled wispy noise.")
+    @Desc("Vascular noise gets higher as the position nears a cell border. Cells are distorted using NaturalGenerator styled wispy noise.")
     VASCULAR_IRIS_DOUBLE(rng -> CNG.signatureDouble(rng, NoiseType.VASCULAR)),
 
-    @Desc("Vascular noise gets higher as the position nears a cell border. Cells are distorted using NaturalWorldGen styled wispy noise.")
+    @Desc("Vascular noise gets higher as the position nears a cell border. Cells are distorted using NaturalGenerator styled wispy noise.")
     VASCULAR_IRIS_THICK(rng -> CNG.signatureThick(rng, NoiseType.VASCULAR)),
 
-    @Desc("Vascular noise gets higher as the position nears a cell border. Cells are distorted using NaturalWorldGen styled wispy noise.")
+    @Desc("Vascular noise gets higher as the position nears a cell border. Cells are distorted using NaturalGenerator styled wispy noise.")
     VASCULAR_IRIS_HALF(rng -> CNG.signatureHalf(rng, NoiseType.VASCULAR)),
     ;
 

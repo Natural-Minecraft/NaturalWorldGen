@@ -1,5 +1,5 @@
 /*
- * NaturalWorldGen is a World Generator for Minecraft Bukkit Servers
+ * NaturalGenerator is a World Generator for Minecraft Bukkit Servers
  * Copyright (c) 2022 Arcane Arts (NaturalDev Software)
  *
  * This program is free software: you can redistribute it and/or modify
@@ -37,7 +37,7 @@ public class JobCollection implements Job {
 
     @Override
     public String getName() {
-        return status == null ? name : (name + " ã€‹" + status);
+        return status == null ? name : (name + " ÃƒÂ£Ã¢â€šÂ¬Ã¢â‚¬Â¹" + status);
     }
 
     @Override

@@ -1,5 +1,5 @@
 /*
- * NaturalWorldGen is a World Generator for Minecraft Bukkit Servers
+ * NaturalGenerator is a World Generator for Minecraft Bukkit Servers
  * Copyright (c) 2022 Arcane Arts (NaturalDev Software)
  *
  * This program is free software: you can redistribute it and/or modify
@@ -49,7 +49,7 @@ import java.io.IOException;
 import java.text.NumberFormat;
 import java.util.*;
 
-@Decree(name = "object", aliases = "o", origin = DecreeOrigin.PLAYER, studio = true, description = "NaturalWorldGen object manipulation")
+@Decree(name = "object", aliases = "o", origin = DecreeOrigin.PLAYER, studio = true, description = "NaturalGenerator object manipulation")
 public class CommandObject implements DecreeExecutor {
 
     private static final Set<Material> skipBlocks = Set.of(Materials.GRASS, Material.SNOW, Material.VINE, Material.TORCH, Material.DEAD_BUSH,

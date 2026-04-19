@@ -1,5 +1,5 @@
 /*
- * NaturalWorldGen is a World Generator for Minecraft Bukkit Servers
+ * NaturalGenerator is a World Generator for Minecraft Bukkit Servers
  * Copyright (c) 2022 Arcane Arts (NaturalDev Software)
  *
  * This program is free software: you can redistribute it and/or modify
@@ -76,7 +76,7 @@ public class IrisCreator {
     private String name = "irisworld";
     /**
      * Studio mode makes the engine hotloadable and uses the dimension in
-     * your NaturalWorldGen/packs folder instead of copying the dimension files into
+     * your NaturalGenerator/packs folder instead of copying the dimension files into
      * the world itself. Studio worlds are deleted when they are unloaded.
      */
     private boolean studio = false;
@@ -182,7 +182,7 @@ public class IrisCreator {
 
         if (studio || benchmark) {
             J.s(() -> {
-                NaturalWorldGen.linkMultiverseCore.removeFromConfig(world);
+                NaturalGenerator.linkMultiverseCore.removeFromConfig(world);
 
                 if (IrisSettings.get().getStudio().isDisableTimeAndWeather()) {
                     world.setGameRule(GameRule.DO_WEATHER_CYCLE, false);
@@ -192,7 +192,7 @@ public class IrisCreator {
             });
         } else {
             addToBukkitYml();
-            J.s(() -> NaturalWorldGen.linkMultiverseCore.updateWorld(world, dimension));
+            J.s(() -> NaturalGenerator.linkMultiverseCore.updateWorld(world, dimension));
         }
 
         if (pregen != null) {
@@ -228,7 +228,7 @@ public class IrisCreator {
 
     private void addToBukkitYml() {
         YamlConfiguration yml = YamlConfiguration.loadConfiguration(BUKKIT_YML);
-        String gen = "NaturalWorldGen:" + dimension;
+        String gen = "NaturalGenerator:" + dimension;
         ConfigurationSection section = yml.contains("worlds") ? yml.getConfigurationSection("worlds") : yml.createSection("worlds");
         if (!section.contains(name)) {
             section.createSection(name).set("generator", gen);

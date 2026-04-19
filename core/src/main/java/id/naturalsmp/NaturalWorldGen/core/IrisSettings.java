@@ -1,5 +1,5 @@
 /*
- * NaturalWorldGen is a World Generator for Minecraft Bukkit Servers
+ * NaturalGenerator is a World Generator for Minecraft Bukkit Servers
  * Copyright (c) 2022 Arcane Arts (NaturalDev Software)
  *
  * This program is free software: you can redistribute it and/or modify
@@ -221,7 +221,7 @@ public class IrisSettings {
         public int spinh = -20;
         public int spins = 7;
         public int spinb = 8;
-        public String cartographerMessage = "NaturalWorldGen does not allow cartographers in its world due to crashes.";
+        public String cartographerMessage = "NaturalGenerator does not allow cartographers in its world due to crashes.";
 
 
         @SuppressWarnings("BooleanMethodIsAlwaysInverted")

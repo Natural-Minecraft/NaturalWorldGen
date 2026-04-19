@@ -1,5 +1,5 @@
 /*
- * NaturalWorldGen is a World Generator for Minecraft Bukkit Servers
+ * NaturalGenerator is a World Generator for Minecraft Bukkit Servers
  * Copyright (c) 2022 Arcane Arts (NaturalDev Software)
  *
  * This program is free software: you can redistribute it and/or modify
@@ -69,7 +69,7 @@ public class WandSVC implements IrisService {
     }
 
     /**
-     * Creates an NaturalWorldGen Object from the 2 coordinates selected with a wand
+     * Creates an NaturalGenerator Object from the 2 coordinates selected with a wand
      *
      * @param p The wand player
      * @return The new object
@@ -173,7 +173,7 @@ public class WandSVC implements IrisService {
     }
 
     /**
-     * Creates an NaturalWorldGen Object from the 2 coordinates selected with a wand
+     * Creates an NaturalGenerator Object from the 2 coordinates selected with a wand
      *
      * @return The new object
      */
@@ -228,7 +228,7 @@ public class WandSVC implements IrisService {
     }
 
     /**
-     * Create a new blank NaturalWorldGen wand
+     * Create a new blank NaturalGenerator wand
      *
      * @return The wand itemstack
      */
@@ -279,7 +279,7 @@ public class WandSVC implements IrisService {
     }
 
     /**
-     * Creates an NaturalWorldGen wand. The locations should be the currently selected locations, or null
+     * Creates an NaturalGenerator wand. The locations should be the currently selected locations, or null
      *
      * @param a Location A
      * @param b Location B
@@ -289,7 +289,7 @@ public class WandSVC implements IrisService {
         ItemStack is = new ItemStack(Material.BLAZE_ROD);
         is.addUnsafeEnchantment(Enchantment.FIRE_ASPECT, 1);
         ItemMeta im = is.getItemMeta();
-        im.setDisplayName(C.BOLD + "" + C.GOLD + "Wand of NaturalWorldGen");
+        im.setDisplayName(C.BOLD + "" + C.GOLD + "Wand of NaturalGenerator");
         im.setUnbreakable(true);
         im.addItemFlags(ItemFlag.values());
         im.setLore(new KList<String>().add(locationToString(a), locationToString(b)));
@@ -329,7 +329,7 @@ public class WandSVC implements IrisService {
     }
 
     /**
-     * Is the itemstack passed an NaturalWorldGen wand
+     * Is the itemstack passed an NaturalGenerator wand
      *
      * @param is The itemstack
      * @return True if it is
@@ -503,7 +503,7 @@ public class WandSVC implements IrisService {
     }
 
     /**
-     * Is the itemstack passed NaturalWorldGen dust?
+     * Is the itemstack passed NaturalGenerator dust?
      *
      * @param is The itemstack
      * @return True if it is
@@ -513,7 +513,7 @@ public class WandSVC implements IrisService {
     }
 
     /**
-     * Update the location on an NaturalWorldGen wand
+     * Update the location on an NaturalGenerator wand
      *
      * @param left True for first location, false for second
      * @param a    The location

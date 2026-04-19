@@ -1,5 +1,5 @@
 /*
- * NaturalWorldGen is a World Generator for Minecraft Bukkit Servers
+ * NaturalGenerator is a World Generator for Minecraft Bukkit Servers
  * Copyright (c) 2022 Arcane Arts (NaturalDev Software)
  *
  * This program is free software: you can redistribute it and/or modify
@@ -130,12 +130,12 @@ public interface Matter {
                 din.readInt(),
                 din.readInt(),
                 din.readInt()));
-        NaturalWorldGen.addPanic("read.matter.size", matter.getWidth() + "x" + matter.getHeight() + "x" + matter.getDepth());
+        NaturalGenerator.addPanic("read.matter.size", matter.getWidth() + "x" + matter.getHeight() + "x" + matter.getDepth());
         int sliceCount = din.readByte();
-        NaturalWorldGen.addPanic("read.matter.slicecount", sliceCount + "");
+        NaturalGenerator.addPanic("read.matter.slicecount", sliceCount + "");
 
         matter.getHeader().read(din);
-        NaturalWorldGen.addPanic("read.matter.header", matter.getHeader().toString());
+        NaturalGenerator.addPanic("read.matter.header", matter.getHeader().toString());
 
         for (int i = 0; i < sliceCount; i++) {
             long size = din.readInt();
@@ -143,10 +143,10 @@ public interface Matter {
             long start = din.count();
             long end = start + size;
 
-            NaturalWorldGen.addPanic("read.matter.slice", i + "");
+            NaturalGenerator.addPanic("read.matter.slice", i + "");
             try {
                 String cn = din.readUTF();
-                NaturalWorldGen.addPanic("read.matter.slice.class", cn);
+                NaturalGenerator.addPanic("read.matter.slice.class", cn);
 
                 Class<?> type = Class.forName(cn);
                 MatterSlice<?> slice = matter.createSlice(type, matter);
@@ -156,11 +156,11 @@ public interface Matter {
             } catch (Throwable e) {
                 if (!(e instanceof ClassNotFoundException)) {
                     NaturalGenerator.error("Failed to read matter slice, skipping it.");
-                    NaturalWorldGen.addPanic("read.byte.range", start + " " + end);
-                    NaturalWorldGen.addPanic("read.byte.current", din.count() + "");
+                    NaturalGenerator.addPanic("read.byte.range", start + " " + end);
+                    NaturalGenerator.addPanic("read.byte.current", din.count() + "");
                     NaturalGenerator.reportError(e);
                     e.printStackTrace();
-                    NaturalWorldGen.panic();
+                    NaturalGenerator.panic();
                     TectonicPlate.addError();
                 }
                 din.skipTo(end);

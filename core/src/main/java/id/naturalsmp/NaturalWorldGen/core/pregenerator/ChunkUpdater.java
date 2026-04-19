@@ -122,7 +122,7 @@ public class ChunkUpdater {
             var t = new Thread(() -> {
                 run();
                 close();
-            }, "NaturalWorldGen Chunk Updater - " + world.getName());
+            }, "NaturalGenerator Chunk Updater - " + world.getName());
             t.setPriority(Thread.MAX_PRIORITY);
             t.start();
 

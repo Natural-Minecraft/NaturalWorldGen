@@ -1,5 +1,5 @@
 /*
- * NaturalWorldGen is a World Generator for Minecraft Bukkit Servers
+ * NaturalGenerator is a World Generator for Minecraft Bukkit Servers
  * Copyright (c) 2022 Arcane Arts (NaturalDev Software)
  *
  * This program is free software: you can redistribute it and/or modify
@@ -101,7 +101,7 @@ public class IrisObjectPlacement {
     private CarvingMode carvingSupport = CarvingMode.SURFACE_ONLY;
     @Desc("If this is defined, this object wont place on the terrain heightmap, but instead on this virtual heightmap")
     private IrisNoiseGenerator heightmap;
-    @Desc("If set to true, NaturalWorldGen will try to fill the insides of 'rooms' and 'pockets' where air should fit based off of raytrace checks. This prevents a village house placing in an area where a tree already exists, and instead replaces the parts of the tree where the interior of the structure is. \n\nThis operation does not affect warmed-up generation speed however it does slow down loading objects.")
+    @Desc("If set to true, NaturalGenerator will try to fill the insides of 'rooms' and 'pockets' where air should fit based off of raytrace checks. This prevents a village house placing in an area where a tree already exists, and instead replaces the parts of the tree where the interior of the structure is. \n\nThis operation does not affect warmed-up generation speed however it does slow down loading objects.")
     private boolean smartBore = false;
     @Desc("If set to true, Blocks placed underwater that could be waterlogged are waterlogged.")
     private boolean waterloggable = false;
@@ -285,7 +285,7 @@ public class IrisObjectPlacement {
      * Gets the loot table that should be used for the block
      *
      * @param data        The block data of the block
-     * @param dataManager NaturalWorldGen Data Manager
+     * @param dataManager NaturalGenerator Data Manager
      * @return The loot table it should use.
      */
     public IrisLootTable getTable(BlockData data, IrisData dataManager) {

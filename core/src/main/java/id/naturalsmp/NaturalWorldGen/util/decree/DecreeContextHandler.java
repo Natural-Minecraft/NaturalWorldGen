@@ -1,5 +1,5 @@
 /*
- * NaturalWorldGen is a World Generator for Minecraft Bukkit Servers
+ * NaturalGenerator is a World Generator for Minecraft Bukkit Servers
  * Copyright (c) 2022 Arcane Arts (NaturalDev Software)
  *
  * This program is free software: you can redistribute it and/or modify
@@ -29,7 +29,7 @@ public interface DecreeContextHandler<T> {
         KMap<Class<?>, DecreeContextHandler<?>> contextHandlers = new KMap<>();
 
         try {
-            NaturalWorldGen.initialize("id.naturalsmp.NaturalWorldGen.util.decree.context").forEach((i)
+            NaturalGenerator.initialize("id.naturalsmp.NaturalWorldGen.util.decree.context").forEach((i)
                     -> contextHandlers.put(((DecreeContextHandler<?>) i).getType(), (DecreeContextHandler<?>) i));
         } catch (Throwable e) {
             NaturalGenerator.reportError(e);

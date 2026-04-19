@@ -1,5 +1,5 @@
 /*
- * NaturalWorldGen is a World Generator for Minecraft Bukkit Servers
+ * NaturalGenerator is a World Generator for Minecraft Bukkit Servers
  * Copyright (c) 2022 Arcane Arts (NaturalDev Software)
  *
  * This program is free software: you can redistribute it and/or modify
@@ -57,10 +57,10 @@ public class IrisJigsawStructure extends IrisRegistrant {
     @Desc("The maximum pieces that can step out from the center piece")
     private int maxDepth = 9;
 
-    @Desc("Jigsaw grows the parallax layer which slows naturalworldgen down a bit. Since there are so many pieces, NaturalWorldGen takes the avg piece size and calculates the parallax radius from that. Unless your structures are using only the biggest pieces, your structure should fit in the chosen size fine. If you are seeing cut-off parts of your structures or broken terrain, turn this option on. This option will pick the biggest piece dimensions and multiply it by your (maxDepth+1) * 2 as the size to grow the parallax layer by. But typically keep this off.")
+    @Desc("Jigsaw grows the parallax layer which slows naturalworldgen down a bit. Since there are so many pieces, NaturalGenerator takes the avg piece size and calculates the parallax radius from that. Unless your structures are using only the biggest pieces, your structure should fit in the chosen size fine. If you are seeing cut-off parts of your structures or broken terrain, turn this option on. This option will pick the biggest piece dimensions and multiply it by your (maxDepth+1) * 2 as the size to grow the parallax layer by. But typically keep this off.")
     private boolean useMaxPieceSizeForParallaxRadius = false;
 
-    @Desc("If set to true, naturalworldgen will look for any pieces with only one connector in valid pools for edge connectors and attach them to 'terminate' the paths/piece connectors. Essentially it caps off ends. For example in a village, NaturalWorldGen would add houses to the ends of roads where possible. For terminators to be selected, they can only have one connector or they wont be chosen.")
+    @Desc("If set to true, naturalworldgen will look for any pieces with only one connector in valid pools for edge connectors and attach them to 'terminate' the paths/piece connectors. Essentially it caps off ends. For example in a village, NaturalGenerator would add houses to the ends of roads where possible. For terminators to be selected, they can only have one connector or they wont be chosen.")
     private boolean terminate = true;
 
     @RegistryListResource(IrisJigsawPool.class)

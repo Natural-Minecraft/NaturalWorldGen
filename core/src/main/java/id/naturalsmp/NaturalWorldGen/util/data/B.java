@@ -1,5 +1,5 @@
 /*
- * NaturalWorldGen is a World Generator for Minecraft Bukkit Servers
+ * NaturalGenerator is a World Generator for Minecraft Bukkit Servers
  * Copyright (c) 2022 Arcane Arts (NaturalDev Software)
  *
  * This program is free software: you can redistribute it and/or modify
@@ -469,12 +469,12 @@ public class B {
     public static BlockData get(String bdxf) {
         if (bdxf.contains(":")) {
             if (bdxf.startsWith("minecraft:")) {
-                return NaturalWorldGen.compat.getBlock(bdxf);
+                return NaturalGenerator.compat.getBlock(bdxf);
             } else {
                 return getNoCompat(bdxf);
             }
         } else {
-            return NaturalWorldGen.compat.getBlock(bdxf);
+            return NaturalGenerator.compat.getBlock(bdxf);
         }
     }
 

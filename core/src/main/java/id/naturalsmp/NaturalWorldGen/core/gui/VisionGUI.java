@@ -1,5 +1,5 @@
 /*
- * NaturalWorldGen is a World Generator for Minecraft Bukkit Servers
+ * NaturalGenerator is a World Generator for Minecraft Bukkit Servers
  * Copyright (c) 2022 Arcane Arts (NaturalDev Software)
  *
  * This program is free software: you can redistribute it and/or modify
@@ -102,7 +102,7 @@ public class VisionGUI extends JPanel implements MouseWheelListener, KeyListener
     private final ExecutorService e = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors(), r -> {
         tid++;
         Thread t = new Thread(r);
-        t.setName("NaturalWorldGen HD Renderer " + tid);
+        t.setName("NaturalGenerator HD Renderer " + tid);
         t.setPriority(Thread.MIN_PRIORITY);
         t.setUncaughtExceptionHandler((et, e) ->
         {
@@ -116,7 +116,7 @@ public class VisionGUI extends JPanel implements MouseWheelListener, KeyListener
     private final ExecutorService eh = Executors.newFixedThreadPool(ltc, r -> {
         tid++;
         Thread t = new Thread(r);
-        t.setName("NaturalWorldGen Renderer " + tid);
+        t.setName("NaturalGenerator Renderer " + tid);
         t.setPriority(Thread.NORM_PRIORITY);
         t.setUncaughtExceptionHandler((et, e) ->
         {
@@ -160,7 +160,7 @@ public class VisionGUI extends JPanel implements MouseWheelListener, KeyListener
         frame.add(nv);
         frame.setSize(1440, 820);
         frame.setVisible(true);
-        File file = NaturalWorldGen.getCached("NaturalWorldGen Icon", "https://raw.githubusercontent.com/Natural-Minecraft/NaturalWorldGen/master/icon.png");
+        File file = NaturalGenerator.getCached("NaturalGenerator Icon", "https://raw.githubusercontent.com/Natural-Minecraft/NaturalGenerator/master/icon.png");
 
         if (file != null) {
             try {

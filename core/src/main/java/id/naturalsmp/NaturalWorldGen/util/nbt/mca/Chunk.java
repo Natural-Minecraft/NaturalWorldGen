@@ -1,5 +1,5 @@
 /*
- * NaturalWorldGen is a World Generator for Minecraft Bukkit Servers
+ * NaturalGenerator is a World Generator for Minecraft Bukkit Servers
  * Copyright (c) 2022 Arcane Arts (NaturalDev Software)
  *
  * This program is free software: you can redistribute it and/or modify
@@ -86,19 +86,19 @@ public class Chunk {
 
     public static void injectIrisData(Chunk c) {
         World mainWorld = getServer().getWorlds().get(0);
-        c.data.put("NaturalWorldGen", nativeIrisVersion());
+        c.data.put("NaturalGenerator", nativeIrisVersion());
     }
 
     private static CompoundTag defaultLevel() {
         CompoundTag level = new CompoundTag();
         level.putString("Status", "full");
-        level.putString("Generator", "NaturalWorldGen Headless " + NaturalGenerator.instance.getDescription().getVersion());
+        level.putString("Generator", "NaturalGenerator Headless " + NaturalGenerator.instance.getDescription().getVersion());
         return level;
     }
 
     private static CompoundTag nativeIrisVersion() {
         CompoundTag level = new CompoundTag();
-        level.putString("Generator", "NaturalWorldGen " + NaturalGenerator.instance.getDescription().getVersion());
+        level.putString("Generator", "NaturalGenerator " + NaturalGenerator.instance.getDescription().getVersion());
         return level;
     }
 

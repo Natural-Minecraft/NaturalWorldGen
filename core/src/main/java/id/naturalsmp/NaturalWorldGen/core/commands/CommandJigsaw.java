@@ -1,5 +1,5 @@
 /*
- * NaturalWorldGen is a World Generator for Minecraft Bukkit Servers
+ * NaturalGenerator is a World Generator for Minecraft Bukkit Servers
  * Copyright (c) 2022 Arcane Arts (NaturalDev Software)
  *
  * This program is free software: you can redistribute it and/or modify
@@ -40,7 +40,7 @@ import id.naturalsmp.NaturalWorldGen.util.scheduling.PrecisionStopwatch;
 
 import java.io.File;
 
-@Decree(name = "jigsaw", origin = DecreeOrigin.PLAYER, studio = true, description = "NaturalWorldGen jigsaw commands")
+@Decree(name = "jigsaw", origin = DecreeOrigin.PLAYER, studio = true, description = "NaturalGenerator jigsaw commands")
 public class CommandJigsaw implements DecreeExecutor {
     @Decree(description = "Edit a jigsaw piece")
     public void edit(

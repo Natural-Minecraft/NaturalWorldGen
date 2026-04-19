@@ -39,7 +39,7 @@
 //        if(item == null) {
 //            throw new MissingResourceException("Failed to find BlockData!", blockId.namespace(), blockId.key());
 //        } else if(item.getBlockTexture().isSpawner()) {
-//            throw new MissingResourceException("NaturalWorldGen does not yet support SpawnerBlocks from CustomItems.", blockId.namespace(), blockId.key());
+//            throw new MissingResourceException("NaturalGenerator does not yet support SpawnerBlocks from CustomItems.", blockId.namespace(), blockId.key());
 //        } else if(item.getBlockTexture() != null && item.getBlockTexture().isValid()) {
 //            throw new MissingResourceException("Tried to fetch BlockData for a CustomItem that is not placeable!", blockId.namespace(), blockId.key());
 //        }

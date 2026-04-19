@@ -1,5 +1,5 @@
 /*
- * NaturalWorldGen is a World Generator for Minecraft Bukkit Servers
+ * NaturalGenerator is a World Generator for Minecraft Bukkit Servers
  * Copyright (c) 2022 Arcane Arts (NaturalDev Software)
  *
  * This program is free software: you can redistribute it and/or modify
@@ -59,7 +59,7 @@ public class IrisMatter extends IrisRegistrant implements Matter {
 
     private static KMap<Class<?>, MatterSlice<?>> buildSlicers() {
         KMap<Class<?>, MatterSlice<?>> c = new KMap<>();
-        for (Object i : NaturalWorldGen.initialize("id.naturalsmp.NaturalWorldGen.util.matter.slices", Sliced.class)) {
+        for (Object i : NaturalGenerator.initialize("id.naturalsmp.NaturalWorldGen.util.matter.slices", Sliced.class)) {
             MatterSlice<?> s = (MatterSlice<?>) i;
             c.put(s.getType(), s);
         }

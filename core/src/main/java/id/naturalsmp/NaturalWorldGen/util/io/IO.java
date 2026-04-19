@@ -1,5 +1,5 @@
 /*
- * NaturalWorldGen is a World Generator for Minecraft Bukkit Servers
+ * NaturalGenerator is a World Generator for Minecraft Bukkit Servers
  * Copyright (c) 2022 Arcane Arts (NaturalDev Software)
  *
  * This program is free software: you can redistribute it and/or modify
@@ -129,7 +129,7 @@ public class IO {
             e.printStackTrace();
         }
 
-        return "Ã‚Â¯\\_(Ã£Æ’â€ž)_/Ã‚Â¯";
+        return "ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¯\\_(ÃƒÆ’Ã‚Â£Ãƒâ€ Ã¢â‚¬â„¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¾)_/ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¯";
     }
 
     public static long hashRecursive(File... bases) {
@@ -219,7 +219,7 @@ public class IO {
             e.printStackTrace();
         }
 
-        return "Ã‚Â¯\\_(Ã£Æ’â€ž)_/Ã‚Â¯";
+        return "ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¯\\_(ÃƒÆ’Ã‚Â£Ãƒâ€ Ã¢â‚¬â„¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¾)_/ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¯";
     }
 
     public static String bytesToHex(byte[] bytes) {

@@ -1,5 +1,5 @@
 /*
- * NaturalWorldGen is a World Generator for Minecraft Bukkit Servers
+ * NaturalGenerator is a World Generator for Minecraft Bukkit Servers
  * Copyright (c) 2022 Arcane Arts (NaturalDev Software)
  *
  * This program is free software: you can redistribute it and/or modify
@@ -81,7 +81,7 @@ public class IrisBiome extends IrisRegistrant implements IRare {
     @ArrayType(min = 1, type = IrisBiomeCustom.class)
     @Desc("If the biome type custom is defined, specify this")
     private KList<IrisBiomeCustom> customDerivitives;
-    @Desc("Spawn Entities in this area over time. NaturalWorldGen will continually replenish these mobs just like vanilla does.")
+    @Desc("Spawn Entities in this area over time. NaturalGenerator will continually replenish these mobs just like vanilla does.")
     @ArrayType(min = 1, type = String.class)
     @RegistryListResource(IrisSpawner.class)
     private KList<String> entitySpawners = new KList<>();
@@ -130,7 +130,7 @@ public class IrisBiome extends IrisRegistrant implements IRare {
     private IrisGeneratorStyle childStyle = NoiseStyle.CELLULAR_IRIS_DOUBLE.style();
     @RegistryListResource(IrisBiome.class)
     @ArrayType(min = 1, type = String.class)
-    @Desc("List any biome names (file names without.json) here as children. Portions of this biome can sometimes morph into their children. NaturalWorldGen supports cyclic relationships such as A > B > A > B. NaturalWorldGen will stop checking 9 biomes down the tree.")
+    @Desc("List any biome names (file names without.json) here as children. Portions of this biome can sometimes morph into their children. NaturalGenerator supports cyclic relationships such as A > B > A > B. NaturalGenerator will stop checking 9 biomes down the tree.")
     private KList<String> children = new KList<>();
     @ArrayType(min = 1, type = IrisJigsawStructurePlacement.class)
     @Desc("Jigsaw structures")
@@ -144,14 +144,14 @@ public class IrisBiome extends IrisRegistrant implements IRare {
     private IrisBiomePaletteLayer wall = new IrisBiomePaletteLayer().zero();
     @Required
     @ArrayType(type = IrisBiomePaletteLayer.class)
-    @Desc("This defines the layers of materials in this biome. Each layer has a palette and min/max height and some other properties. Usually a grassy/sandy layer then a dirt layer then a stone layer. NaturalWorldGen will fill in the remaining blocks below your layers with stone.")
+    @Desc("This defines the layers of materials in this biome. Each layer has a palette and min/max height and some other properties. Usually a grassy/sandy layer then a dirt layer then a stone layer. NaturalGenerator will fill in the remaining blocks below your layers with stone.")
     private KList<IrisBiomePaletteLayer> layers = new KList<IrisBiomePaletteLayer>().qadd(new IrisBiomePaletteLayer());
     @Required
     @ArrayType(type = IrisBiomePaletteLayer.class)
-    @Desc("This defines the layers of materials in this biome. Each layer has a palette and min/max height and some other properties. Usually a grassy/sandy layer then a dirt layer then a stone layer. NaturalWorldGen will fill in the remaining blocks below your layers with stone.")
+    @Desc("This defines the layers of materials in this biome. Each layer has a palette and min/max height and some other properties. Usually a grassy/sandy layer then a dirt layer then a stone layer. NaturalGenerator will fill in the remaining blocks below your layers with stone.")
     private KList<IrisBiomePaletteLayer> caveCeilingLayers = new KList<IrisBiomePaletteLayer>().qadd(new IrisBiomePaletteLayer());
     @ArrayType(type = IrisBiomePaletteLayer.class)
-    @Desc("This defines the layers of materials in this biome. Each layer has a palette and min/max height and some other properties. Usually a grassy/sandy layer then a dirt layer then a stone layer. NaturalWorldGen will fill in the remaining blocks below your layers with stone.")
+    @Desc("This defines the layers of materials in this biome. Each layer has a palette and min/max height and some other properties. Usually a grassy/sandy layer then a dirt layer then a stone layer. NaturalGenerator will fill in the remaining blocks below your layers with stone.")
     private KList<IrisBiomePaletteLayer> seaLayers = new KList<>();
     @ArrayType(min = 1, type = IrisDecorator.class)
     @Desc("Decorators are used for things like tall grass, bisected flowers, and even kelp or cactus (random heights)")

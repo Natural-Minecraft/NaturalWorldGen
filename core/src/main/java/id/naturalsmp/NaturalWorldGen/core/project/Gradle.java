@@ -41,10 +41,10 @@ public class Gradle {
         attach(process.getErrorStream(), lines);
         var code = process.waitFor();
         if (code == 0) {
-            lines.forEach(NaturalWorldGen::debug);
+            lines.forEach(NaturalGenerator::debug);
             return;
         }
-        lines.forEach(NaturalWorldGen::error);
+        lines.forEach(NaturalGenerator::error);
         throw new RuntimeException("Gradle exited with code " + code);
     }
 

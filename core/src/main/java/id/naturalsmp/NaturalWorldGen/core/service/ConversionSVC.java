@@ -1,5 +1,5 @@
 /*
- * NaturalWorldGen is a World Generator for Minecraft Bukkit Servers
+ * NaturalGenerator is a World Generator for Minecraft Bukkit Servers
  * Copyright (c) 2022 Arcane Arts (NaturalDev Software)
  *
  * This program is free software: you can redistribute it and/or modify
@@ -229,7 +229,7 @@ public class ConversionSVC implements IrisService {
                 File f = new File(folder, "jigsaw");
 
                 if (!f.exists()) {
-                    s.sendMessage("Converting NBT Structures into NaturalWorldGen Jigsaw Structures...");
+                    s.sendMessage("Converting NBT Structures into NaturalGenerator Jigsaw Structures...");
                     f.mkdirs();
                     J.a(() -> convertStructures(i, f, s));
                 }

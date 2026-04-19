@@ -18,8 +18,8 @@ enum class Mode(private val color: C) {
     }
 
     fun tag(subTag: String?): String {
-        if (subTag == null || subTag.isBlank()) return wrap("NaturalWorldGen") + C.GRAY + ": "
-        return wrap("NaturalWorldGen") + " " + wrap(subTag) + C.GRAY + ": "
+        if (subTag == null || subTag.isBlank()) return wrap("NaturalGenerator") + C.GRAY + ": "
+        return wrap("NaturalGenerator") + " " + wrap(subTag) + C.GRAY + ": "
     }
 
     private fun wrap(tag: String?): String {
@@ -55,7 +55,7 @@ enum class Mode(private val color: C) {
             "",
             "",
             "",
-            padd2 + color + " NaturalWorldGen",
+            padd2 + color + " NaturalGenerator",
             padd2 + C.GRAY + " by " + color + "NaturalDev Software",
             padd2 + C.GRAY + " v" + color + NaturalGenerator.instance.description.version,
             padd2 + C.GRAY + " c" + color + BuildConstants.COMMIT + C.GRAY + "/" + color + BuildConstants.ENVIRONMENT,

@@ -35,7 +35,7 @@ plugins {
 }
 
 val apiVersion = "1.19"
-val main = "id.naturalsmp.NaturalWorldGen.NaturalWorldGen"
+val main = "id.naturalsmp.NaturalWorldGen.NaturalGenerator"
 val lib = "id.naturalsmp.NaturalWorldGen.util"
 
 /**

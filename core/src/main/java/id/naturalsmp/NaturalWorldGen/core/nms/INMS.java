@@ -1,5 +1,5 @@
 /*
- * NaturalWorldGen is a World Generator for Minecraft Bukkit Servers
+ * NaturalGenerator is a World Generator for Minecraft Bukkit Servers
  * Copyright (c) 2022 Arcane Arts (NaturalDev Software)
  *
  * This program is free software: you can redistribute it and/or modify
@@ -96,7 +96,7 @@ public class INMS {
         } catch (ClassNotFoundException|NoClassDefFoundError classNotFoundException) {}
 
         NaturalGenerator.info("Craftbukkit " + code + " <-> " + NMSBinding1X.class.getSimpleName() + " Successfully Bound");
-        NaturalGenerator.warn("Note: Some features of NaturalWorldGen may not work the same since you are on an unsupported version of Minecraft.");
+        NaturalGenerator.warn("Note: Some features of NaturalGenerator may not work the same since you are on an unsupported version of Minecraft.");
         NaturalGenerator.warn("Note: If this is a new version, expect an update soon.");
 
         return new NMSBinding1X();

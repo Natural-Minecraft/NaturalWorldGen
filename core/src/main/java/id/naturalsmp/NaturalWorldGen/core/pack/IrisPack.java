@@ -1,5 +1,5 @@
 /*
- * NaturalWorldGen is a World Generator for Minecraft Bukkit Servers
+ * NaturalGenerator is a World Generator for Minecraft Bukkit Servers
  * Copyright (c) 2022 Arcane Arts (NaturalDev Software)
  *
  * This program is free software: you can redistribute it and/or modify
@@ -43,7 +43,7 @@ import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.Future;
 
 /**
- * Represents an NaturalWorldGen pack that exists
+ * Represents an NaturalGenerator pack that exists
  */
 @Data
 public class IrisPack {
@@ -52,7 +52,7 @@ public class IrisPack {
 
     /**
      * Create an naturalworldgen pack backed by a data folder
-     * the data folder is assumed to be in the NaturalWorldGen/packs/NAME folder
+     * the data folder is assumed to be in the NaturalGenerator/packs/NAME folder
      *
      * @param name the name
      */
@@ -147,7 +147,7 @@ public class IrisPack {
     }
 
     /**
-     * Get a packs pack folder for a name. Such that overworld would resolve as NaturalWorldGen/packs/overworld
+     * Get a packs pack folder for a name. Such that overworld would resolve as NaturalGenerator/packs/overworld
      *
      * @param name the name
      * @return the file path

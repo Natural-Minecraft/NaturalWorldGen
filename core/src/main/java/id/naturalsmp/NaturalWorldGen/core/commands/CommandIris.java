@@ -1,5 +1,5 @@
 /*
- * NaturalWorldGen is a World Generator for Minecraft Bukkit Servers
+ * NaturalGenerator is a World Generator for Minecraft Bukkit Servers
  * Copyright (c) 2022 Arcane Arts (NaturalDev Software)
  *
  * This program is free software: you can redistribute it and/or modify
@@ -82,13 +82,13 @@ public class CommandIris implements DecreeExecutor {
             boolean main
     ) {
         if (name.equalsIgnoreCase("nwg")) {
-            sender().sendMessage(C.RED + "You cannot use the world name \"naturalworldgen\" for creating worlds as NaturalWorldGen uses this directory for studio worlds.");
+            sender().sendMessage(C.RED + "You cannot use the world name \"naturalworldgen\" for creating worlds as NaturalGenerator uses this directory for studio worlds.");
             sender().sendMessage(C.RED + "May we suggest the name \"IrisWorld\" instead?");
             return;
         }
 
         if (name.equalsIgnoreCase("benchmark")) {
-            sender().sendMessage(C.RED + "You cannot use the world name \"benchmark\" for creating worlds as NaturalWorldGen uses this directory for Benchmarking Packs.");
+            sender().sendMessage(C.RED + "You cannot use the world name \"benchmark\" for creating worlds as NaturalGenerator uses this directory for Benchmarking Packs.");
             sender().sendMessage(C.RED + "May we suggest the name \"IrisWorld\" instead?");
             return;
         }
@@ -169,7 +169,7 @@ public class CommandIris implements DecreeExecutor {
 
     @Decree(description = "Print version information")
     public void version() {
-        sender().sendMessage(C.GREEN + "NaturalWorldGen v" + NaturalGenerator.instance.getDescription().getVersion() + " by NaturalDev Software");
+        sender().sendMessage(C.GREEN + "NaturalGenerator v" + NaturalGenerator.instance.getDescription().getVersion() + " by NaturalDev Software");
     }
 
     /*
@@ -220,7 +220,7 @@ public class CommandIris implements DecreeExecutor {
         }
 
         if (sender().isPlayer()) {
-            sender().sendMessage(C.BLUE + "NaturalWorldGen Worlds: ");
+            sender().sendMessage(C.BLUE + "NaturalGenerator Worlds: ");
             for (World IrisWorld : IrisWorlds.copy()) {
                 sender().sendMessage(C.IRIS + "- " +IrisWorld.getName());
             }
@@ -229,7 +229,7 @@ public class CommandIris implements DecreeExecutor {
                 sender().sendMessage(C.GRAY + "- " +BukkitWorld.getName());
             }
         } else {
-            NaturalGenerator.info(C.BLUE + "NaturalWorldGen Worlds: ");
+            NaturalGenerator.info(C.BLUE + "NaturalGenerator Worlds: ");
             for (World IrisWorld : IrisWorlds.copy()) {
                 NaturalGenerator.info(C.IRIS + "- " +IrisWorld.getName());
             }
@@ -241,7 +241,7 @@ public class CommandIris implements DecreeExecutor {
         }
     }
 
-    @Decree(description = "Remove an NaturalWorldGen world", aliases = {"del", "rm", "delete"}, sync = true)
+    @Decree(description = "Remove an NaturalGenerator world", aliases = {"del", "rm", "delete"}, sync = true)
     public void remove(
             @Param(description = "The world to remove")
             World world,
@@ -249,7 +249,7 @@ public class CommandIris implements DecreeExecutor {
             boolean delete
     ) {
         if (!IrisToolbelt.isIrisWorld(world)) {
-            sender().sendMessage(C.RED + "This is not an NaturalWorldGen world. NaturalWorldGen worlds: " + String.join(", ", getServer().getWorlds().stream().filter(IrisToolbelt::isIrisWorld).map(World::getName).toList()));
+            sender().sendMessage(C.RED + "This is not an NaturalGenerator world. NaturalGenerator worlds: " + String.join(", ", getServer().getWorlds().stream().filter(IrisToolbelt::isIrisWorld).map(World::getName).toList()));
             return;
         }
         sender().sendMessage(C.GREEN + "Removing world: " + world.getName());
@@ -337,7 +337,7 @@ public class CommandIris implements DecreeExecutor {
     public void bitwise(
             @Param(description = "The first value to run calculations on")
             int value1,
-            @Param(description = "The operator: | & ^ Ã¢â€°ÂºÃ¢â€°Âº Ã¢â€°Â»Ã¢â€°Â» Ã¯Â¼â€¦")
+            @Param(description = "The operator: | & ^ ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â°Ãƒâ€šÃ‚ÂºÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â°Ãƒâ€šÃ‚Âº ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â°Ãƒâ€šÃ‚Â»ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â°Ãƒâ€šÃ‚Â» ÃƒÆ’Ã‚Â¯Ãƒâ€šÃ‚Â¼ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¦")
             String operator,
             @Param(description = "The second value to run calculations on")
             int value2
@@ -355,7 +355,7 @@ public class CommandIris implements DecreeExecutor {
             sender().sendMessage(C.RED + "The operator you entered: (" + operator + ") is invalid!");
             return;
         }
-        sender().sendMessage(C.GREEN + "" + value1 + " " + C.GREEN + operator.replaceAll("<", "Ã¢â€°Âº").replaceAll(">", "Ã¢â€°Â»").replaceAll("%", "Ã¯Â¼â€¦") + " " + C.GREEN + value2 + C.GREEN + " returns " + C.GREEN + v);
+        sender().sendMessage(C.GREEN + "" + value1 + " " + C.GREEN + operator.replaceAll("<", "ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â°Ãƒâ€šÃ‚Âº").replaceAll(">", "ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â°Ãƒâ€šÃ‚Â»").replaceAll("%", "ÃƒÆ’Ã‚Â¯Ãƒâ€šÃ‚Â¼ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¦") + " " + C.GREEN + value2 + C.GREEN + " returns " + C.GREEN + v);
     }
 
     @Decree(description = "Toggle debug")
@@ -394,7 +394,7 @@ public class CommandIris implements DecreeExecutor {
     @Decree(description = "Get metrics for your world", aliases = "measure", origin = DecreeOrigin.PLAYER)
     public void metrics() {
         if (!IrisToolbelt.isIrisWorld(world())) {
-            sender().sendMessage(C.RED + "You must be in an NaturalWorldGen world");
+            sender().sendMessage(C.RED + "You must be in an NaturalGenerator world");
             return;
         }
         sender().sendMessage(C.GREEN + "Sending metrics...");
@@ -416,7 +416,7 @@ public class CommandIris implements DecreeExecutor {
             IrisDimension pack,
             @Param(description = "Make sure to make a backup & read the warnings first!", defaultValue = "false", aliases = "c")
             boolean confirm,
-            @Param(description = "Should NaturalWorldGen download the pack again for you", defaultValue = "false", name = "fresh-download", aliases = {"fresh", "new"})
+            @Param(description = "Should NaturalGenerator download the pack again for you", defaultValue = "false", name = "fresh-download", aliases = {"fresh", "new"})
             boolean freshDownload
     ) {
         if (!confirm) {
@@ -444,13 +444,13 @@ public class CommandIris implements DecreeExecutor {
         NaturalGenerator.service(StudioSVC.class).installIntoWorld(sender(), pack.getLoadKey(), folder);
     }
 
-    @Decree(description = "Unload an NaturalWorldGen World", origin = DecreeOrigin.PLAYER, sync = true)
+    @Decree(description = "Unload an NaturalGenerator World", origin = DecreeOrigin.PLAYER, sync = true)
     public void unloadWorld(
             @Param(description = "The world to unload")
             World world
     ) {
         if (!IrisToolbelt.isIrisWorld(world)) {
-            sender().sendMessage(C.RED + "This is not an NaturalWorldGen world. NaturalWorldGen worlds: " + String.join(", ", getServer().getWorlds().stream().filter(IrisToolbelt::isIrisWorld).map(World::getName).toList()));
+            sender().sendMessage(C.RED + "This is not an NaturalGenerator world. NaturalGenerator worlds: " + String.join(", ", getServer().getWorlds().stream().filter(IrisToolbelt::isIrisWorld).map(World::getName).toList()));
             return;
         }
         sender().sendMessage(C.GREEN + "Unloading world: " + world.getName());
@@ -464,7 +464,7 @@ public class CommandIris implements DecreeExecutor {
         }
     }
 
-    @Decree(description = "Load an NaturalWorldGen World", origin = DecreeOrigin.PLAYER, sync = true, aliases = {"import"})
+    @Decree(description = "Load an NaturalGenerator World", origin = DecreeOrigin.PLAYER, sync = true, aliases = {"import"})
     public void loadWorld(
             @Param(description = "The name of the world to load")
             String world
@@ -503,7 +503,7 @@ public class CommandIris implements DecreeExecutor {
         sender().sendMessage(C.GREEN + "Loading world: " + world);
 
         YamlConfiguration yml = YamlConfiguration.loadConfiguration(BUKKIT_YML);
-        String gen = "NaturalWorldGen:" + dimension;
+        String gen = "NaturalGenerator:" + dimension;
         ConfigurationSection section = yml.contains("worlds") ? yml.getConfigurationSection("worlds") : yml.createSection("worlds");
         if (!section.contains(world)) {
             section.createSection(world).set("generator", gen);
@@ -525,7 +525,7 @@ public class CommandIris implements DecreeExecutor {
             World world
     ) {
         if (!IrisToolbelt.isIrisWorld(world)) {
-            sender().sendMessage(C.RED + "This is not an NaturalWorldGen world. NaturalWorldGen worlds: " + String.join(", ", getServer().getWorlds().stream().filter(IrisToolbelt::isIrisWorld).map(World::getName).toList()));
+            sender().sendMessage(C.RED + "This is not an NaturalGenerator world. NaturalGenerator worlds: " + String.join(", ", getServer().getWorlds().stream().filter(IrisToolbelt::isIrisWorld).map(World::getName).toList()));
             return;
         }
         sender().sendMessage(C.GREEN + "Evacuating world" + world.getName());

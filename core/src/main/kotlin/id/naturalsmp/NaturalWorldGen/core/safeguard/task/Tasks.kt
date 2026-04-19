@@ -40,7 +40,7 @@ private val incompatibilities by task {
         )
         if ("Stratos" in plugins) diagnostics.addAll(
             ERROR.create("Stratos"),
-            ERROR.create("- NaturalWorldGen is not compatible with other worldgen plugins.")
+            ERROR.create("- NaturalGenerator is not compatible with other worldgen plugins.")
         )
         WARNING.withDiagnostics(diagnostics)
     }
@@ -70,7 +70,7 @@ private val version by task {
     if (INMS.get() !is NMSBinding1X) STABLE.withDiagnostics()
     else UNSTABLE.withDiagnostics(
         ERROR.create("Server Version"),
-        ERROR.create("- NaturalWorldGen only supports $minVersion > $maxVersion")
+        ERROR.create("- NaturalGenerator only supports $minVersion > $maxVersion")
     )
 }
 
@@ -96,7 +96,7 @@ private val dimensionTypes by task {
     if (!INMS.get().missingDimensionTypes(*keys.toTypedArray())) STABLE.withDiagnostics()
     else UNSTABLE.withDiagnostics(
         ERROR.create("Dimension Types"),
-        ERROR.create("- Required NaturalWorldGen dimension types were not loaded."),
+        ERROR.create("- Required NaturalGenerator dimension types were not loaded."),
         ERROR.create("- If this still happens after a restart please contact support.")
     )
 }
@@ -105,12 +105,12 @@ private val diskSpace by task {
     if (server.worldContainer.freeSpace.toDouble().div(0x4000_0000) > 3) STABLE.withDiagnostics()
     else WARNING.withDiagnostics(
         WARN.create("Insufficient Disk Space"),
-        WARN.create("- 3GB of free space is required for NaturalWorldGen to function.")
+        WARN.create("- 3GB of free space is required for NaturalGenerator to function.")
     )
 }
 
 private val java by task {
-    val version = NaturalWorldGen.getJavaVersion()
+    val version = NaturalGenerator.getJavaVersion()
     val jdk = runCatching { ToolProvider.getSystemJavaCompiler() }.getOrNull() != null
     if (version in setOf(21) && jdk) STABLE.withDiagnostics()
     else WARNING.withDiagnostics(

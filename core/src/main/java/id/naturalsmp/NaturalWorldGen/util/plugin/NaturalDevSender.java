@@ -1,5 +1,5 @@
 /*
- * NaturalWorldGen is a World Generator for Minecraft Bukkit Servers
+ * NaturalGenerator is a World Generator for Minecraft Bukkit Servers
  * Copyright (c) 2022 Arcane Arts (NaturalDev Software)
  *
  * This program is free software: you can redistribute it and/or modify
@@ -225,7 +225,7 @@ public class NaturalDevSender implements CommandSender {
     }
 
     public void sendTitle(String title, String subtitle, int i, int s, int o) {
-        NaturalWorldGen.audiences.player(player()).showTitle(Title.title(
+        NaturalGenerator.audiences.player(player()).showTitle(Title.title(
                 createComponent(title),
                 createComponent(subtitle),
                 Title.Times.times(Duration.ofMillis(i), Duration.ofMillis(s), Duration.ofMillis(o))));
@@ -247,15 +247,15 @@ public class NaturalDevSender implements CommandSender {
     }
 
     public void sendAction(String action) {
-        NaturalWorldGen.audiences.player(player()).sendActionBar(createNoPrefixComponent(action));
+        NaturalGenerator.audiences.player(player()).sendActionBar(createNoPrefixComponent(action));
     }
 
     public void sendActionNoProcessing(String action) {
-        NaturalWorldGen.audiences.player(player()).sendActionBar(createNoPrefixComponentNoProcessing(action));
+        NaturalGenerator.audiences.player(player()).sendActionBar(createNoPrefixComponentNoProcessing(action));
     }
 
     public void sendTitle(String subtitle, int i, int s, int o) {
-        NaturalWorldGen.audiences.player(player()).showTitle(Title.title(
+        NaturalGenerator.audiences.player(player()).showTitle(Title.title(
                 createNoPrefixComponent(" "),
                 createNoPrefixComponent(subtitle),
                 Title.Times.times(Duration.ofMillis(i), Duration.ofMillis(s), Duration.ofMillis(o))));
@@ -338,7 +338,7 @@ public class NaturalDevSender implements CommandSender {
         }
 
         try {
-            NaturalWorldGen.audiences.sender(s).sendMessage(createComponent(message));
+            NaturalGenerator.audiences.sender(s).sendMessage(createComponent(message));
         } catch (Throwable e) {
             String t = C.translateAlternateColorCodes('&', getTag() + message);
             String a = C.aura(t, IrisSettings.get().getGeneral().getSpinh(), IrisSettings.get().getGeneral().getSpins(), IrisSettings.get().getGeneral().getSpinb());
@@ -368,7 +368,7 @@ public class NaturalDevSender implements CommandSender {
         }
 
         try {
-            NaturalWorldGen.audiences.sender(s).sendMessage(createComponentRaw(message));
+            NaturalGenerator.audiences.sender(s).sendMessage(createComponentRaw(message));
         } catch (Throwable e) {
             String t = C.translateAlternateColorCodes('&', getTag() + message);
             String a = C.aura(t, IrisSettings.get().getGeneral().getSpinh(), IrisSettings.get().getGeneral().getSpins(), IrisSettings.get().getGeneral().getSpinb());
@@ -414,7 +414,7 @@ public class NaturalDevSender implements CommandSender {
         for (int ix = 0; ix < max; ix++) {
             m.add((i.isNode()
                     ? (i.getNode().getParameters().isNotEmpty())
-                    ? "<#aebef2>Ã¢Å“Â¦ <#5ef288>"
+                    ? "<#aebef2>ÃƒÆ’Ã‚Â¢Ãƒâ€¦Ã¢â‚¬Å“Ãƒâ€šÃ‚Â¦ <#5ef288>"
                     + i.getParentPath()
                     + " <#42ecf5>"
                     + i.getName() + " "
@@ -471,7 +471,7 @@ public class NaturalDevSender implements CommandSender {
         if (v.getNodes().isNotEmpty()) {
             sendHeader(v.getPath() + (page > 0 ? (" {" + (page + 1) + "}") : ""));
             if (isPlayer() && v.getParent() != null) {
-                sendMessageRaw("<hover:show_text:'" + "<#b54b38>Click to go back to <#3299bf>" + Form.capitalize(v.getParent().getName()) + " Help" + "'><click:run_command:" + v.getParent().getPath() + "><font:minecraft:uniform><#f58571>Ã£â‚¬Ë† Back</click></hover>");
+                sendMessageRaw("<hover:show_text:'" + "<#b54b38>Click to go back to <#3299bf>" + Form.capitalize(v.getParent().getName()) + " Help" + "'><click:run_command:" + v.getParent().getPath() + "><font:minecraft:uniform><#f58571>ÃƒÆ’Ã‚Â£ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¹Ã¢â‚¬Â  Back</click></hover>");
             }
 
             AtomicBoolean next = new AtomicBoolean(false);
@@ -483,13 +483,13 @@ public class NaturalDevSender implements CommandSender {
             int l = 75 - (page > 0 ? 10 : 0) - (next.get() ? 10 : 0);
 
             if (page > 0) {
-                s += "<hover:show_text:'<green>Click to go back to page " + page + "'><click:run_command:" + v.getPath() + " help=" + page + "><gradient:#27b84d:#2770b8>Ã£â‚¬Ë† Page " + page + "</click></hover><reset> ";
+                s += "<hover:show_text:'<green>Click to go back to page " + page + "'><click:run_command:" + v.getPath() + " help=" + page + "><gradient:#27b84d:#2770b8>ÃƒÆ’Ã‚Â£ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¹Ã¢â‚¬Â  Page " + page + "</click></hover><reset> ";
             }
 
             s += "<reset><font:minecraft:uniform><strikethrough><gradient:#32bfad:#34eb6b>" + Form.repeat(" ", l) + "<reset>";
 
             if (next.get()) {
-                s += " <hover:show_text:'<green>Click to go to back to page " + (page + 2) + "'><click:run_command:" + v.getPath() + " help=" + (page + 2) + "><gradient:#2770b8:#27b84d>Page " + (page + 2) + " Ã¢ÂÂ­</click></hover>";
+                s += " <hover:show_text:'<green>Click to go to back to page " + (page + 2) + "'><click:run_command:" + v.getPath() + " help=" + (page + 2) + "><gradient:#2770b8:#27b84d>Page " + (page + 2) + " ÃƒÆ’Ã‚Â¢Ãƒâ€šÃ‚ÂÃƒâ€šÃ‚Â­</click></hover>";
             }
 
             sendMessageRaw(s);
@@ -505,10 +505,10 @@ public class NaturalDevSender implements CommandSender {
 
                 /// Command
                 // Contains main command & aliases
-                String realText = i.getPath() + " >" + "<#46826a>Ã¢â€¡â‚¬<gradient:#42ecf5:#428df5> " + i.getName();
+                String realText = i.getPath() + " >" + "<#46826a>ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¡ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬<gradient:#42ecf5:#428df5> " + i.getName();
                 String hoverTitle = i.getNames().copy().reverse().convert((f) -> "<#42ecf5>" + f).toString(", ");
-                String description = "<#3fe05a>Ã¢Å“Å½ <#6ad97d><font:minecraft:uniform>" + i.getDescription();
-                String usage = "<#bbe03f>Ã¢Å“â€™ <#a8e0a2><font:minecraft:uniform>";
+                String description = "<#3fe05a>ÃƒÆ’Ã‚Â¢Ãƒâ€¦Ã¢â‚¬Å“Ãƒâ€¦Ã‚Â½ <#6ad97d><font:minecraft:uniform>" + i.getDescription();
+                String usage = "<#bbe03f>ÃƒÆ’Ã‚Â¢Ãƒâ€¦Ã¢â‚¬Å“ÃƒÂ¢Ã¢â€šÂ¬Ã¢â€žÂ¢ <#a8e0a2><font:minecraft:uniform>";
                 String onClick;
                 if (i.isNode()) {
                     if (i.getNode().getParameters().isEmpty()) {
@@ -526,7 +526,7 @@ public class NaturalDevSender implements CommandSender {
                 String suggestion = "";
                 String suggestions = "";
                 if (i.isNode() && i.getNode().getParameters().isNotEmpty()) {
-                    suggestion += newline + "<#aebef2>Ã¢Å“Â¦ <#5ef288><font:minecraft:uniform>" + i.getParentPath() + " <#42ecf5>" + i.getName() + " "
+                    suggestion += newline + "<#aebef2>ÃƒÆ’Ã‚Â¢Ãƒâ€¦Ã¢â‚¬Å“Ãƒâ€šÃ‚Â¦ <#5ef288><font:minecraft:uniform>" + i.getParentPath() + " <#42ecf5>" + i.getName() + " "
                             + i.getNode().getParameters().convert((f) -> "<#d665f0>" + f.example()).toString(" ");
                     suggestions += newline + "<font:minecraft:uniform>" + pickRandoms(Math.min(i.getNode().getParameters().size() + 1, 5), i);
                 }
@@ -538,24 +538,24 @@ public class NaturalDevSender implements CommandSender {
 
                         String nTitle = "<gradient:#d665f0:#a37feb>" + p.getName();
                         String nHoverTitle = p.getNames().convert((ff) -> "<#d665f0>" + ff).toString(", ");
-                        String nDescription = "<#3fe05a>Ã¢Å“Å½ <#6ad97d><font:minecraft:uniform>" + p.getDescription();
+                        String nDescription = "<#3fe05a>ÃƒÆ’Ã‚Â¢Ãƒâ€¦Ã¢â‚¬Å“Ãƒâ€¦Ã‚Â½ <#6ad97d><font:minecraft:uniform>" + p.getDescription();
                         String nUsage;
                         String fullTitle;
                         NaturalGenerator.debug("Contextual: " + p.isContextual() + " / player: " + isPlayer());
                         if (p.isContextual() && (isPlayer() || s instanceof CommandDummy)) {
                             fullTitle = "<#ffcc00>[" + nTitle + "<#ffcc00>] ";
-                            nUsage = "<#ff9900>Ã¢Å¾Â± <#ffcc00><font:minecraft:uniform>The value may be derived from environment context.";
+                            nUsage = "<#ff9900>ÃƒÆ’Ã‚Â¢Ãƒâ€¦Ã‚Â¾Ãƒâ€šÃ‚Â± <#ffcc00><font:minecraft:uniform>The value may be derived from environment context.";
                         } else if (p.isRequired()) {
                             fullTitle = "<red>[" + nTitle + "<red>] ";
-                            nUsage = "<#db4321>Ã¢Å¡Â  <#faa796><font:minecraft:uniform>This parameter is required.";
+                            nUsage = "<#db4321>ÃƒÆ’Ã‚Â¢Ãƒâ€¦Ã‚Â¡Ãƒâ€šÃ‚Â  <#faa796><font:minecraft:uniform>This parameter is required.";
                         } else if (p.hasDefault()) {
-                            fullTitle = "<#4f4f4f>Ã¢Å Â°" + nTitle + "<#4f4f4f>Ã¢Å Â±";
-                            nUsage = "<#2181db>Ã¢Å“â€ <#78dcf0><font:minecraft:uniform>Defaults to \"" + p.getParam().defaultValue() + "\" if undefined.";
+                            fullTitle = "<#4f4f4f>ÃƒÆ’Ã‚Â¢Ãƒâ€¦Ã‚Â Ãƒâ€šÃ‚Â°" + nTitle + "<#4f4f4f>ÃƒÆ’Ã‚Â¢Ãƒâ€¦Ã‚Â Ãƒâ€šÃ‚Â±";
+                            nUsage = "<#2181db>ÃƒÆ’Ã‚Â¢Ãƒâ€¦Ã¢â‚¬Å“ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â <#78dcf0><font:minecraft:uniform>Defaults to \"" + p.getParam().defaultValue() + "\" if undefined.";
                         } else {
-                            fullTitle = "<#4f4f4f>Ã¢Å Â°" + nTitle + "<#4f4f4f>Ã¢Å Â±";
-                            nUsage = "<#a73abd>Ã¢Å“â€ <#78dcf0><font:minecraft:uniform>This parameter is optional.";
+                            fullTitle = "<#4f4f4f>ÃƒÆ’Ã‚Â¢Ãƒâ€¦Ã‚Â Ãƒâ€šÃ‚Â°" + nTitle + "<#4f4f4f>ÃƒÆ’Ã‚Â¢Ãƒâ€¦Ã‚Â Ãƒâ€šÃ‚Â±";
+                            nUsage = "<#a73abd>ÃƒÆ’Ã‚Â¢Ãƒâ€¦Ã¢â‚¬Å“ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â <#78dcf0><font:minecraft:uniform>This parameter is optional.";
                         }
-                        String type = "<#cc00ff>Ã¢Å“Â¢ <#ff33cc><font:minecraft:uniform>This parameter is of type " + p.getType().getSimpleName() + ".";
+                        String type = "<#cc00ff>ÃƒÆ’Ã‚Â¢Ãƒâ€¦Ã¢â‚¬Å“Ãƒâ€šÃ‚Â¢ <#ff33cc><font:minecraft:uniform>This parameter is of type " + p.getType().getSimpleName() + ".";
 
                         nodes
                                 .append("<hover:show_text:'")

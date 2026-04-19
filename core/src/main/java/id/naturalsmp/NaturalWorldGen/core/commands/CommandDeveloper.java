@@ -1,5 +1,5 @@
 /*
- * NaturalWorldGen is a World Generator for Minecraft Bukkit Servers
+ * NaturalGenerator is a World Generator for Minecraft Bukkit Servers
  * Copyright (c) 2022 Arcane Arts (NaturalDev Software)
  *
  * This program is free software: you can redistribute it and/or modify
@@ -77,7 +77,7 @@ import java.util.stream.Collectors;
 import java.util.zip.GZIPInputStream;
 import java.util.zip.GZIPOutputStream;
 
-@Decree(name = "Developer", origin = DecreeOrigin.BOTH, description = "NaturalWorldGen World Manager", aliases = {"dev"})
+@Decree(name = "Developer", origin = DecreeOrigin.BOTH, description = "NaturalGenerator World Manager", aliases = {"dev"})
 public class CommandDeveloper implements DecreeExecutor {
     private CommandTurboPregen turboPregen;
     private CommandLazyPregen lazyPregen;
@@ -277,7 +277,7 @@ public class CommandDeveloper implements DecreeExecutor {
     }
 
     @SneakyThrows
-    @Decree(description = "Generate NaturalWorldGen structures for all loaded datapack structures")
+    @Decree(description = "Generate NaturalGenerator structures for all loaded datapack structures")
     public void generateStructures(
             @Param(description = "The pack to add the generated structures to", aliases = "pack", defaultValue = "null", customHandler = NullableDimensionHandler.class)
             IrisDimension dimension,
@@ -501,7 +501,7 @@ public class CommandDeveloper implements DecreeExecutor {
             @Param(description = "Amount of Tests") int amount,
             @Param(description = "Is versioned", defaultValue = "false") boolean versioned) {
         if (!IrisToolbelt.isIrisWorld(world)) {
-            sender().sendMessage(C.RED + "This is not an NaturalWorldGen world. NaturalWorldGen worlds: " + String.join(", ", Bukkit.getServer().getWorlds().stream().filter(IrisToolbelt::isIrisWorld).map(World::getName).toList()));
+            sender().sendMessage(C.RED + "This is not an NaturalGenerator world. NaturalGenerator worlds: " + String.join(", ", Bukkit.getServer().getWorlds().stream().filter(IrisToolbelt::isIrisWorld).map(World::getName).toList()));
             return;
         }
 

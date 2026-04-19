@@ -25,7 +25,7 @@ public class ComponentFlagFunction implements ListFunction<KList<String>> {
     public KList<String> apply(IrisData data) {
         var engine = data.getEngine();
         if (engine != null) return engine.getMantle().getComponentFlags().toStringList();
-        return NaturalWorldGen.getClasses("id.naturalsmp.NaturalWorldGen.engine.mantle.components", ComponentFlag.class)
+        return NaturalGenerator.getClasses("id.naturalsmp.NaturalWorldGen.engine.mantle.components", ComponentFlag.class)
                 .stream()
                 .filter(MantleComponent.class::isAssignableFrom)
                 .map(c -> c.getDeclaredAnnotation(ComponentFlag.class))

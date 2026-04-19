@@ -1,5 +1,5 @@
 /*
- * NaturalWorldGen is a World Generator for Minecraft Bukkit Servers
+ * NaturalGenerator is a World Generator for Minecraft Bukkit Servers
  * Copyright (c) 2022 Arcane Arts (NaturalDev Software)
  *
  * This program is free software: you can redistribute it and/or modify
@@ -77,7 +77,7 @@ public class MantleChunk extends FlaggedChunk {
         readFlags(version, din);
 
         for (int i = 0; i < s; i++) {
-            NaturalWorldGen.addPanic("read.section", "Section[" + i + "]");
+            NaturalGenerator.addPanic("read.section", "Section[" + i + "]");
             long size = din.readInt();
             if (size == 0) continue;
             long start = din.count();
@@ -91,11 +91,11 @@ public class MantleChunk extends FlaggedChunk {
             } catch (IOException e) {
                 long end = start + size;
                 NaturalGenerator.error("Failed to read chunk section, skipping it.");
-                NaturalWorldGen.addPanic("read.byte.range", start + " " + end);
-                NaturalWorldGen.addPanic("read.byte.current", din.count() + "");
+                NaturalGenerator.addPanic("read.byte.range", start + " " + end);
+                NaturalGenerator.addPanic("read.byte.current", din.count() + "");
                 NaturalGenerator.reportError(e);
                 e.printStackTrace();
-                NaturalWorldGen.panic();
+                NaturalGenerator.panic();
 
                 din.skipTo(end);
                 TectonicPlate.addError();

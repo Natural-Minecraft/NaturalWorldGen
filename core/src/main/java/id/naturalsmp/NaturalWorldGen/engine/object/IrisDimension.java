@@ -1,5 +1,5 @@
 /*
- * NaturalWorldGen is a World Generator for Minecraft Bukkit Servers
+ * NaturalGenerator is a World Generator for Minecraft Bukkit Servers
  * Copyright (c) 2022 Arcane Arts (NaturalDev Software)
  *
  * This program is free software: you can redistribute it and/or modify
@@ -79,9 +79,9 @@ public class IrisDimension extends IrisRegistrant {
     @Desc("Maximum height at which players can be teleported to through gameplay.")
     private int logicalHeight = 256;
     @RegistryListResource(IrisJigsawStructure.class)
-    @Desc("If defined, NaturalWorldGen will place the given jigsaw structure where minecraft should place the overworld stronghold.")
+    @Desc("If defined, NaturalGenerator will place the given jigsaw structure where minecraft should place the overworld stronghold.")
     private String stronghold;
-    @Desc("If set to true, NaturalWorldGen will remove chunks to allow visualizing cross sections of chunks easily")
+    @Desc("If set to true, NaturalGenerator will remove chunks to allow visualizing cross sections of chunks easily")
     private boolean debugChunkCrossSections = false;
     @Desc("Vertically split up the biome palettes with 3 air blocks in between to visualize them")
     private boolean explodeBiomePalettes = false;
@@ -101,7 +101,7 @@ public class IrisDimension extends IrisRegistrant {
     private int maxStrongholds = 14;
     @Desc("Tree growth override settings")
     private IrisTreeSettings treeSettings = new IrisTreeSettings();
-    @Desc("Spawn Entities in this dimension over time. NaturalWorldGen will continually replenish these mobs just like vanilla does.")
+    @Desc("Spawn Entities in this dimension over time. NaturalGenerator will continually replenish these mobs just like vanilla does.")
     @ArrayType(min = 1, type = String.class)
     @RegistryListResource(IrisSpawner.class)
     private KList<String> entitySpawners = new KList<>();
@@ -164,7 +164,7 @@ public class IrisDimension extends IrisRegistrant {
     @MaxNumber(1024)
     @Desc("The fluid height for this dimension")
     private int fluidHeight = 63;
-    @Desc("Define the min and max Y bounds of this dimension. Please keep in mind that NaturalWorldGen internally generates from 0 to (max - min). \n\nFor example at -64 to 320, NaturalWorldGen is internally generating to 0 to 384, then on outputting chunks, it shifts it down by the min height (64 blocks). The default is -64 to 320. \n\nThe fluid height is placed at (fluid height + min height). So a fluid height of 63 would actually show up in the world at 1.")
+    @Desc("Define the min and max Y bounds of this dimension. Please keep in mind that NaturalGenerator internally generates from 0 to (max - min). \n\nFor example at -64 to 320, NaturalGenerator is internally generating to 0 to 384, then on outputting chunks, it shifts it down by the min height (64 blocks). The default is -64 to 320. \n\nThe fluid height is placed at (fluid height + min height). So a fluid height of 63 would actually show up in the world at 1.")
     private IrisRange dimensionHeight = new IrisRange(-64, 320);
     @Desc("Define options for this dimension")
     private IrisDimensionTypeOptions dimensionOptions = new IrisDimensionTypeOptions();
@@ -233,7 +233,7 @@ public class IrisDimension extends IrisRegistrant {
     private IrisMaterialPalette rockPalette = new IrisMaterialPalette().qclear().qadd("stone");
     @Desc("The palette of blocks for 'water'")
     private IrisMaterialPalette fluidPalette = new IrisMaterialPalette().qclear().qadd("water");
-    @Desc("Prevent cartographers to generate explorer maps (NaturalWorldGen worlds only)\nONLY TOUCH IF YOUR SERVER CRASHES WHILE GENERATING EXPLORER MAPS")
+    @Desc("Prevent cartographers to generate explorer maps (NaturalGenerator worlds only)\nONLY TOUCH IF YOUR SERVER CRASHES WHILE GENERATING EXPLORER MAPS")
     private boolean disableExplorerMaps = false;
     @Desc("Collection of ores to be generated")
     @ArrayType(type = IrisOreGenerator.class, min = 1)
@@ -502,7 +502,7 @@ public class IrisDimension extends IrisRegistrant {
         String raw = """
                         {
                             "pack": {
-                                "description": "NaturalWorldGen Data Pack. This pack contains all installed NaturalWorldGen Packs' resources.",
+                                "description": "NaturalGenerator Data Pack. This pack contains all installed NaturalGenerator Packs' resources.",
                                 "pack_format": {}
                             }
                         }

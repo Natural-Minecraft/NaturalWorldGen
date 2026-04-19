@@ -810,7 +810,7 @@ public class NMSBinding implements INMSBinding {
                 return;
 
             try {
-                Object bindings = Class.forName("id.naturalsmp.NaturalWorldGen.core.nms.INMS", true, Bukkit.getPluginManager().getPlugin("NaturalWorldGen")
+                Object bindings = Class.forName("id.naturalsmp.NaturalWorldGen.core.nms.INMS", true, Bukkit.getPluginManager().getPlugin("NaturalGenerator")
                                 .getClass()
                                 .getClassLoader())
                         .getDeclaredMethod("get")
@@ -821,7 +821,7 @@ public class NMSBinding implements INMSBinding {
 
                 levelData.customDimensions = null;
             } catch (Throwable e) {
-                throw new RuntimeException("NaturalWorldGen failed to replace the levelStem", e instanceof InvocationTargetException ex ? ex.getCause() : e);
+                throw new RuntimeException("NaturalGenerator failed to replace the levelStem", e instanceof InvocationTargetException ex ? ex.getCause() : e);
             }
         }
     }

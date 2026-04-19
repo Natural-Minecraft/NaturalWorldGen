@@ -1,5 +1,5 @@
 /*
- * NaturalWorldGen is a World Generator for Minecraft Bukkit Servers
+ * NaturalGenerator is a World Generator for Minecraft Bukkit Servers
  * Copyright (c) 2022 Arcane Arts (NaturalDev Software)
  *
  * This program is free software: you can redistribute it and/or modify
@@ -28,7 +28,7 @@ import lombok.Setter;
 @Data
 public class SeedManager {
     ////////////////////////////////////////////////////////////////////
-    private static final String IRIS_SIGNATURE = "NaturalWorldGen World Generator";
+    private static final String IRIS_SIGNATURE = "NaturalGenerator World Generator";
     private static final long IRIS_TERRAIN_VERSION = 1;
     ////////////////////////////////////////////////////////////////////
     private final RNG rlock;

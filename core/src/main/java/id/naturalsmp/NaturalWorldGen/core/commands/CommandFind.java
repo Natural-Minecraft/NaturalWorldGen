@@ -1,5 +1,5 @@
 /*
- * NaturalWorldGen is a World Generator for Minecraft Bukkit Servers
+ * NaturalGenerator is a World Generator for Minecraft Bukkit Servers
  * Copyright (c) 2022 Arcane Arts (NaturalDev Software)
  *
  * This program is free software: you can redistribute it and/or modify
@@ -29,7 +29,7 @@ import id.naturalsmp.NaturalWorldGen.util.decree.annotations.Param;
 import id.naturalsmp.NaturalWorldGen.util.decree.specialhandlers.ObjectHandler;
 import id.naturalsmp.NaturalWorldGen.util.format.C;
 
-@Decree(name = "find", origin = DecreeOrigin.PLAYER, description = "NaturalWorldGen Find commands", aliases = "goto")
+@Decree(name = "find", origin = DecreeOrigin.PLAYER, description = "NaturalGenerator Find commands", aliases = "goto")
 public class CommandFind implements DecreeExecutor {
     @Decree(description = "Find a biome")
     public void biome(
@@ -41,7 +41,7 @@ public class CommandFind implements DecreeExecutor {
         Engine e = engine();
 
         if (e == null) {
-            sender().sendMessage(C.GOLD + "Not in an NaturalWorldGen World!");
+            sender().sendMessage(C.GOLD + "Not in an NaturalGenerator World!");
             return;
         }
 
@@ -58,7 +58,7 @@ public class CommandFind implements DecreeExecutor {
         Engine e = engine();
 
         if (e == null) {
-            sender().sendMessage(C.GOLD + "Not in an NaturalWorldGen World!");
+            sender().sendMessage(C.GOLD + "Not in an NaturalGenerator World!");
             return;
         }
 
@@ -75,7 +75,7 @@ public class CommandFind implements DecreeExecutor {
         Engine e = engine();
 
         if (e == null) {
-            sender().sendMessage(C.GOLD + "Not in an NaturalWorldGen World!");
+            sender().sendMessage(C.GOLD + "Not in an NaturalGenerator World!");
             return;
         }
 
@@ -91,7 +91,7 @@ public class CommandFind implements DecreeExecutor {
     ) {
         Engine e = engine();
         if (e == null) {
-            sender().sendMessage(C.GOLD + "Not in an NaturalWorldGen World!");
+            sender().sendMessage(C.GOLD + "Not in an NaturalGenerator World!");
             return;
         }
 
@@ -108,7 +108,7 @@ public class CommandFind implements DecreeExecutor {
         Engine e = engine();
 
         if (e == null) {
-            sender().sendMessage(C.GOLD + "Not in an NaturalWorldGen World!");
+            sender().sendMessage(C.GOLD + "Not in an NaturalGenerator World!");
             return;
         }
 

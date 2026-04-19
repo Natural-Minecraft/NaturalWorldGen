@@ -1,5 +1,5 @@
 /*
- * NaturalWorldGen is a World Generator for Minecraft Bukkit Servers
+ * NaturalGenerator is a World Generator for Minecraft Bukkit Servers
  * Copyright (c) 2022 Arcane Arts (NaturalDev Software)
  *
  * This program is free software: you can redistribute it and/or modify
@@ -34,13 +34,13 @@ import org.bukkit.World;
 @Snippet("command")
 @Accessors(chain = true)
 @NoArgsConstructor
-@Desc("Represents a set of NaturalWorldGen commands")
+@Desc("Represents a set of NaturalGenerator commands")
 @Data
 public class IrisCommand {
 
     @Required
     @ArrayType(min = 1, type = String.class)
-    @Desc("List of commands. NaturalWorldGen replaces {x} {y} and {z} with the location of the entity spawn")
+    @Desc("List of commands. NaturalGenerator replaces {x} {y} and {z} with the location of the entity spawn")
     private KList<String> commands = new KList<>();
 
     @Desc("The delay for running the command. Instant by default")

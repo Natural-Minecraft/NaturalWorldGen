@@ -1,5 +1,5 @@
 /*
- * NaturalWorldGen is a World Generator for Minecraft Bukkit Servers
+ * NaturalGenerator is a World Generator for Minecraft Bukkit Servers
  * Copyright (c) 2022 Arcane Arts (NaturalDev Software)
  *
  * This program is free software: you can redistribute it and/or modify
@@ -36,7 +36,7 @@ import java.util.function.IntSupplier;
 public class MultiBurst implements ExecutorService {
     private static final long TIMEOUT = Long.getLong("naturalworldgen.burst.timeout", 15000);
     public static final MultiBurst burst = new MultiBurst();
-    public static final MultiBurst ioBurst = new MultiBurst("NaturalWorldGen IO", () -> IrisSettings.get().getConcurrency().getIoParallelism());
+    public static final MultiBurst ioBurst = new MultiBurst("NaturalGenerator IO", () -> IrisSettings.get().getConcurrency().getIoParallelism());
     private final AtomicLong last;
     private final String name;
     private final int priority;
@@ -46,7 +46,7 @@ public class MultiBurst implements ExecutorService {
     private volatile CoroutineDispatcher dispatcher;
 
     public MultiBurst() {
-        this("NaturalWorldGen");
+        this("NaturalGenerator");
     }
 
     public MultiBurst(String name) {

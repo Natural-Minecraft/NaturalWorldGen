@@ -1,5 +1,5 @@
 /*
- * NaturalWorldGen is a World Generator for Minecraft Bukkit Servers
+ * NaturalGenerator is a World Generator for Minecraft Bukkit Servers
  * Copyright (c) 2022 Arcane Arts (NaturalDev Software)
  *
  * This program is free software: you can redistribute it and/or modify
@@ -42,7 +42,7 @@ public enum IrisSurface {
     LAVA;
 
     /**
-     * Check if this NaturalWorldGen surface matches the blockstate provided
+     * Check if this NaturalGenerator surface matches the blockstate provided
      *
      * @param state The blockstate
      * @return True if it matches

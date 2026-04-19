@@ -1,5 +1,5 @@
 /*
- * NaturalWorldGen is a World Generator for Minecraft Bukkit Servers
+ * NaturalGenerator is a World Generator for Minecraft Bukkit Servers
  * Copyright (c) 2022 Arcane Arts (NaturalDev Software)
  *
  * This program is free software: you can redistribute it and/or modify
@@ -37,7 +37,7 @@ public class IrisModNoiseStyleReplacer {
     private NoiseStyle find = NoiseStyle.IRIS;
 
     @Required
-    @Desc("If replaceTypeOnly is set to true, NaturalWorldGen will keep the existing generator style and only replace the type itself. Otherwise it will use the replace tag for every style using the find type.")
+    @Desc("If replaceTypeOnly is set to true, NaturalGenerator will keep the existing generator style and only replace the type itself. Otherwise it will use the replace tag for every style using the find type.")
     private boolean replaceTypeOnly = false;
 
     @Required

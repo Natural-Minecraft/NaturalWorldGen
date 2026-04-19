@@ -82,7 +82,7 @@ object IrisSafeguard {
     @JvmStatic
     fun printFooter() {
         when (mode) {
-            Mode.STABLE -> NaturalGenerator.info(C.BLUE.toString() + "NaturalWorldGen is running Stable")
+            Mode.STABLE -> NaturalGenerator.info(C.BLUE.toString() + "NaturalGenerator is running Stable")
             Mode.WARNING -> warning()
             Mode.UNSTABLE -> unstable()
         }
@@ -92,11 +92,11 @@ object IrisSafeguard {
     fun isForceShutdown() = forceShutdown
 
     private fun warning() {
-        NaturalGenerator.warn(C.GOLD.toString() + "NaturalWorldGen is running in Warning Mode")
+        NaturalGenerator.warn(C.GOLD.toString() + "NaturalGenerator is running in Warning Mode")
 
         NaturalGenerator.warn("")
         NaturalGenerator.warn(C.DARK_GRAY.toString() + "--==<" + C.GOLD + " IMPORTANT " + C.DARK_GRAY + ">==--")
-        NaturalGenerator.warn(C.GOLD.toString() + "NaturalWorldGen is running in warning mode which may cause the following issues:")
+        NaturalGenerator.warn(C.GOLD.toString() + "NaturalGenerator is running in warning mode which may cause the following issues:")
         NaturalGenerator.warn("- Data Loss")
         NaturalGenerator.warn("- Errors")
         NaturalGenerator.warn("- Broken worlds")
@@ -106,11 +106,11 @@ object IrisSafeguard {
     }
 
     private fun unstable() {
-        NaturalGenerator.error(C.DARK_RED.toString() + "NaturalWorldGen is running in Unstable Mode")
+        NaturalGenerator.error(C.DARK_RED.toString() + "NaturalGenerator is running in Unstable Mode")
 
         NaturalGenerator.error("")
         NaturalGenerator.error(C.DARK_GRAY.toString() + "--==<" + C.RED + " IMPORTANT " + C.DARK_GRAY + ">==--")
-        NaturalGenerator.error("NaturalWorldGen is running in unstable mode which may cause the following issues:")
+        NaturalGenerator.error("NaturalGenerator is running in unstable mode which may cause the following issues:")
         NaturalGenerator.error(C.DARK_RED.toString() + "Server Issues")
         NaturalGenerator.error("- Server won't boot")
         NaturalGenerator.error("- Data Loss")
@@ -121,7 +121,7 @@ object IrisSafeguard {
         NaturalGenerator.error("- Worlds may slowly corrupt until they can't load.")
         NaturalGenerator.error("- World data loss.")
         NaturalGenerator.error("- And More...")
-        NaturalGenerator.error(C.DARK_RED.toString() + "ATTENTION: " + C.RED + "While running NaturalWorldGen in unstable mode, you won't be eligible for support.")
+        NaturalGenerator.error(C.DARK_RED.toString() + "ATTENTION: " + C.RED + "While running NaturalGenerator in unstable mode, you won't be eligible for support.")
 
         if (IrisSettings.get().general.isDoomsdayAnnihilationSelfDestructMode) {
             NaturalGenerator.error(C.DARK_RED.toString() + "Boot Unstable is set to true, continuing with the startup process in 10 seconds.")

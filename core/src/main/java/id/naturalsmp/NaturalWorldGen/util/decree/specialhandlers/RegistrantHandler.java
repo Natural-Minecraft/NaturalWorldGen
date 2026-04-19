@@ -18,7 +18,7 @@ public abstract class RegistrantHandler<T extends IrisRegistrant> implements Dec
 
     public RegistrantHandler(Class<T> type, boolean nullable) {
         this.type = type;
-        this.name = type.getSimpleName().replaceFirst("NaturalWorldGen", "");
+        this.name = type.getSimpleName().replaceFirst("NaturalGenerator", "");
         this.nullable = nullable;
     }
 

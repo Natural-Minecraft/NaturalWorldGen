@@ -1,5 +1,5 @@
 /*
- * NaturalWorldGen is a World Generator for Minecraft Bukkit Servers
+ * NaturalGenerator is a World Generator for Minecraft Bukkit Servers
  * Copyright (c) 2022 Arcane Arts (NaturalDev Software)
  *
  * This program is free software: you can redistribute it and/or modify
@@ -73,7 +73,7 @@ public class ServerConfigurator {
 
         if (tt < spigotTimeout) {
             NaturalGenerator.warn("Updating spigot.yml timeout-time: " + tt + " -> " + spigotTimeout + " (5 minutes)");
-            NaturalGenerator.warn("You can disable this change (autoconfigureServer) in NaturalWorldGen settings, then change back the value.");
+            NaturalGenerator.warn("You can disable this change (autoconfigureServer) in NaturalGenerator settings, then change back the value.");
             f.set("settings.timeout-time", spigotTimeout);
             f.save(spigotConfig);
         }
@@ -87,7 +87,7 @@ public class ServerConfigurator {
         long watchdog = TimeUnit.MINUTES.toMillis(3);
         if (tt < watchdog) {
             NaturalGenerator.warn("Updating paper.yml watchdog early-warning-delay: " + tt + " -> " + watchdog + " (3 minutes)");
-            NaturalGenerator.warn("You can disable this change (autoconfigureServer) in NaturalWorldGen settings, then change back the value.");
+            NaturalGenerator.warn("You can disable this change (autoconfigureServer) in NaturalGenerator settings, then change back the value.");
             f.set("watchdog.early-warning-delay", watchdog);
             f.save(spigotConfig);
         }
@@ -156,7 +156,7 @@ public class ServerConfigurator {
         } else if (INMS.get().supportsDataPacks()) {
             NaturalGenerator.error("============================================================================");
             NaturalGenerator.error(C.ITALIC + "You need to restart your server to properly generate custom biomes.");
-            NaturalGenerator.error(C.ITALIC + "By continuing, NaturalWorldGen will use backup biomes in place of the custom biomes.");
+            NaturalGenerator.error(C.ITALIC + "By continuing, NaturalGenerator will use backup biomes in place of the custom biomes.");
             NaturalGenerator.error("----------------------------------------------------------------------------");
             NaturalGenerator.error(C.UNDERLINE + "IT IS HIGHLY RECOMMENDED YOU RESTART THE SERVER BEFORE GENERATING!");
             NaturalGenerator.error("============================================================================");
@@ -164,7 +164,7 @@ public class ServerConfigurator {
             for (Player i : Bukkit.getOnlinePlayers()) {
                 if (i.isOp() || i.hasPermission("naturalworldgen.all")) {
                     NaturalDevSender sender = new NaturalDevSender(i, NaturalGenerator.instance.getTag("WARNING"));
-                    sender.sendMessage("There are some NaturalWorldGen Packs that have custom biomes in them");
+                    sender.sendMessage("There are some NaturalGenerator Packs that have custom biomes in them");
                     sender.sendMessage("You need to restart your server to use these packs.");
                 }
             }
@@ -176,7 +176,7 @@ public class ServerConfigurator {
 
     public static void restart() {
         J.s(() -> {
-            NaturalGenerator.warn("New data pack entries have been installed in NaturalWorldGen! Restarting server!");
+            NaturalGenerator.warn("New data pack entries have been installed in NaturalGenerator! Restarting server!");
             NaturalGenerator.warn("This will only happen when your pack changes (updates/first time setup)");
             NaturalGenerator.warn("(You can disable this auto restart in naturalworldgen settings)");
             J.s(() -> {

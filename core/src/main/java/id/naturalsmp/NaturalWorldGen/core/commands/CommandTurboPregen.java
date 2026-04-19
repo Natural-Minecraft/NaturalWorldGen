@@ -1,5 +1,5 @@
 /*
- * NaturalWorldGen is a World Generator for Minecraft Bukkit Servers
+ * NaturalGenerator is a World Generator for Minecraft Bukkit Servers
  * Copyright (c) 2022 Arcane Arts (NaturalDev Software)
  *
  * This program is free software: you can redistribute it and/or modify
@@ -33,7 +33,7 @@ import org.bukkit.util.Vector;
 import java.io.File;
 import java.io.IOException;
 
-@Decree(name = "turbopregen", aliases = "turbo", description = "Pregenerate your NaturalWorldGen worlds!")
+@Decree(name = "turbopregen", aliases = "turbo", description = "Pregenerate your NaturalGenerator worlds!")
 public class CommandTurboPregen implements DecreeExecutor {
     public String worldName;
     @Decree(description = "Pregenerate a world")

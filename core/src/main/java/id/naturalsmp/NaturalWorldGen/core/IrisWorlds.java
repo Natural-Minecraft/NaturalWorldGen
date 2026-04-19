@@ -80,7 +80,7 @@ public class IrisWorlds {
         return getWorlds()
                 .entrySet()
                 .stream()
-                .map(entry -> NaturalWorldGen.loadDimension(entry.getKey(), entry.getValue()))
+                .map(entry -> NaturalGenerator.loadDimension(entry.getKey(), entry.getValue()))
                 .filter(Objects::nonNull);
     }
 
@@ -114,7 +114,7 @@ public class IrisWorlds {
             String loadKey;
             if (gen.equalsIgnoreCase("nwg")) {
                 loadKey = IrisSettings.get().getGenerator().getDefaultWorldType();
-            } else if (gen.startsWith("NaturalWorldGen:")) {
+            } else if (gen.startsWith("NaturalGenerator:")) {
                 loadKey = gen.substring(5);
             } else continue;
 

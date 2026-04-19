@@ -5,7 +5,7 @@ import org.bukkit.World;
 import org.bukkit.block.data.BlockData;
 
 /**
- * This class is used by an external IrisLib for other plugins to interact with NaturalWorldGen. Do not change
+ * This class is used by an external IrisLib for other plugins to interact with NaturalGenerator. Do not change
  * existing methods or their parameters as it will break the library that uses these methods
  * feel free to add more methods so long as you also add the reflective methods to the library
  */

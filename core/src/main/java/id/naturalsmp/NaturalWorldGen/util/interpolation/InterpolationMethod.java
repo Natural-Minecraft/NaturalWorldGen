@@ -1,5 +1,5 @@
 /*
- * NaturalWorldGen is a World Generator for Minecraft Bukkit Servers
+ * NaturalGenerator is a World Generator for Minecraft Bukkit Servers
  * Copyright (c) 2022 Arcane Arts (NaturalDev Software)
  *
  * This program is free software: you can redistribute it and/or modify
@@ -30,19 +30,19 @@ public enum InterpolationMethod {
 
     BILINEAR,
 
-    @Desc("Starcast is NaturalWorldGen's own creation. It uses raytrace checks to find a horizontal boundary nearby. 3 Checks in a circle. Typically starcast is used with another interpolation method. See BILINEAR_STARCAST_9 For example. Starcast is meant to 'break up' large, abrupt cliffs to make cheap interpolation smoother.")
+    @Desc("Starcast is NaturalGenerator's own creation. It uses raytrace checks to find a horizontal boundary nearby. 3 Checks in a circle. Typically starcast is used with another interpolation method. See BILINEAR_STARCAST_9 For example. Starcast is meant to 'break up' large, abrupt cliffs to make cheap interpolation smoother.")
 
     STARCAST_3,
 
-    @Desc("Starcast is NaturalWorldGen's own creation. It uses raytrace checks to find a horizontal boundary nearby. 6 Checks in a circle. Typically starcast is used with another interpolation method. See BILINEAR_STARCAST_9 For example. Starcast is meant to 'break up' large, abrupt cliffs to make cheap interpolation smoother.")
+    @Desc("Starcast is NaturalGenerator's own creation. It uses raytrace checks to find a horizontal boundary nearby. 6 Checks in a circle. Typically starcast is used with another interpolation method. See BILINEAR_STARCAST_9 For example. Starcast is meant to 'break up' large, abrupt cliffs to make cheap interpolation smoother.")
 
     STARCAST_6,
 
-    @Desc("Starcast is NaturalWorldGen's own creation. It uses raytrace checks to find a horizontal boundary nearby. 9 Checks in a circle. Typically starcast is used with another interpolation method. See BILINEAR_STARCAST_9 For example. Starcast is meant to 'break up' large, abrupt cliffs to make cheap interpolation smoother.")
+    @Desc("Starcast is NaturalGenerator's own creation. It uses raytrace checks to find a horizontal boundary nearby. 9 Checks in a circle. Typically starcast is used with another interpolation method. See BILINEAR_STARCAST_9 For example. Starcast is meant to 'break up' large, abrupt cliffs to make cheap interpolation smoother.")
 
     STARCAST_9,
 
-    @Desc("Starcast is NaturalWorldGen's own creation. It uses raytrace checks to find a horizontal boundary nearby. 12 Checks in a circle. Typically starcast is used with another interpolation method. See BILINEAR_STARCAST_9 For example. Starcast is meant to 'break up' large, abrupt cliffs to make cheap interpolation smoother.")
+    @Desc("Starcast is NaturalGenerator's own creation. It uses raytrace checks to find a horizontal boundary nearby. 12 Checks in a circle. Typically starcast is used with another interpolation method. See BILINEAR_STARCAST_9 For example. Starcast is meant to 'break up' large, abrupt cliffs to make cheap interpolation smoother.")
 
     STARCAST_12,
 

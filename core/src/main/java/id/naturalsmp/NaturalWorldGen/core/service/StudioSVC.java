@@ -1,5 +1,5 @@
 /*
- * NaturalWorldGen is a World Generator for Minecraft Bukkit Servers
+ * NaturalGenerator is a World Generator for Minecraft Bukkit Servers
  * Copyright (c) 2022 Arcane Arts (NaturalDev Software)
  *
  * This program is free software: you can redistribute it and/or modify
@@ -204,7 +204,7 @@ public class StudioSVC implements IrisService {
     public void download(NaturalDevSender sender, String repo, String branch, boolean trim, boolean forceOverwrite, boolean directUrl) throws JsonSyntaxException, IOException {
         String url = directUrl ? branch : "https://codeload.github.com/" + repo + "/zip/refs/heads/" + branch;
         sender.sendMessage("Downloading " + url + " "); //The extra space stops a bug in adventure API from repeating the last letter of the URL
-        File zip = NaturalWorldGen.getNonCachedFile("pack-" + trim + "-" + repo, url);
+        File zip = NaturalGenerator.getNonCachedFile("pack-" + trim + "-" + repo, url);
         File temp = NaturalGenerator.getTemp();
         File work = new File(temp, "dl-" + UUID.randomUUID());
         File packs = getWorkspaceFolder();
@@ -309,9 +309,9 @@ public class StudioSVC implements IrisService {
         JSONObject a;
 
         if (cached) {
-            a = new JSONObject(NaturalWorldGen.getCached("cachedlisting", LISTING));
+            a = new JSONObject(NaturalGenerator.getCached("cachedlisting", LISTING));
         } else {
-            a = new JSONObject(NaturalWorldGen.getNonCached(true + "listing", LISTING));
+            a = new JSONObject(NaturalGenerator.getNonCached(true + "listing", LISTING));
         }
 
         KMap<String, String> l = new KMap<>();

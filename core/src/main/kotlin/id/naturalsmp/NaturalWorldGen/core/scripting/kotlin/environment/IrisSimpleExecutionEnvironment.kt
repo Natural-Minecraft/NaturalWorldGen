@@ -54,7 +54,7 @@ open class IrisSimpleExecutionEnvironment internal constructor(
         return evaluate0(script, type.kotlin, vars)
     }
 
-    protected open fun compile(script: String, type: KClass<*>) =
+    protected open fun compile(script: String, type: KClass<*>): Script =
         compileCache.get(script)
             .computeIfAbsent(type) { _ -> runner.compile(type, script) }
             .valueOrThrow("Failed to compile script")
@@ -158,7 +158,7 @@ open class IrisSimpleExecutionEnvironment internal constructor(
         private val String.escapedPath
             get() = replace("\\", "\\\\").replace("\"", "\\\"")
 
-        private const val ARTIFACT_ID = $$"local:${it.substringBeforeLast(\".jar\")}:1.0.0"
+        private const val ARTIFACT_ID = "local:\${it.substringBeforeLast(\".jar\")}:1.0.0"
         private val BASE_GRADLE = """
             val classpath = mapOf()
             

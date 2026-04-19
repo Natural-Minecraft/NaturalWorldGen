@@ -1,5 +1,5 @@
 /*
- * NaturalWorldGen is a World Generator for Minecraft Bukkit Servers
+ * NaturalGenerator is a World Generator for Minecraft Bukkit Servers
  * Copyright (c) 2022 Arcane Arts (NaturalDev Software)
  *
  * This program is free software: you can redistribute it and/or modify
@@ -54,7 +54,7 @@ public class Board {
         this.player = player;
         this.boardSettings = boardSettings;
         var obj = getScoreboard().getObjective("board");
-        this.objective = obj == null ? this.getScoreboard().registerNewObjective("board", Criteria.DUMMY, "NaturalWorldGen") : obj;
+        this.objective = obj == null ? this.getScoreboard().registerNewObjective("board", Criteria.DUMMY, "NaturalGenerator") : obj;
         this.objective.setDisplaySlot(DisplaySlot.SIDEBAR);
         Team team = getScoreboard().getTeam("board");
         team = team == null ? getScoreboard().registerNewTeam("board") : team;

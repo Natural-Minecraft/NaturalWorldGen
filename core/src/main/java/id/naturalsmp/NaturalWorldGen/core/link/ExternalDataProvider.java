@@ -57,7 +57,7 @@ public abstract class ExternalDataProvider implements Listener {
 
     /**
      * This method returns a {@link BlockData} corresponding to the blockID
-     * it is used in any place NaturalWorldGen accepts {@link BlockData}
+     * it is used in any place NaturalGenerator accepts {@link BlockData}
      *
      * @param blockId The id of the block to get
      * @param state The state of the block to get

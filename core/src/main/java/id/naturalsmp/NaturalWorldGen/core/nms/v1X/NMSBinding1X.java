@@ -1,5 +1,5 @@
 /*
- * NaturalWorldGen is a World Generator for Minecraft Bukkit Servers
+ * NaturalGenerator is a World Generator for Minecraft Bukkit Servers
  * Copyright (c) 2022 Arcane Arts (NaturalDev Software)
  *
  * This program is free software: you can redistribute it and/or modify
@@ -244,14 +244,14 @@ public class NMSBinding1X implements INMSBinding {
 
     @Override
     public MCABiomeContainer newBiomeContainer(int min, int max) {
-        NaturalGenerator.error("Cannot use the custom biome data! NaturalWorldGen is incapable of using MCA generation on this version of minecraft!");
+        NaturalGenerator.error("Cannot use the custom biome data! NaturalGenerator is incapable of using MCA generation on this version of minecraft!");
 
         return null;
     }
 
     @Override
     public MCABiomeContainer newBiomeContainer(int min, int max, int[] v) {
-        NaturalGenerator.error("Cannot use the custom biome data! NaturalWorldGen is incapable of using MCA generation on this version of minecraft!");
+        NaturalGenerator.error("Cannot use the custom biome data! NaturalGenerator is incapable of using MCA generation on this version of minecraft!");
 
         return null;
     }
@@ -273,7 +273,7 @@ public class NMSBinding1X implements INMSBinding {
 
     @Override
     public MCAPaletteAccess createPalette() {
-        NaturalGenerator.error("Cannot use the global data palette! NaturalWorldGen is incapable of using MCA generation on this version of minecraft!");
+        NaturalGenerator.error("Cannot use the global data palette! NaturalGenerator is incapable of using MCA generation on this version of minecraft!");
         return null;
     }
 }

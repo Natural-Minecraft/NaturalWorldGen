@@ -1,5 +1,5 @@
 /*
- * NaturalWorldGen is a World Generator for Minecraft Bukkit Servers
+ * NaturalGenerator is a World Generator for Minecraft Bukkit Servers
  * Copyright (c) 2022 Arcane Arts (NaturalDev Software)
  *
  * This program is free software: you can redistribute it and/or modify
@@ -60,8 +60,8 @@ public class TreeSVC implements IrisService {
 
     /**
      * This function does the following
-     * <br>1. Is the sapling growing in an NaturalWorldGen world? No -> exit</br>
-     * <br>2. Is the NaturalWorldGen world accessible? No -> exit</br>
+     * <br>1. Is the sapling growing in an NaturalGenerator world? No -> exit</br>
+     * <br>2. Is the NaturalGenerator world accessible? No -> exit</br>
      * <br>3. Is the sapling overwriting setting on in that dimension? No -> exit</br>
      * <br>4. Check biome, region and dimension for overrides for that sapling type -> Found -> use</br>
      * <br>5. Exit if none are found, cancel event if one or more are.</br>
@@ -76,14 +76,14 @@ public class TreeSVC implements IrisService {
         NaturalGenerator.debug(this.getClass().getName() + " received a structure grow event");
 
         if (!IrisToolbelt.isIrisWorld(event.getWorld())) {
-            NaturalGenerator.debug(this.getClass().getName() + " passed grow event off to vanilla since not an NaturalWorldGen world");
+            NaturalGenerator.debug(this.getClass().getName() + " passed grow event off to vanilla since not an NaturalGenerator world");
             return;
         }
 
         PlatformChunkGenerator worldAccess = IrisToolbelt.access(event.getWorld());
         if (worldAccess == null) {
             NaturalGenerator.debug(this.getClass().getName() + " passed it off to vanilla because could not get IrisAccess for this world");
-            NaturalGenerator.reportError(new NullPointerException(event.getWorld().getName() + " could not be accessed despite being an NaturalWorldGen world"));
+            NaturalGenerator.reportError(new NullPointerException(event.getWorld().getName() + " could not be accessed despite being an NaturalGenerator world"));
             return;
         }
 
@@ -91,7 +91,7 @@ public class TreeSVC implements IrisService {
 
         if (engine == null) {
             NaturalGenerator.debug(this.getClass().getName() + " passed it off to vanilla because could not get Engine for this world");
-            NaturalGenerator.reportError(new NullPointerException(event.getWorld().getName() + " could not be accessed despite being an NaturalWorldGen world"));
+            NaturalGenerator.reportError(new NullPointerException(event.getWorld().getName() + " could not be accessed despite being an NaturalGenerator world"));
             return;
         }
 
@@ -99,7 +99,7 @@ public class TreeSVC implements IrisService {
 
         if (dimension == null) {
             NaturalGenerator.debug(this.getClass().getName() + " passed it off to vanilla because could not get Dimension for this world");
-            NaturalGenerator.reportError(new NullPointerException(event.getWorld().getName() + " could not be accessed despite being an NaturalWorldGen world"));
+            NaturalGenerator.reportError(new NullPointerException(event.getWorld().getName() + " could not be accessed despite being an NaturalGenerator world"));
             return;
         }
 

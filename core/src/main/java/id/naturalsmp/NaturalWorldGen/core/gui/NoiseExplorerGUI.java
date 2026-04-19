@@ -1,5 +1,5 @@
 /*
- * NaturalWorldGen is a World Generator for Minecraft Bukkit Servers
+ * NaturalGenerator is a World Generator for Minecraft Bukkit Servers
  * Copyright (c) 2022 Arcane Arts (NaturalDev Software)
  *
  * This program is free software: you can redistribute it and/or modify
@@ -117,7 +117,7 @@ public class NoiseExplorerGUI extends JPanel implements MouseWheelListener, List
         nv.loader = loader;
         nv.generator = loader.get();
         frame.add(pane);
-        File file = NaturalWorldGen.getCached("NaturalWorldGen Icon", "https://raw.githubusercontent.com/Natural-Minecraft/NaturalWorldGen/master/icon.png");
+        File file = NaturalGenerator.getCached("NaturalGenerator Icon", "https://raw.githubusercontent.com/Natural-Minecraft/NaturalGenerator/master/icon.png");
 
         if (file != null) {
             try {
@@ -151,7 +151,7 @@ public class NoiseExplorerGUI extends JPanel implements MouseWheelListener, List
         pane.add(nv, 1, 0);
         pane.add(combo, 2, 0);
         frame.add(pane);
-        File file = NaturalWorldGen.getCached("NaturalWorldGen Icon", "https://raw.githubusercontent.com/Natural-Minecraft/NaturalWorldGen/master/icon.png");
+        File file = NaturalGenerator.getCached("NaturalGenerator Icon", "https://raw.githubusercontent.com/Natural-Minecraft/NaturalGenerator/master/icon.png");
 
         if (file != null) {
             try {

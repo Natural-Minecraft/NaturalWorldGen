@@ -49,7 +49,7 @@ public class IrisPackBenchmarking {
                     createBenchmark();
                     while (!IrisToolbelt.isIrisWorld(Bukkit.getWorld("benchmark"))) {
                         J.sleep(1000);
-                        NaturalGenerator.debug("NaturalWorldGen PackBenchmark: Waiting...");
+                        NaturalGenerator.debug("NaturalGenerator PackBenchmark: Waiting...");
                     }
                     NaturalGenerator.info("Starting Benchmark!");
                     stopwatch.begin();

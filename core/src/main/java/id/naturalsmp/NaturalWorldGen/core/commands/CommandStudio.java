@@ -1,5 +1,5 @@
 /*
- * NaturalWorldGen is a World Generator for Minecraft Bukkit Servers
+ * NaturalGenerator is a World Generator for Minecraft Bukkit Servers
  * Copyright (c) 2022 Arcane Arts (NaturalDev Software)
  *
  * This program is free software: you can redistribute it and/or modify
@@ -139,7 +139,7 @@ public class CommandStudio implements DecreeExecutor {
 
     @Decree(description = "Create a new studio project", aliases = "+", sync = true)
     public void create(
-            @Param(description = "The name of this new NaturalWorldGen Project.")
+            @Param(description = "The name of this new NaturalGenerator Project.")
             String name,
             @Param(description = "Copy the contents of an existing project in your packs folder and use it as a template in this new project.", contextual = true)
             IrisDimension template) {
@@ -165,7 +165,7 @@ public class CommandStudio implements DecreeExecutor {
     ) {
         World world = player().getWorld();
         if (!IrisToolbelt.isIrisWorld(world)) {
-            sender().sendMessage(C.RED + "You must be in an NaturalWorldGen World to use regen!");
+            sender().sendMessage(C.RED + "You must be in an NaturalGenerator World to use regen!");
         }
 
         NaturalDevSender sender = sender();
@@ -257,7 +257,7 @@ public class CommandStudio implements DecreeExecutor {
     @Decree(description = "Charges all spawners in the area", aliases = "zzt", origin = DecreeOrigin.PLAYER)
     public void charge() {
         if (!IrisToolbelt.isIrisWorld(world())) {
-            sender().sendMessage(C.RED + "You must be in an NaturalWorldGen world to charge spawners!");
+            sender().sendMessage(C.RED + "You must be in an NaturalGenerator world to charge spawners!");
             return;
         }
         sender().sendMessage(C.GREEN + "Charging spawners!");
@@ -346,7 +346,7 @@ public class CommandStudio implements DecreeExecutor {
     public void regions(@Param(description = "The radius in chunks", defaultValue = "500") int radius) {
         var engine = engine();
         if (engine == null) {
-            sender().sendMessage(C.RED + "Only works in an NaturalWorldGen world!");
+            sender().sendMessage(C.RED + "Only works in an NaturalGenerator world!");
             return;
         }
         var sender = sender();
@@ -383,7 +383,7 @@ public class CommandStudio implements DecreeExecutor {
     public void distances(@Param(description = "The radius in chunks") int radius) {
         var engine = engine();
         if (engine == null) {
-            sender().sendMessage(C.RED + "Only works in an NaturalWorldGen world!");
+            sender().sendMessage(C.RED + "Only works in an NaturalGenerator world!");
             return;
         }
         var sender = sender();
@@ -453,7 +453,7 @@ public class CommandStudio implements DecreeExecutor {
         if (noGUI()) return;
 
         if (!IrisToolbelt.isIrisWorld(world)) {
-            sender().sendMessage(C.RED + "You need to be in or specify an NaturalWorldGen-generated world!");
+            sender().sendMessage(C.RED + "You need to be in or specify an NaturalGenerator-generated world!");
             return;
         }
 
@@ -662,7 +662,7 @@ public class CommandStudio implements DecreeExecutor {
         sender().sendMessage(C.GREEN + "Done! " + report.getPath());
     }
 
-    @Decree(description = "Spawn an NaturalWorldGen entity", aliases = "summon", origin = DecreeOrigin.PLAYER)
+    @Decree(description = "Spawn an NaturalGenerator entity", aliases = "summon", origin = DecreeOrigin.PLAYER)
     public void spawn(
             @Param(description = "The entity to spawn")
             IrisEntity entity,
@@ -670,7 +670,7 @@ public class CommandStudio implements DecreeExecutor {
             Vector location
     ) {
         if (!IrisToolbelt.isIrisWorld(player().getWorld())) {
-            sender().sendMessage(C.RED + "You have to be in an NaturalWorldGen world to spawn entities properly. Trying to spawn the best we can do.");
+            sender().sendMessage(C.RED + "You have to be in an NaturalGenerator world to spawn entities properly. Trying to spawn the best we can do.");
         }
         entity.spawn(engine(), new Location(world(), location.getX(), location.getY(), location.getZ()));
     }
@@ -714,7 +714,7 @@ public class CommandStudio implements DecreeExecutor {
     @Decree(aliases = "find-objects", description = "Get information about nearby structures")
     public void objects() {
         if (!IrisToolbelt.isIrisWorld(player().getWorld())) {
-            sender().sendMessage(C.RED + "You must be in an NaturalWorldGen world");
+            sender().sendMessage(C.RED + "You must be in an NaturalGenerator world");
             return;
         }
 
@@ -743,9 +743,9 @@ public class CommandStudio implements DecreeExecutor {
         try {
             File ff = NaturalGenerator.instance.getDataFile("reports/" + M.ms() + ".txt");
             PrintWriter pw = new PrintWriter(ff);
-            pw.println("=== NaturalWorldGen Chunk Report ===");
+            pw.println("=== NaturalGenerator Chunk Report ===");
             pw.println("== General Info ==");
-            pw.println("NaturalWorldGen Version: " + NaturalGenerator.instance.getDescription().getVersion());
+            pw.println("NaturalGenerator Version: " + NaturalGenerator.instance.getDescription().getVersion());
             pw.println("Bukkit Version: " + Bukkit.getBukkitVersion());
             pw.println("MC Version: " + Bukkit.getVersion());
             pw.println("PaperSpigot: " + (PaperLib.isPaper() ? "Yup!" : "Nope!"));

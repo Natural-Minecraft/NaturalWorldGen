@@ -1,5 +1,5 @@
 /*
- * NaturalWorldGen is a World Generator for Minecraft Bukkit Servers
+ * NaturalGenerator is a World Generator for Minecraft Bukkit Servers
  * Copyright (c) 2022 Arcane Arts (NaturalDev Software)
  *
  * This program is free software: you can redistribute it and/or modify
@@ -49,15 +49,15 @@ public class IrisAttributeModifier {
     @Desc("The application operation (add number is default). Add Number adds to the default value. \nAdd scalar_1 will multiply by 1 for example if the health is 20 and you multiply_scalar_1 by 0.5, the health will result in 30, not 10. Use negative values to achieve that.")
     private Operation operation = Operation.ADD_NUMBER;
 
-    @Desc("Minimum amount for this modifier. NaturalWorldGen randomly chooses an amount, this is the minimum it can choose randomly for this attribute.")
+    @Desc("Minimum amount for this modifier. NaturalGenerator randomly chooses an amount, this is the minimum it can choose randomly for this attribute.")
     private double minAmount = 1;
 
-    @Desc("Maximum amount for this modifier NaturalWorldGen randomly chooses an amount, this is the maximum it can choose randomly for this attribute.")
+    @Desc("Maximum amount for this modifier NaturalGenerator randomly chooses an amount, this is the maximum it can choose randomly for this attribute.")
     private double maxAmount = 1;
 
     @MinNumber(0)
     @MaxNumber(1)
-    @Desc("The chance that this attribute is applied (0 to 1). If the chance is 0.5 (50%), then NaturalWorldGen will only apply this attribute 50% of the time.")
+    @Desc("The chance that this attribute is applied (0 to 1). If the chance is 0.5 (50%), then NaturalGenerator will only apply this attribute 50% of the time.")
     private double chance = 1;
 
     public void apply(RNG rng, ItemMeta meta) {

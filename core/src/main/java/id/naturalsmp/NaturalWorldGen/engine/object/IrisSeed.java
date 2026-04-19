@@ -1,5 +1,5 @@
 /*
- * NaturalWorldGen is a World Generator for Minecraft Bukkit Servers
+ * NaturalGenerator is a World Generator for Minecraft Bukkit Servers
  * Copyright (c) 2022 Arcane Arts (NaturalDev Software)
  *
  * This program is free software: you can redistribute it and/or modify
@@ -34,7 +34,7 @@ public class IrisSeed {
     @Desc("The seed to use")
     private long seed = 1337;
 
-    @Desc("To calculate a seed NaturalWorldGen passes in it's natural seed for the current feature, then mixes it with your seed. Setting this to true ignores the parent seed and always uses your exact seed ignoring the input of NaturalWorldGen feature seeds. You can use this to match seeds on other generators.")
+    @Desc("To calculate a seed NaturalGenerator passes in it's natural seed for the current feature, then mixes it with your seed. Setting this to true ignores the parent seed and always uses your exact seed ignoring the input of NaturalGenerator feature seeds. You can use this to match seeds on other generators.")
     private boolean ignoreNaturalSeedInput = false;
 
     public long getSeed(long seed) {

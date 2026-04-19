@@ -1,5 +1,5 @@
 /*
- * NaturalWorldGen is a World Generator for Minecraft Bukkit Servers
+ * NaturalGenerator is a World Generator for Minecraft Bukkit Servers
  * Copyright (c) 2022 Arcane Arts (NaturalDev Software)
  *
  * This program is free software: you can redistribute it and/or modify
@@ -42,7 +42,7 @@ import org.bukkit.block.data.BlockData;
 import java.util.Objects;
 import java.util.concurrent.atomic.AtomicInteger;
 
-@Decree(name = "what", origin = DecreeOrigin.PLAYER, studio = true, description = "NaturalWorldGen What?")
+@Decree(name = "what", origin = DecreeOrigin.PLAYER, studio = true, description = "NaturalGenerator What?")
 public class CommandWhat implements DecreeExecutor {
     @Decree(description = "What is in my hand?", origin = DecreeOrigin.PLAYER)
     public void hand() {
@@ -73,7 +73,7 @@ public class CommandWhat implements DecreeExecutor {
 
         } catch (Throwable e) {
             NaturalGenerator.reportError(e);
-            sender().sendMessage("Non-NaturalWorldGen Biome: " + player().getLocation().getBlock().getBiome().name());
+            sender().sendMessage("Non-NaturalGenerator Biome: " + player().getLocation().getBlock().getBiome().name());
 
             if (player().getLocation().getBlock().getBiome().equals(Biome.CUSTOM)) {
                 try {
@@ -94,7 +94,7 @@ public class CommandWhat implements DecreeExecutor {
 
         } catch (Throwable e) {
             NaturalGenerator.reportError(e);
-            sender().sendMessage(C.IRIS + "NaturalWorldGen worlds only.");
+            sender().sendMessage(C.IRIS + "NaturalGenerator worlds only.");
         }
     }
 
@@ -163,7 +163,7 @@ public class CommandWhat implements DecreeExecutor {
 
             sender().sendMessage("Found " + v.get() + " Nearby Markers (" + marker + ")");
         } else {
-            sender().sendMessage(C.IRIS + "NaturalWorldGen worlds only.");
+            sender().sendMessage(C.IRIS + "NaturalGenerator worlds only.");
         }
     }
 }

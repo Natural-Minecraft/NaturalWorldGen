@@ -51,7 +51,7 @@ public class IrisEngineSVC implements IrisService {
                 (engine.isUseVirtualThreads()
                         ? Thread.ofVirtual()
                         : Thread.ofPlatform().priority(engine.getPriority()))
-                        .name("NaturalWorldGen EngineSVC-", 0)
+                        .name("NaturalGenerator EngineSVC-", 0)
                         .factory());
         tectonicLimit.set(settings.getTectonicPlateSize());
         Bukkit.getWorlds().forEach(this::add);
@@ -101,7 +101,7 @@ public class IrisEngineSVC implements IrisService {
         sender.sendMessage(C.DARK_PURPLE + "- 3D Stream: " + C.LIGHT_PURPLE + sizes[2] + " (" + count[2] + ")");
         sender.sendMessage(C.DARK_PURPLE + "- Other: " + C.LIGHT_PURPLE + sizes[3] + " (" + count[3] + ")");
         sender.sendMessage(C.DARK_PURPLE + "Other:");
-        sender.sendMessage(C.DARK_PURPLE + "- NaturalWorldGen Worlds: " + C.LIGHT_PURPLE + totalWorlds.get());
+        sender.sendMessage(C.DARK_PURPLE + "- NaturalGenerator Worlds: " + C.LIGHT_PURPLE + totalWorlds.get());
         sender.sendMessage(C.DARK_PURPLE + "- Loaded Chunks: " + C.LIGHT_PURPLE + loadedChunks.get());
         sender.sendMessage(C.DARK_PURPLE + "-------------------------");
     }

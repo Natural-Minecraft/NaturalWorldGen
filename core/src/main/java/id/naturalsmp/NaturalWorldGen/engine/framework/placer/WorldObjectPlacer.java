@@ -33,7 +33,7 @@ public class WorldObjectPlacer implements IObjectPlacer {
 
     public WorldObjectPlacer(World world) {
         var a = IrisToolbelt.access(world);
-        if (a == null || a.getEngine() == null) throw new IllegalStateException(world.getName() + " is not an NaturalWorldGen World!");
+        if (a == null || a.getEngine() == null) throw new IllegalStateException(world.getName() + " is not an NaturalGenerator World!");
         this.world = world;
         this.engine = a.getEngine();
         this.mantle = engine.getMantle();

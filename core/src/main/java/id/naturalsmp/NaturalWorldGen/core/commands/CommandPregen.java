@@ -1,5 +1,5 @@
 /*
- * NaturalWorldGen is a World Generator for Minecraft Bukkit Servers
+ * NaturalGenerator is a World Generator for Minecraft Bukkit Servers
  * Copyright (c) 2022 Arcane Arts (NaturalDev Software)
  *
  * This program is free software: you can redistribute it and/or modify
@@ -30,7 +30,7 @@ import id.naturalsmp.NaturalWorldGen.util.math.Position2;
 import org.bukkit.World;
 import org.bukkit.util.Vector;
 
-@Decree(name = "pregen", aliases = "pregenerate", description = "Pregenerate your NaturalWorldGen worlds!")
+@Decree(name = "pregen", aliases = "pregenerate", description = "Pregenerate your NaturalGenerator worlds!")
 public class CommandPregen implements DecreeExecutor {
     @Decree(description = "Pregenerate a world")
     public void start(
@@ -40,7 +40,7 @@ public class CommandPregen implements DecreeExecutor {
             World world,
             @Param(aliases = "middle", description = "The center location of the pregen. Use \"me\" for your current location", defaultValue = "0,0")
             Vector center,
-            @Param(description = "Open the NaturalWorldGen pregen gui", defaultValue = "true")
+            @Param(description = "Open the NaturalGenerator pregen gui", defaultValue = "true")
             boolean gui
             ) {
         try {

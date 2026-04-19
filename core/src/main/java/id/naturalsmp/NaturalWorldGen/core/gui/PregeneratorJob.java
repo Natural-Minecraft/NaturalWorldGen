@@ -1,5 +1,5 @@
 /*
- * NaturalWorldGen is a World Generator for Minecraft Bukkit Servers
+ * NaturalGenerator is a World Generator for Minecraft Bukkit Servers
  * Copyright (c) 2022 Arcane Arts (NaturalDev Software)
  *
  * This program is free software: you can redistribute it and/or modify
@@ -103,7 +103,7 @@ public class PregeneratorJob implements PregenListener {
         var t = new Thread(() -> {
             J.sleep(1000);
             this.pregenerator.start();
-        }, "NaturalWorldGen Pregenerator");
+        }, "NaturalGenerator Pregenerator");
         t.setPriority(Thread.MIN_PRIORITY);
         t.start();
         service = Executors.newVirtualThreadPerTaskExecutor();

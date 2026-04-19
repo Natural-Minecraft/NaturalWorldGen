@@ -1,5 +1,5 @@
 /*
- * NaturalWorldGen is a World Generator for Minecraft Bukkit Servers
+ * NaturalGenerator is a World Generator for Minecraft Bukkit Servers
  * Copyright (c) 2022 Arcane Arts (NaturalDev Software)
  *
  * This program is free software: you can redistribute it and/or modify
@@ -59,7 +59,7 @@ public class IrisBlockData extends IrisRegistrant {
     @MaxNumber(1000)
     @Desc("The weight is used when this block data is inside of a list of blockdata. A weight of two is just as if you placed two of the same block data values in the same list making it more common when randomly picked.")
     private int weight = 1;
-    @Desc("If the block cannot be created on this version, NaturalWorldGen will attempt to use this backup block data instead.")
+    @Desc("If the block cannot be created on this version, NaturalGenerator will attempt to use this backup block data instead.")
     private IrisBlockData backup = null;
     @RegistryMapBlockState("block")
     @Desc("Optional properties for this block data such as 'waterlogged': true")

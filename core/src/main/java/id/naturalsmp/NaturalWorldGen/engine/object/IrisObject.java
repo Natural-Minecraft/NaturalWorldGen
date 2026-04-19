@@ -1,5 +1,5 @@
 /*
- * NaturalWorldGen is a World Generator for Minecraft Bukkit Servers
+ * NaturalGenerator is a World Generator for Minecraft Bukkit Servers
  * Copyright (c) 2022 Arcane Arts (NaturalDev Software)
  *
  * This program is free software: you can redistribute it and/or modify
@@ -327,7 +327,7 @@ public class IrisObject extends IrisRegistrant {
         this.w = din.readInt();
         this.h = din.readInt();
         this.d = din.readInt();
-        if (!din.readUTF().equals("NaturalWorldGen V2 IOB;")) {
+        if (!din.readUTF().equals("NaturalGenerator V2 IOB;")) {
             throw new HeaderException();
         }
         center = new Vector3i(w / 2, h / 2, d / 2);
@@ -357,7 +357,7 @@ public class IrisObject extends IrisRegistrant {
         dos.writeInt(w);
         dos.writeInt(h);
         dos.writeInt(d);
-        dos.writeUTF("NaturalWorldGen V2 IOB;");
+        dos.writeUTF("NaturalGenerator V2 IOB;");
         KList<String> palette = new KList<>();
 
         for (BlockData i : blocks.values()) {
@@ -409,7 +409,7 @@ public class IrisObject extends IrisRegistrant {
                     dos.writeInt(w);
                     dos.writeInt(h);
                     dos.writeInt(d);
-                    dos.writeUTF("NaturalWorldGen V2 IOB;");
+                    dos.writeUTF("NaturalGenerator V2 IOB;");
 
                     KList<String> palette = new KList<>();
 

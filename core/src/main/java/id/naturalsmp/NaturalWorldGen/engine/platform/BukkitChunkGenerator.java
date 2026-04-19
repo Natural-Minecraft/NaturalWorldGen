@@ -1,5 +1,5 @@
 /*
- * NaturalWorldGen is a World Generator for Minecraft Bukkit Servers
+ * NaturalGenerator is a World Generator for Minecraft Bukkit Servers
  * Copyright (c) 2022 Arcane Arts (NaturalDev Software)
  *
  * This program is free software: you can redistribute it and/or modify
@@ -126,7 +126,7 @@ public class BukkitChunkGenerator extends ChunkGenerator implements PlatformChun
         if (engine == null) return false;
         try {
             INMS.get().inject(world.getSeed(), engine, world);
-            NaturalGenerator.info("Injected NaturalWorldGen Biome Source into " + world.getName());
+            NaturalGenerator.info("Injected NaturalGenerator Biome Source into " + world.getName());
         } catch (Throwable e) {
             NaturalGenerator.reportError(e);
             NaturalGenerator.error("Failed to inject biome source into " + world.getName());
@@ -180,7 +180,7 @@ public class BukkitChunkGenerator extends ChunkGenerator implements PlatformChun
                     NaturalGenerator.warn("Attempted to install into " + data.getDataFolder().getPath());
 
                     if (test != null) {
-                        NaturalWorldGen.success("Woo! Patched the Engine!");
+                        NaturalGenerator.success("Woo! Patched the Engine!");
                         dimension = test;
                     } else {
                         NaturalGenerator.error("Failed to patch dimension!");
@@ -253,7 +253,7 @@ public class BukkitChunkGenerator extends ChunkGenerator implements PlatformChun
             loadLock.release();
             NaturalGenerator.error("======================================");
             e.printStackTrace();
-            NaturalWorldGen.reportErrorChunk(x, z, e, "CHUNK");
+            NaturalGenerator.reportErrorChunk(x, z, e, "CHUNK");
             NaturalGenerator.error("======================================");
 
             ChunkData d = Bukkit.createChunkData(world);
@@ -373,7 +373,7 @@ public class BukkitChunkGenerator extends ChunkGenerator implements PlatformChun
         } catch (Throwable e) {
             NaturalGenerator.error("======================================");
             e.printStackTrace();
-            NaturalWorldGen.reportErrorChunk(x, z, e, "CHUNK");
+            NaturalGenerator.reportErrorChunk(x, z, e, "CHUNK");
             NaturalGenerator.error("======================================");
 
             for (int i = 0; i < 16; i++) {

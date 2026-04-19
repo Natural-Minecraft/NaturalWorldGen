@@ -1,5 +1,5 @@
 /*
- * NaturalWorldGen is a World Generator for Minecraft Bukkit Servers
+ * NaturalGenerator is a World Generator for Minecraft Bukkit Servers
  * Copyright (c) 2022 Arcane Arts (NaturalDev Software)
  *
  * This program is free software: you can redistribute it and/or modify
@@ -689,7 +689,7 @@ public class Mantle {
             File file = fileForRegion(dataFolder, x, z);
             if (file.exists()) {
                 try {
-                    NaturalWorldGen.addPanic("reading.tectonic-plate", file.getAbsolutePath());
+                    NaturalGenerator.addPanic("reading.tectonic-plate", file.getAbsolutePath());
                     region = worker.read(file.getName());
 
                     if (region.getX() != x || region.getZ() != z) {
@@ -704,7 +704,7 @@ public class Mantle {
                     if (!(e instanceof EOFException)) {
                         e.printStackTrace();
                     }
-                    NaturalWorldGen.panic();
+                    NaturalGenerator.panic();
                     region = new TectonicPlate(worldHeight, x, z);
                     loadedRegions.put(k, region);
                     NaturalGenerator.debug("Created new Tectonic Plate (Due to Load Failure) " + C.DARK_GREEN + x + " " + z);

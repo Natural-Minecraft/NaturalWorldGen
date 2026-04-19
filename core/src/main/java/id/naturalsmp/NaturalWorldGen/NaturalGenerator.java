@@ -1,5 +1,5 @@
 /*
- * NaturalWorldGen is a World Generator for Minecraft Bukkit Servers
+ * NaturalGenerator is a World Generator for Minecraft Bukkit Servers
  * Copyright (c) 2022 Arcane Arts (NaturalDev Software)
  *
  * This program is free software: you can redistribute it and/or modify
@@ -85,7 +85,7 @@ import java.util.regex.Pattern;
 public class NaturalGenerator extends NaturalDevPlugin implements Listener {
     private static final Queue<Runnable> syncJobs = new ShurikenQueue<>();
 
-    public static NaturalWorldGen instance;
+    public static NaturalGenerator instance;
     public static Bindings.Adventure audiences;
     public static MultiverseCoreLink linkMultiverseCore;
     public static IrisCompat compat;
@@ -495,7 +495,7 @@ public class NaturalGenerator extends NaturalDevPlugin implements Listener {
                     var dim = loadDimension(s, generator);
                     assert dim != null && gen != null;
 
-                    NaturalGenerator.info(C.LIGHT_PURPLE + "Preparing Spawn for " + s + "' using NaturalWorldGen:" + generator + "...");
+                    NaturalGenerator.info(C.LIGHT_PURPLE + "Preparing Spawn for " + s + "' using NaturalGenerator:" + generator + "...");
                     WorldCreator c = new WorldCreator(s)
                             .generator(gen)
                             .environment(dim.getEnvironment());
@@ -595,16 +595,16 @@ public class NaturalGenerator extends NaturalDevPlugin implements Listener {
     }
 
     private void tickQueue() {
-        synchronized (NaturalWorldGen.syncJobs) {
-            if (!NaturalWorldGen.syncJobs.hasNext()) {
+        synchronized (NaturalGenerator.syncJobs) {
+            if (!NaturalGenerator.syncJobs.hasNext()) {
                 return;
             }
 
             long ms = M.ms();
 
-            while (NaturalWorldGen.syncJobs.hasNext() && M.ms() - ms < 25) {
+            while (NaturalGenerator.syncJobs.hasNext() && M.ms() - ms < 25) {
                 try {
-                    NaturalWorldGen.syncJobs.next().run();
+                    NaturalGenerator.syncJobs.next().run();
                 } catch (Throwable e) {
                     e.printStackTrace();
                     NaturalGenerator.reportError(e);
@@ -625,7 +625,7 @@ public class NaturalGenerator extends NaturalDevPlugin implements Listener {
     }
 
     public void imsg(CommandSender s, String msg) {
-        s.sendMessage(C.IRIS + "[" + C.DARK_GRAY + "NaturalWorldGen" + C.IRIS + "]" + C.GRAY + ": " + msg);
+        s.sendMessage(C.IRIS + "[" + C.DARK_GRAY + "NaturalGenerator" + C.IRIS + "]" + C.GRAY + ": " + msg);
     }
 
     @Nullable

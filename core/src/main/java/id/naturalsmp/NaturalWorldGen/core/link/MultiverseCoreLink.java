@@ -1,5 +1,5 @@
 /*
- * NaturalWorldGen is a World Generator for Minecraft Bukkit Servers
+ * NaturalGenerator is a World Generator for Minecraft Bukkit Servers
  * Copyright (c) 2022 Arcane Arts (NaturalDev Software)
  *
  * This program is free software: you can redistribute it and/or modify
@@ -46,7 +46,7 @@ public class MultiverseCoreLink {
     @SneakyThrows
     public void updateWorld(World bukkitWorld, String pack) {
         if (!active) return;
-        var generator = "NaturalWorldGen:" + pack;
+        var generator = "NaturalGenerator:" + pack;
         var manager = worldManager();
         var world = manager.getWorld(bukkitWorld).getOrElse(() -> {
             var options = ImportWorldOptions.worldName(bukkitWorld.getName())

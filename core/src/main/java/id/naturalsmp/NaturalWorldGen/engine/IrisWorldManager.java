@@ -1,5 +1,5 @@
 /*
- * NaturalWorldGen is a World Generator for Minecraft Bukkit Servers
+ * NaturalGenerator is a World Generator for Minecraft Bukkit Servers
  * Copyright (c) 2022 Arcane Arts (NaturalDev Software)
  *
  * This program is free software: you can redistribute it and/or modify
@@ -111,7 +111,7 @@ public class IrisWorldManager extends EngineAssignedWorldManager {
         ecl = new ChronoLatch(250);
         clw = new ChronoLatch(1000, true);
         cleanupService = Executors.newSingleThreadScheduledExecutor(runnable -> {
-            var thread = new Thread(runnable, "NaturalWorldGen Mantle Cleanup " + getTarget().getWorld().name());
+            var thread = new Thread(runnable, "NaturalGenerator Mantle Cleanup " + getTarget().getWorld().name());
             thread.setPriority(Thread.MIN_PRIORITY);
             return thread;
         });
@@ -186,7 +186,7 @@ public class IrisWorldManager extends EngineAssignedWorldManager {
             }
         };
         looper.setPriority(Thread.MIN_PRIORITY);
-        looper.setName("NaturalWorldGen World Manager " + getTarget().getWorld().name());
+        looper.setName("NaturalGenerator World Manager " + getTarget().getWorld().name());
         looper.start();
     }
 
