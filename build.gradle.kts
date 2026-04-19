@@ -33,7 +33,7 @@ plugins {
     alias(libs.plugins.runPaper)
 }
 
-group = "id.naturalsmp.NaturalWorldGen"
+group = "id.naturalsmp.nwg"
 version = "3.9.1-1.20.1-1.21.11"
 
 apply<ApiGenerator>()

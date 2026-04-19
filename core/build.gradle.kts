@@ -35,8 +35,8 @@ plugins {
 }
 
 val apiVersion = "1.19"
-val main = "id.naturalsmp.NaturalWorldGen.NaturalGenerator"
-val lib = "id.naturalsmp.NaturalWorldGen.util"
+val main = "id.naturalsmp.nwg.NaturalGenerator"
+val lib = "id.naturalsmp.nwg.util"
 
 /**
  * Dependencies.
@@ -214,7 +214,7 @@ val generateTemplates = tasks.register<Copy>("generateTemplates") {
 
     from(templateSource)
     into(templateDest)
-    rename { "id/naturalsmp/NaturalWorldGen/$it" }
+    rename { "id/naturalsmp/nwg/$it" }
     expand(inputs.properties)
 }
 

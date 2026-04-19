@@ -1,0 +1,117 @@
+/*
+ * NaturalGenerator is a World Generator for Minecraft Bukkit Servers
+ * Copyright (c) 2022 Arcane Arts (NaturalDev Software)
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ */
+
+package id.naturalsmp.nwg.core.commands;
+
+import id.naturalsmp.nwg.engine.framework.Engine;
+import id.naturalsmp.nwg.engine.object.IrisBiome;
+import id.naturalsmp.nwg.engine.object.IrisJigsawStructure;
+import id.naturalsmp.nwg.engine.object.IrisRegion;
+import id.naturalsmp.nwg.util.decree.DecreeExecutor;
+import id.naturalsmp.nwg.util.decree.DecreeOrigin;
+import id.naturalsmp.nwg.util.decree.annotations.Decree;
+import id.naturalsmp.nwg.util.decree.annotations.Param;
+import id.naturalsmp.nwg.util.decree.specialhandlers.ObjectHandler;
+import id.naturalsmp.nwg.util.format.C;
+
+@Decree(name = "find", origin = DecreeOrigin.PLAYER, description = "NaturalGenerator Find commands", aliases = "goto")
+public class CommandFind implements DecreeExecutor {
+    @Decree(description = "Find a biome")
+    public void biome(
+            @Param(description = "The biome to look for")
+            IrisBiome biome,
+            @Param(description = "Should you be teleported", defaultValue = "true")
+            boolean teleport
+    ) {
+        Engine e = engine();
+
+        if (e == null) {
+            sender().sendMessage(C.GOLD + "Not in an NaturalGenerator World!");
+            return;
+        }
+
+        e.gotoBiome(biome, player(), teleport);
+    }
+
+    @Decree(description = "Find a region")
+    public void region(
+            @Param(description = "The region to look for")
+            IrisRegion region,
+            @Param(description = "Should you be teleported", defaultValue = "true")
+            boolean teleport
+    ) {
+        Engine e = engine();
+
+        if (e == null) {
+            sender().sendMessage(C.GOLD + "Not in an NaturalGenerator World!");
+            return;
+        }
+
+        e.gotoRegion(region, player(), teleport);
+    }
+
+    @Decree(description = "Find a structure")
+    public void structure(
+            @Param(description = "The structure to look for")
+            IrisJigsawStructure structure,
+            @Param(description = "Should you be teleported", defaultValue = "true")
+            boolean teleport
+    ) {
+        Engine e = engine();
+
+        if (e == null) {
+            sender().sendMessage(C.GOLD + "Not in an NaturalGenerator World!");
+            return;
+        }
+
+        e.gotoJigsaw(structure, player(), teleport);
+    }
+
+    @Decree(description = "Find a point of interest.")
+    public void poi(
+            @Param(description = "The type of PoI to look for.")
+            String type,
+            @Param(description = "Should you be teleported", defaultValue = "true")
+            boolean teleport
+    ) {
+        Engine e = engine();
+        if (e == null) {
+            sender().sendMessage(C.GOLD + "Not in an NaturalGenerator World!");
+            return;
+        }
+
+        e.gotoPOI(type, player(), teleport);
+    }
+
+    @Decree(description = "Find an object")
+    public void object(
+            @Param(description = "The object to look for", customHandler = ObjectHandler.class)
+            String object,
+            @Param(description = "Should you be teleported", defaultValue = "true")
+            boolean teleport
+    ) {
+        Engine e = engine();
+
+        if (e == null) {
+            sender().sendMessage(C.GOLD + "Not in an NaturalGenerator World!");
+            return;
+        }
+
+        e.gotoObject(object, player(), teleport);
+    }
+}

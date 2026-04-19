@@ -1,0 +1,77 @@
+/*
+ * NaturalGenerator is a World Generator for Minecraft Bukkit Servers
+ * Copyright (c) 2022 Arcane Arts (NaturalDev Software)
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ */
+
+package id.naturalsmp.nwg.engine.mantle;
+
+import id.naturalsmp.nwg.core.loader.IrisData;
+import id.naturalsmp.nwg.engine.IrisComplex;
+import id.naturalsmp.nwg.engine.object.IrisDimension;
+import id.naturalsmp.nwg.util.context.ChunkContext;
+import id.naturalsmp.nwg.util.documentation.ChunkCoordinates;
+import id.naturalsmp.nwg.util.mantle.Mantle;
+import id.naturalsmp.nwg.util.mantle.flag.MantleFlag;
+import id.naturalsmp.nwg.util.parallel.BurstExecutor;
+import org.jetbrains.annotations.NotNull;
+
+public interface MantleComponent extends Comparable<MantleComponent> {
+    int getPriority();
+
+    int getRadius();
+
+    default IrisData getData() {
+        return getEngineMantle().getData();
+    }
+
+    default IrisDimension getDimension() {
+        return getEngineMantle().getEngine().getDimension();
+    }
+
+    default IrisComplex getComplex() {
+        return getEngineMantle().getComplex();
+    }
+
+    default long seed() {
+        return getEngineMantle().getEngine().getSeedManager().getMantle();
+    }
+
+    default BurstExecutor burst() {
+        return getEngineMantle().getEngine().burst().burst();
+    }
+
+    EngineMantle getEngineMantle();
+
+    default Mantle getMantle() {
+        return getEngineMantle().getMantle();
+    }
+
+    MantleFlag getFlag();
+
+    boolean isEnabled();
+
+    void setEnabled(boolean b);
+
+    void hotload();
+
+    @ChunkCoordinates
+    void generateLayer(MantleWriter writer, int x, int z, ChunkContext context);
+
+    @Override
+    default int compareTo(@NotNull MantleComponent o) {
+        return Integer.compare(getPriority(), o.getPriority());
+    }
+}

@@ -1,4 +1,4 @@
-package id.naturalsmp.NaturalWorldGen;
+package id.naturalsmp.nwg;
 
 // The constants are replaced before compilation
 public interface BuildConstants {
