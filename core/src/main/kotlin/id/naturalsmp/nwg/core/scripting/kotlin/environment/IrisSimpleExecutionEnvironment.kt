@@ -1,5 +1,7 @@
 package id.naturalsmp.nwg.core.scripting.kotlin.environment
 
+import com.github.benmanes.caffeine.cache.Caffeine
+import com.github.benmanes.caffeine.cache.LoadingCache
 import id.naturalsmp.nwg.NaturalGenerator
 import id.naturalsmp.nwg.core.IrisSettings
 import id.naturalsmp.nwg.core.scripting.environment.SimpleEnvironment
@@ -10,16 +12,12 @@ import id.naturalsmp.nwg.core.scripting.kotlin.runner.ScriptRunner
 import id.naturalsmp.nwg.core.scripting.kotlin.runner.classpath
 import id.naturalsmp.nwg.core.scripting.kotlin.runner.value
 import id.naturalsmp.nwg.core.scripting.kotlin.runner.valueOrThrow
-import id.naturalsmp.nwg.toolbelt.collection.KMap
-import id.naturalsmp.nwg.toolbelt.data.KCache
 import id.naturalsmp.nwg.toolbelt.format.C
 import java.io.File
+import java.util.concurrent.ConcurrentHashMap
 import kotlin.reflect.KClass
 import kotlin.script.experimental.annotations.KotlinScript
 import kotlin.script.experimental.api.ResultWithDiagnostics
-import kotlin.text.split
-import java.util.function.Function
-import com.github.benmanes.caffeine.cache.CacheLoader
 
 open class IrisSimpleExecutionEnvironment internal constructor(
     baseDir: File,
@@ -27,10 +25,10 @@ open class IrisSimpleExecutionEnvironment internal constructor(
 ) : SimpleEnvironment {
     @JvmOverloads
     constructor(baseDir: File = File(".").absoluteFile) : this(baseDir, null)
-    protected val compileCache = KCache<String, KMap<KClass<*>, ResultWithDiagnostics<Script>>>(
-        CacheLoader { _ -> KMap<KClass<*>, ResultWithDiagnostics<Script>>() },
-        1024L
-    )
+    protected val compileCache: LoadingCache<String, ConcurrentHashMap<KClass<*>, ResultWithDiagnostics<Script>>> =
+        Caffeine.newBuilder()
+            .maximumSize(1024L)
+            .build { _ -> ConcurrentHashMap<KClass<*>, ResultWithDiagnostics<Script>>() }
     protected val runner = ScriptRunner(baseDir, parent)
 
     override fun execute(
