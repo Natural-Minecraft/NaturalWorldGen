@@ -27,7 +27,10 @@ open class IrisSimpleExecutionEnvironment internal constructor(
 ) : SimpleEnvironment {
     @JvmOverloads
     constructor(baseDir: File = File(".").absoluteFile) : this(baseDir, null)
-    protected val compileCache = KCache<String, KMap<KClass<*>, ResultWithDiagnostics<Script>>>(CacheLoader { _ -> KMap<KClass<*>, ResultWithDiagnostics<Script>>() }, 1024L)
+    protected val compileCache = KCache<String, KMap<KClass<*>, ResultWithDiagnostics<Script>>>(
+        CacheLoader { _ -> KMap<KClass<*>, ResultWithDiagnostics<Script>>() },
+        1024L
+    )
     protected val runner = ScriptRunner(baseDir, parent)
 
     override fun execute(
@@ -106,7 +109,7 @@ open class IrisSimpleExecutionEnvironment internal constructor(
                     return@forEach
                 }
 
-                var parent = components.computeIfAbsent(parts[0]) { FileComponents(parts[0], true) }
+                var parent = components.getOrPut(parts[0]) { FileComponents(parts[0], true) }
                 for (part in parts.subList(1, parts.size)) {
                     parent = parent.append(part)
                 }

@@ -231,6 +231,6 @@ sourceSets.main {
         srcDirs("src/main/java", generateTemplates.map { it.outputs })
     }
     kotlin {
-        srcDirs("src/main/kotlin")
+        srcDirs("src/main/kotlin", "src/main/java")
     }
 }
