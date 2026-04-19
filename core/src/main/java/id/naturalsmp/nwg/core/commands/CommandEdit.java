@@ -21,11 +21,11 @@ package id.naturalsmp.nwg.core.commands;
 import id.naturalsmp.nwg.NaturalGenerator;
 import id.naturalsmp.nwg.core.service.StudioSVC;
 import id.naturalsmp.nwg.engine.object.*;
-import id.naturalsmp.nwg.utilities.decree.DecreeExecutor;
-import id.naturalsmp.nwg.utilities.decree.DecreeOrigin;
-import id.naturalsmp.nwg.utilities.decree.annotations.Decree;
-import id.naturalsmp.nwg.utilities.decree.annotations.Param;
-import id.naturalsmp.nwg.utilities.format.C;
+import id.naturalsmp.nwg.toolbelt.decree.DecreeExecutor;
+import id.naturalsmp.nwg.toolbelt.decree.DecreeOrigin;
+import id.naturalsmp.nwg.toolbelt.decree.annotations.Decree;
+import id.naturalsmp.nwg.toolbelt.decree.annotations.Param;
+import id.naturalsmp.nwg.toolbelt.format.C;
 
 import java.awt.*;
 

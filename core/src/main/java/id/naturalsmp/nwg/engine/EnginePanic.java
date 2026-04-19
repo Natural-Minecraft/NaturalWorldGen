@@ -19,7 +19,7 @@
 package id.naturalsmp.nwg.engine;
 
 import id.naturalsmp.nwg.NaturalGenerator;
-import id.naturalsmp.nwg.utilities.collection.KMap;
+import id.naturalsmp.nwg.toolbelt.collection.KMap;
 
 public class EnginePanic {
     private static final KMap<String, String> stuff = new KMap<>();

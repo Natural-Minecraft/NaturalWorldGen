@@ -1,7 +1,7 @@
 package id.naturalsmp.nwg.engine.platform;
 
 import id.naturalsmp.nwg.core.nms.INMS;
-import id.naturalsmp.nwg.utilities.collection.KList;
+import id.naturalsmp.nwg.toolbelt.collection.KList;
 import org.bukkit.block.Biome;
 import org.bukkit.generator.BiomeProvider;
 import org.bukkit.generator.WorldInfo;

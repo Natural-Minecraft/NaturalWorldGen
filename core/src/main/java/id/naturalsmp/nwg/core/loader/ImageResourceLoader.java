@@ -21,10 +21,10 @@ package id.naturalsmp.nwg.core.loader;
 import id.naturalsmp.nwg.NaturalGenerator;
 import id.naturalsmp.nwg.core.IrisSettings;
 import id.naturalsmp.nwg.engine.object.IrisImage;
-import id.naturalsmp.nwg.utilities.collection.KList;
-import id.naturalsmp.nwg.utilities.collection.KSet;
-import id.naturalsmp.nwg.utilities.data.KCache;
-import id.naturalsmp.nwg.utilities.scheduling.PrecisionStopwatch;
+import id.naturalsmp.nwg.toolbelt.collection.KList;
+import id.naturalsmp.nwg.toolbelt.collection.KSet;
+import id.naturalsmp.nwg.toolbelt.data.KCache;
+import id.naturalsmp.nwg.toolbelt.scheduling.PrecisionStopwatch;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;

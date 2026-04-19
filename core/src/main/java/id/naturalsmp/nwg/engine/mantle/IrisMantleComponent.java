@@ -18,7 +18,7 @@
 
 package id.naturalsmp.nwg.engine.mantle;
 
-import id.naturalsmp.nwg.utilities.mantle.flag.MantleFlag;
+import id.naturalsmp.nwg.toolbelt.mantle.flag.MantleFlag;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;

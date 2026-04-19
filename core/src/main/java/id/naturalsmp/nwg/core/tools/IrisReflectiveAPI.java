@@ -1,6 +1,6 @@
 package id.naturalsmp.nwg.core.tools;
 
-import id.naturalsmp.nwg.utilities.data.B;
+import id.naturalsmp.nwg.toolbelt.data.B;
 import org.bukkit.World;
 import org.bukkit.block.data.BlockData;
 

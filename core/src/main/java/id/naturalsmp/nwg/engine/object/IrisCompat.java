@@ -20,11 +20,11 @@ package id.naturalsmp.nwg.engine.object;
 
 import com.google.gson.Gson;
 import id.naturalsmp.nwg.NaturalGenerator;
-import id.naturalsmp.nwg.utilities.collection.KList;
-import id.naturalsmp.nwg.utilities.data.B;
-import id.naturalsmp.nwg.utilities.io.IO;
-import id.naturalsmp.nwg.utilities.json.JSONObject;
-import id.naturalsmp.nwg.utilities.scheduling.J;
+import id.naturalsmp.nwg.toolbelt.collection.KList;
+import id.naturalsmp.nwg.toolbelt.data.B;
+import id.naturalsmp.nwg.toolbelt.io.IO;
+import id.naturalsmp.nwg.toolbelt.json.JSONObject;
+import id.naturalsmp.nwg.toolbelt.scheduling.J;
 import lombok.Data;
 import org.bukkit.Material;
 import org.bukkit.block.data.BlockData;

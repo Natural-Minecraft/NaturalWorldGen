@@ -20,8 +20,8 @@ package id.naturalsmp.nwg.engine.object;
 
 import id.naturalsmp.nwg.engine.data.cache.AtomicCache;
 import id.naturalsmp.nwg.engine.object.annotations.*;
-import id.naturalsmp.nwg.utilities.collection.KList;
-import id.naturalsmp.nwg.utilities.data.DataProvider;
+import id.naturalsmp.nwg.toolbelt.collection.KList;
+import id.naturalsmp.nwg.toolbelt.data.DataProvider;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

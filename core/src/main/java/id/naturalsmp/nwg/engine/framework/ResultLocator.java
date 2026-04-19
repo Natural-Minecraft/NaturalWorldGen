@@ -3,12 +3,12 @@ package id.naturalsmp.nwg.engine.framework;
 import id.naturalsmp.nwg.core.IrisSettings;
 import id.naturalsmp.nwg.engine.object.IrisJigsawStructure;
 import id.naturalsmp.nwg.engine.object.IrisObject;
-import id.naturalsmp.nwg.utilities.collection.KList;
-import id.naturalsmp.nwg.utilities.math.Position2;
-import id.naturalsmp.nwg.utilities.math.Spiraler;
-import id.naturalsmp.nwg.utilities.parallel.BurstExecutor;
-import id.naturalsmp.nwg.utilities.parallel.MultiBurst;
-import id.naturalsmp.nwg.utilities.scheduling.PrecisionStopwatch;
+import id.naturalsmp.nwg.toolbelt.collection.KList;
+import id.naturalsmp.nwg.toolbelt.math.Position2;
+import id.naturalsmp.nwg.toolbelt.math.Spiraler;
+import id.naturalsmp.nwg.toolbelt.parallel.BurstExecutor;
+import id.naturalsmp.nwg.toolbelt.parallel.MultiBurst;
+import id.naturalsmp.nwg.toolbelt.scheduling.PrecisionStopwatch;
 import org.apache.commons.lang3.function.TriFunction;
 
 import java.util.Collection;

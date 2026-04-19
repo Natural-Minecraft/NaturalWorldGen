@@ -2,7 +2,7 @@ package id.naturalsmp.nwg.core.nms.datapack.v1192;
 
 import id.naturalsmp.nwg.core.nms.datapack.IDataFixer;
 import id.naturalsmp.nwg.engine.object.IrisDimensionTypeOptions;
-import id.naturalsmp.nwg.utilities.json.JSONObject;
+import id.naturalsmp.nwg.toolbelt.json.JSONObject;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.Map;

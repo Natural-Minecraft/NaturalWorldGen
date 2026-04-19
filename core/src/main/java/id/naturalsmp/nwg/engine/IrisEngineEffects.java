@@ -22,9 +22,9 @@ import id.naturalsmp.nwg.engine.framework.Engine;
 import id.naturalsmp.nwg.engine.framework.EngineAssignedComponent;
 import id.naturalsmp.nwg.engine.framework.EngineEffects;
 import id.naturalsmp.nwg.engine.framework.EnginePlayer;
-import id.naturalsmp.nwg.utilities.collection.KMap;
-import id.naturalsmp.nwg.utilities.math.M;
-import id.naturalsmp.nwg.utilities.scheduling.PrecisionStopwatch;
+import id.naturalsmp.nwg.toolbelt.collection.KMap;
+import id.naturalsmp.nwg.toolbelt.math.M;
+import id.naturalsmp.nwg.toolbelt.scheduling.PrecisionStopwatch;
 import org.bukkit.entity.Player;
 
 import java.util.List;

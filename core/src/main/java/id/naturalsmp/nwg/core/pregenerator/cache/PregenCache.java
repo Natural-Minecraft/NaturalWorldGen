@@ -1,7 +1,7 @@
 package id.naturalsmp.nwg.core.pregenerator.cache;
 
-import id.naturalsmp.nwg.utilities.documentation.ChunkCoordinates;
-import id.naturalsmp.nwg.utilities.documentation.RegionCoordinates;
+import id.naturalsmp.nwg.toolbelt.documentation.ChunkCoordinates;
+import id.naturalsmp.nwg.toolbelt.documentation.RegionCoordinates;
 
 import java.io.File;
 

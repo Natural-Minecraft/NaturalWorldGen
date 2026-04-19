@@ -20,7 +20,7 @@ package id.naturalsmp.nwg.engine.object;
 
 import id.naturalsmp.nwg.engine.object.annotations.Desc;
 import id.naturalsmp.nwg.engine.object.annotations.Snippet;
-import id.naturalsmp.nwg.utilities.math.RNG;
+import id.naturalsmp.nwg.toolbelt.math.RNG;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

@@ -1,7 +1,7 @@
 package id.naturalsmp.nwg.core.nms.container;
 
-import id.naturalsmp.nwg.utilities.collection.KMap;
-import id.naturalsmp.nwg.utilities.function.NastyRunnable;
+import id.naturalsmp.nwg.toolbelt.collection.KMap;
+import id.naturalsmp.nwg.toolbelt.function.NastyRunnable;
 import lombok.AllArgsConstructor;
 
 import java.util.concurrent.atomic.AtomicBoolean;

@@ -20,7 +20,7 @@ package id.naturalsmp.nwg.engine.object;
 
 import id.naturalsmp.nwg.NaturalGenerator;
 import id.naturalsmp.nwg.core.tools.IrisToolbelt;
-import id.naturalsmp.nwg.utilities.collection.KList;
+import id.naturalsmp.nwg.toolbelt.collection.KList;
 import lombok.*;
 import lombok.experimental.Accessors;
 import org.bukkit.Bukkit;

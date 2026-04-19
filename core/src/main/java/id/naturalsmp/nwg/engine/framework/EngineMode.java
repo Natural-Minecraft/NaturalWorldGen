@@ -20,13 +20,13 @@ package id.naturalsmp.nwg.engine.framework;
 
 import id.naturalsmp.nwg.engine.IrisComplex;
 import id.naturalsmp.nwg.engine.mantle.EngineMantle;
-import id.naturalsmp.nwg.utilities.context.ChunkContext;
-import id.naturalsmp.nwg.utilities.context.IrisContext;
-import id.naturalsmp.nwg.utilities.documentation.BlockCoordinates;
-import id.naturalsmp.nwg.utilities.hunk.Hunk;
-import id.naturalsmp.nwg.utilities.math.RollingSequence;
-import id.naturalsmp.nwg.utilities.parallel.BurstExecutor;
-import id.naturalsmp.nwg.utilities.parallel.MultiBurst;
+import id.naturalsmp.nwg.toolbelt.context.ChunkContext;
+import id.naturalsmp.nwg.toolbelt.context.IrisContext;
+import id.naturalsmp.nwg.toolbelt.documentation.BlockCoordinates;
+import id.naturalsmp.nwg.toolbelt.hunk.Hunk;
+import id.naturalsmp.nwg.toolbelt.math.RollingSequence;
+import id.naturalsmp.nwg.toolbelt.parallel.BurstExecutor;
+import id.naturalsmp.nwg.toolbelt.parallel.MultiBurst;
 import org.bukkit.block.Biome;
 import org.bukkit.block.data.BlockData;
 

@@ -19,12 +19,12 @@
 package id.naturalsmp.nwg.engine.object;
 
 import id.naturalsmp.nwg.engine.object.annotations.Desc;
-import id.naturalsmp.nwg.utilities.collection.GBiset;
-import id.naturalsmp.nwg.utilities.collection.KList;
-import id.naturalsmp.nwg.utilities.collection.KMap;
-import id.naturalsmp.nwg.utilities.data.Cuboid.CuboidDirection;
-import id.naturalsmp.nwg.utilities.math.DOP;
-import id.naturalsmp.nwg.utilities.math.VectorMath;
+import id.naturalsmp.nwg.toolbelt.collection.GBiset;
+import id.naturalsmp.nwg.toolbelt.collection.KList;
+import id.naturalsmp.nwg.toolbelt.collection.KMap;
+import id.naturalsmp.nwg.toolbelt.data.Cuboid.CuboidDirection;
+import id.naturalsmp.nwg.toolbelt.math.DOP;
+import id.naturalsmp.nwg.toolbelt.math.VectorMath;
 import org.bukkit.Axis;
 import org.bukkit.block.BlockFace;
 import org.bukkit.block.data.type.Jigsaw;

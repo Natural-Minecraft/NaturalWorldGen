@@ -27,12 +27,12 @@ import id.naturalsmp.nwg.core.pregenerator.PregenTask;
 import id.naturalsmp.nwg.core.service.StudioSVC;
 import id.naturalsmp.nwg.engine.object.IrisDimension;
 import id.naturalsmp.nwg.engine.platform.PlatformChunkGenerator;
-import id.naturalsmp.nwg.utilities.exceptions.IrisException;
-import id.naturalsmp.nwg.utilities.format.C;
-import id.naturalsmp.nwg.utilities.format.Form;
-import id.naturalsmp.nwg.utilities.plugin.NaturalDevSender;
-import id.naturalsmp.nwg.utilities.scheduling.J;
-import id.naturalsmp.nwg.utilities.scheduling.O;
+import id.naturalsmp.nwg.toolbelt.exceptions.IrisException;
+import id.naturalsmp.nwg.toolbelt.format.C;
+import id.naturalsmp.nwg.toolbelt.format.Form;
+import id.naturalsmp.nwg.toolbelt.plugin.NaturalDevSender;
+import id.naturalsmp.nwg.toolbelt.scheduling.J;
+import id.naturalsmp.nwg.toolbelt.scheduling.O;
 import lombok.Data;
 import lombok.experimental.Accessors;
 import org.bukkit.*;
@@ -45,7 +45,7 @@ import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.function.IntSupplier;
 
-import static id.naturalsmp.nwg.utilities.misc.ServerProperties.BUKKIT_YML;
+import static id.naturalsmp.nwg.toolbelt.misc.ServerProperties.BUKKIT_YML;
 
 /**
  * Makes it a lot easier to setup an engine, world, studio or whatever

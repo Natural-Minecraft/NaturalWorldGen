@@ -1,7 +1,7 @@
 package id.naturalsmp.nwg.core.scripting.func;
 
 import id.naturalsmp.nwg.engine.object.IrisBiome;
-import id.naturalsmp.nwg.utilities.documentation.BlockCoordinates;
+import id.naturalsmp.nwg.toolbelt.documentation.BlockCoordinates;
 
 @FunctionalInterface
 public interface BiomeLookup {

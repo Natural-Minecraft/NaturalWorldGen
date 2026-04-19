@@ -18,7 +18,7 @@
 
 package id.naturalsmp.nwg.engine.framework;
 
-import id.naturalsmp.nwg.utilities.collection.KList;
+import id.naturalsmp.nwg.toolbelt.collection.KList;
 
 public interface Staged {
     KList<EngineStage> getStages();

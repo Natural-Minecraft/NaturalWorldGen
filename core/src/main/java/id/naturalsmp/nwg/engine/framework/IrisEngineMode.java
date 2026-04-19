@@ -18,7 +18,7 @@
 
 package id.naturalsmp.nwg.engine.framework;
 
-import id.naturalsmp.nwg.utilities.collection.KList;
+import id.naturalsmp.nwg.toolbelt.collection.KList;
 
 public abstract class IrisEngineMode implements EngineMode {
     private final Engine engine;

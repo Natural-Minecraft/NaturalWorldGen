@@ -6,8 +6,8 @@ import id.naturalsmp.nwg.core.safeguard.task.Diagnostic
 import id.naturalsmp.nwg.core.safeguard.task.Task
 import id.naturalsmp.nwg.core.safeguard.task.ValueWithDiagnostics
 import id.naturalsmp.nwg.core.safeguard.task.tasks
-import id.naturalsmp.nwg.utilities.format.C
-import id.naturalsmp.nwg.utilities.scheduling.J
+import id.naturalsmp.nwg.toolbelt.format.C
+import id.naturalsmp.nwg.toolbelt.scheduling.J
 import org.bukkit.Bukkit
 import java.util.*
 

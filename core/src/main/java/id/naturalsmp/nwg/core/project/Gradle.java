@@ -1,7 +1,7 @@
 package id.naturalsmp.nwg.core.project;
 
 import id.naturalsmp.nwg.NaturalGenerator;
-import id.naturalsmp.nwg.utilities.io.IO;
+import id.naturalsmp.nwg.toolbelt.io.IO;
 import org.zeroturnaround.zip.ZipUtil;
 
 import java.io.BufferedInputStream;

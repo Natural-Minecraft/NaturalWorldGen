@@ -21,11 +21,11 @@ package id.naturalsmp.nwg.engine.mantle;
 import id.naturalsmp.nwg.core.loader.IrisData;
 import id.naturalsmp.nwg.engine.IrisComplex;
 import id.naturalsmp.nwg.engine.object.IrisDimension;
-import id.naturalsmp.nwg.utilities.context.ChunkContext;
-import id.naturalsmp.nwg.utilities.documentation.ChunkCoordinates;
-import id.naturalsmp.nwg.utilities.mantle.Mantle;
-import id.naturalsmp.nwg.utilities.mantle.flag.MantleFlag;
-import id.naturalsmp.nwg.utilities.parallel.BurstExecutor;
+import id.naturalsmp.nwg.toolbelt.context.ChunkContext;
+import id.naturalsmp.nwg.toolbelt.documentation.ChunkCoordinates;
+import id.naturalsmp.nwg.toolbelt.mantle.Mantle;
+import id.naturalsmp.nwg.toolbelt.mantle.flag.MantleFlag;
+import id.naturalsmp.nwg.toolbelt.parallel.BurstExecutor;
 import org.jetbrains.annotations.NotNull;
 
 public interface MantleComponent extends Comparable<MantleComponent> {

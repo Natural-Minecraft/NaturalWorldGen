@@ -22,12 +22,12 @@ import id.naturalsmp.nwg.engine.framework.Engine;
 import id.naturalsmp.nwg.engine.object.IrisBiome;
 import id.naturalsmp.nwg.engine.object.IrisJigsawStructure;
 import id.naturalsmp.nwg.engine.object.IrisRegion;
-import id.naturalsmp.nwg.utilities.decree.DecreeExecutor;
-import id.naturalsmp.nwg.utilities.decree.DecreeOrigin;
-import id.naturalsmp.nwg.utilities.decree.annotations.Decree;
-import id.naturalsmp.nwg.utilities.decree.annotations.Param;
-import id.naturalsmp.nwg.utilities.decree.specialhandlers.ObjectHandler;
-import id.naturalsmp.nwg.utilities.format.C;
+import id.naturalsmp.nwg.toolbelt.decree.DecreeExecutor;
+import id.naturalsmp.nwg.toolbelt.decree.DecreeOrigin;
+import id.naturalsmp.nwg.toolbelt.decree.annotations.Decree;
+import id.naturalsmp.nwg.toolbelt.decree.annotations.Param;
+import id.naturalsmp.nwg.toolbelt.decree.specialhandlers.ObjectHandler;
+import id.naturalsmp.nwg.toolbelt.format.C;
 
 @Decree(name = "find", origin = DecreeOrigin.PLAYER, description = "NaturalGenerator Find commands", aliases = "goto")
 public class CommandFind implements DecreeExecutor {

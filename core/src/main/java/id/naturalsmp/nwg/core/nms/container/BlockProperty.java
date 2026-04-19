@@ -1,7 +1,7 @@
 package id.naturalsmp.nwg.core.nms.container;
 
-import id.naturalsmp.nwg.utilities.json.JSONArray;
-import id.naturalsmp.nwg.utilities.json.JSONObject;
+import id.naturalsmp.nwg.toolbelt.json.JSONArray;
+import id.naturalsmp.nwg.toolbelt.json.JSONObject;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.*;

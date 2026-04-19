@@ -2,7 +2,7 @@ package id.naturalsmp.nwg.engine.object;
 
 import id.naturalsmp.nwg.engine.object.annotations.*;
 import id.naturalsmp.nwg.engine.object.annotations.functions.ResourceLoadersFunction;
-import id.naturalsmp.nwg.utilities.collection.KList;
+import id.naturalsmp.nwg.toolbelt.collection.KList;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

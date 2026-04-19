@@ -21,11 +21,11 @@ package id.naturalsmp.nwg.core.service;
 import id.naturalsmp.nwg.NaturalGenerator;
 import id.naturalsmp.nwg.core.loader.IrisData;
 import id.naturalsmp.nwg.engine.framework.MeteredCache;
-import id.naturalsmp.nwg.utilities.context.IrisContext;
-import id.naturalsmp.nwg.utilities.data.KCache;
-import id.naturalsmp.nwg.utilities.format.Form;
-import id.naturalsmp.nwg.utilities.plugin.IrisService;
-import id.naturalsmp.nwg.utilities.scheduling.Looper;
+import id.naturalsmp.nwg.toolbelt.context.IrisContext;
+import id.naturalsmp.nwg.toolbelt.data.KCache;
+import id.naturalsmp.nwg.toolbelt.format.Form;
+import id.naturalsmp.nwg.toolbelt.plugin.IrisService;
+import id.naturalsmp.nwg.toolbelt.scheduling.Looper;
 import org.jetbrains.annotations.Unmodifiable;
 
 import java.lang.ref.WeakReference;

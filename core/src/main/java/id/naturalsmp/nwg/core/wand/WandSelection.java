@@ -18,8 +18,8 @@
 
 package id.naturalsmp.nwg.core.wand;
 
-import id.naturalsmp.nwg.utilities.data.Cuboid;
-import id.naturalsmp.nwg.utilities.math.M;
+import id.naturalsmp.nwg.toolbelt.data.Cuboid;
+import id.naturalsmp.nwg.toolbelt.math.M;
 import org.bukkit.Location;
 import org.bukkit.Particle;
 import org.bukkit.entity.Player;
@@ -27,7 +27,7 @@ import org.bukkit.util.Vector;
 
 import java.awt.*;
 
-import static id.naturalsmp.nwg.utilities.data.registry.Particles.REDSTONE;
+import static id.naturalsmp.nwg.toolbelt.data.registry.Particles.REDSTONE;
 
 public class WandSelection {
     private final Cuboid c;

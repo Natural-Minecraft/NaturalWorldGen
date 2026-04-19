@@ -12,7 +12,7 @@ import id.naturalsmp.nwg.core.scripting.kotlin.base.PreprocessorScript
 import id.naturalsmp.nwg.core.scripting.kotlin.environment.IrisSimpleExecutionEnvironment
 import id.naturalsmp.nwg.core.scripting.kotlin.runner.ScriptRunner
 import id.naturalsmp.nwg.engine.framework.Engine
-import id.naturalsmp.nwg.utilities.mantle.MantleChunk
+import id.naturalsmp.nwg.toolbelt.mantle.MantleChunk
 import org.bukkit.Chunk
 import org.bukkit.Location
 import org.bukkit.entity.Entity

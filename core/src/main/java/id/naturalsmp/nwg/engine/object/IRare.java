@@ -18,9 +18,9 @@
 
 package id.naturalsmp.nwg.engine.object;
 
-import id.naturalsmp.nwg.utilities.collection.KList;
-import id.naturalsmp.nwg.utilities.stream.ProceduralStream;
-import id.naturalsmp.nwg.utilities.stream.interpolation.Interpolated;
+import id.naturalsmp.nwg.toolbelt.collection.KList;
+import id.naturalsmp.nwg.toolbelt.stream.ProceduralStream;
+import id.naturalsmp.nwg.toolbelt.stream.interpolation.Interpolated;
 
 import java.util.List;
 

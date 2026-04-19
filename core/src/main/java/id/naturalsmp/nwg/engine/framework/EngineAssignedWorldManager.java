@@ -20,10 +20,10 @@ package id.naturalsmp.nwg.engine.framework;
 
 import id.naturalsmp.nwg.NaturalGenerator;
 import id.naturalsmp.nwg.core.events.IrisEngineHotloadEvent;
-import id.naturalsmp.nwg.utilities.collection.KList;
-import id.naturalsmp.nwg.utilities.format.C;
-import id.naturalsmp.nwg.utilities.math.Position2;
-import id.naturalsmp.nwg.utilities.plugin.NaturalDevSender;
+import id.naturalsmp.nwg.toolbelt.collection.KList;
+import id.naturalsmp.nwg.toolbelt.format.C;
+import id.naturalsmp.nwg.toolbelt.math.Position2;
+import id.naturalsmp.nwg.toolbelt.plugin.NaturalDevSender;
 import org.bukkit.*;
 import org.bukkit.entity.EnderSignal;
 import org.bukkit.entity.Player;

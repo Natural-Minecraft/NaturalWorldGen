@@ -18,9 +18,9 @@
 
 package id.naturalsmp.nwg.core.edit;
 
-import id.naturalsmp.nwg.utilities.parallel.MultiBurst;
-import id.naturalsmp.nwg.utilities.scheduling.J;
-import id.naturalsmp.nwg.utilities.scheduling.SR;
+import id.naturalsmp.nwg.toolbelt.parallel.MultiBurst;
+import id.naturalsmp.nwg.toolbelt.scheduling.J;
+import id.naturalsmp.nwg.toolbelt.scheduling.SR;
 import org.bukkit.Location;
 import org.bukkit.block.Block;
 import org.bukkit.block.data.BlockData;

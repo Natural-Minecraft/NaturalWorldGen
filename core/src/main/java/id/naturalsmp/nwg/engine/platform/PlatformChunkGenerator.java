@@ -22,7 +22,7 @@ import id.naturalsmp.nwg.core.loader.IrisData;
 import id.naturalsmp.nwg.engine.framework.Engine;
 import id.naturalsmp.nwg.engine.framework.EngineTarget;
 import id.naturalsmp.nwg.engine.framework.Hotloadable;
-import id.naturalsmp.nwg.utilities.data.DataProvider;
+import id.naturalsmp.nwg.toolbelt.data.DataProvider;
 import org.bukkit.World;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;

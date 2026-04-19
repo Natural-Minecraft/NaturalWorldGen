@@ -27,17 +27,17 @@ import id.naturalsmp.nwg.engine.framework.Engine;
 import id.naturalsmp.nwg.engine.object.IrisBiome;
 import id.naturalsmp.nwg.engine.object.IrisRegion;
 import id.naturalsmp.nwg.engine.object.IrisWorld;
-import id.naturalsmp.nwg.utilities.collection.KList;
-import id.naturalsmp.nwg.utilities.collection.KMap;
-import id.naturalsmp.nwg.utilities.collection.KSet;
-import id.naturalsmp.nwg.utilities.format.Form;
-import id.naturalsmp.nwg.utilities.math.BlockPosition;
-import id.naturalsmp.nwg.utilities.math.M;
-import id.naturalsmp.nwg.utilities.math.RollingSequence;
-import id.naturalsmp.nwg.utilities.scheduling.ChronoLatch;
-import id.naturalsmp.nwg.utilities.scheduling.J;
-import id.naturalsmp.nwg.utilities.scheduling.O;
-import id.naturalsmp.nwg.utilities.scheduling.PrecisionStopwatch;
+import id.naturalsmp.nwg.toolbelt.collection.KList;
+import id.naturalsmp.nwg.toolbelt.collection.KMap;
+import id.naturalsmp.nwg.toolbelt.collection.KSet;
+import id.naturalsmp.nwg.toolbelt.format.Form;
+import id.naturalsmp.nwg.toolbelt.math.BlockPosition;
+import id.naturalsmp.nwg.toolbelt.math.M;
+import id.naturalsmp.nwg.toolbelt.math.RollingSequence;
+import id.naturalsmp.nwg.toolbelt.scheduling.ChronoLatch;
+import id.naturalsmp.nwg.toolbelt.scheduling.J;
+import id.naturalsmp.nwg.toolbelt.scheduling.O;
+import id.naturalsmp.nwg.toolbelt.scheduling.PrecisionStopwatch;
 import org.bukkit.Location;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
@@ -55,7 +55,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.function.BiFunction;
 
-import static id.naturalsmp.nwg.utilities.data.registry.Attributes.MAX_HEALTH;
+import static id.naturalsmp.nwg.toolbelt.data.registry.Attributes.MAX_HEALTH;
 
 public class VisionGUI extends JPanel implements MouseWheelListener, KeyListener, MouseMotionListener, MouseInputListener {
     private static final long serialVersionUID = 2094606939770332040L;

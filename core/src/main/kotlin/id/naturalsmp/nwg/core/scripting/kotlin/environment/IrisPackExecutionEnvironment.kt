@@ -9,7 +9,7 @@ import id.naturalsmp.nwg.core.scripting.kotlin.runner.Script
 import id.naturalsmp.nwg.core.scripting.kotlin.runner.ScriptRunner
 import id.naturalsmp.nwg.core.scripting.kotlin.runner.valueOrThrow
 import id.naturalsmp.nwg.engine.framework.Engine
-import id.naturalsmp.nwg.utilities.math.RNG
+import id.naturalsmp.nwg.toolbelt.math.RNG
 import kotlin.reflect.KClass
 import java.util.function.Function
 

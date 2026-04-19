@@ -20,11 +20,11 @@ package id.naturalsmp.nwg.core;
 
 import com.google.gson.Gson;
 import id.naturalsmp.nwg.NaturalGenerator;
-import id.naturalsmp.nwg.utilities.io.IO;
-import id.naturalsmp.nwg.utilities.json.JSONException;
-import id.naturalsmp.nwg.utilities.json.JSONObject;
-import id.naturalsmp.nwg.utilities.misc.getHardware;
-import id.naturalsmp.nwg.utilities.plugin.NaturalDevSender;
+import id.naturalsmp.nwg.toolbelt.io.IO;
+import id.naturalsmp.nwg.toolbelt.json.JSONException;
+import id.naturalsmp.nwg.toolbelt.json.JSONObject;
+import id.naturalsmp.nwg.toolbelt.misc.getHardware;
+import id.naturalsmp.nwg.toolbelt.plugin.NaturalDevSender;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

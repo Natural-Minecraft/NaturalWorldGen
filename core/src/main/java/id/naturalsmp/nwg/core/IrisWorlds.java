@@ -7,9 +7,9 @@ import id.naturalsmp.nwg.NaturalGenerator;
 import id.naturalsmp.nwg.core.loader.IrisData;
 import id.naturalsmp.nwg.engine.data.cache.AtomicCache;
 import id.naturalsmp.nwg.engine.object.IrisDimension;
-import id.naturalsmp.nwg.utilities.collection.KMap;
-import id.naturalsmp.nwg.utilities.io.IO;
-import id.naturalsmp.nwg.utilities.misc.ServerProperties;
+import id.naturalsmp.nwg.toolbelt.collection.KMap;
+import id.naturalsmp.nwg.toolbelt.io.IO;
+import id.naturalsmp.nwg.toolbelt.misc.ServerProperties;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.YamlConfiguration;
 

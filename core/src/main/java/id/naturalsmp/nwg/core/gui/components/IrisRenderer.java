@@ -21,7 +21,7 @@ package id.naturalsmp.nwg.core.gui.components;
 import id.naturalsmp.nwg.engine.framework.Engine;
 import id.naturalsmp.nwg.engine.object.IrisBiome;
 import id.naturalsmp.nwg.engine.object.IrisBiomeGeneratorLink;
-import id.naturalsmp.nwg.utilities.interpolation.IrisInterpolation;
+import id.naturalsmp.nwg.toolbelt.interpolation.IrisInterpolation;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;

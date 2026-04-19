@@ -18,7 +18,7 @@
 
 package id.naturalsmp.nwg.core.edit;
 
-import id.naturalsmp.nwg.utilities.math.M;
+import id.naturalsmp.nwg.toolbelt.math.M;
 import org.bukkit.World;
 import org.bukkit.block.Biome;
 import org.bukkit.block.data.BlockData;

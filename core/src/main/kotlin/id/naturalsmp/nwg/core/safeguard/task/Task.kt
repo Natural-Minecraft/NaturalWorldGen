@@ -1,7 +1,7 @@
 package id.naturalsmp.nwg.core.safeguard.task
 
 import id.naturalsmp.nwg.core.safeguard.Mode
-import id.naturalsmp.nwg.utilities.format.Form
+import id.naturalsmp.nwg.toolbelt.format.Form
 import kotlin.properties.PropertyDelegateProvider
 import kotlin.properties.ReadOnlyProperty
 

@@ -20,11 +20,11 @@ package id.naturalsmp.nwg.core.pack;
 
 import id.naturalsmp.nwg.NaturalGenerator;
 import id.naturalsmp.nwg.core.service.StudioSVC;
-import id.naturalsmp.nwg.utilities.format.Form;
-import id.naturalsmp.nwg.utilities.plugin.NaturalDevSender;
-import id.naturalsmp.nwg.utilities.scheduling.jobs.DownloadJob;
-import id.naturalsmp.nwg.utilities.scheduling.jobs.JobCollection;
-import id.naturalsmp.nwg.utilities.scheduling.jobs.SingleJob;
+import id.naturalsmp.nwg.toolbelt.format.Form;
+import id.naturalsmp.nwg.toolbelt.plugin.NaturalDevSender;
+import id.naturalsmp.nwg.toolbelt.scheduling.jobs.DownloadJob;
+import id.naturalsmp.nwg.toolbelt.scheduling.jobs.JobCollection;
+import id.naturalsmp.nwg.toolbelt.scheduling.jobs.SingleJob;
 import lombok.Builder;
 import lombok.Data;
 import org.zeroturnaround.zip.ZipUtil;

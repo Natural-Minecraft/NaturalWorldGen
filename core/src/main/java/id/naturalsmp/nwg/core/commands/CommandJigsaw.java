@@ -27,16 +27,16 @@ import id.naturalsmp.nwg.engine.object.IrisJigsawPiece;
 import id.naturalsmp.nwg.engine.object.IrisJigsawStructure;
 import id.naturalsmp.nwg.engine.object.IrisObject;
 import id.naturalsmp.nwg.engine.object.IrisPosition;
-import id.naturalsmp.nwg.utilities.decree.DecreeExecutor;
-import id.naturalsmp.nwg.utilities.decree.DecreeOrigin;
-import id.naturalsmp.nwg.utilities.decree.annotations.Decree;
-import id.naturalsmp.nwg.utilities.decree.annotations.Param;
-import id.naturalsmp.nwg.utilities.decree.specialhandlers.ObjectHandler;
-import id.naturalsmp.nwg.utilities.format.C;
-import id.naturalsmp.nwg.utilities.format.Form;
-import id.naturalsmp.nwg.utilities.math.RNG;
-import id.naturalsmp.nwg.utilities.plugin.NaturalDevSender;
-import id.naturalsmp.nwg.utilities.scheduling.PrecisionStopwatch;
+import id.naturalsmp.nwg.toolbelt.decree.DecreeExecutor;
+import id.naturalsmp.nwg.toolbelt.decree.DecreeOrigin;
+import id.naturalsmp.nwg.toolbelt.decree.annotations.Decree;
+import id.naturalsmp.nwg.toolbelt.decree.annotations.Param;
+import id.naturalsmp.nwg.toolbelt.decree.specialhandlers.ObjectHandler;
+import id.naturalsmp.nwg.toolbelt.format.C;
+import id.naturalsmp.nwg.toolbelt.format.Form;
+import id.naturalsmp.nwg.toolbelt.math.RNG;
+import id.naturalsmp.nwg.toolbelt.plugin.NaturalDevSender;
+import id.naturalsmp.nwg.toolbelt.scheduling.PrecisionStopwatch;
 
 import java.io.File;
 

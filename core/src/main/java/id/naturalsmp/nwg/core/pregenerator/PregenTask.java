@@ -18,11 +18,11 @@
 
 package id.naturalsmp.nwg.core.pregenerator;
 
-import id.naturalsmp.nwg.utilities.collection.KList;
-import id.naturalsmp.nwg.utilities.collection.KMap;
-import id.naturalsmp.nwg.utilities.math.Position2;
-import id.naturalsmp.nwg.utilities.math.Spiraled;
-import id.naturalsmp.nwg.utilities.math.Spiraler;
+import id.naturalsmp.nwg.toolbelt.collection.KList;
+import id.naturalsmp.nwg.toolbelt.collection.KMap;
+import id.naturalsmp.nwg.toolbelt.math.Position2;
+import id.naturalsmp.nwg.toolbelt.math.Spiraled;
+import id.naturalsmp.nwg.toolbelt.math.Spiraler;
 import lombok.Builder;
 import lombok.Data;
 

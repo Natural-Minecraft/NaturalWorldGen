@@ -24,12 +24,12 @@ import org.bukkit.World;
 import id.naturalsmp.nwg.NaturalGenerator;
 import id.naturalsmp.nwg.core.pregenerator.ChunkUpdater;
 import id.naturalsmp.nwg.core.tools.IrisToolbelt;
-import id.naturalsmp.nwg.utilities.decree.DecreeExecutor;
-import id.naturalsmp.nwg.utilities.decree.DecreeOrigin;
-import id.naturalsmp.nwg.utilities.decree.annotations.Decree;
-import id.naturalsmp.nwg.utilities.decree.annotations.Param;
-import id.naturalsmp.nwg.utilities.format.C;
-import id.naturalsmp.nwg.utilities.format.Form;
+import id.naturalsmp.nwg.toolbelt.decree.DecreeExecutor;
+import id.naturalsmp.nwg.toolbelt.decree.DecreeOrigin;
+import id.naturalsmp.nwg.toolbelt.decree.annotations.Decree;
+import id.naturalsmp.nwg.toolbelt.decree.annotations.Param;
+import id.naturalsmp.nwg.toolbelt.format.C;
+import id.naturalsmp.nwg.toolbelt.format.Form;
 
 @Decree(name = "updater", origin = DecreeOrigin.BOTH, description = "NaturalGenerator World Updater")
 public class CommandUpdater implements DecreeExecutor {

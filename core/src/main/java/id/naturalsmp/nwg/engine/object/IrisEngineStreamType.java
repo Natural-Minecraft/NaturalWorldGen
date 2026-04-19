@@ -20,7 +20,7 @@ package id.naturalsmp.nwg.engine.object;
 
 import id.naturalsmp.nwg.engine.framework.Engine;
 import id.naturalsmp.nwg.engine.object.annotations.Desc;
-import id.naturalsmp.nwg.utilities.stream.ProceduralStream;
+import id.naturalsmp.nwg.toolbelt.stream.ProceduralStream;
 
 import java.util.function.Function;
 

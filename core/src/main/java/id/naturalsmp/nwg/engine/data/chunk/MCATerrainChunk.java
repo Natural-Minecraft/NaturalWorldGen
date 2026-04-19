@@ -20,9 +20,9 @@ package id.naturalsmp.nwg.engine.data.chunk;
 
 import id.naturalsmp.nwg.NaturalGenerator;
 import id.naturalsmp.nwg.core.nms.BiomeBaseInjector;
-import id.naturalsmp.nwg.utilities.data.IrisCustomData;
-import id.naturalsmp.nwg.utilities.nbt.mca.Chunk;
-import id.naturalsmp.nwg.utilities.nbt.mca.NBTWorld;
+import id.naturalsmp.nwg.toolbelt.data.IrisCustomData;
+import id.naturalsmp.nwg.toolbelt.nbt.mca.Chunk;
+import id.naturalsmp.nwg.toolbelt.nbt.mca.NBTWorld;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import org.bukkit.Material;

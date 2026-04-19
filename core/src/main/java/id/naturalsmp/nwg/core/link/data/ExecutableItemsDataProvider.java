@@ -4,7 +4,7 @@ import com.ssomar.score.api.executableitems.ExecutableItemsAPI;
 import id.naturalsmp.nwg.NaturalGenerator;
 import id.naturalsmp.nwg.core.link.ExternalDataProvider;
 import id.naturalsmp.nwg.core.link.Identifier;
-import id.naturalsmp.nwg.utilities.collection.KMap;
+import id.naturalsmp.nwg.toolbelt.collection.KMap;
 import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
 

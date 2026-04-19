@@ -21,7 +21,7 @@ package id.naturalsmp.nwg.engine.framework;
 import com.google.gson.Gson;
 import id.naturalsmp.nwg.NaturalGenerator;
 import id.naturalsmp.nwg.engine.object.IrisPosition;
-import id.naturalsmp.nwg.utilities.io.IO;
+import id.naturalsmp.nwg.toolbelt.io.IO;
 import lombok.Data;
 
 import java.io.File;

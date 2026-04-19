@@ -2,11 +2,11 @@ package id.naturalsmp.nwg.engine.object;
 
 import id.naturalsmp.nwg.engine.framework.Engine;
 import id.naturalsmp.nwg.engine.object.annotations.*;
-import id.naturalsmp.nwg.utilities.collection.KMap;
-import id.naturalsmp.nwg.utilities.collection.KSet;
-import id.naturalsmp.nwg.utilities.math.M;
-import id.naturalsmp.nwg.utilities.math.RNG;
-import id.naturalsmp.nwg.utilities.noise.CNG;
+import id.naturalsmp.nwg.toolbelt.collection.KMap;
+import id.naturalsmp.nwg.toolbelt.collection.KSet;
+import id.naturalsmp.nwg.toolbelt.math.M;
+import id.naturalsmp.nwg.toolbelt.math.RNG;
+import id.naturalsmp.nwg.toolbelt.noise.CNG;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

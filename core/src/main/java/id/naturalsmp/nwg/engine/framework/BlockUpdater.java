@@ -18,8 +18,8 @@
 
 package id.naturalsmp.nwg.engine.framework;
 
-import id.naturalsmp.nwg.utilities.mantle.MantleChunk;
-import id.naturalsmp.nwg.utilities.math.RNG;
+import id.naturalsmp.nwg.toolbelt.mantle.MantleChunk;
+import id.naturalsmp.nwg.toolbelt.math.RNG;
 import org.bukkit.Chunk;
 import org.bukkit.block.data.BlockData;
 

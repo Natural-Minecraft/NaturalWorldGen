@@ -18,9 +18,9 @@
 
 package id.naturalsmp.nwg.engine.framework;
 
-import id.naturalsmp.nwg.utilities.context.ChunkContext;
-import id.naturalsmp.nwg.utilities.documentation.BlockCoordinates;
-import id.naturalsmp.nwg.utilities.hunk.Hunk;
+import id.naturalsmp.nwg.toolbelt.context.ChunkContext;
+import id.naturalsmp.nwg.toolbelt.documentation.BlockCoordinates;
+import id.naturalsmp.nwg.toolbelt.hunk.Hunk;
 
 public abstract class EngineAssignedActuator<T> extends EngineAssignedComponent implements EngineActuator<T> {
     public EngineAssignedActuator(Engine engine, String name) {

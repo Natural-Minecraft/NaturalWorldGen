@@ -19,11 +19,11 @@
 package id.naturalsmp.nwg.engine.object;
 
 import id.naturalsmp.nwg.engine.object.annotations.Desc;
-import id.naturalsmp.nwg.utilities.math.RNG;
-import id.naturalsmp.nwg.utilities.noise.CNG;
-import id.naturalsmp.nwg.utilities.noise.CNGFactory;
-import id.naturalsmp.nwg.utilities.noise.NoiseType;
-import id.naturalsmp.nwg.utilities.stream.ProceduralStream;
+import id.naturalsmp.nwg.toolbelt.math.RNG;
+import id.naturalsmp.nwg.toolbelt.noise.CNG;
+import id.naturalsmp.nwg.toolbelt.noise.CNGFactory;
+import id.naturalsmp.nwg.toolbelt.noise.NoiseType;
+import id.naturalsmp.nwg.toolbelt.stream.ProceduralStream;
 
 @Desc("Styles of noise")
 public enum NoiseStyle {

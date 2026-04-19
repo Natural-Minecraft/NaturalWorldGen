@@ -26,10 +26,10 @@ import id.naturalsmp.nwg.engine.mantle.MantleWriter;
 import id.naturalsmp.nwg.engine.object.IrisBiome;
 import id.naturalsmp.nwg.engine.object.IrisFluidBodies;
 import id.naturalsmp.nwg.engine.object.IrisRegion;
-import id.naturalsmp.nwg.utilities.context.ChunkContext;
-import id.naturalsmp.nwg.utilities.documentation.ChunkCoordinates;
-import id.naturalsmp.nwg.utilities.mantle.flag.ReservedFlag;
-import id.naturalsmp.nwg.utilities.math.RNG;
+import id.naturalsmp.nwg.toolbelt.context.ChunkContext;
+import id.naturalsmp.nwg.toolbelt.documentation.ChunkCoordinates;
+import id.naturalsmp.nwg.toolbelt.mantle.flag.ReservedFlag;
+import id.naturalsmp.nwg.toolbelt.math.RNG;
 
 @ComponentFlag(ReservedFlag.FLUID_BODIES)
 public class MantleFluidBodyComponent extends IrisMantleComponent {

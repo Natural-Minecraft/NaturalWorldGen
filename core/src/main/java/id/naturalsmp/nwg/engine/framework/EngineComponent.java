@@ -22,8 +22,8 @@ import id.naturalsmp.nwg.NaturalGenerator;
 import id.naturalsmp.nwg.core.loader.IrisData;
 import id.naturalsmp.nwg.engine.IrisComplex;
 import id.naturalsmp.nwg.engine.object.IrisDimension;
-import id.naturalsmp.nwg.utilities.math.RollingSequence;
-import id.naturalsmp.nwg.utilities.parallel.MultiBurst;
+import id.naturalsmp.nwg.toolbelt.math.RollingSequence;
+import id.naturalsmp.nwg.toolbelt.parallel.MultiBurst;
 import org.bukkit.event.Listener;
 
 public interface EngineComponent {

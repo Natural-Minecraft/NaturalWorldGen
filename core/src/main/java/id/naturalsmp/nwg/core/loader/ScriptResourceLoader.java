@@ -21,9 +21,9 @@ package id.naturalsmp.nwg.core.loader;
 import id.naturalsmp.nwg.NaturalGenerator;
 import id.naturalsmp.nwg.core.IrisSettings;
 import id.naturalsmp.nwg.engine.object.IrisScript;
-import id.naturalsmp.nwg.utilities.data.KCache;
-import id.naturalsmp.nwg.utilities.io.IO;
-import id.naturalsmp.nwg.utilities.scheduling.PrecisionStopwatch;
+import id.naturalsmp.nwg.toolbelt.data.KCache;
+import id.naturalsmp.nwg.toolbelt.io.IO;
+import id.naturalsmp.nwg.toolbelt.scheduling.PrecisionStopwatch;
 
 import java.io.File;
 import java.util.HashSet;

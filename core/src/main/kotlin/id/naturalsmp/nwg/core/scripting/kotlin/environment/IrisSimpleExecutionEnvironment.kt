@@ -10,9 +10,9 @@ import id.naturalsmp.nwg.core.scripting.kotlin.runner.ScriptRunner
 import id.naturalsmp.nwg.core.scripting.kotlin.runner.classpath
 import id.naturalsmp.nwg.core.scripting.kotlin.runner.value
 import id.naturalsmp.nwg.core.scripting.kotlin.runner.valueOrThrow
-import id.naturalsmp.nwg.utilities.collection.KMap
-import id.naturalsmp.nwg.utilities.data.KCache
-import id.naturalsmp.nwg.utilities.format.C
+import id.naturalsmp.nwg.toolbelt.collection.KMap
+import id.naturalsmp.nwg.toolbelt.data.KCache
+import id.naturalsmp.nwg.toolbelt.format.C
 import java.io.File
 import kotlin.reflect.KClass
 import kotlin.script.experimental.annotations.KotlinScript

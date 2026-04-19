@@ -1,6 +1,6 @@
 package id.naturalsmp.nwg.core.scripting.kotlin.base
 
-import id.naturalsmp.nwg.utilities.math.RNG
+import id.naturalsmp.nwg.toolbelt.math.RNG
 import kotlin.script.experimental.annotations.KotlinScript
 import kotlin.script.experimental.api.ScriptCompilationConfiguration
 import kotlin.script.experimental.api.providedProperties

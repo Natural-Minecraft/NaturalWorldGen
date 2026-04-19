@@ -5,8 +5,8 @@ import id.naturalsmp.nwg.core.loader.IrisData;
 import id.naturalsmp.nwg.engine.framework.ListFunction;
 import id.naturalsmp.nwg.engine.mantle.ComponentFlag;
 import id.naturalsmp.nwg.engine.mantle.MantleComponent;
-import id.naturalsmp.nwg.utilities.collection.KList;
-import id.naturalsmp.nwg.utilities.mantle.flag.MantleFlag;
+import id.naturalsmp.nwg.toolbelt.collection.KList;
+import id.naturalsmp.nwg.toolbelt.mantle.flag.MantleFlag;
 
 import java.util.Objects;
 

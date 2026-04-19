@@ -2,7 +2,7 @@ package id.naturalsmp.nwg.engine.object.annotations.functions;
 
 import id.naturalsmp.nwg.core.loader.IrisData;
 import id.naturalsmp.nwg.engine.framework.ListFunction;
-import id.naturalsmp.nwg.utilities.collection.KList;
+import id.naturalsmp.nwg.toolbelt.collection.KList;
 import org.bukkit.NamespacedKey;
 import org.bukkit.Registry;
 import org.bukkit.loot.LootTable;

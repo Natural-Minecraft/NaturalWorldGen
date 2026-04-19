@@ -5,7 +5,7 @@ import id.naturalsmp.nwg.core.pregenerator.PregenListener;
 import id.naturalsmp.nwg.core.pregenerator.PregeneratorMethod;
 import id.naturalsmp.nwg.core.pregenerator.cache.PregenCache;
 import id.naturalsmp.nwg.core.service.GlobalCacheSVC;
-import id.naturalsmp.nwg.utilities.mantle.Mantle;
+import id.naturalsmp.nwg.toolbelt.mantle.Mantle;
 import lombok.AllArgsConstructor;
 
 @AllArgsConstructor

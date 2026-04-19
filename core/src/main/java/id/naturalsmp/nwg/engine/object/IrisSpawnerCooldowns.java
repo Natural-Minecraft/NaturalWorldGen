@@ -1,7 +1,7 @@
 package id.naturalsmp.nwg.engine.object;
 
 import id.naturalsmp.nwg.engine.framework.Engine;
-import id.naturalsmp.nwg.utilities.collection.KMap;
+import id.naturalsmp.nwg.toolbelt.collection.KMap;
 import lombok.EqualsAndHashCode;
 import lombok.NonNull;
 

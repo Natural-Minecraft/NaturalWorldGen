@@ -1,7 +1,7 @@
 package id.naturalsmp.nwg.core.scripting.kotlin.base
 
 import id.naturalsmp.nwg.core.scripting.func.UpdateExecutor
-import id.naturalsmp.nwg.utilities.mantle.MantleChunk
+import id.naturalsmp.nwg.toolbelt.mantle.MantleChunk
 import org.bukkit.Chunk
 import kotlin.script.experimental.annotations.KotlinScript
 import kotlin.script.experimental.api.ScriptCompilationConfiguration
