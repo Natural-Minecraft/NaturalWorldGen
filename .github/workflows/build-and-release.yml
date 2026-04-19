@@ -24,28 +24,25 @@ jobs:
         with:
           java-version: '21'
           distribution: 'temurin'
+          cache: 'gradle'
 
-      - name: Setup Gradle
-        uses: gradle/actions/setup-gradle@v3
-        with:
-          gradle-version: wrapper
+      - name: Grant Execute Permission for Gradlew
+        run: chmod +x gradlew
 
       - name: Build with Gradle
-        run: |
-          chmod +x gradlew
-          ./gradlew build --no-daemon
+        run: ./gradlew build --no-daemon
 
       - name: Extract Project Info
         id: info
         run: |
-          VERSION=$(grep '^version \?= \?' build.gradle.kts | cut -d'"' -f2)
-          echo "artifact_version=$VERSION" >> $GITHUB_OUTPUT
+          VERSION=$(grep '^version =' build.gradle.kts | cut -d '"' -f 2)
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
 
       - name: Create Production Release
         uses: softprops/action-gh-release@v2
         with:
-          tag_name: v${{ steps.info.outputs.artifact_version }}
-          name: NaturalWorldGen v${{ steps.info.outputs.artifact_version }}
+          tag_name: v${{ steps.info.outputs.version }}
+          name: NaturalWorldGen v${{ steps.info.outputs.version }}
           body: |
             Automated Production Build from NaturalSMP CI/CD.
             Last Build Time: ${{ github.event.head_commit.timestamp }}
