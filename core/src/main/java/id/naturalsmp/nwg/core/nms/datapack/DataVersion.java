@@ -19,7 +19,7 @@ public enum DataVersion {
     V1_20_5("1.20.6", 41, DataFixerV1206::new),
     V1_21_1("1.21.1", 48, DataFixerV1206::new),
     V1_21_3("1.21.3", 57, DataFixerV1213::new),
-    V1_21_11("1.21.11", 75, DataFixerV1217::new);
+    V1_21_11("1.21.11", 61, DataFixerV1217::new);
     private static final KMap<DataVersion, IDataFixer> cache = new KMap<>();
     @Getter(AccessLevel.NONE)
     private final Supplier<IDataFixer> constructor;
