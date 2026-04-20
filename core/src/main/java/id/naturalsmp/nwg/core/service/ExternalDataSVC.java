@@ -200,13 +200,13 @@ public class ExternalDataSVC implements IrisService {
         KList<ExternalDataProvider> providers = new KList<>();
 
         for (Class<?> c : jar.getClasses()) {
-            if (ExternalDataProvider.class.isAssignableFrom(c)) {
-                try {
+            try {
+                if (ExternalDataProvider.class.isAssignableFrom(c)) {
                     ExternalDataProvider p = (ExternalDataProvider) c.getDeclaredConstructor().newInstance();
                     if (p.getPlugin() != null) NaturalGenerator.info(p.getPluginId() + " found, loading " + c.getSimpleName() + "...");
                     providers.add(p);
-                } catch (Throwable ignored) {}
-            }
+                }
+            } catch (Throwable ignored) {}
         }
         return providers;
     }
