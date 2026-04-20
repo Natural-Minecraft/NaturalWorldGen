@@ -46,7 +46,7 @@ public final class IrisDimensionType {
     }
 
     public static IrisDimensionType fromKey(String key) {
-        var stream = new ByteArrayInputStream(IO.decode(key.replace(".", "=").toUpperCase()));
+        var stream = new ByteArrayInputStream(IO.decode(key.replace("_", "=").toUpperCase()));
         try (var din = new DataInputStream(stream)) {
             return new IrisDimensionType(
                     IDataFixer.Dimension.values()[din.readUnsignedByte()],
@@ -82,7 +82,7 @@ public final class IrisDimensionType {
             throw new RuntimeException("This is impossible", e);
         }
 
-        return IO.encode(stream.toByteArray()).replace("=", ".").toLowerCase();
+        return IO.encode(stream.toByteArray()).replace("=", "_").toLowerCase();
     }
 
     public IrisDimensionTypeOptions options() {
