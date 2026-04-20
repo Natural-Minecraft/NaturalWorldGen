@@ -72,6 +72,11 @@ public class KMap<K, V> extends ConcurrentHashMap<K, V> {
         return this;
     }
 
+    public KMap<K, V> put(KMap<K, V> other) {
+        putAll(other);
+        return this;
+    }
+
     public KMap<K, V> putNonNull(K key, V value) {
         if (key != null && value != null) put(key, value);
         return this;
