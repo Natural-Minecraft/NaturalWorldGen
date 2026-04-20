@@ -829,7 +829,7 @@ public class NMSBinding implements INMSBinding {
                 return;
 
             try {
-                Object bindings = Class.forName("id.naturalsmp.nwg.core.nms.INMS", true, Bukkit.getPluginManager().getPlugin("NaturalGenerator")
+                Object bindings = Class.forName("id.naturalsmp.nwg.core.nms.INMS", true, Bukkit.getPluginManager().getPlugin("NaturalWorldGen")
                                 .getClass()
                                 .getClassLoader())
                         .getDeclaredMethod("get")
