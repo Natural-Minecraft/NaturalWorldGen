@@ -11,6 +11,10 @@ import java.util.concurrent.Executors
 
 class KCache<K : Any, V : Any>(private var loader: CacheLoader<K, V>?, private val max: Long, private val fastDump: Boolean = false) :
     MeteredCache {
+
+    // Java-friendly constructor: accepts a java.util.function.Function instead of CacheLoader
+    constructor(loader: java.util.function.Function<K, V>, max: Long) : this(CacheLoader { k: K -> loader.apply(k) }, max, false)
+
     private val cache: LoadingCache<K, V> = create()
     private val msu = RollingSequence(100)
 

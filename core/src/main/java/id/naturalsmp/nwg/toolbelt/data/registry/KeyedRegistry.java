@@ -102,7 +102,7 @@ public interface KeyedRegistry<T> {
         public @NonNull Map<NamespacedKey, T> map() {
             final KMap<NamespacedKey, T> m = new KMap<>();
             for (final KeyedRegistry<T> registry : registries) {
-                m.put(registry.map());
+                m.putAll(registry.map());
             }
             return m;
         }

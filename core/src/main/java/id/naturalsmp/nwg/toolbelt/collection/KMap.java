@@ -32,11 +32,11 @@ public class KMap<K, V> extends ConcurrentHashMap<K, V> {
         return null;
     }
 
+    @SuppressWarnings({"rawtypes", "unchecked"})
     public <S> KMap<K, V> putValueList(K k, S... vs) {
         try {
-            KMap<K, KList<S>> s = (KMap<K, KList<S>>) this;
-            if (!s.containsKey(k)) s.put((K) k, (V) new KList<S>());
-            ((KList<S>) s.get(k)).add(vs);
+            if (!containsKey(k)) put(k, (V) new KList<S>());
+            ((KList) get(k)).add(vs);
         } catch (Throwable ignored) {}
         return this;
     }

@@ -218,6 +218,10 @@ public class KList<T> extends ArrayList<T> {
         return !isEmpty();
     }
 
+    public boolean isNotEmpty() {
+        return !isEmpty();
+    }
+
     public T pop() {
         if (isEmpty()) return null;
         return remove(0);
