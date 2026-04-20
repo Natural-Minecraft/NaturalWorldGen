@@ -241,3 +241,8 @@ tasks.named<JavaCompile>("compileJava") {
     dependsOn(tasks.named("compileKotlin"))
     classpath += files(tasks.named<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>("compileKotlin").get().destinationDirectory)
 }
+
+tasks.matching { it.name.startsWith("sentry") }.configureEach {
+    enabled = System.getenv("SENTRY_AUTH_TOKEN") != null
+}
+
