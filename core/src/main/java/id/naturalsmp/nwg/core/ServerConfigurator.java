@@ -194,7 +194,7 @@ public class ServerConfigurator {
         for (IrisBiome i : dimension.getAllBiomes(dimension::getLoader)) {
             if (i.isCustom()) {
                 for (IrisBiomeCustom j : i.getCustomDerivitives()) {
-                    keys.add(dimension.getLoadKey() + ":" + j.getId());
+                    keys.add("nwg:" + j.getId());
                 }
             }
         }

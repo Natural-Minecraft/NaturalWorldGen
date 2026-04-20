@@ -428,9 +428,9 @@ public class IrisDimension extends IrisRegistrant {
                     }
 
                     for (File datapacks : folders) {
-                        File output = new File(datapacks, "naturalworldgen/data/" + getLoadKey().toLowerCase() + "/worldgen/biome/" + j.getId() + ".json");
+                        File output = new File(datapacks, "naturalworldgen/data/nwg/worldgen/biome/" + j.getId() + ".json");
 
-                        NaturalGenerator.verbose("    Installing Data Pack Biome: " + output.getPath());
+                        NaturalGenerator.verbose("    Installing Data Pack Biome: nwg:" + j.getId());
                         output.getParentFile().mkdirs();
                         try {
                             IO.writeAll(output, json);
@@ -462,9 +462,9 @@ public class IrisDimension extends IrisRegistrant {
         IrisDimensionType type = getDimensionType();
         String json = type.toJson(fixer);
 
-        NaturalGenerator.verbose("    Installing Data Pack Dimension Type: \"naturalworldgen:" + type.key() + '"');
+        NaturalGenerator.verbose("    Installing Data Pack Dimension Type: \"nwg:" + type.key() + '"');
         for (File datapacks : folders) {
-            File output = new File(datapacks, "naturalworldgen/data/naturalworldgen/dimension_type/" + type.key() + ".json");
+            File output = new File(datapacks, "naturalworldgen/data/nwg/dimension_type/" + type.key() + ".json");
             output.getParentFile().mkdirs();
             try {
                 IO.writeAll(output, json);
