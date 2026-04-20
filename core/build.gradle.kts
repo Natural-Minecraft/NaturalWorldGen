@@ -130,6 +130,7 @@ sentry {
     url = "http://sentry.naturalsmp.id:8080"
     autoInstallation.enabled = false
     includeSourceContext = true
+    autoUploadSourceContext = System.getenv("SENTRY_AUTH_TOKEN") != null
 
     org = "sentry"
     projectName = "nwg"
