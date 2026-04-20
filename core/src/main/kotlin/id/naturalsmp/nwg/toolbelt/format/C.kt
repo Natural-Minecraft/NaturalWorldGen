@@ -267,6 +267,7 @@ enum class C(
         }
 
         @JvmStatic
+        @JvmOverloads
         fun aura(s: String, hrad: Int, srad: Int, vrad: Int, pulse: Double = 0.3): String {
             val msg = compress(s)
             val b = StringBuilder()

@@ -313,8 +313,11 @@ public class IrisObjectPlacement {
 
         private void merge(TableCache other) {
             global.merge(other.global);
-            basic.merge(other.basic, WeightedRandom::merge);
-            exact.merge(other.exact, (a, b) -> a.merge(b, WeightedRandom::merge));
+            other.basic.forEach((k, v) -> basic.merge(k, v, WeightedRandom::merge));
+            other.exact.forEach((k, v) -> exact.merge(k, v, (a, b) -> {
+                b.forEach((bk, bv) -> a.merge(bk, bv, WeightedRandom::merge));
+                return a;
+            }));
         }
     }
 }

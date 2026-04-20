@@ -9,6 +9,9 @@ public class KeyPair<K, V> {
         this.v = v;
     }
 
+    public K getK() { return k; }
+    public V getV() { return v; }
+
     @Override
     public String toString() {
         return k + "=" + v;
