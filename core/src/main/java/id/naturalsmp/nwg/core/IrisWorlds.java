@@ -115,7 +115,7 @@ public class IrisWorlds {
             if (gen.equalsIgnoreCase("nwg")) {
                 loadKey = IrisSettings.get().getGenerator().getDefaultWorldType();
             } else if (gen.startsWith("NaturalGenerator:")) {
-                loadKey = gen.substring(5);
+                loadKey = gen.substring("NaturalGenerator:".length());
             } else continue;
 
             result.put(world, loadKey);
