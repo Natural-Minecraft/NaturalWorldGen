@@ -129,6 +129,14 @@ public class ServerConfigurator {
         IrisDimension.writeShared(folders, height);
         NaturalGenerator.info("Data Packs Setup!");
 
+        // Explicitly enable the naturalworldgen datapack if it's not already enabled
+        try {
+            Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "datapack enable \"file/naturalworldgen\"");
+            NaturalGenerator.info("Datapack 'file/naturalworldgen' has been enabled.");
+        } catch (Exception e) {
+            NaturalGenerator.warn("Could not auto-enable datapack: " + e.getMessage());
+        }
+
         return fullInstall && verifyDataPacksPost(IrisSettings.get().getAutoConfiguration().isAutoRestartOnCustomBiomeInstall());
     }
 
