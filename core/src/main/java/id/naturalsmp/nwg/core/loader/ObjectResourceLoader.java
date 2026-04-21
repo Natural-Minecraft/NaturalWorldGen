@@ -29,6 +29,8 @@ import id.naturalsmp.nwg.toolbelt.scheduling.PrecisionStopwatch;
 import java.io.File;
 
 public class ObjectResourceLoader extends ResourceLoader<IrisObject> {
+    private final java.util.Set<String> failedLoads = java.util.concurrent.ConcurrentHashMap.newKeySet();
+
     public ObjectResourceLoader(File root, IrisData idm, String folderName, String resourceTypeName) {
         super(root, idm, folderName, resourceTypeName, IrisObject.class);
         loadCache = new KCache<>(this::loadRaw, IrisSettings.get().getPerformance().getObjectLoaderCacheSize());
@@ -92,9 +94,12 @@ public class ObjectResourceLoader extends ResourceLoader<IrisObject> {
 
     public File findFile(String name) {
         for (File i : getFolders(name)) {
-            for (File j : i.listFiles()) {
-                if (j.isFile() && j.getName().endsWith(".iob") && j.getName().split("\\Q.\\E")[0].equals(name)) {
-                    return j;
+            File[] files = i.listFiles();
+            if (files != null) {
+                for (File j : files) {
+                    if (j.isFile() && j.getName().endsWith(".iob") && j.getName().split("\\Q.\\E")[0].equals(name)) {
+                        return j;
+                    }
                 }
             }
 
@@ -115,10 +120,15 @@ public class ObjectResourceLoader extends ResourceLoader<IrisObject> {
     }
 
     private IrisObject loadRaw(String name) {
+        if (failedLoads.contains(name)) return null;
+
         for (File i : getFolders(name)) {
-            for (File j : i.listFiles()) {
-                if (j.isFile() && j.getName().endsWith(".iob") && j.getName().split("\\Q.\\E")[0].equals(name)) {
-                    return loadFile(j, name);
+            File[] files = i.listFiles();
+            if (files != null) {
+                for (File j : files) {
+                    if (j.isFile() && j.getName().endsWith(".iob") && j.getName().split("\\Q.\\E")[0].equals(name)) {
+                        return loadFile(j, name);
+                    }
                 }
             }
 
@@ -130,6 +140,7 @@ public class ObjectResourceLoader extends ResourceLoader<IrisObject> {
         }
 
         NaturalGenerator.warn("Couldn't find " + resourceTypeName + ": " + name);
+        failedLoads.add(name);
 
         return null;
     }

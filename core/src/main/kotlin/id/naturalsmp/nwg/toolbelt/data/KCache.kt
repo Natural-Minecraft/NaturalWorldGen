@@ -26,7 +26,8 @@ class KCache<K : Any, V : Any>(private var loader: CacheLoader<K, V>?, private v
             .executor(EXECUTOR)
             .initialCapacity(max.toInt())
             .build { k ->
-                loader?.load(k) ?: throw IllegalStateException("No loader configured for KCache")
+                val l = loader ?: throw IllegalStateException("No loader configured for KCache")
+                l.load(k)
             }
     }
 
