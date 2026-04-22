@@ -97,7 +97,7 @@ public class WorldObjectPlacer implements IObjectPlacer {
 
     @Override
     public boolean isCarved(int x, int y, int z) {
-        return mantle.isCarved(x, y, z);
+        return mantle.getMantle().get(x, y, z, id.naturalsmp.nwg.toolbelt.matter.MatterCavern.class) != null;
     }
 
     @Override

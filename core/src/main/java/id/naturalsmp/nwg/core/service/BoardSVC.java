@@ -147,7 +147,7 @@ public class BoardSVC implements IrisService, BoardProvider {
             lines.add(C.AQUA + "Mantle" + C.GRAY + ": " + engine.getMantle().getLoadedRegionCount());
 
             if (IrisSettings.get().getGeneral().debug) {
-                lines.add(C.LIGHT_PURPLE + "Carving" + C.GRAY + ": " + engine.getMantle().isCarved(x,y,z));
+                lines.add(C.LIGHT_PURPLE + "Carving" + C.GRAY + ": " + (engine.getMantle().getMantle().get(x, y, z, id.naturalsmp.nwg.toolbelt.matter.MatterCavern.class) != null));
             }
 
             lines.add("&7&m                   ");

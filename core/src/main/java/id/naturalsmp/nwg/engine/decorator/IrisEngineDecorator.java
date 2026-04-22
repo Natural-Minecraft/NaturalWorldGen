@@ -88,7 +88,8 @@ public abstract class IrisEngineDecorator extends EngineAssignedComponent implem
                     continue;
                 int yy = y + f.getModY();
 
-                BlockData r = getEngine().getMantle().get(x + f.getModX(), yy, z + f.getModZ());
+                BlockData r = getEngine().getMantle().getMantle().get(x + f.getModX(), yy, z + f.getModZ(), BlockData.class);
+                if (r == null) r = id.naturalsmp.nwg.engine.mantle.EngineMantle.AIR;
                 if (r.isFaceSturdy(f.getOppositeFace(), BlockSupport.FULL)) {
                     found = true;
                     data.setFace(f, true);
